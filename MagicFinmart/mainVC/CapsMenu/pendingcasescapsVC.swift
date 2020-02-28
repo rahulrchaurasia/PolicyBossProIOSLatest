@@ -13,6 +13,7 @@ import TTGSnackbar
 class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDelegate,MyCellDelegate {
     
     @IBOutlet weak var pendingTV: UITableView!
+    
     var customerName = [String]()
     var category = [String]()
     var applnStatus = [String]()
