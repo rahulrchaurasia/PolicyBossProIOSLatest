@@ -2,8 +2,8 @@
 //  knowGuruTVCell.swift
 //  MagicFinmart
 //
-//  Created by Admin on 17/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 17/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
@@ -12,6 +12,7 @@ class knowGuruTVCell: UITableViewCell {
 
     @IBOutlet weak var knowguruTView: UIView!
     @IBOutlet weak var knowguruCellLbl: UILabel!
+    @IBOutlet weak var cellImgView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

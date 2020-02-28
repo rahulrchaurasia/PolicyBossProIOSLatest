@@ -8,21 +8,52 @@
 
 import UIKit
 
+//1. delegate method
+protocol leadHistoryDelegates: AnyObject {
+    func leadHistoryTapped(cell: commonQuotesTVCell)
+}
+
 class commonQuotesTVCell: UITableViewCell {
 
-    @IBOutlet weak var firstNameLbl: UILabel!
-    @IBOutlet weak var lastNameLbl: UILabel!
-    @IBOutlet weak var loanamountLbl: UILabel!
-    @IBOutlet weak var quotedateLbl: UILabel!
+    //2.
+    weak var leadHistdelegate: leadHistoryDelegates?
+    
+    @IBOutlet weak var cellView: UIView!
+    @IBOutlet weak var titleView: UIView!
+    @IBOutlet weak var cellImgView: UIView!
+    @IBOutlet weak var loanamountView: UIView!
+    @IBOutlet weak var appnmberView: UIView!
+    @IBOutlet weak var haimgView: UIImageView!
+    @IBOutlet weak var hNameLbl: UILabel!
+    @IBOutlet weak var hloanAmountLbl: UILabel!
+    @IBOutlet weak var hprogressView: UIProgressView!
+    @IBOutlet weak var hprogressLbl: UILabel!
+    @IBOutlet weak var happNumLbl: UILabel!
+    @IBOutlet weak var happDateLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        viewColorGray(view:cellView)
+        viewColorGray(view:titleView)
+        viewColorGray(view:cellImgView)
+        viewColorGray(view:loanamountView)
+        viewColorGray(view:appnmberView)
     }
-
-    @IBAction func cellmenuBtnCliked(_ sender: Any)
+    
+    @IBAction func leadHistoryBtnCliked(_ sender: Any)
     {
-        
+        //4. call delegate method
+        //check delegate is not nil with `?`
+        leadHistdelegate?.leadHistoryTapped(cell: self)
+    }
+    
+    func viewColorGray(view:UIView)
+    {
+        let borderColr = UIColor.lightGray
+        view.layer.cornerRadius=2.0;
+        view.layer.borderWidth=1.0;
+        view.layer.borderColor=borderColr.cgColor;
+        //        Btn.setTitleColor(UIColor.gray, for: .normal)
     }
     
 

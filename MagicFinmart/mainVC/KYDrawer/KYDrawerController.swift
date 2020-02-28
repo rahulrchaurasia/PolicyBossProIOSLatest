@@ -34,8 +34,7 @@ open class KYDrawerController: UIViewController, UIGestureRecognizerDelegate {
     
     /**************************************************************************/
     // MARK: - Types
-    /**************************************************************************/
-    
+    /**************************************************************************/    
     @objc public enum DrawerDirection: Int {
         case left, right
     }

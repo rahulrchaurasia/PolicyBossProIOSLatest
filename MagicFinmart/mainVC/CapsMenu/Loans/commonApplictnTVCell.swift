@@ -24,10 +24,8 @@ class commonApplictnTVCell: UITableViewCell {
     @IBOutlet weak var appNumLbl: UILabel!
     @IBOutlet weak var appDateLbl: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         let borderColor = UIColor.lightGray
         cellView.layer.cornerRadius=2;
         cellView.layer.borderWidth=1.0;

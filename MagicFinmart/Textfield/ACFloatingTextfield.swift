@@ -34,7 +34,7 @@ import UIKit
     }
     
      /// Change line color when Editing in textfield
-    @IBInspectable open var selectedLineColor : UIColor = UIColor(red: 19/256.0, green: 141/256.0, blue: 117/256.0, alpha: 1.0){
+    @IBInspectable open var selectedLineColor : UIColor = UIColor(red: 0/256.0, green: 125/256.0, blue: 213/256.0, alpha: 1.0){
         didSet{
             self.floatTheLabel()
         }
@@ -48,7 +48,7 @@ import UIKit
     }
     
      /// Change placeholder color while editing.
-    @IBInspectable open var selectedPlaceHolderColor : UIColor = UIColor(red: 19/256.0, green: 141/256.0, blue: 117/256.0, alpha: 1.0){
+    @IBInspectable open var selectedPlaceHolderColor : UIColor = UIColor(red: 0/256.0, green: 125/256.0, blue: 213/256.0, alpha: 1.0){
         didSet{
             self.floatTheLabel()
         }
@@ -225,7 +225,7 @@ fileprivate extension ACFloatingTextfield {
         labelPlaceholder?.text = placeholderText
         labelPlaceholder?.textAlignment = self.textAlignment
         labelPlaceholder?.textColor = placeHolderColor
-        labelPlaceholder?.font = UIFont.init(name: (self.font?.fontName ?? "helvetica")!, size: 12)
+        labelPlaceholder?.font = UIFont.init(name: (self.font?.fontName ?? "helvetica")!, size: 16)
         labelPlaceholder?.isHidden = true
         labelPlaceholder?.sizeToFit()
         labelPlaceholder?.translatesAutoresizingMaskIntoConstraints = false
@@ -236,7 +236,7 @@ fileprivate extension ACFloatingTextfield {
         let leadingConstraint = NSLayoutConstraint.init(item: labelPlaceholder!, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 5)
         let trailingConstraint = NSLayoutConstraint.init(item: labelPlaceholder!, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
         let topConstraint = NSLayoutConstraint.init(item: labelPlaceholder!, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 0)
-        placeholderLabelHeight = NSLayoutConstraint.init(item: labelPlaceholder!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 15)
+        placeholderLabelHeight = NSLayoutConstraint.init(item: labelPlaceholder!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 16)
         
         self.addConstraints([leadingConstraint,trailingConstraint,topConstraint])
         labelPlaceholder?.addConstraint(placeholderLabelHeight!)
@@ -253,7 +253,7 @@ fileprivate extension ACFloatingTextfield {
         labelErrorPlaceholder?.text = self.errorText
         labelErrorPlaceholder?.textAlignment = self.textAlignment
         labelErrorPlaceholder?.textColor = errorTextColor
-        labelErrorPlaceholder?.font = UIFont(name: (self.font?.fontName ?? "helvetica")!, size: 12)
+        labelErrorPlaceholder?.font = UIFont(name: (self.font?.fontName ?? "helvetica")!, size: 16)
         labelErrorPlaceholder?.sizeToFit()
         labelErrorPlaceholder?.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelErrorPlaceholder!)
@@ -334,7 +334,7 @@ fileprivate extension ACFloatingTextfield {
             
             bottomLineView?.backgroundColor = showingError ? self.errorLineColor : self.selectedLineColor;
             labelPlaceholder?.textColor = self.selectedPlaceHolderColor;
-            bottomLineViewHeight?.constant = 2;
+            bottomLineViewHeight?.constant = 1;
             self.setValue(self.selectedPlaceHolderColor, forKeyPath: "_placeholderLabel.textColor")
 
         } else {
@@ -349,12 +349,12 @@ fileprivate extension ACFloatingTextfield {
             return
         }
         
-        if placeholderLabelHeight?.constant == 15 {
+        if placeholderLabelHeight?.constant == 16 {
             return
         }
 
-        placeholderLabelHeight?.constant = 15;
-        labelPlaceholder?.font = UIFont(name: (self.font?.fontName)!, size: 12)
+        placeholderLabelHeight?.constant = 16;
+        labelPlaceholder?.font = UIFont(name: (self.font?.fontName)!, size: 16)
 
         UIView.animate(withDuration: 0.2, animations: {
             self.layoutIfNeeded()
@@ -414,7 +414,7 @@ fileprivate extension ACFloatingTextfield {
 extension UIView {
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         animation.duration = 0.6
         animation.values = [-20.0, 20.0, -20.0, 20.0, -10.0, 10.0, -5.0, 5.0, 0.0 ]
         layer.add(animation, forKey: "shake")

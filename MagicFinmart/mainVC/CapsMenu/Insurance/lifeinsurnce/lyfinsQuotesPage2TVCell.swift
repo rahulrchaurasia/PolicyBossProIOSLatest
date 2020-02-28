@@ -10,6 +10,8 @@ import UIKit
 
 class lyfinsQuotesPage2TVCell: UITableViewCell {
 
+    @IBOutlet var cellLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

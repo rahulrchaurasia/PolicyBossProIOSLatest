@@ -2,8 +2,8 @@
 //  KnowlgeGuruVC.swift
 //  MagicFinmart
 //
-//  Created by Admin on 14/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 14/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
@@ -11,18 +11,23 @@ import UIKit
 class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var knowtableArray = ["LOANS","INSURANCE","OTHER PRODUCTS"]
+    var knowImgArray = ["knowledge_loan_icon.png","knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func knowguruBackBtn(_ sender: Any)
     {
-        let MainfinMart : MainfinMartVC = self.storyboard?.instantiateViewController(withIdentifier: "stbMainfinMartVC") as! MainfinMartVC
-        self.addChild(MainfinMart)
-        self.view.addSubview(MainfinMart.view)
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
+    }
+    
+    @IBAction func homeBtnCliked(_ sender: Any)
+    {
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,13 +37,21 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! knowGuruTVCell
         
-        let borderColor = UIColor.gray
-        cell.knowguruTView.layer.cornerRadius=2;
-        cell.knowguruTView.layer.borderWidth=1.0;
-        cell.knowguruTView.layer.shadowColor=borderColor.cgColor;
-        cell.knowguruTView.layer.borderColor=borderColor.cgColor;
+//        let borderColor = UIColor.lightGray
+//        cell.knowguruTView.layer.cornerRadius=2;
+//        cell.knowguruTView.layer.borderWidth=1.0;
+//        cell.knowguruTView.layer.shadowColor=borderColor.cgColor;
+//        cell.knowguruTView.layer.borderColor=borderColor.cgColor;
+ 
+        // The subview inside the collection view cell
+        cell.knowguruTView.layer.cornerRadius = 5.0
+        cell.knowguruTView.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.knowguruTView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        cell.knowguruTView.layer.shadowRadius = 8.0
+        cell.knowguruTView.layer.shadowOpacity = 0.7
         
         cell.knowguruCellLbl.text = knowtableArray[indexPath.row]
+        cell.cellImgView.image = UIImage(named: knowImgArray[indexPath.row])
         
         return cell
     }
@@ -47,7 +60,26 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         return 100
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.row == 0)
+        {
+            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
+            Loans.wfromScreen = "Loans"
+            present(Loans, animated: true, completion: nil)
+        }
+        else if(indexPath.row == 1)
+        {
+            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
+            Loans.wfromScreen = "Insurance"
+            present(Loans, animated: true, completion: nil)
+        }
+        else if(indexPath.row == 2)
+        {
+            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
+            Loans.wfromScreen = "otherProduct"
+            present(Loans, animated: true, completion: nil)
+        }
+    }
     
 
 }

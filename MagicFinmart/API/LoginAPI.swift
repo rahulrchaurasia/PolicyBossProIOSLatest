@@ -13,9 +13,9 @@ class LoginAPI: NSObject {
     static let LOGIN_BASE_ENDPOINT : String = "/AttendanceDetails.svc"
     static let USERS_LOGIN : String = LOGIN_BASE_ENDPOINT+"/Login"
     
-    static let USERS_ATTENDANCE_REGISTRATION : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipeDetails"
+    static let USERS_ATTENDANCE_REGISTRATION : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipeDetails_IOS"
     
-    static let USERS_SWIPE_DETAIL : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipeReport"
+    static let USERS_SWIPE_DETAIL : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipeReport_IOS"
 
     static let USERS_DISPLAY_LOCATION : String = LOGIN_BASE_ENDPOINT+"/GetGeoLocation"
     
@@ -25,11 +25,9 @@ class LoginAPI: NSObject {
     static let USERS_UPDATE_EMPLOYEE_PROFILE : String = LOGIN_BASE_ENDPOINT+"/UpdateEmployeeProfile"
     static let USERS_CHANGE_PASSSWORD : String = LOGIN_BASE_ENDPOINT+"/ChangePassword"
     
-    
-    static let USERS_ATTENDANCE_EMPLOYEE_SWIPE : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipe"
+    static let USERS_ATTENDANCE_EMPLOYEE_SWIPE : String = LOGIN_BASE_ENDPOINT+"/EmployeeSwipe_IOS"
 
-    static let USERS_ATTENDANCE_EMPLOYEE_SWIPE_OUTDOOR : String = LOGIN_BASE_ENDPOINT+"/EmployeeOutdoorSwipe"
-
+    static let USERS_ATTENDANCE_EMPLOYEE_SWIPE_OUTDOOR : String = LOGIN_BASE_ENDPOINT+"/EmployeeOutdoorSwipe_IOS"
     
     //Upload keys
     static let USERS_POST_KEY_TOKENID : String = "tokenId"
@@ -40,7 +38,6 @@ class LoginAPI: NSObject {
     static let USERS_POST_KEY_EMPCODE : String = "empcode"
     static let USERS_POST_KEY_EMPCODE_CAPITAL : String = "empCode"
 
-    
     static let USERS_POST_KEY_ENTRYTYPE : String = "entrytype"
     
     static let USERS_POST_KEY_ALT : String = "lat"

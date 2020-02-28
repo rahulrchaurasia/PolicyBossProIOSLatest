@@ -58,7 +58,7 @@ class ResponseMetadata
         var details:[AnyHashable : Any] = [AnyHashable : Any]()
         details[NSLocalizedDescriptionKey] = "Looks like something is wrong.\nPlease try after some time"
         //details.setValue("Looks like something is wrong.\nPlease try after some time", forKey: NSLocalizedDescriptionKey)
-        let error = NSError(domain: "Local", code: 200, userInfo: details as! [String : Any])
+        let error = NSError(domain: "Local", code: 200, userInfo: details as? [String : Any])
         let responceMetaData = ResponseMetadata(type: type, data: nil,error:error,errorMessage: error.localizedDescription)
         return responceMetaData
     }

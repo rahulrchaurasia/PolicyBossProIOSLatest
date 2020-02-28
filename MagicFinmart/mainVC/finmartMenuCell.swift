@@ -2,14 +2,17 @@
 //  finmartMenuCell.swift
 //  MagicFinmart
 //
-//  Created by Admin on 17/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 17/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
 
 class finmartMenuCell: UITableViewCell {
 
+    @IBOutlet weak var cellImgs: UIImageView!
+    @IBOutlet weak var cellLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

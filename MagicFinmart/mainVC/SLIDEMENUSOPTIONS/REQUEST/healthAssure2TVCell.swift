@@ -10,15 +10,23 @@ import UIKit
 
 class healthAssure2TVCell: UITableViewCell {
 
+    @IBOutlet var hidecellLbl: UILabel!
+    @IBOutlet var hidecellLbl2: UILabel!
+    @IBOutlet var hidecellBtnLbl1: UILabel!
+    @IBOutlet var hidecellBtnLbl2: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        hidecellLbl.sizeToFit()
+        hidecellLbl2.sizeToFit()
     }
 
+    
+    
+    
 }

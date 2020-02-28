@@ -10,21 +10,44 @@ import UIKit
 
 class imgsalesmaterialVC: UIViewController {
 
+    @IBOutlet weak var detailImgView: UIImageView!
+    
+    var detailImg = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        print("detailImg=",detailImg)
+        let url = URL(string: detailImg)
+        let data = try? Data(contentsOf: url!)
+        detailImgView.image = UIImage(data: data!)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backBtnCliked(_ sender: Any)
+    {
+        self.willMove(toParent: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParent()
     }
-    */
-
+    
+    @IBAction func shareBtnCliked(_ sender: Any)
+    {
+//        let text = "This is the text...."
+//        let image = UIImage(named: "Product")
+        let myWebsite = NSURL(string:detailImg)
+        let shareAll = [myWebsite as Any]
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    
+    }
+    
+    @IBAction func homeBtnCliked(_ sender: Any)
+    {
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        self.present(KYDrawer, animated: true, completion: nil)
+    }
+    
+    
 }

@@ -10,4 +10,16 @@ import UIKit
 
 class lyfinshdfcinputModel: NSObject {
 
+    var CustomerReferenceID: Int
+    var ProductPlanName: String
+    var SumAssured: Int
+    
+    init(CustomerReferenceID: Int, ProductPlanName: String, SumAssured: Int )
+    {
+        self.CustomerReferenceID = CustomerReferenceID
+        self.ProductPlanName = ProductPlanName
+        self.SumAssured = SumAssured
+        
+    }
+
 }

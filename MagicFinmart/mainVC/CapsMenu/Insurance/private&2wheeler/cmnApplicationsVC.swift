@@ -116,7 +116,6 @@ class cmnApplicationsVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     {
         //Get the indexpath of cell where button was tapped
         let indexPath = self.applictnTV.indexPath(for: cell)
-        print("indexPath!.row",indexPath!.row)
         //here I want to execute the UIActionSheet
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         actionsheet.addAction(UIAlertAction(title: "CALL", style: UIAlertAction.Style.default, handler: { (action) -> Void in

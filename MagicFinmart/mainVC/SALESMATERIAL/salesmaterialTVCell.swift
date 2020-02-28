@@ -2,8 +2,8 @@
 //  salesmaterialTVCell.swift
 //  MagicFinmart
 //
-//  Created by Admin on 14/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 14/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
@@ -12,6 +12,8 @@ class salesmaterialTVCell: UITableViewCell {
 
     @IBOutlet weak var salescellView: UIView!
     @IBOutlet weak var salescellLbl: UILabel!
+    @IBOutlet weak var salesmcellImgView: UIImageView!
+    @IBOutlet weak var salescellCountLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -2,11 +2,13 @@
 //  changePasswrdVC.swift
 //  MagicFinmart
 //
-//  Created by Admin on 27/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 27/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
+import CustomIOSAlertView
+import TTGSnackbar
 
 class changePasswrdVC: UIViewController,UITextFieldDelegate {
 
@@ -19,6 +21,7 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
         //--<textField>--
         aTextField.delegate = self
 
@@ -40,11 +43,67 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func slidemenuBtnCliked(_ sender: Any)
     {
-        if let drawerController = navigationController?.parent as? KYDrawerController {
-            drawerController.setDrawerState(.opened, animated: true)
+//        if let drawerController = navigationController?.parent as? KYDrawerController {
+//            drawerController.setDrawerState(.opened, animated: true)
+//        }
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
+    }
+    
+    @IBAction func submitBtnCliked(_ sender: Any)
+    {
+        if(oldpassTf.text! != "" && newpassTf.text! != "" && confirmpassTf.text! != "")
+        {
+            changepasswordAPI()
+        }
+        else{
+            let alert = UIAlertController(title: "Alert", message: "Please Enter Password", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+
         }
         
     }
     
-
+    func changepasswordAPI()
+    {
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        
+        let params: [String: AnyObject] = ["Old_Password":oldpassTf.text! as AnyObject,
+                                           "FBAID":FBAId as AnyObject,
+                                           "New_Password":newpassTf.text! as AnyObject]
+        
+        let url = "/api/change-password"
+        
+        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+            alertView.close()
+            
+            self.view.layoutIfNeeded()
+            
+            let jsonData = userObject as? NSString
+            
+            let Login : LoginVC! = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as? LoginVC
+            self.present(Login, animated: true, completion: nil)
+            TTGSnackbar.init(message: "Password updated successfully.", duration: .long).show()
+            
+            
+        }, onError: { errorData in
+            alertView.close()
+            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            snackbar.show()
+        }, onForceUpgrade: {errorData in})
+        
+    }
+    
 }

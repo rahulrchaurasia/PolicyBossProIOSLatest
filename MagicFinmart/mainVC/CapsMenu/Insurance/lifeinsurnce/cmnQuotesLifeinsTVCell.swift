@@ -10,15 +10,15 @@ import UIKit
 
 class cmnQuotesLifeinsTVCell: UITableViewCell {
 
+    @IBOutlet weak var contactNameLbl: UILabel!
+    @IBOutlet weak var crnNoLbl: UILabel!
+    @IBOutlet weak var quoteDateLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+   
 
 }

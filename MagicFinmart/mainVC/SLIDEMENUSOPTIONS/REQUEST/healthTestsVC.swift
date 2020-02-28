@@ -8,23 +8,40 @@
 
 import UIKit
 
-class healthTestsVC: UIViewController {
-
+class healthTestsVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+   
+    var testArray = Array<Any>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        print("testArray=",testArray)
+
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return testArray.count
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! healthTestTVCell
+        
 
+    //        cell.testsLbl.text! = testArray[indexPath.row] as! String
+        
+        return cell
+        
+    }
+
+
+    @IBAction func okBtnCliked(_ sender: Any)
+    {
+        self.willMove(toParent: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParent()
+    }
+
+    
+    
 }

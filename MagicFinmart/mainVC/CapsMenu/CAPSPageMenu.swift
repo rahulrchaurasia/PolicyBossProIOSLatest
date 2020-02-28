@@ -86,8 +86,7 @@ public enum CAPSPageMenuOption {
 
 open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
-    // MARK: - Properties
-    
+    // MARK: - Properties    
     let menuScrollView = UIScrollView()
     let controllerScrollView = UIScrollView()
     var controllerArray : [UIViewController] = []
@@ -851,6 +850,7 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
     
     // MARK: - Remove/Add Page
     func addPageAtIndex(_ index : Int) {
+
         // Call didMoveToPage delegate function
         let currentController = controllerArray[index]
         delegate?.willMoveToPage?(currentController, index: index)
@@ -1006,4 +1006,45 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             })
         }
     }
+    
+    
+    //--<additionalCode>--
+    public func setStartIndexToPage(index: Int) {
+        if index >= 0 && index < controllerArray.count {
+            // Update page if changed
+            if index != currentPageIndex {
+                startingPageForScroll = index
+                lastPageIndex = currentPageIndex
+                currentPageIndex = index
+                didTapMenuItemToScroll = true
+                
+                // Add pages in between current and tapped page if necessary
+                let smallerIndex : Int = lastPageIndex < currentPageIndex ? lastPageIndex : currentPageIndex
+                let largerIndex : Int = lastPageIndex > currentPageIndex ? lastPageIndex : currentPageIndex
+                
+                if smallerIndex + 1 != largerIndex {
+                    for i in (smallerIndex + 1)...(largerIndex - 1) {
+                        if pagesAddedDictionary[i] != i {
+                            addPageAtIndex(i)
+                            pagesAddedDictionary[i] = i
+                        }
+                    }
+                }
+                
+                addPageAtIndex(index)
+                
+                // Add page from which tap is initiated so it can be removed after tap is done
+                pagesAddedDictionary[lastPageIndex] = lastPageIndex
+            }
+            
+            // Move controller scroll view when tapping menu item
+            let duration: Double = 0
+            
+            UIView.animate(withDuration: duration, animations: { () -> Void in
+                let xOffset : CGFloat = CGFloat(index) * self.controllerScrollView.frame.width
+                self.controllerScrollView.setContentOffset(CGPoint(x: xOffset, y: self.controllerScrollView.contentOffset.y), animated: false)
+            })
+        }
+    }
+    
 }

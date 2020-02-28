@@ -10,7 +10,6 @@ import UIKit
 
 class CommonSettings: NSObject {
     
-    
     static let API_CALLS_TIMEOUT: Double = 180
     /**
      Message when internet connection is not available

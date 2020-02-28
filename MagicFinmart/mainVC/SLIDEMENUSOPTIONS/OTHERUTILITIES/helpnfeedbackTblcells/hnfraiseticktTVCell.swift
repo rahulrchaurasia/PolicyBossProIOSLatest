@@ -8,17 +8,46 @@
 
 import UIKit
 
+//1. delegate method
+protocol raiseCmntDelegate: AnyObject {
+    func getCmntBtnTapped(cell: hnfraiseticktTVCell)
+    func addCmntBtnTapped(cell: hnfraiseticktTVCell)
+}
+
 class hnfraiseticktTVCell: UITableViewCell {
 
+    //2.
+    weak var raiseticktDelegate: raiseCmntDelegate?
+    
+    @IBOutlet weak var raisedTcktCellView: UIView!
+    @IBOutlet weak var ticktIdLbl: UILabel!
+    @IBOutlet weak var ticktStatusLbl: UILabel!
+    @IBOutlet weak var ticktCategryLbl: UILabel!
+    @IBOutlet weak var discrptionLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let borderColor = UIColor.lightGray
+        raisedTcktCellView.layer.cornerRadius=5.0;
+        raisedTcktCellView.layer.borderWidth=1.0;
+        raisedTcktCellView.layer.borderColor=borderColor.cgColor;
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    
+    @IBAction func viewCmntBtnCliked(_ sender: Any)
+    {
+        //4. call delegate method
+        //check delegate is not nil with `?`
+        raiseticktDelegate?.getCmntBtnTapped(cell: self)
+    }
+    
+    @IBAction func cmntaddBtnCliked(_ sender: Any)
+    {
+        //4. call delegate method
+        //check delegate is not nil with `?`
+        raiseticktDelegate?.addCmntBtnTapped(cell: self)
     }
 
 }

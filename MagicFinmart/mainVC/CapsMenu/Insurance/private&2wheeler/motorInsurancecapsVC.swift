@@ -337,11 +337,8 @@ class motorInsurancecapsVC: UIViewController,SelectedDateDelegate,getPickerDataD
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
-            print("jsonData=",jsonData!)
             let Make_Name = jsonData?.value(forKey: "Make_Name") as AnyObject
-            print("Make_Name= ", Make_Name)
             let Model_Name = jsonData?.value(forKey: "Model_Name") as AnyObject
-            print("Model_Name= ", Model_Name)
             self.makemodelArray = Make_Name as! [String]
             
         }, onError: { errorData in
@@ -375,11 +372,8 @@ class motorInsurancecapsVC: UIViewController,SelectedDateDelegate,getPickerDataD
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
-            print("jsonData=",jsonData!)
             let RTO_City = jsonData?.value(forKey: "RTO_City") as AnyObject
-            print("RTO_City= ", RTO_City)
             let VehicleCity_RTOCode = jsonData?.value(forKey: "VehicleCity_RTOCode") as AnyObject
-            print("VehicleCity_RTOCode= ", VehicleCity_RTOCode)
             self.rtoArray = RTO_City as! [String]
             
         }, onError: { errorData in

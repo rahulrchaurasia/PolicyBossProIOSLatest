@@ -2,11 +2,14 @@
 //  profileVC.swift
 //  MagicFinmart
 //
-//  Created by Admin on 21/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 21/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
+import CustomIOSAlertView
+import TTGSnackbar
+import Alamofire
 
 class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
@@ -38,15 +41,43 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     @IBOutlet weak var stateTf: ACFloatingTextfield!
     @IBOutlet weak var savingBtn: UIButton!
     @IBOutlet weak var currentBtn: UIButton!
-    
+    @IBOutlet weak var accountHolderNameTf: ACFloatingTextfield!
+    @IBOutlet weak var panTf: ACFloatingTextfield!
+    @IBOutlet weak var addharTf: ACFloatingTextfield!
+    @IBOutlet weak var bankaccnoTf: ACFloatingTextfield!
+    @IBOutlet weak var ifscCodeTf: ACFloatingTextfield!
+    @IBOutlet weak var micrCodeTf: ACFloatingTextfield!
+    @IBOutlet weak var bankNameTf: ACFloatingTextfield!
+    @IBOutlet weak var bankBranchTf: ACFloatingTextfield!
+    @IBOutlet weak var bankCityTf: ACFloatingTextfield!
+    @IBOutlet weak var pospDesignTf: ACFloatingTextfield!
+    @IBOutlet weak var pospMobNumTf: ACFloatingTextfield!
+    @IBOutlet weak var pospemailTf: ACFloatingTextfield!
+    @IBOutlet weak var fbaIdLbl: UILabel!
+    @IBOutlet weak var pospNoLbl: UILabel!
+    @IBOutlet weak var loginIdLbl: UILabel!
+    @IBOutlet weak var pospStatusLbl: UILabel!
+    @IBOutlet weak var abtmeMobnoLbl: UILabel!
+    @IBOutlet weak var abtmeemailLbl: UILabel!
+    @IBOutlet weak var spprtMobNoLbl: UILabel!
+    @IBOutlet weak var spportEmailLbl: UILabel!
+    @IBOutlet weak var fbaNameLbl: UILabel!
+    @IBOutlet weak var managerNameLbl: UILabel!
+
     let aTextField = ACFloatingTextfield()
     var imagePicker = UIImagePickerController()
+    var pickedImage = UIImage()
+    var dataImage = ""
+    var uploadDoc = ""
+    
+    var accountType = "SAVING"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
+        
         imagePicker.delegate = self
-
         //--<textField>--
         aTextField.delegate = self
         
@@ -55,32 +86,21 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         self.view.layoutIfNeeded()
         
         //--<borderView>--
-        let borderColor = UIColor(red: 0/255, green: 51/255, blue: 91/255, alpha: 1.0)
-        myprofileView.layer.borderWidth=1.0;
-        myprofileView.layer.borderColor=borderColor.cgColor;
-        addressView.layer.borderWidth=1.0;
-        addressView.layer.borderColor=borderColor.cgColor;
-        bankdetailsView.layer.borderWidth=1.0;
-        bankdetailsView.layer.borderColor=borderColor.cgColor;
-        docdetailsView.layer.borderWidth=1.0;
-        docdetailsView.layer.borderColor=borderColor.cgColor;
-        pospinfoView.layer.borderWidth=1.0;
-        pospinfoView.layer.borderColor=borderColor.cgColor;
-        aboutme1View.layer.borderWidth=1.0;
-        aboutme1View.layer.borderColor=borderColor.cgColor;
-        notisettingView.layer.borderWidth=1.0;
-        notisettingView.layer.borderColor=borderColor.cgColor;
+        viewColorblue(view: myprofileView)
+        viewColorblue(view: addressView)
+        viewColorblue(view: bankdetailsView)
+        viewColorblue(view: docdetailsView)
+        viewColorblue(view: pospinfoView)
+        viewColorblue(view: notisettingView)
+        viewColorblue(view: aboutme1View)
+        btnColorChangeGray(Btn: currentBtn)
+        btnColorChangeBlue(Btn: savingBtn)
+        
         let borderColor2 = UIColor.gray
         aboutme2View.layer.borderWidth=1.0;
         aboutme2View.layer.borderColor=borderColor2.cgColor;
         aboutme2View.layer.shadowColor=borderColor2.cgColor
-        savingBtn.layer.cornerRadius=2.0;
-        savingBtn.layer.borderWidth=2.0;
-        savingBtn.layer.borderColor=borderColor2.cgColor;
-        currentBtn.layer.cornerRadius=2.0;
-        currentBtn.layer.borderWidth=2.0;
-        currentBtn.layer.borderColor=borderColor2.cgColor;
-        
+      
         //--<viewHidden>--
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
@@ -97,6 +117,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         notisettingView.isHidden = true
         notisettingViewHeight.constant = 0
         
+        //--<apiCall>--
+        getmyaccountAPI()
         
     }
     
@@ -127,11 +149,82 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         present(KYDrawer, animated: true, completion: nil)
     }
     
+    //---<textFieldRange>---
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        if(textField == mobilenotoshareTf  ||  textField == spprtMobNoLbl ||  textField == abtmeMobnoLbl ||  textField == pospMobNumTf)
+        {
+            if((textField.text?.count)! <= 9)
+            {
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            }
+            else{
+                //            let characterCountLimit = 30
+                // We need to figure out how many characters would be in the string after the change happens
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!
+            }
+        }
+        else if(textField == pincodeTf)
+        {
+            if((textField.text?.count)! < 6)
+            {
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                
+            }
+            else{
+                //            let characterCountLimit = 30
+                // We need to figure out how many characters would be in the string after the change happens
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!
+            }
+            
+        }
+        else{
+            if((textField.text?.count)! <= 30)
+            {
+                var allowedCharacters = CharacterSet.letters
+                allowedCharacters.formUnion(CharacterSet.whitespaces)
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            }
+            else{
+                //            let characterCountLimit = 30
+                // We need to figure out how many characters would be in the string after the change happens
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!
+            }
+        }
+        
+    }
+    
     //---<buttonsClicks>---
     @IBAction func myprofileBtnCliked(_ sender: Any)
     {
-        myprofileView.isHidden = false
-        myprofileViewHeight.constant = 200
+        if(myprofileView.isHidden)
+        {
+            myprofileView.isHidden = false
+            myprofileViewHeight.constant = 200
+        }else{
+            myprofileView.isHidden = true
+            myprofileViewHeight.constant = 0
+        }
         addressView.isHidden = true
         addressViewHeight.constant = 0
         bankdetailsView.isHidden = true
@@ -148,10 +241,16 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     @IBAction func addressBtnCliked(_ sender: Any)
     {
+        if(addressView.isHidden)
+        {
+            addressView.isHidden = false
+            addressViewHeight.constant = 310
+        }else{
+            addressView.isHidden = true
+            addressViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
-        addressView.isHidden = false
-        addressViewHeight.constant = 310
         bankdetailsView.isHidden = true
         bankdetailsViewHeight.constant = 0
         docdetailsView.isHidden = true
@@ -166,12 +265,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     @IBAction func bankdetailsBtnClick(_ sender: Any)
     {
+        if(bankdetailsView.isHidden)
+        {
+            bankdetailsView.isHidden = false
+            bankdetailsViewHeight.constant = 410
+        }else{
+            bankdetailsView.isHidden = true
+            bankdetailsViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
         addressView.isHidden = true
         addressViewHeight.constant = 0
-        bankdetailsView.isHidden = false
-        bankdetailsViewHeight.constant = 410
         docdetailsView.isHidden = true
         docdetailsViewHeight.constant = 0
         pospinfoView.isHidden = true
@@ -184,24 +289,39 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     @IBAction func docuploadBtnCliked(_ sender: Any)
     {
+        if(docdetailsView.isHidden)
+        {
+            docdetailsView.isHidden = false
+            docdetailsViewHeight.constant = 180
+        }else{
+            docdetailsView.isHidden = true
+            docdetailsViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
         addressView.isHidden = true
         addressViewHeight.constant = 0
         bankdetailsView.isHidden = true
         bankdetailsViewHeight.constant = 0
-        docdetailsView.isHidden = false
-        docdetailsViewHeight.constant = 180
         pospinfoView.isHidden = true
         pospinfoViewHeight.constant = 0
         aboutme1View.isHidden = true
         aboutmeViewHeight.constant = 0
         notisettingView.isHidden = true
         notisettingViewHeight.constant = 0
+        
     }
     
     @IBAction func pospBtnClicked(_ sender: Any)
     {
+        if(pospinfoView.isHidden)
+        {
+            pospinfoView.isHidden = false
+            pospinfoViewHeight.constant = 200
+        }else{
+            pospinfoView.isHidden = true
+            pospinfoViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
         addressView.isHidden = true
@@ -210,8 +330,6 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         bankdetailsViewHeight.constant = 0
         docdetailsView.isHidden = true
         docdetailsViewHeight.constant = 0
-        pospinfoView.isHidden = false
-        pospinfoViewHeight.constant = 200
         aboutme1View.isHidden = true
         aboutmeViewHeight.constant = 0
         notisettingView.isHidden = true
@@ -220,6 +338,14 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     @IBAction func aboutmeBtnCliked(_ sender: Any)
     {
+        if(aboutme1View.isHidden){
+            aboutme1View.isHidden = false
+            aboutmeViewHeight.constant = 400
+        }
+        else{
+            aboutme1View.isHidden = true
+            aboutmeViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
         addressView.isHidden = true
@@ -230,14 +356,20 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         docdetailsViewHeight.constant = 0
         pospinfoView.isHidden = true
         pospinfoViewHeight.constant = 0
-        aboutme1View.isHidden = false
-        aboutmeViewHeight.constant = 400
         notisettingView.isHidden = true
         notisettingViewHeight.constant = 0
     }
     
     @IBAction func notisettingBtnCliked(_ sender: Any)
     {
+        if(notisettingView.isHidden)
+        {
+            notisettingView.isHidden = false
+            notisettingViewHeight.constant = 50
+        }else{
+            notisettingView.isHidden = true
+            notisettingViewHeight.constant = 0
+        }
         myprofileView.isHidden = true
         myprofileViewHeight.constant = 0
         addressView.isHidden = true
@@ -250,12 +382,54 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         pospinfoViewHeight.constant = 0
         aboutme1View.isHidden = true
         aboutmeViewHeight.constant = 0
-        notisettingView.isHidden = false
-        notisettingViewHeight.constant = 50
     }
     
+    @IBAction func savingBtnCliked(_ sender: Any)
+    {
+        btnColorChangeGray(Btn: currentBtn)
+        btnColorChangeBlue(Btn: savingBtn)
+        accountType = "SAVING"
+    }
+    
+    @IBAction func currentBtnCliked(_ sender: Any)
+    {
+        btnColorChangeGray(Btn: savingBtn)
+        btnColorChangeBlue(Btn: currentBtn)
+        accountType = "CURRENT"
+    }
+   
     //---<accessCamera>---
     @IBAction func cameraBtnCliked(_ sender: Any)
+    {
+        uploadDoc = "CameraClick"
+        callCamera((Any).self)
+    }
+    
+    @IBAction func fbaphotoCamBtnCliked(_ sender: Any)
+    {
+        uploadDoc = "fbaPhoto"
+        callCamera((Any).self)
+    }
+    
+    @IBAction func fbapanCamBtnCliked(_ sender: Any)
+    {
+        uploadDoc = "fbaPan"
+        callCamera((Any).self)
+    }
+    
+    @IBAction func cancelchqCamBtnCliked(_ sender: Any)
+    {
+        uploadDoc = "cancelChq"
+        callCamera((Any).self)
+    }
+    
+    @IBAction func fbaaadharCamBtnCliked(_ sender: Any)
+    {
+        uploadDoc = "fbaAadhar"
+        callCamera((Any).self)
+    }
+    
+    func callCamera(_ sender: Any)
     {
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
@@ -309,10 +483,34 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     //MARK: - ImagePicker delegate
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
-        
+        pickedImage = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)!
+        print("pickedImage==",pickedImage)
         myaccountImgeView.image = pickedImage
 //        myaccountImgeView.layer.cornerRadius = 64
+        
+        //--Encoding Base-64 image--
+        let userImage:UIImage = pickedImage
+        print("userImage",userImage)
+        let imageData:NSData = userImage.pngData()! as NSData
+        dataImage = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+        
+        if(uploadDoc == "CameraClick"){
+            uploaddocAPI(documentName:"FBAPhotograph", documentType:"1")
+        }
+        else if(uploadDoc == "fbaPhoto"){
+            uploaddocAPI(documentName:"FBAPhotograph", documentType:"2")
+        }
+        else if(uploadDoc == "fbaPan"){
+            uploaddocAPI(documentName:"LoanRepPanCard", documentType:"3")
+        }
+        else if(uploadDoc == "cancelChq"){
+            uploaddocAPI(documentName:"LoanRepCancelChq", documentType:"4")
+        }
+        else if(uploadDoc == "fbaAadhar"){
+            uploaddocAPI(documentName:"OtherAadharCard", documentType:"5")
+        }
+        
+        
         self.view.layoutIfNeeded()
         dismiss(animated: true, completion: nil)
     }
@@ -321,6 +519,442 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         dismiss(animated: true, completion: nil)
         
     }
+    //--<endCamera>--
+    
+    
+    @IBAction func savinfoBtnCliked(_ sender: Any)
+    {
+        if(designationTf.text! != "" && mobilenotoshareTf.text! != "" && emailtoshareTf.text! != "" && mobilenotoshareTf.text!.count == 10 && pospMobNumTf.text!.count == 10){
+            
+            if(isValidEmail(testStr: emailtoshareTf.text!) && isValidEmail(testStr: pospemailTf.text!))
+            {
+                myaccountAPI()
+                
+            }else{
+                alertCall(message: "Invalid Email Id")
+            }
+        }
+        else if(designationTf.text! == "")
+        {
+            if(myprofileView.isHidden)
+            {
+                myprofileView.isHidden = false
+                myprofileViewHeight.constant = 200
+            }
+            alertCall(message: "Please enter Designation")
+        }
+        else if(mobilenotoshareTf.text! == "")
+        {
+            if(myprofileView.isHidden)
+            {
+                myprofileView.isHidden = false
+                myprofileViewHeight.constant = 200
+            }
+            alertCall(message: "Please enter Mobile Number")
+        }
+        else if(emailtoshareTf.text! == "")
+        {
+            if(myprofileView.isHidden)
+            {
+                myprofileView.isHidden = false
+                myprofileViewHeight.constant = 200
+            }
+            alertCall(message: "Please enter Email Id")
+        }
+        else if(mobilenotoshareTf.text!.count != 10)
+        {
+            if(myprofileView.isHidden)
+            {
+                myprofileView.isHidden = false
+                myprofileViewHeight.constant = 200
+            }
+            alertCall(message: "Please enter 10 Digit Mobile number")
+        }
+        else if(pospMobNumTf.text!.count != 10)
+        {
+            alertCall(message: "Please enter 10 Digit Mobile number")
+        }
+        
+    }
+    
+    //---<EmailValidation>---
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    //---<APICALL>---
+//    UpdateDocumentByIDAPI(documentName:String, documentType:String)
+    func uploaddocAPI(documentName:String, documentType:String)
+    {
+        
+        /*
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        let params: [String: AnyObject] = [ "FBAID":"37292" as AnyObject,
+                                            "DocType":documentType as AnyObject,
+                                            "DocName":documentName as AnyObject,
+                                            "DocFile":dataImage as AnyObject]
+        
+        let url = "/api/upload-doc"
+        
+        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+            alertView.close()
+            
+            self.view.layoutIfNeeded()
+            
+            let jsonData = userObject as? NSDictionary
+            print("jsonData=",jsonData!)
+            TTGSnackbar.init(message: "Image uploaded successfully", duration: .long).show()
+            
+            
+        }, onError: { errorData in
+            alertView.close()
+            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            snackbar.show()
+        }, onForceUpgrade: {errorData in})
+        */
+        
+        
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        
+//        if UIImageJPEGRepresentation(self.pickedImage,1) != nil {
+        let imageData = pickedImage.jpegData(compressionQuality: 1)
+        if imageData != nil
+        {
+            let parameters = [
+                "FBAID":FBAId,
+                "DocType":documentType,
+                "DocName":documentName,
+                "DocFile":dataImage
+            ]
+            
+            Alamofire.upload(multipartFormData: { (multipartFormData) in
+                //            multipartFormData.append(UIImageJPEGRepresentation(self.pickedImage.image!, 0.5)!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(imageData!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                for (key, value) in parameters {
+                    multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                    
+                }
+            }, to:"http://preprodapiqa.mgfm.in/api/upload-doc")
+            { (result) in
+                switch result {
+                case .success(let upload, _, _):
+                    
+                    upload.uploadProgress(closure: { (Progress) in
+                        print("Upload Progress: \(Progress.fractionCompleted)")
+                    })
+                    
+                    upload.responseJSON { response in
+                        //self.delegate?.showSuccessAlert()
+                        print(response.request!)  // original URL request
+                        print(response.response!) // URL response
+                        print(response.data!)     // server data
+                        print(response.result)   // result of response serialization
+                        //                        self.showSuccesAlert()
+                        //self.removeImage("frame", fileExtension: "txt")
+                        if let JSON = response.result.value {
+                            print("JSON: \(JSON)")
+                        }
+                    }
+                    
+                case .failure(let encodingError):
+                    //self.delegate?.showFailAlert()
+                    print(encodingError)
+                }
+                
+            }
 
+        }
+        //-----<Multipart image Upload>------
+        
+    }
+    
+    func getmyaccountAPI()
+    {
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        
+        let params: [String: AnyObject] = [ "FBAID":FBAId as AnyObject]
+        
+        let url = "/api/get-my-account"
+        
+        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+            alertView.close()
+            
+            self.view.layoutIfNeeded()
+            
+            let jsonData = userObject as? NSArray
+            let Designation = (jsonData![0] as AnyObject).value(forKey: "Designation") as AnyObject
+            self.designationTf.text! = Designation as! String
+            let Mobile_1 = (jsonData![0] as AnyObject).value(forKey: "Mobile_1") as AnyObject
+            self.mobilenotoshareTf.text! = Mobile_1 as! String
+            let EmailID = (jsonData![0] as AnyObject).value(forKey: "EmailID") as AnyObject
+            self.emailtoshareTf.text! = EmailID as! String
+            let Address_1 = (jsonData![0] as AnyObject).value(forKey: "Address_1") as AnyObject
+            self.address1Tf.text! = Address_1 as! String
+            let Address_2 = (jsonData![0] as AnyObject).value(forKey: "Address_2") as AnyObject
+            self.address2Tf.text! = Address_2 as! String
+            let Address_3 = (jsonData![0] as AnyObject).value(forKey: "Address_3") as AnyObject
+            self.address3Tf.text! = Address_3 as! String
+            let PinCode = (jsonData![0] as AnyObject).value(forKey: "PinCode") as AnyObject
+            self.pincodeTf.text! = PinCode as! String
+            let City = (jsonData![0] as AnyObject).value(forKey: "City") as AnyObject
+            self.cityTf.text! = City as! String
+            let StateName = (jsonData![0] as AnyObject).value(forKey: "StateName") as AnyObject
+            if (StateName is NSNull){
+                self.stateTf.text! = ""
+            }else{
+                self.stateTf.text! = StateName as! String
+            }
+            let FullName1 = (jsonData![0] as AnyObject).value(forKey: "FullName") as AnyObject
+            self.accountHolderNameTf.text! = FullName1 as! String
+            let Loan_PAN = (jsonData![0] as AnyObject).value(forKey: "Loan_PAN") as AnyObject
+            self.panTf.text! = Loan_PAN as! String
+            let Loan_Aadhaar = (jsonData![0] as AnyObject).value(forKey: "Loan_Aadhaar") as AnyObject
+            self.addharTf.text! = Loan_Aadhaar as! String
+            let Loan_BankAcNo = (jsonData![0] as AnyObject).value(forKey: "Loan_BankAcNo") as AnyObject
+            self.bankaccnoTf.text! = Loan_BankAcNo as! String
+            let Loan_IFSC = (jsonData![0] as AnyObject).value(forKey: "Loan_IFSC") as AnyObject
+            self.ifscCodeTf.text! = Loan_IFSC as! String
+            let Loan_MICR = (jsonData![0] as AnyObject).value(forKey: "Loan_MICR") as AnyObject
+            self.micrCodeTf.text! = Loan_MICR as! String
+            let Loan_BankBranch = (jsonData![0] as AnyObject).value(forKey: "Loan_BankBranch") as AnyObject
+            self.bankBranchTf.text! = Loan_BankBranch as! String
+            let Loan_BankName = (jsonData![0] as AnyObject).value(forKey: "Loan_BankName") as AnyObject
+            self.bankNameTf.text! = Loan_BankName as! String
+            let Loan_BankCity = (jsonData![0] as AnyObject).value(forKey: "Loan_BankCity") as AnyObject
+            self.bankCityTf.text! = Loan_BankCity as! String
+            let POSPNo = (jsonData![0] as AnyObject).value(forKey: "POSPNo") as AnyObject
+            self.pospNoLbl.text! = POSPNo as! String
+            let FBAID = (jsonData![0] as AnyObject).value(forKey: "FBAID") as AnyObject
+            self.fbaIdLbl.text! = FBAID as! String
+            let DisplayDesignation = (jsonData![0] as AnyObject).value(forKey: "DisplayDesignation") as AnyObject
+            self.pospDesignTf.text! = DisplayDesignation as! String
+            let DisplayPhoneNo = (jsonData![0] as AnyObject).value(forKey: "DisplayPhoneNo") as AnyObject
+            self.pospMobNumTf.text! = DisplayPhoneNo as! String
+            let DisplayEmail = (jsonData![0] as AnyObject).value(forKey: "DisplayEmail") as AnyObject
+            self.pospemailTf.text! = DisplayEmail as! String
+            let FullName = (jsonData![0] as AnyObject).value(forKey: "FullName") as AnyObject
+            self.fbaNameLbl.text! = FullName as! String
+            //<user-constant Param>
+            let LoginID = UserDefaults.standard.string(forKey: "LoginID")
+            let ManagName = UserDefaults.standard.string(forKey: "ManagName")
+            let POSP_STATUS = UserDefaults.standard.string(forKey: "POSP_STATUS")
+            let MangEmail = UserDefaults.standard.string(forKey: "MangEmail")
+            let MangMobile = UserDefaults.standard.string(forKey: "MangMobile")
+            let SuppEmail = UserDefaults.standard.string(forKey: "SuppEmail")
+            let SuppMobile = UserDefaults.standard.string(forKey: "SuppMobile")
+
+            self.managerNameLbl.text! = ManagName!
+            self.loginIdLbl.text! = LoginID!
+            self.pospStatusLbl.text! = POSP_STATUS!
+            self.abtmeemailLbl.text! = MangEmail!
+            self.abtmeMobnoLbl.text! = MangMobile!
+            self.spprtMobNoLbl.text! = SuppMobile!
+            self.spportEmailLbl.text! = SuppEmail!
+            
+            
+        }, onError: { errorData in
+            alertView.close()
+            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            snackbar.show()
+        }, onForceUpgrade: {errorData in})
+        
+    }
+    
+    
+    func myaccountAPI()
+    {
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        let params: [String: AnyObject] = [ "Address_1": address1Tf.text! as AnyObject,
+                                            "Address_2": address2Tf.text! as AnyObject,
+                                            "Address_3": address3Tf.text! as AnyObject,
+                                            "AppSource": "null" as AnyObject,
+                                            "Bonds": "" as AnyObject,
+                                            "Bonds_Comp": "" as AnyObject,
+                                            "BrokID": 0 as AnyObject,
+                                            "City": cityTf.text! as AnyObject,
+                                            "CustID": 0 as AnyObject,
+                                            "DOB": "" as AnyObject,
+                                            "DisplayDesignation": pospDesignTf.text! as AnyObject,
+                                            "DisplayEmail": emailtoshareTf.text! as AnyObject,
+                                            "DisplayPhoneNo": "8888888888" as AnyObject,
+                                            "EmailId": emailtoshareTf.text! as AnyObject,
+                                            "FBAID": fbaIdLbl.text! as AnyObject,
+                                            "FBALiveID": 0 as AnyObject,
+                                            "FBAPan": "" as AnyObject,
+                                            "FBAStat": "" as AnyObject,
+                                            "FBA_Designation": designationTf.text! as AnyObject,
+                                            "FirstName": "" as AnyObject,
+                                            "GIC_Comp": "" as AnyObject,
+                                            "GIC_Comp_ID": "" as AnyObject,
+                                            "GSTNumb": "" as AnyObject,
+                                            "Gender": "" as AnyObject,
+                                            "Health_Comp": "" as AnyObject,
+                                            "Health_Comp_ID": "" as AnyObject,
+                                            "IsFOC": "" as AnyObject,
+                                            "IsGic": "" as AnyObject,
+                                            "IsHealth": "" as AnyObject,
+                                            "IsLic": "" as AnyObject,
+                                            "LIC_Comp": "" as AnyObject,
+                                            "LIC_Comp_ID": "" as AnyObject,
+                                            "LastName": "" as AnyObject,
+                                            "Link": "null" as AnyObject,
+                                            "Loan_Aadhaar": addharTf.text! as AnyObject,
+                                            "Loan_Account_Type": accountType as AnyObject,
+                                            "Loan_BankAcNo": bankaccnoTf.text! as AnyObject,
+                                            "Loan_BankBranch": bankBranchTf.text! as AnyObject,
+                                            "Loan_BankCity": bankCityTf.text! as AnyObject,
+                                            "Loan_BankID": 0 as AnyObject,
+                                            "Loan_BankName": "HDFC BANK" as AnyObject,
+                                            "Loan_FirstName": " NEEL" as AnyObject,
+                                            "Loan_IFSC": ifscCodeTf.text! as AnyObject,
+                                            "Loan_LastName": "" as AnyObject,
+                                            "Loan_MICR": micrCodeTf.text! as AnyObject,
+                                            "Loan_PAN": panTf.text! as AnyObject,
+                                            "MF": "" as AnyObject,
+                                            "MF_Comp": "" as AnyObject,
+                                            "Mobile_1": mobilenotoshareTf.text! as AnyObject,
+                                            "Mobile_2": "" as AnyObject,
+                                            "Other_Aadhaar": "" as AnyObject,
+                                            "Other_Account_Type": "" as AnyObject,
+                                            "Other_BankAcNo": "" as AnyObject,
+                                            "Other_BankBranch": "" as AnyObject,
+                                            "Other_BankCity": "" as AnyObject,
+                                            "Other_BankID": 0 as AnyObject,
+                                            "Other_BankName": "" as AnyObject,
+                                            "Other_FirstName": "" as AnyObject,
+                                            "Other_IFSC": "" as AnyObject,
+                                            "Other_LastName": "" as AnyObject,
+                                            "Other_MICR": "" as AnyObject,
+                                            "Other_PAN": "" as AnyObject,
+                                            "POSPID": 0 as AnyObject,
+                                            "ParentId": "0" as AnyObject,
+                                            "PinCode": pincodeTf.text! as AnyObject,
+                                            "Posp_Aadhaar": "" as AnyObject,
+                                            "Posp_Account_Type": "" as AnyObject,
+                                            "Posp_Address1": "" as AnyObject,
+                                            "Posp_Address2": "" as AnyObject,
+                                            "Posp_Address3": "" as AnyObject,
+                                            "Posp_BankAcNo": "" as AnyObject,
+                                            "Posp_BankBranch": "" as AnyObject,
+                                            "Posp_BankCity": "" as AnyObject,
+                                            "Posp_BankID": 0 as AnyObject,
+                                            "Posp_BankName": "" as AnyObject,
+                                            "Posp_ChanPartCode": "" as AnyObject,
+                                            "Posp_City": "" as AnyObject,
+                                            "Posp_DOB": "" as AnyObject,
+                                            "Posp_Email": pospemailTf.text! as AnyObject,
+                                            "Posp_FirstName": "" as AnyObject,
+                                            "Posp_Gender": "" as AnyObject,
+                                            "Posp_IFSC": "" as AnyObject,
+                                            "Posp_LastName": "" as AnyObject,
+                                            "Posp_MICR": "" as AnyObject,
+                                            "Posp_Mobile1": pospMobNumTf.text! as AnyObject,
+                                            "Posp_Mobile2": "" as AnyObject,
+                                            "Posp_PAN": "" as AnyObject,
+                                            "Posp_PinCode": "" as AnyObject,
+                                            "Posp_ServiceTaxNo": "" as AnyObject,
+                                            "Posp_StatID": "" as AnyObject,
+                                            "Postal": "" as AnyObject,
+                                            "Postal_Comp": "" as AnyObject,
+                                            "SMID": 0 as AnyObject,
+                                            "SM_Name": "" as AnyObject,
+                                            "StatActi": "" as AnyObject,
+                                            "State": stateTf.text! as AnyObject,
+                                            "StateID": "" as AnyObject,
+                                            "Stock": "" as AnyObject,
+                                            "Stock_Comp": "" as AnyObject,
+                                            "Type": "0" as AnyObject,
+                                            "VersionCode": "" as AnyObject,
+                                            "password": "" as AnyObject,
+                                            "referedby_code": "null" as AnyObject]
+        
+        let url = "/api/my-account"
+        
+        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+            alertView.close()
+            
+            self.view.layoutIfNeeded()
+            
+            let jsonData = userObject as? NSDictionary
+            TTGSnackbar.init(message: "Profile updated successfully", duration: .long).show()
+            
+            
+        }, onError: { errorData in
+            alertView.close()
+            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            snackbar.show()
+        }, onForceUpgrade: {errorData in})
+        
+    }
+    
+    
+    //--<showalertView>--
+    func alertCall(message:String)
+    {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    //----<buttonColor>----
+    func btnColorChangeBlue(Btn:UIButton)
+    {
+        let borderColor = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
+        Btn.layer.cornerRadius=2.0;
+        Btn.layer.borderWidth=2.0;
+        Btn.layer.borderColor=borderColor.cgColor;
+        Btn.setTitleColor(UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1), for: UIControl.State.normal)
+    }
+    
+    func btnColorChangeGray(Btn:UIButton)
+    {
+        let borderColr = UIColor.gray
+        Btn.layer.cornerRadius=2.0;
+        Btn.layer.borderWidth=2.0;
+        Btn.layer.borderColor=borderColr.cgColor;
+        Btn.setTitleColor(UIColor.gray, for: .normal)
+    }
+    
+    func viewColorblue(view:UIView)
+    {
+        let borderColor = UIColor(red: 0/255, green: 51/255, blue: 91/255, alpha: 1.0)
+        view.layer.borderWidth=1.0;
+        view.layer.borderColor=borderColor.cgColor;
+    }
+    
     
 }

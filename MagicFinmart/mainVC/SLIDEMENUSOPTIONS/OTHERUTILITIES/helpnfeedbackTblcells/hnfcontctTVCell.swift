@@ -8,17 +8,54 @@
 
 import UIKit
 
+//1. delegate method
+protocol mycelDelegate: AnyObject {
+    func btnWebsiteTapped(cell: hnfcontctTVCell)
+    func btnEmailTapped(cell: hnfcontctTVCell)
+    func btnPhonenoTapped(cell: hnfcontctTVCell)
+}
+
+
 class hnfcontctTVCell: UITableViewCell {
 
+    //2.
+    weak var delegate: mycelDelegate?
+    
+    @IBOutlet weak var contctusView: UIView!
+    @IBOutlet weak var displayTitlLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var phoneNoLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var websiteLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let borderColor = UIColor.lightGray
+        contctusView.layer.cornerRadius=5.0;
+        contctusView.layer.borderWidth=1.0;
+        contctusView.layer.borderColor=borderColor.cgColor;
+        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    //--<calling Third party url>--
+    @IBAction func phoneNoCliked(_ sender: Any)
+    {
+        
+    }
+    
+    @IBAction func emailCliked(_ sender: Any)
+    {
+        
+    }
+    
+    @IBAction func websiteCliked(_ sender: Any)
+    {
+        //4. call delegate method
+        //check delegate is not nil with `?`
+        delegate?.btnWebsiteTapped(cell: self)
     }
 
+    
 }

@@ -2,8 +2,8 @@
 //  syncContactsVC.swift
 //  MagicFinmart
 //
-//  Created by Admin on 27/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 27/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit

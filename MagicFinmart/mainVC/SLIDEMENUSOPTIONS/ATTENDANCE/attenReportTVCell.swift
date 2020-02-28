@@ -10,15 +10,20 @@ import UIKit
 
 class attenReportTVCell: UITableViewCell {
 
+    @IBOutlet weak var reportTCellView: UIView!
+    @IBOutlet weak var rdateLbl: UILabel!
+    @IBOutlet weak var rtypeLbl: UILabel!
+    @IBOutlet weak var rcityLbl: UILabel!
+    @IBOutlet weak var rlocationLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        let borderColor = UIColor.lightGray
+        self.reportTCellView.layer.cornerRadius=4.0;
+        self.reportTCellView.layer.borderWidth=2.0;
+        self.reportTCellView.layer.borderColor=borderColor.cgColor;
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+   
 }

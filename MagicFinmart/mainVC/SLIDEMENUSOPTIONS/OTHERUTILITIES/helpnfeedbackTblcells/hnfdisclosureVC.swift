@@ -8,23 +8,29 @@
 
 import UIKit
 
-class hnfdisclosureVC: UIViewController {
+class hnfdisclosureVC: UIViewController{
 
+    @IBOutlet weak var disclsureView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let borderColor = UIColor.darkGray
+        disclsureView.layer.borderWidth=1.0;
+        disclsureView.layer.borderColor=borderColor.cgColor;
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backBtnCliked(_ sender: Any)
+    {
+        let helpnfeedback : helpnfeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhelpnfeedbackVC") as! helpnfeedbackVC
+        present(helpnfeedback, animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func homeBtnCliked(_ sender: Any)
+    {
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
+    }
+    
 }

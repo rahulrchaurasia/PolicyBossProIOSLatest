@@ -10,15 +10,30 @@ import UIKit
 
 class offlineQuotesTVCell: UITableViewCell {
 
+    @IBOutlet var hcellimgView: UIView!
+    @IBOutlet var hcellconfirmedView: UIView!
+    @IBOutlet var hcellmiddleView: UIView!
+    @IBOutlet var himgView: UIImageView!
+    @IBOutlet var firstNameLbl: UILabel!
+    @IBOutlet var mobNoLbl: UILabel!
+    @IBOutlet var pckNameLbl: UILabel!
+    @IBOutlet var mrpLbl: UILabel!
+    @IBOutlet var statusLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
+        
+        let borderColor = UIColor.lightGray
+        hcellimgView.layer.borderWidth=1.0;
+        hcellimgView.layer.borderColor=borderColor.cgColor;
+        hcellconfirmedView.layer.borderWidth=1.0;
+        hcellconfirmedView.layer.borderColor=borderColor.cgColor;
+        hcellmiddleView.layer.borderWidth=1.0;
+        hcellmiddleView.layer.borderColor=borderColor.cgColor;
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
+    
+    
 
 }

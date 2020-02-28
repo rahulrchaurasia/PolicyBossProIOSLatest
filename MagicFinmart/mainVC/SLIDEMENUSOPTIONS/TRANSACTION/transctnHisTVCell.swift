@@ -10,15 +10,23 @@ import UIKit
 
 class transctnHisTVCell: UITableViewCell {
 
+    @IBOutlet weak var transctnCellView: UIView!
+    @IBOutlet weak var trantitleLbl: UILabel!
+    @IBOutlet weak var tranentryNameLbl: UILabel!
+    @IBOutlet weak var traninsurerLbl: UILabel!
+    @IBOutlet weak var tranpremiumLbl: UILabel!
+    @IBOutlet weak var tranentryDateLbl: UILabel!
+    @IBOutlet weak var trantotalOdLbl: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        //border
+        let borderColor = UIColor.gray
+        transctnCellView.layer.cornerRadius=5;
+        transctnCellView.layer.borderWidth=1.0;
+        transctnCellView.layer.borderColor=borderColor.cgColor;
+        
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }

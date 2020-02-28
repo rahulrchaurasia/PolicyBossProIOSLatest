@@ -2,8 +2,8 @@
 //  PickerViewVC.swift
 //  MagicFinmart
 //
-//  Created by Admin on 12/12/18.
-//  Copyright © 2018 Admin. All rights reserved.
+//  Created by Ashwini on 12/12/18.
+//  Copyright © 2018 Ashwini. All rights reserved.
 //
 
 import UIKit
@@ -48,7 +48,7 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
                 self.willMove(toParent: nil)
                 self.view.removeFromSuperview()
             }
-            if(fromScreen == "source")
+            if(fromScreen == "source" || fromScreen == "insuranceSubtype" || fromScreen == "fueltype" || fromScreen == "variant" || fromScreen == "month" || fromScreen == "year" || fromScreen == "product" || fromScreen == "category" || fromScreen == "subCategory" || fromScreen == "classification" || fromScreen == "makeModel" || fromScreen == "RTO" || fromScreen == "presentinsurer" || fromScreen == "compPolicyTerm" || fromScreen == "compPremiumTerm" || fromScreen == "hdfcPremiumTerm" || fromScreen == "hdfcOption" || fromScreen == "icicipayTerm" || fromScreen == "icicipreFrq" || fromScreen == "iciciOption" || fromScreen == "icicipremiumPayment" || fromScreen == "fieldSale" || fromScreen == "cityList" || fromScreen == "noofDependents" || fromScreen == "salaryacountopend" || fromScreen == "residnceType" || fromScreen == "residnceType2" || fromScreen == "typeofcompany" || fromScreen == "icicibankRelatn" || fromScreen == "highEduQuali" || fromScreen == "preferredmailingaddress" || fromScreen == "supplimentarycard" || fromScreen == "rblprefixLbl" || fromScreen == "rblcityName")
             {
                 self.willMove(toParent: nil)
                 self.view.removeFromSuperview()
@@ -69,7 +69,6 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         print("pickerData==",pickerData)
         
@@ -83,7 +82,6 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
         }
         
     }
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
         var val : String = ""
@@ -98,7 +96,7 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
        
         selectedOption = val
         
-        if(fromScreen != "source")
+        if(fromScreen == "source" || fromScreen == "fieldSale" || fromScreen == "product" || fromScreen == "category" || fromScreen == "subCategory" || fromScreen == "classification" || fromScreen == "cityList" || fromScreen == "rblcityName" || fromScreen == "rblprefixLbl")
         {
             let iD = pickerIdData[row]
             

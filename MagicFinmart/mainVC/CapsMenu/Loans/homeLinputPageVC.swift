@@ -25,7 +25,6 @@ class homeLinputPageVC: UIViewController {
     @IBOutlet weak var selfemphiddnViewHeight: NSLayoutConstraint!//110
     @IBOutlet weak var coApplicantView: UIView!
     @IBOutlet weak var coApplicantViewHeight: NSLayoutConstraint!//390
-    
     var Gender = "M"
     var occupation = "Salaried"
     
@@ -39,7 +38,6 @@ class homeLinputPageVC: UIViewController {
         coApplicantView.layer.cornerRadius=2.0;
         coApplicantView.layer.borderWidth=1.0;
         coApplicantView.layer.borderColor=borderColor.cgColor;
-        
         btnColorChangeBlue(Btn:maleBtn)
         btnColorChangeGray(Btn:femaleBtn)
         btnColorChangeBlue(Btn:salariedBtn)
@@ -48,7 +46,6 @@ class homeLinputPageVC: UIViewController {
         btnColorChangeBlue(Btn:addFemaleBtn)
         btnColorChangeBlue(Btn:addsalariedBtn)
         btnColorChangeGray(Btn:addselfempBtn)
-        
         coApplicantView.isHidden = true
         coApplicantViewHeight.constant = 0
    
@@ -60,28 +57,24 @@ class homeLinputPageVC: UIViewController {
         btnColorChangeGray(Btn:femaleBtn)
         self.Gender = "M"
     }
-    
     @IBAction func femaleBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:femaleBtn)
         btnColorChangeGray(Btn:maleBtn)
         self.Gender = "F"
     }
-    
     @IBAction func salariedBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:salariedBtn)
         btnColorChangeGray(Btn:selfempBtn)
         occupation = "Salaried"
     }
-    
     @IBAction func selfempBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:selfempBtn)
         btnColorChangeGray(Btn:salariedBtn)
 //        occupation = "Salaried"
     }
-    
     @IBAction func addcoapplicntBtnCliked(_ sender: Any)
     {
         if(coApplicantView.isHidden){
@@ -106,26 +99,21 @@ class homeLinputPageVC: UIViewController {
         btnColorChangeBlue(Btn:addMaleBtn)
         btnColorChangeGray(Btn:addFemaleBtn)
     }
-    
     @IBAction func addFemaleBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:addFemaleBtn)
         btnColorChangeGray(Btn:addMaleBtn)
     }
-    
     @IBAction func addsalariedBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:addsalariedBtn)
         btnColorChangeGray(Btn:addselfempBtn)
     }
-    
     @IBAction func addSelfempBtnCliked(_ sender: Any)
     {
         btnColorChangeBlue(Btn:addselfempBtn)
         btnColorChangeGray(Btn:addsalariedBtn)
     }
-    
-    
     
     //----<buttonColor>----
     func btnColorChangeBlue(Btn:UIButton)
@@ -136,7 +124,6 @@ class homeLinputPageVC: UIViewController {
         Btn.layer.borderColor=borderColr.cgColor;
         Btn.setTitleColor(UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1), for: UIControl.State.normal)
     }
-    
     func btnColorChangeGray(Btn:UIButton)
     {
         let borderColr = UIColor.gray

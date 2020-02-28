@@ -8,18 +8,20 @@
 
 import UIKit
 
-class reqpolicyTVCell: UITableViewCell {
+class helpnfeedbckTVCell: UITableViewCell {
 
-    @IBOutlet weak var reqpolicycellView: UIView!
-    @IBOutlet weak var cellLbl: UILabel!
+    @IBOutlet weak var helpnfeedbckcellView: UIView!
+    @IBOutlet weak var cellLbel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         let borderColor = UIColor.lightGray
-        reqpolicycellView.layer.cornerRadius=2.0;
-        reqpolicycellView.layer.borderWidth=1.0;
-        reqpolicycellView.layer.borderColor=borderColor.cgColor;    }
+        helpnfeedbckcellView.layer.cornerRadius=2.0;
+        helpnfeedbckcellView.layer.borderWidth=1.0;
+        helpnfeedbckcellView.layer.borderColor=borderColor.cgColor;
+        
+    }
 
   
 }

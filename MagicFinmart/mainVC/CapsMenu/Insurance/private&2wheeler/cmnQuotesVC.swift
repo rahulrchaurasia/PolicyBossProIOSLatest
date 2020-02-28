@@ -31,8 +31,6 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("vehicleIdArr=",vehicleIdArr)
-        print("qVehicleRequestIDArr=",qVehicleRequestIDArr)
         searchTF.addTarget(self, action: #selector(cmnQuotesVC.textFieldDidChange(_:)),
                            for: UIControl.Event.editingChanged)
     }
@@ -96,7 +94,6 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
     {
         //Get the indexpath of cell where button was tapped
         let indexPath = self.quotesTV.indexPath(for: cell)
-        print("indexPath!.row",indexPath!.row)
         //here I want to execute the UIActionSheet
         let actionsheet = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         actionsheet.addAction(UIAlertAction(title: "CALL", style: UIAlertAction.Style.default, handler: { (action) -> Void in
@@ -124,7 +121,6 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
     {
         //Get the indexpath of cell where button was tapped
         let indexPath = self.quotesTV.indexPath(for: cell)
-        print("indexPath!.row",indexPath!.row)
         vehicleRequestID = qVehicleRequestIDArr[indexPath!.row]
         deletevehiclerequestAPI()
         if(Message == "Record deleted successfully.")
@@ -176,7 +172,6 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
         
         let params: [String: AnyObject] = ["VehicleRequestID":vehicleRequestID as AnyObject]
         
-        print("params",params)
         let url = "/api/delete-vehicle-request"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
@@ -185,7 +180,6 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
-            print("jsonData=",jsonData!)
             self.Message = ((jsonData![0] as AnyObject).value(forKey: "Message") as AnyObject) as! String
             
             self.quotesTV!.reloadData()

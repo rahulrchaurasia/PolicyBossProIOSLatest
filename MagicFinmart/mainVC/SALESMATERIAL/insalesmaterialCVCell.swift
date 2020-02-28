@@ -10,4 +10,6 @@ import UIKit
 
 class insalesmaterialCVCell: UICollectionViewCell {
     
+    @IBOutlet weak var collImgView: UIImageView!
+    
 }
