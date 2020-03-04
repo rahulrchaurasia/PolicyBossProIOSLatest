@@ -28,6 +28,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     var quttype = ""
     var Message = ""
     var ApplnStatusPercntg = [String]()
+        var leadID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,24 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
 //            self.pendingTV!.reloadData()
             
         }
+        
+    }
+    
+ 
+      //---callleadHistoryView--
+    func leadHistoryTapped(cell: pendingcaseTVCell) {
+          //Get the indexpath of cell where button was tapped
+        let indexPath = self.pendingTV.indexPath(for: cell)
+        indexID = ids[indexPath!.row]
+
+          quttype = quoteType[indexPath!.row]
+         print(indexID)
+   
+         print(quttype)
+        let loanleadHistory : loanleadHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "stbloanleadHistoryVC") as! loanleadHistoryVC
+        loanleadHistory.leadIDString = indexID
+        self.addChild(loanleadHistory)
+        self.view.addSubview(loanleadHistory.view)
         
     }
 

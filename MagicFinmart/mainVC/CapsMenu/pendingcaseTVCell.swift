@@ -11,6 +11,8 @@ import UIKit
 //1. delegate method
 protocol MyCellDelegate: AnyObject {
     func btnDeleteTapped(cell: pendingcaseTVCell)
+    //leadHistoryDelegates
+    func leadHistoryTapped(cell: pendingcaseTVCell)
 }
 
 class pendingcaseTVCell: UITableViewCell {
@@ -26,6 +28,8 @@ class pendingcaseTVCell: UITableViewCell {
     @IBOutlet weak var pendingDltBtn: UIButton!
     @IBOutlet weak var percentageLbl: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
+    
+    @IBOutlet weak var leadHistoryBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,4 +54,7 @@ class pendingcaseTVCell: UITableViewCell {
     }
     
     
+    @IBAction func leadHistoryBtnCliked(_ sender: Any) {
+        delegate?.leadHistoryTapped(cell:self)
+    }
 }

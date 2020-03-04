@@ -20,7 +20,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     var ProductNameArray = [String]()
     var ProductimageArray = [String]()
     var CountArray = [Int]()
-    var ProductIdArray = [Int]()
+    var ProductIdArray = [String]()
     var countstringArray = [String]()
     var ProductIdstringArray = [String]()
     var productID = ""
@@ -183,9 +183,12 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             let Count = jsonData?.value(forKey: "Count") as AnyObject
             self.CountArray = Count as! [Int]
             self.countstringArray = self.CountArray.map { String($0) }
+
+
             let Product_Id = jsonData?.value(forKey: "Product_Id") as AnyObject
-            self.ProductIdArray = Product_Id as! [Int]
-            self.ProductIdstringArray = self.ProductIdArray.map { String($0) }
+            self.ProductIdArray = Product_Id  as! [String]
+            
+            self.ProductIdstringArray = self.ProductIdArray
             
             let Product_image = jsonData?.value(forKey: "Product_image") as AnyObject
             self.ProductimageArray = Product_image as! [String]

@@ -385,9 +385,13 @@ class cmnloancityDetailsVC: UIViewController,UITableViewDataSource,UITableViewDe
             }
             else if(titlLabel == "PERSONAL LOAN")
             {
+                do {
+                    
+                
                 //--<MONTHLY EMI CALCULATION>--
-                let loanAmount = Double(perloanAmountTf.text!)
-                ROI = String(fBest_ROI.dropLast())
+                let loanAmount = try Double(perloanAmountTf.text!)
+                    ROI =  String(fBest_ROI.dropLast().split(separator: "%")[0])
+                    print(ROI)
                 let interestRateVal = (Double(ROI))! / 1200
                 if(pltenureInyearFloat == Float(0.6))
                 {
@@ -399,7 +403,10 @@ class cmnloancityDetailsVC: UIViewController,UITableViewDataSource,UITableViewDe
                 monthlyPay = Int(round(monthlyPaymnt))
                 print("monthlyPay=",monthlyPay)
                 cell.femiLbl.text! = "₹"+String(monthlyPay)
-               
+                }
+            catch let error as NSError {
+                    print(error)
+                }
             }
             else if(titlLabel == "BUSINESS LOAN")
             {

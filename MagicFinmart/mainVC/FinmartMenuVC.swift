@@ -51,7 +51,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         super.viewDidLoad()
         //--<api>--
         userconstantAPI()
-        CheckAppAccessAPI()
+        //CheckAppAccessAPI()
         
   }
     
