@@ -26,14 +26,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var DesignationArray = [String]()
     var managerName = ""
     var mobNo = ""
-    var insuranceArray = ["PRIVATE CAR","TWO WHEELER","HEALTH INSURANCE","LIFE INSURANCE","REQUEST OFFLINE QUOTES"]
+    var insuranceArray = ["PRIVATE CAR","TWO WHEELER","COMMERCIAL VEHICLE","HEALTH INSURANCE","LIFE INSURANCE","REQUEST OFFLINE QUOTES"]
     var loansArray = ["CREDIT CARD","PERSONAL LOAN","BUSINESS LOAN","HOME LOAN","LOAN AGAINST PROPERTY"]
     var moreservicesArray = ["OTHER INVESTMENT PRODUCT-P2P"]
-    var insuranceImgArray = ["private_car.png","two_wheeler.png","health_insurance.png","life_insurance.png","offlineportal.png"]
+    var insuranceImgArray = ["private_car.png","two_wheeler.png","commercial_vehicle","health_insurance.png","life_insurance.png","offlineportal.png"]
     var loansImgArray = ["credit_card.png","personal_loan.png","balance_transfer.png","home_loan.png","loan_against_property.png"]
     var othrImgArray = ["health_checkup_plan.png"]
     //--<detailsTVArrays>--
-    var insuranceDetailArray = ["Best quotes for Private Car Insurance of your customers with instant policy.","Best quotes for Two Wheeler Insurance of your customers with instant policy.","Get quotes and compare benefits of health insurance from top insurance companies.","Get quotes and compare benefits of life insurance from top insurance companies.","Get offline quotes"]
+    var insuranceDetailArray = ["Best quotes for Private Car Insurance of your customers with instant policy.","Best quotes for Two Wheeler Insurance of your customers with instant policy.","Best quotes for CV Insurance of your customers with instant policy.","Get quotes and compare benefits of health insurance from top insurance companies.","Get quotes and compare benefits of life insurance from top insurance companies.","Get offline quotes"]
     var loansDetailArray = ["Home loan at best intrest rates from over 20+ banks & NBFCs.","Provide instant approval for your customers at attractive intrest rates.","Maximum loan amount at competitive intrest rate against property.","Get instant Credit card approvals with amazing offers and deals.","Transfer existing loans at lower intrest rate.And help customers to save more on existing loans.","Get your credit report with score at no cost.","Enjoy chatting with your BOT freind & provide instant loan sanction to your customer for Personal Loan,Home Loan,Business Loan,Car Loan,LAP,Gold Loan,etc.","Submit leads for products like Car Loan,Business Loan,Working Capital,Term Loan,LRD,etc.","Loan disbursed in just few hours!!!","We Finance your growth","Improve your credit score."]
     
     override func viewDidLoad() {
@@ -204,14 +204,27 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 if(indexPath.row == 2)
                 {
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.webfromScreen = "HealthInsurance"
+                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
                     present(commonWeb, animated: true, completion: nil)
                 }
                 if(indexPath.row == 3)
                 {
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "HealthInsurance"
+                    present(commonWeb, animated: true, completion: nil)
+                }
+                if(indexPath.row == 4)
+                {
                     let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
                     //                LifeInsurance.fromScreen = "LifeInsurance"
                     present(LifeInsurance, animated:true, completion: nil)
+                }
+                if(indexPath.row == 5)
+                {
+                   
+                    let alert = UIAlertController(title: "coming soon!", message: "", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
             if(indexPath.section == 1)
@@ -438,6 +451,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSDictionary
+            
+            guard let jsonString = jsonData else { return }
+            
+            UserDefaults.standard.set(jsonString, forKey: "USERCONSTANT")     // set the data
+            
+//            let dictData  =  UserDefaults.standard.dictionary(forKey: "USERCONSTANT") as? NSDictionary  // retreive the data
+//
+//            let muUID =  dictData?.value(forKey: "uid") as AnyObject
+//            print("Fetchung Data" ,muUID)
+
             let uid = jsonData?.value(forKey: "uid") as AnyObject
             let iosuid = jsonData?.value(forKey: "iosuid") as AnyObject
             let emplat = jsonData?.value(forKey: "emplat") as AnyObject
@@ -462,6 +485,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let TwoWheelerUrl = jsonData?.value(forKey: "TwoWheelerUrl") as AnyObject
             let FourWheelerUrl = jsonData?.value(forKey: "FourWheelerUrl") as AnyObject
             
+            let healthurl = jsonData?.value(forKey: "healthurl") as AnyObject
+            let CVUrl = jsonData?.value(forKey: "CVUrl") as AnyObject
+            
             UserDefaults.standard.set(String(describing: uid), forKey: "uid")
             UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
             UserDefaults.standard.set(String(describing: emplat), forKey: "emplat")
@@ -485,6 +511,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: TwoWheelerUrl), forKey: "TwoWheelerUrl")
             UserDefaults.standard.set(String(describing: FourWheelerUrl), forKey: "FourWheelerUrl")
             
+            UserDefaults.standard.set(String(describing: healthurl), forKey: "healthurl")
+            UserDefaults.standard.set(String(describing: CVUrl), forKey: "CVUrl")
             
         }, onError: { errorData in
             alertView.close()

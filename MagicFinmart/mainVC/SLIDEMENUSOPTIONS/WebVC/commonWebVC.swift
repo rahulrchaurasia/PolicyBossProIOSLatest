@@ -11,7 +11,7 @@ import WebKit
 import CustomIOSAlertView
 import TTGSnackbar
 
-class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate {
+class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,WKScriptMessageHandler ,UIDocumentInteractionControllerDelegate{
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -45,21 +45,33 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate {
         let TwoWheelerUrl = UserDefaults.standard.string(forKey: "TwoWheelerUrl")
         let FourWheelerUrl = UserDefaults.standard.string(forKey: "FourWheelerUrl")
         
+         let HealthUrl = UserDefaults.standard.string(forKey: "healthurl")
+         let CVUrl = UserDefaults.standard.string(forKey: "CVUrl")
+        
+        
         let deviceID = UIDevice.current.identifierForVendor?.uuidString
+        
+         self.setupWKWebview()
         
         if(webfromScreen == "private")
         {
 //            "http://www.policyboss.com/Finmart/TW_Web/tw-main-page.html?ss_id=5&fba_id=65057"
             titleLbl.text! = "PRIVATE CAR"
-            webView.load(URLRequest(url: URL(string: TwoWheelerUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version_ios=2.0&product_id=1")!))
+            webView.load(URLRequest(url: URL(string: FourWheelerUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=1")!))
             
 //            webView.load(URLRequest(url: URL(string: "http://www.policyboss.com/Finmart/TW_Web/tw-main-page.html?ss_id="+(SSID!)+"&fba_id="+(FBAId!)+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.2.0")!))
         }
-        if(webfromScreen == "twoWheeler")
+        else if(webfromScreen == "twoWheeler")
         {
 //            "http://www.policyboss.com/Finmart/TW_Web/tw-main-page.html?ss_id=5&fba_id=65057"
             titleLbl.text! = "TWO WHEELER"
-            webView.load(URLRequest(url: URL(string: FourWheelerUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version_ios=2.0&product_id=10")!))
+            webView.load(URLRequest(url: URL(string: TwoWheelerUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=10")!))
+        }
+        else if(webfromScreen == "COMMERCIALVEHICLE")
+        {
+            titleLbl.text! = "COMMERCIAL VEHICLE"
+            
+            webView.load(URLRequest(url: URL(string: CVUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=12")!))
         }
         else if(webfromScreen == "loanAgreement")
         {
@@ -69,7 +81,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate {
         else if(webfromScreen == "messageCenter")
         {
             titleLbl.text! = "MESSAGE CENTER"
-            webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/sms_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.6.13.&app_version=1.0&device_id="+(deviceID!))!))
+            webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/sms_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.6.13.&app_version=2.0&device_id="+(deviceID!))!))
         }
         else if(webfromScreen == "myBusiness")
         {
@@ -91,8 +103,15 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate {
         else if(webfromScreen == "HealthInsurance")
         {
             titleLbl.text! = "HEALTH INSURANCE"
-            webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/quote_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.6.13.&mac_address=38:c9:86:e9:76:da&app_version=1.0")!))
+//            webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/quote_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.6.13.&mac_address=38:c9:86:e9:76:da&app_version=1.0")!))
+
+//             webView.load(URLRequest(url: URL(string:"http://qa.policyboss.com/Health_Web/quote_list.html?ss_id=14265&fba_id=37292&sub_fba_id=0&v=20200218&ip_address=90:78:b2:b0:11:d5&app_version=2.3.4&device_id=594ad17c0ec7fd1e&login_ssid=")!))
             
+            
+
+            let health_url = HealthUrl!+"&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=3&device_id=594ad17c0ec7fd1e&login_ssid="
+            print(health_url)
+            webView.load(URLRequest(url: URL(string:health_url )!))
         }
         else if(webfromScreen == "freeCreditCard")
         {
@@ -212,6 +231,116 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate {
             present(KYDrawer, animated: true, completion: nil)
         }
 
+    }
+    
+    
+    
+    ///////////////////////////////////////////////////////
+    
+    
+    //  Event
+    
+    // Method is used For Preview
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        
+        return self
+    }
+    
+    
+    
+    // Handler for JavaScript Communication
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        
+        
+        print("Message",  message.body)
+        generatePdf(strUrl: message.body as! String)
+    }
+    
+    // Configuratyion for Script
+    
+    private func setupWKWebview() {
+        self.webView = WKWebView(frame: self.view.frame, configuration: self.getWKWebViewConfiguration())
+        self.view.addSubview(self.webView)
+    }
+    private func getWKWebViewConfiguration() -> WKWebViewConfiguration {
+        let userController = WKUserContentController()
+        userController.add(self, name: "finmartios")
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = userController
+        return configuration
+    }
+    
+    // PDF generation
+    
+    private func generatePdf(strUrl : String){
+        
+        
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        
+        var filename = "policyBoss"
+        
+        let request = URLRequest(url:  URL(string: strUrl )!)
+        let config = URLSessionConfiguration.default
+        let session =  URLSession(configuration: config)
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            if error == nil{
+                if let pdfData = data {
+                    let pathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename).pdf")
+                    do {
+                        print("open \(pathURL.path)")
+                        try pdfData.write(to: pathURL, options: .atomic)
+                        
+                        alertView.close()
+                    }catch{
+                        print("Error while writting")
+                        alertView.close()
+                    }
+                    
+                    DispatchQueue.main.async {
+                        
+                        self.sharePdf(path: pathURL)
+                    }
+                    
+                    
+                }
+            }else{
+                print(error?.localizedDescription ?? "")
+                alertView.close()
+            }
+        }); task.resume()
+    }
+    
+    
+    
+    // Share Pdf Using Path
+    func sharePdf(path:URL) {
+        
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: path.path) {
+            
+            // Below is Default Sharing
+            //            let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [path], applicationActivities: nil)
+            //            activityViewController.popoverPresentationController?.sourceView = self.view
+            //            self.present(activityViewController, animated: true, completion: nil)
+            
+            // For Showing Preview
+            
+            let controller = UIDocumentInteractionController(url: path)
+            controller.delegate = self
+            controller.presentPreview(animated: true)
+            
+        }
     }
     
     
