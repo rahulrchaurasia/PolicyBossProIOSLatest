@@ -4,7 +4,7 @@
 //
 //  Created by Ashwini on 13/12/18.
 //  Copyright © 2018 Ashwini. All rights reserved.
-//
+
 
 import UIKit
 import CustomIOSAlertView
@@ -16,6 +16,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var salesmaterialView: UIView!
     @IBOutlet weak var pendingcasesView: UIView!
     @IBOutlet weak var knowguruView: UIView!
+    // For AlertDialog
+     let alertService = AlertService()
     //popUp
     @IBOutlet var popUpbackgroundView: UIView!
     @IBOutlet var popUpView: UIView!
@@ -138,6 +140,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         else{
             let cell = mainTV.dequeueReusableCell(withIdentifier: "cell") as! MainfinmartTVCell
 
+            
+            cell.tapShareProd = {
+
+                print("Rahul Sharing", indexPath.row)
+               
+                let alertVC =  self.alertService.alert(title: "Confirmation",body: "Do You wan to save ? Please Confirm mmomom moomom momom uhuhiuhiuhuihiuhuihbiubibiuhiuhuihiu Confirm mmomom moomom momom uhuhiuhiuhuihiuhuihbiubibiuhiuhuihiu uihiuhuihuihiuhiuhConfirm  uihiuhuihuihiuhiuhuihiuhiuhiuhiuhiuh bibibihiu niniuiubui",buttonTitle: "Confirm")
+               self.present(alertVC, animated: true)
+            }
+
+            cell.tapInfoProd = {
+
+                print("Umesh Info", indexPath.row)
+                let alertWebVC = self.alertService.alertWebView()
+                self.present(alertWebVC, animated: true)
+            }
             //shadowColor for uiview
             cell.inTView.layer.cornerRadius = 4.0
             cell.inTView.layer.shadowColor = UIColor.gray.cgColor
@@ -147,18 +164,27 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             if(indexPath.section == 0)
             {
+                cell.cellbtnInfoProduct.isHidden = false
+                cell.cellbtnShareProduct.isHidden = false
+                
                 cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
                 cell.celldetailTextLbl.text! = insuranceDetailArray[indexPath.row]
                 cell.cellImage.image = UIImage(named: insuranceImgArray[indexPath.row])
             }
             else if(indexPath.section == 1)
             {
+                cell.cellbtnInfoProduct.isHidden = true
+                cell.cellbtnShareProduct.isHidden = true
+                
                 cell.cellTitleLbl.text! = loansArray[indexPath.row]
                 cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
                 cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
             }
             else if(indexPath.section == 2)
             {
+                cell.cellbtnInfoProduct.isHidden = true
+                cell.cellbtnShareProduct.isHidden = true
+                
                 cell.cellTitleLbl.text! = moreservicesArray[indexPath.row]
                 cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
             }
@@ -374,6 +400,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //        label.textColor = UIColor.charcolBlackColour() // my custom colour
             label.textColor = UIColor.white
             headerView.addSubview(label)
+           
             label2.font = UIFont.italicSystemFont(ofSize: 16)
             //        label.textColor = UIColor.charcolBlackColour() // my custom colour
             label2.textColor = UIColor.white

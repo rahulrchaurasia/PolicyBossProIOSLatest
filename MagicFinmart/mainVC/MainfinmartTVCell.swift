@@ -16,6 +16,19 @@ class MainfinmartTVCell: UITableViewCell {
     @IBOutlet weak var cellTextView: UITextView!
     @IBOutlet weak var celldetailTextLbl: UILabel!
     
+    
+    @IBOutlet weak var cellbtnShareProduct: UIButton!
+    
+    @IBOutlet weak var cellbtnInfoProduct: UIButton!
+    
+    
+    
+    // We are Using closure for click listenre alternative is Protocal-Delegate and add Target
+    
+    
+    var tapShareProd: ( () -> Void)? = nil
+    
+     var tapInfoProd: ( () -> Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,5 +39,25 @@ class MainfinmartTVCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func btnShareProductClick(_ sender: Any) {
+        
+        tapShareProd?()
+    }
+    
+    
+    @IBAction func btnInfomProductClick(_ sender: Any) {
+        
+        tapInfoProd?()
+    }
+    
+    //
+    
+    
+    
+   
+    
+    
+    
 
 }

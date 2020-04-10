@@ -13,6 +13,9 @@
 		449F17F622DCA87C00C9A2BF /* addSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */; };
 		44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A685CC22DDA170001295F0 /* addSubUserTVCell.swift */; };
 		44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A685CE22DDA77C001295F0 /* newaddSubUserVC.swift */; };
+		44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */; };
+		44AB396B243E1F940009BD86 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AB396A243E1F940009BD86 /* AlertService.swift */; };
+		44AB396D243E201A0009BD86 /* AlertWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AB396C243E201A0009BD86 /* AlertWebViewController.swift */; };
 		44AB6D8123028D6100CE685E /* creditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AB6D8023028D6100CE685E /* creditCardVC.swift */; };
 		44AB6D8323029CE200CE685E /* creditCardTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AB6D8223029CE100CE685E /* creditCardTVCell.swift */; };
 		44AB6D872302B8C300CE685E /* creditCardListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AB6D862302B8C300CE685E /* creditCardListVC.swift */; };
@@ -22,6 +25,8 @@
 		44B26D9E230E99FA0017DBAD /* iciciCreditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B26D9D230E99FA0017DBAD /* iciciCreditCardVC.swift */; };
 		44B26DA0230E9A1E0017DBAD /* rblCreditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B26D9F230E9A1E0017DBAD /* rblCreditCardVC.swift */; };
 		44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BA70E82313BC75003EFE95 /* appliedSuccessfulyVC.swift */; };
+		44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */; };
+		44BB07B7243EFC9A00F14FEE /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */; };
 		44BC3A2222EAD98B009926FC /* loanleadHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC3A2122EAD98B009926FC /* loanleadHistoryVC.swift */; };
 		44BC3A2422EB0636009926FC /* loanleadHistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC3A2322EB0636009926FC /* loanleadHistoryTVCell.swift */; };
 		44C6E48F22E2E41000D3F4B3 /* detailsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6E48E22E2E41000D3F4B3 /* detailsTVCell.swift */; };
@@ -181,6 +186,9 @@
 		449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubUserVC.swift; sourceTree = "<group>"; };
 		44A685CC22DDA170001295F0 /* addSubUserTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubUserTVCell.swift; sourceTree = "<group>"; };
 		44A685CE22DDA77C001295F0 /* newaddSubUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newaddSubUserVC.swift; sourceTree = "<group>"; };
+		44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertWebViewStoryboard.storyboard; sourceTree = "<group>"; };
+		44AB396A243E1F940009BD86 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		44AB396C243E201A0009BD86 /* AlertWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertWebViewController.swift; sourceTree = "<group>"; };
 		44AB6D8023028D6100CE685E /* creditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = creditCardVC.swift; sourceTree = "<group>"; };
 		44AB6D8223029CE100CE685E /* creditCardTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = creditCardTVCell.swift; sourceTree = "<group>"; };
 		44AB6D862302B8C300CE685E /* creditCardListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = creditCardListVC.swift; sourceTree = "<group>"; };
@@ -190,6 +198,8 @@
 		44B26D9D230E99FA0017DBAD /* iciciCreditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iciciCreditCardVC.swift; sourceTree = "<group>"; };
 		44B26D9F230E9A1E0017DBAD /* rblCreditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rblCreditCardVC.swift; sourceTree = "<group>"; };
 		44BA70E82313BC75003EFE95 /* appliedSuccessfulyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appliedSuccessfulyVC.swift; sourceTree = "<group>"; };
+		44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertStoryboard.storyboard; sourceTree = "<group>"; };
+		44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		44BC3A2122EAD98B009926FC /* loanleadHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loanleadHistoryVC.swift; sourceTree = "<group>"; };
 		44BC3A2322EB0636009926FC /* loanleadHistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loanleadHistoryTVCell.swift; sourceTree = "<group>"; };
 		44C6E48E22E2E41000D3F4B3 /* detailsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailsTVCell.swift; sourceTree = "<group>"; };
@@ -362,6 +372,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44AB3967243E1C550009BD86 /* AlertDialog */ = {
+			isa = PBXGroup;
+			children = (
+				44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */,
+				44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */,
+				44AB396A243E1F940009BD86 /* AlertService.swift */,
+				44AB396C243E201A0009BD86 /* AlertWebViewController.swift */,
+				44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */,
+			);
+			path = AlertDialog;
+			sourceTree = "<group>";
+		};
 		52A934EAE53DD0331B49402A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +513,7 @@
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
 				840AC5DB21BE80AC004DCB26 /* Info.plist */,
+				44AB3967243E1C550009BD86 /* AlertDialog */,
 				8403E89921BFE1460009662A /* Textfield */,
 				8410403921D7849100C3B7A7 /* UTILITY */,
 				8410403C21D7868700C3B7A7 /* API */,
@@ -965,7 +988,9 @@
 			files = (
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
+				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
+				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,6 +1101,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44AB396D243E201A0009BD86 /* AlertWebViewController.swift in Sources */,
 				44C9635522D340CA0037BC82 /* viewCommentnAddVC.swift in Sources */,
 				84B93B4F222FE2EC00CB936F /* lyfinsInputPageVC.swift in Sources */,
 				8410F8D821F84F9C00DFC974 /* imgsalesmaterialVC.swift in Sources */,
@@ -1166,6 +1192,7 @@
 				44AC204822D853AC0024E109 /* attendenceRegistratnVC.swift in Sources */,
 				8431D1D621E8604B000419E3 /* MotorInsuranceVCS.swift in Sources */,
 				44B26DA0230E9A1E0017DBAD /* rblCreditCardVC.swift in Sources */,
+				44BB07B7243EFC9A00F14FEE /* AlertViewController.swift in Sources */,
 				840AC5D021BE80AB004DCB26 /* AppDelegate.swift in Sources */,
 				840DE85E220DA34E0060003E /* cmnQuotesVC.swift in Sources */,
 				446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */,
@@ -1188,6 +1215,7 @@
 				84288B2321CCF3A400BC50BC /* profileVC.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,
 				8483DC98226749300095AA24 /* healthAssureTVCell.swift in Sources */,
+				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
 				8431D1D821E86271000419E3 /* motorInsurancecapsVC.swift in Sources */,
 				8434741B222D26E2004A418A /* LifeInsuranceVC.swift in Sources */,
 				84347427222D4327004A418A /* cmnApplictnLifeinsVC.swift in Sources */,
