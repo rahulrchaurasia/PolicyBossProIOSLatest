@@ -9,6 +9,9 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import SwiftyJSON
+import Alamofire
+
 
 class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate {
    
@@ -16,6 +19,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var salesmaterialView: UIView!
     @IBOutlet weak var pendingcasesView: UIView!
     @IBOutlet weak var knowguruView: UIView!
+    
+     var dynamicDashboardModel = [DynamicDashboardModel]()
+     var userDashboardModel = [UserConstDashboarddModel]()
     // For AlertDialog
      let alertService = AlertService()
     //popUp
@@ -42,6 +48,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         super.viewDidLoad()
         //hidepopUpView
         popUpbackgroundView.isHidden = true
+         self.mainTV.isHidden = true
         //border
         let borderColor = UIColor.black
         salesmaterialView.layer.borderWidth=1.0;
@@ -54,7 +61,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         //--<api>--
         userconstantAPI()
         getdynamicappAPI()
-        insurancebusinessAPI()
+       // insurancebusinessAPI()      // 05 temp committed
         
     }
    
@@ -105,7 +112,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         else{
             if(section == 0)
             {
-                return insuranceArray.count
+                return dynamicDashboardModel.count
             }
             else if(section == 1)
             {
@@ -141,18 +148,28 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let cell = mainTV.dequeueReusableCell(withIdentifier: "cell") as! MainfinmartTVCell
 
             
+           // When Dashboard cell's share Icon Clicked
             cell.tapShareProd = {
 
-                print("Rahul Sharing", indexPath.row)
-               
-                let alertVC =  self.alertService.alert(title: "Confirmation",body: "Do You wan to save ? Please Confirm mmomom moomom momom uhuhiuhiuhuihiuhuihbiubibiuhiuhuihiu Confirm mmomom moomom momom uhuhiuhiuhuihiuhuihbiubibiuhiuhuihiu uihiuhuihuihiuhiuhConfirm  uihiuhuihuihiuhiuhuihiuhiuhiuhiuhiuh bibibihiu niniuiubui",buttonTitle: "Confirm")
+                let alertVC =  self.alertService.alert(title: self.dynamicDashboardModel[indexPath.row].title,
+                                body:self.dynamicDashboardModel[indexPath.row].popupmsg,
+                                buttonTitle: "SHARE")
+                
+                // When Alert Dialog Share Button Click
+                alertVC.didClickShare = {
+                    print("share the Data ")
+                    self.getShareData(prdID: self.dynamicDashboardModel[indexPath.row].ProdId)
+                    
+                }
                self.present(alertVC, animated: true)
+                
+            
             }
 
             cell.tapInfoProd = {
 
-                print("Umesh Info", indexPath.row)
-                let alertWebVC = self.alertService.alertWebView()
+               
+                let alertWebVC = self.alertService.alertWebView(webURL: self.dynamicDashboardModel[indexPath.row].info)
                 self.present(alertWebVC, animated: true)
             }
             //shadowColor for uiview
@@ -167,9 +184,57 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellbtnInfoProduct.isHidden = false
                 cell.cellbtnShareProduct.isHidden = false
                 
-                cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
-                cell.celldetailTextLbl.text! = insuranceDetailArray[indexPath.row]
-                cell.cellImage.image = UIImage(named: insuranceImgArray[indexPath.row])
+                
+                // check if Info  is not empty   //05
+                if(dynamicDashboardModel[indexPath.row].info.isEmpty )
+                {
+                    cell.cellbtnInfoProduct.isHidden = true
+                }else{
+                    cell.cellbtnInfoProduct.isHidden = false
+                }
+                
+                // check if Share  is not empty
+                if(dynamicDashboardModel[indexPath.row].IsSharable == "Y" )
+                {
+                     cell.cellbtnShareProduct.isHidden = false
+                  
+                }else{
+                     cell.cellbtnShareProduct.isHidden = true
+                }
+                
+              //  cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
+                //cell.celldetailTextLbl.text! = insuranceDetailArray[indexPath.row]
+               // cell.cellImage.image = UIImage(named: insuranceImgArray[indexPath.row])
+              
+               
+                cell.cellTitleLbl.text! = dynamicDashboardModel[indexPath.row].menuname
+                cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
+             //  cell.cellImage = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
+                
+                //loadimages
+//                let imgURL = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
+//                if imgURL != nil {
+//                    let data = NSData(contentsOf: (imgURL as URL?)!)
+//                    cell.cellImage.image = UIImage(data: data! as Data)
+//                }
+                
+                // Binding Image Using Alamofire
+                let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
+                 Alamofire.request(remoteImageURL).responseData { (response) in
+                    if response.error == nil {
+                        print(response.result)
+                        // Show the downloaded image:
+                    
+                        if let data = response.data {
+                    
+                            DispatchQueue.main.async {
+                                
+                               cell.cellImage.image = UIImage(data: data)
+                            }
+                       }
+                    }
+                }
+               
             }
             else if(indexPath.section == 1)
             {
@@ -208,6 +273,100 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         else{
             if(indexPath.section == 0)
             {
+                //************** For Insurance Tap **********//
+                
+                switch Int(self.dynamicDashboardModel[indexPath.row].ProdId) {
+                case 1  :  // car
+                    
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "private"
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                case 2  :  // Health
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "HealthInsurance"
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                    
+                case 10 :  // TWO WHEELER
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "twoWheeler"
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                    
+                case 12  :   //COMMERCIAL VEHICLE
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                    
+                case 18  :    // TermInsurance
+                    let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
+                    //                LifeInsurance.fromScreen = "LifeInsurance"
+                    present(LifeInsurance, animated:true, completion: nil)
+                    break
+                    
+            
+                default :
+                    
+                    if(Int(self.dynamicDashboardModel[indexPath.row].ProdId )!  < 100 ){
+                        
+                        if(self.dynamicDashboardModel[indexPath.row].IsNewprdClickable == "Y" ){
+                            
+                            var dynamicURL : String?
+                            
+                            for obj in userDashboardModel {
+                              
+                                if(obj.ProdId == self.dynamicDashboardModel[indexPath.row].ProdId ){
+                                   dynamicURL = obj.url
+                                    
+                                    break
+                                }
+                            }
+                            
+                            
+                            if let modelURL = dynamicURL {
+                                
+                                let ProdId = self.dynamicDashboardModel[indexPath.row].ProdId
+                                let pospNo = UserDefaults.standard.string(forKey: "POSPNo") ?? "0"
+                                
+                                
+                                let info = "&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=\(ProdId)&login_ssid=\(pospNo)"
+                                
+                              
+                                let finalURL = modelURL + info
+                                print ("DYNAMIC URL",finalURL)
+                                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                                commonWeb.webfromScreen = "Dynamic"
+                                commonWeb.dynamicUrl = finalURL
+                                commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
+                                present(commonWeb, animated: true, completion: nil)
+                            }
+                            
+                        }
+                        
+                        
+                       
+                    }
+                   else if(Int(self.dynamicDashboardModel[indexPath.row].ProdId )!  >= 100 ){
+                        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                        commonWeb.webfromScreen = "Dynamic"
+                        commonWeb.dynamicUrl = self.dynamicDashboardModel[indexPath.row].link
+                        commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
+                        present(commonWeb, animated: true, completion: nil)
+                        
+                    }
+                   
+                }
+                
+
+                
+                
+                
+                //////////////////////////////////
+                
+                /*
+                 // Comment started
                 if(indexPath.row == 0)
                 {
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -252,6 +411,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
+                
+                 // // Comment ended
+                */
+                
+                //************** End OF  Insurance Tap **********//
             }
             if(indexPath.section == 1)
             {
@@ -455,6 +619,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     //---<APICALL>---
     func userconstantAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -481,6 +649,22 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             guard let jsonString = jsonData else { return }
             
+            let DashboardArray = jsonData?.value(forKey: "dashboardarray") as! NSArray
+              print("USERCONSTANT DATA",DashboardArray)
+            
+            if(DashboardArray.count > 0){
+                for index in 0...(DashboardArray.count)-1 {
+                    let aObject = DashboardArray[index] as! [String : AnyObject]
+                    
+                    let model = UserConstDashboarddModel(
+                        ProdId: aObject["ProdId"] as! String, url: aObject["url"] as! String)
+                    
+                    self.userDashboardModel.append(model)
+              }
+            }
+            
+                
+                
             UserDefaults.standard.set(jsonString, forKey: "USERCONSTANT")     // set the data
             
 //            let dictData  =  UserDefaults.standard.dictionary(forKey: "USERCONSTANT") as? NSDictionary  // retreive the data
@@ -514,6 +698,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             let healthurl = jsonData?.value(forKey: "healthurl") as AnyObject
             let CVUrl = jsonData?.value(forKey: "CVUrl") as AnyObject
+            let notificationpopupurl = jsonData?.value(forKey: "notificationpopupurl") as AnyObject
             
             UserDefaults.standard.set(String(describing: uid), forKey: "uid")
             UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
@@ -540,17 +725,33 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             UserDefaults.standard.set(String(describing: healthurl), forKey: "healthurl")
             UserDefaults.standard.set(String(describing: CVUrl), forKey: "CVUrl")
+            UserDefaults.standard.set(String(describing: notificationpopupurl), forKey: "notificationpopupurl")
             
         }, onError: { errorData in
             alertView.close()
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
         
     }
     
+   
+  
+    
     func getdynamicappAPI()
     {
+        
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -571,22 +772,72 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
             
+            
             self.view.layoutIfNeeded()
             
-            let jsonData = userObject as? NSDictionary
-            let Dashboard = jsonData?.value(forKey: "Dashboard") as AnyObject
-            let iconimage = Dashboard.value(forKey: "iconimage") as AnyObject
+            
+            
+             let jsonData = userObject as? NSDictionary
+            let Dashboard = jsonData?.value(forKey: "Dashboard") as! NSArray
+            
+            
+             print("MY DATA",Dashboard)
+        
+            for index in 0...(Dashboard.count)-1 {
+                let aObject = Dashboard[index] as! [String : AnyObject]
+                
+                let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
+                                                  link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
+                           isActive: aObject["isActive"] as! Int, dashdescription: aObject["dashdescription"] as! String,
+                           type: aObject["type"] as! Int, dashboard_type: aObject["dashboard_type"] as! String,
+                           
+                           ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
+                                ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
+                                IsExclusive: aObject["IsExclusive"] as! String,
+                                IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
+                                IsSharable: aObject["IsSharable"] as! String,
+                                popupmsg: aObject["popupmsg"] as! String,
+                                title: aObject["title"] as! String,
+                                info: aObject["info"] as! String)
+                
+                self.dynamicDashboardModel.append(model)
+            
+                //var menuName = aObject["menuname"] as! String
+                // print("DATA",menuName)
+                
+                DispatchQueue.main.async {
+                    self.mainTV.isHidden = false
+                    self.mainTV.reloadData()
+                }
+                
+                
+            }
+
             
         }, onError: { errorData in
             alertView.close()
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+            
         
     }
     
+    //////////////
+    
     func insurancebusinessAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("Yes! internet is available.")
+          
+        
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -596,6 +847,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             alertView.parentView = self.view
         }
+        
+        
         alertView.show()
         
         let ERPID = UserDefaults.standard.string(forKey: "ERPID")
@@ -619,11 +872,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
 //            snackbar.show()
         }, onForceUpgrade: {errorData in},checkStatus: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: "No Internet Access Avaible", duration: .long)
+                    snackbar.show()
+        }
         
     }
+        
     
     func usercallingAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -663,6 +926,104 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+    }
+    
+   
+    
+    func getShareData(prdID : String){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        
+       let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        let POSPNo = UserDefaults.standard.string(forKey: "POSPNo")
+       
+        let parameter  :[String: AnyObject] = [
+            "ss_id": POSPNo as AnyObject,
+            "fba_id": FBAId as AnyObject,
+            "product_id": prdID as AnyObject,
+            "sub_fba_id":"0" as AnyObject
+        ]
+         let endUrl = "/api/GetShareUrl"
+        let url =  FinmartRestClient.baseURLString  + endUrl
+        Alamofire.request(url, method: .post, parameters: parameter).responseJSON(completionHandler: { (response) in
+            switch response.result {
+                
+            case .success(let value):
+                
+                alertView.close()
+            
+                self.view.layoutIfNeeded()
+                guard let data = response.data else { return }
+                do {
+                    let decoder = JSONDecoder()
+                    let shareModel = try decoder.decode(SharePrdModel.self, from: data)
+                    
+                    print("Share ",shareModel.MasterData.msg + shareModel.MasterData.url)
+                   
+                    let strbody = shareModel.MasterData.msg + "\n" + shareModel.MasterData.url
+                    self.shareTextData(strBody: strbody)
+                    
+                } catch let error {
+                    print(error)
+                    alertView.close()
+                    
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                 alertView.close()
+                let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                snackbar.show()
+            }
+        })
+        
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
+    
+    
+    ///////////
+    
+    func shareTextData(strBody : String){
+        
+        
+        let text = strBody
+        
+        // set up activity view controller
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+       
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     

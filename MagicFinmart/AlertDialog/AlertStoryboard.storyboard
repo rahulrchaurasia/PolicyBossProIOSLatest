@@ -54,11 +54,12 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unq-4v-Nh0">
-                                        <rect key="frame" x="87" y="255" width="126" height="30"/>
+                                        <rect key="frame" x="80.5" y="255" width="139" height="30"/>
                                         <color key="backgroundColor" red="0.0024046109965464579" green="0.087888937454593891" blue="0.52548068063299491" alpha="0.96152611301369861" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="m0Z-kr-FQN"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="share and earn ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

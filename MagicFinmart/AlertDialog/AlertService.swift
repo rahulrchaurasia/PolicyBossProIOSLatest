@@ -20,16 +20,17 @@ class AlertService {
         alertVC.alertTitle = title
         alertVC.alertBody = body
         alertVC.alertButtonTitle = buttonTitle
+       
         
         return alertVC
     }
-    func alertWebView() -> AlertWebViewController {
+    func alertWebView(webURL: String) -> AlertWebViewController {
         
         let storyboard = UIStoryboard(name: "AlertWebViewStoryboard", bundle: .main)
         
         let alertWebVC = storyboard.instantiateViewController(withIdentifier: "AlertWebVC") as! AlertWebViewController
         
-        
+        alertWebVC.strURL = webURL
         return alertWebVC
     }
 }

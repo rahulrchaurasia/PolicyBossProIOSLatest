@@ -586,8 +586,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.appaccessStatus = empstatus as! String
             let isfirstlogin = jsonData?.value(forKey: "isfirstlogin") as AnyObject
             self.isfirstLogin = isfirstlogin as! Int
-            let lat = jsonData?.value(forKey: "lat") as AnyObject
-            let lng = jsonData?.value(forKey: "lng") as AnyObject
+           // let lat = jsonData?.value(forKey: "lat") as AnyObject
+           // let lng = jsonData?.value(forKey: "lng") as AnyObject
             let hrmsid = jsonData?.value(forKey: "hrmsid") as AnyObject
             UserDefaults.standard.set(String(describing: hrmsid), forKey: "hrmsid")
             
@@ -603,6 +603,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func userconstantAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+           
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -660,6 +664,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+                let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                snackbar.show()
+        }
         
     }
     

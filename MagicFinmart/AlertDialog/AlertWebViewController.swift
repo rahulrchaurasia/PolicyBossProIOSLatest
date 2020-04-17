@@ -17,6 +17,9 @@ class AlertWebViewController: UIViewController, WKNavigationDelegate,UIScrollVie
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+   
+     var strURL = String()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,12 +33,18 @@ class AlertWebViewController: UIViewController, WKNavigationDelegate,UIScrollVie
         self.WebView.navigationDelegate = self
         self.activityIndicator.hidesWhenStopped = true
         
-        let myUrl  = URL(string:"http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html")
+        
+        
+       // let myUrl  = URL(string:"http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html")
+        
+         let myUrl  = URL(string:strURL)
         
         let request =  URLRequest(url: myUrl!)
         
         WebView.load(request)
     }
+    
+   
     
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

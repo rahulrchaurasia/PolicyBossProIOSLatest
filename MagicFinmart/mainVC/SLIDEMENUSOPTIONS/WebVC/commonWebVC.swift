@@ -26,6 +26,9 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     var bankUrl = ""
     var bankName = ""
     
+    var dynamicUrl = ""
+    var dynamicName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -191,6 +194,11 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         else if(webfromScreen == "homeLoanapplyNow"){
             titleLbl.text! = bankName
             webView.load(URLRequest(url: URL(string: bankUrl)!))
+        }
+        
+        else if(webfromScreen == "Dynamic"){
+            titleLbl.text! = dynamicName
+            webView.load(URLRequest(url: URL(string: dynamicUrl)!))
         }
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.delegate = self

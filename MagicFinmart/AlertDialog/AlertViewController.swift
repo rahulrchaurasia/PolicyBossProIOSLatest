@@ -24,10 +24,20 @@ class AlertViewController: UIViewController {
     
     var alertButtonTitle = String()
     
+    
+    var didClickShare: ( () -> Void)? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
          setupview()
+        
+        // Position Button
+      //  btnShare.frame = CGRect(x: 20, y: 20, width: 100, height: 50)
+        // Set text on button
+      
+        
+      //  btnShare.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
     
@@ -60,6 +70,12 @@ class AlertViewController: UIViewController {
     
 
     @IBAction func btnShareClick(_ sender: Any) {
+        
+        
+          didClickShare?()
+          dismiss(animated: true)
+        
+        ////
     }
     
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
+		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
+		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
 		446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */; };
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */; };
@@ -24,6 +27,7 @@
 		44AC204822D853AC0024E109 /* attendenceRegistratnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AC204722D853AC0024E109 /* attendenceRegistratnVC.swift */; };
 		44B26D9E230E99FA0017DBAD /* iciciCreditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B26D9D230E99FA0017DBAD /* iciciCreditCardVC.swift */; };
 		44B26DA0230E9A1E0017DBAD /* rblCreditCardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B26D9F230E9A1E0017DBAD /* rblCreditCardVC.swift */; };
+		44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B648902440A441006347D8 /* DynamicDashboardModel.swift */; };
 		44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BA70E82313BC75003EFE95 /* appliedSuccessfulyVC.swift */; };
 		44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */; };
 		44BB07B7243EFC9A00F14FEE /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */; };
@@ -180,6 +184,9 @@
 /* Begin PBXFileReference section */
 		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicFinmart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
+		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
+		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
 		446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloanselectCityVC.swift; sourceTree = "<group>"; };
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
 		449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingRevampTVCell.swift; sourceTree = "<group>"; };
@@ -197,6 +204,7 @@
 		44AC204722D853AC0024E109 /* attendenceRegistratnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = attendenceRegistratnVC.swift; sourceTree = "<group>"; };
 		44B26D9D230E99FA0017DBAD /* iciciCreditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iciciCreditCardVC.swift; sourceTree = "<group>"; };
 		44B26D9F230E9A1E0017DBAD /* rblCreditCardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rblCreditCardVC.swift; sourceTree = "<group>"; };
+		44B648902440A441006347D8 /* DynamicDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicDashboardModel.swift; sourceTree = "<group>"; };
 		44BA70E82313BC75003EFE95 /* appliedSuccessfulyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appliedSuccessfulyVC.swift; sourceTree = "<group>"; };
 		44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertStoryboard.storyboard; sourceTree = "<group>"; };
 		44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -596,10 +604,12 @@
 		8410403F21D7897D00C3B7A7 /* CONFIGURATION */ = {
 			isa = PBXGroup;
 			children = (
+				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				8410404121D789C200C3B7A7 /* CommonSettings.swift */,
 				8410404221D789C200C3B7A7 /* Configuration.swift */,
 				8410404321D789C300C3B7A7 /* PBLogs.swift */,
 				8410404021D789C200C3B7A7 /* ResponseMetadata.swift */,
+				442DEDCA2449967200067A3E /*  Connectivity.swift */,
 			);
 			path = CONFIGURATION;
 			sourceTree = "<group>";
@@ -843,8 +853,10 @@
 			isa = PBXGroup;
 			children = (
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
-				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				84855BD82251E6F200DBB626 /* lyfinshdfcinputModel.swift */,
+				44B648902440A441006347D8 /* DynamicDashboardModel.swift */,
+				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
+				4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1140,6 +1152,7 @@
 				8410404421D789C300C3B7A7 /* ResponseMetadata.swift in Sources */,
 				84186CD82215735B0069F152 /* transctnHisTVCell.swift in Sources */,
 				84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */,
+				4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */,
 				84EF6EA12296B2BD0002E73B /* smsTemplateVC.swift in Sources */,
 				840C4BE121C383AC000B8D49 /* KnowlgeGuruVC.swift in Sources */,
 				8415D25721EEFFE000C07577 /* pendingcaseTVCell.swift in Sources */,
@@ -1167,6 +1180,7 @@
 				840562ED21D4D3D90099DDE8 /* helpnfeedbackVC.swift in Sources */,
 				84C4D08F21C23DD700A677B7 /* multiselctionTVCell.swift in Sources */,
 				8483DC9A226756250095AA24 /* getmpsNowVC.swift in Sources */,
+				44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */,
 				8483DC9422672B8B0095AA24 /* offlineQuotesTVCell.swift in Sources */,
 				8413349521C8FD350084AFC2 /* KYDrawerController.swift in Sources */,
 				84BD5C1B21ECB88500982C15 /* addAttendanceVC.swift in Sources */,
@@ -1203,6 +1217,7 @@
 				44AB6D8D2302B9AC00CE685E /* creditcardListTVCell.swift in Sources */,
 				8434742B222D4372004A418A /* cmnApplictnLifeinsTVCell.swift in Sources */,
 				84EF6E9F2296B2730002E73B /* smsTempTVCell.swift in Sources */,
+				44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */,
 				846F653A2281A2D300F9A92F /* healthTestTVCell.swift in Sources */,
 				44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */,
 				44BC3A2222EAD98B009926FC /* loanleadHistoryVC.swift in Sources */,
@@ -1213,6 +1228,7 @@
 				8411808821C5105D00D5638B /* PresentMenuAnimator.swift in Sources */,
 				8411808921C5105D00D5638B /* DismissMenuAnimator.swift in Sources */,
 				84288B2321CCF3A400BC50BC /* profileVC.swift in Sources */,
+				442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,
 				8483DC98226749300095AA24 /* healthAssureTVCell.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
