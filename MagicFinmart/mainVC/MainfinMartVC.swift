@@ -166,6 +166,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             }
 
+            // When Alert Dialog Info Button Click
             cell.tapInfoProd = {
 
                
@@ -585,6 +586,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         popUpbackgroundView.isHidden = false
 //        managerNameLbl.text! = "Manager : " + self.managerName
         usercallingAPI()
+    }
+    
+    
+    @IBAction func knowpopUpBtnClicked(_ sender: Any) {
+        
+        popUpbackgroundView.isHidden = true
+        
+     let url = UserDefaults.standard.string(forKey: "notificationpopupurl")
+        
+        guard let popupUrl = url else {
+            return
+        }
+        let alertWebVC = self.alertService.alertWebView(webURL: popupUrl)
+        self.present(alertWebVC, animated: true)
+        
     }
     
     @IBAction func popUpcancelBtnCliked(_ sender: Any)

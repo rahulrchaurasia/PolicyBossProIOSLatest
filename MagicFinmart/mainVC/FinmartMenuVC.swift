@@ -47,6 +47,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var isfirstLogin = Int()
     var enableenrolasPOSP = ""
     
+    // For AlertDialog
+    let alertService = AlertService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //--<api>--
@@ -76,8 +79,18 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @IBAction func knowUrFinmartBtnCliked(_ sender: Any)
     {
-        let notipopupurl : notipopupurlVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnotipopupurlVC") as! notipopupurlVC
-        present(notipopupurl, animated: true, completion: nil)
+//        let notipopupurl : notipopupurlVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnotipopupurlVC") as! notipopupurlVC
+//        present(notipopupurl, animated: true, completion: nil)
+        
+        
+        let url = UserDefaults.standard.string(forKey: "notificationpopupurl")
+        
+        guard let popupUrl = url else {
+            return
+        }
+        let alertWebVC = self.alertService.alertWebView(webURL: popupUrl)
+        self.present(alertWebVC, animated: true)
+
     }
    
     @IBAction func menuhomeBtnCliked(_ sender: Any)
@@ -637,6 +650,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let ERPID = jsonData?.value(forKey: "ERPID") as AnyObject
             let loanselfphoto = jsonData?.value(forKey: "loanselfphoto") as AnyObject
             let referer_code = UserDefaults.standard.string(forKey: "referer_code")
+           
             let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
             self.enableenrolasPOSP = enableenrolasposp as! String
             UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
