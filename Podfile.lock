@@ -10,8 +10,21 @@ PODS:
   - CustomIOSAlertView (0.9.5)
   - DynamicBlurView (3.0.1)
   - KYDrawerController (2.1.0)
+  - libwebp (1.1.0):
+    - libwebp/demux (= 1.1.0)
+    - libwebp/mux (= 1.1.0)
+    - libwebp/webp (= 1.1.0)
+  - libwebp/demux (1.1.0):
+    - libwebp/webp
+  - libwebp/mux (1.1.0):
+    - libwebp/demux
+  - libwebp/webp (1.1.0)
   - PopupDialog (0.9.2):
     - DynamicBlurView (~> 3.0.1)
+  - SDWebImage/Core (4.4.8)
+  - SDWebImage/WebP (4.4.8):
+    - libwebp (< 2.0, >= 0.5)
+    - SDWebImage/Core
   - Socket.IO-Client-Swift (15.1.0):
     - Starscream (~> 3.1)
   - Starscream (3.1.0)
@@ -25,6 +38,7 @@ DEPENDENCIES:
   - CustomIOSAlertView
   - KYDrawerController
   - PopupDialog (~> 0.5)
+  - SDWebImage/WebP
   - SwiftyJSON
   - TTGSnackbar
 
@@ -40,6 +54,8 @@ SPEC REPOS:
     - TTGSnackbar
   trunk:
     - CobrowseIO
+    - libwebp
+    - SDWebImage
     - Socket.IO-Client-Swift
     - Starscream
 
@@ -50,12 +66,14 @@ SPEC CHECKSUMS:
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
+  libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   Socket.IO-Client-Swift: 7cb44c0ffb86e158cee32d0642d30ec5fdcf8f61
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
 
-PODFILE CHECKSUM: f5d54d192b33ac1dece3c81650b26e2a16bef929
+PODFILE CHECKSUM: a088a55bebc540503cd8c78b6f03df209b0f8103
 
 COCOAPODS: 1.8.0

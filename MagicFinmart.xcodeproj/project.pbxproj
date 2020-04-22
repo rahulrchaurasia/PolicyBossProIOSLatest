@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
@@ -184,6 +185,7 @@
 /* Begin PBXFileReference section */
 		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicFinmart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
@@ -380,6 +382,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4415A863244DFAAE00314D26 /* SalesMaterial */ = {
+			isa = PBXGroup;
+			children = (
+				4415A864244DFAFA00314D26 /* SalesDetailModel.swift */,
+			);
+			path = SalesMaterial;
+			sourceTree = "<group>";
+		};
 		44AB3967243E1C550009BD86 /* AlertDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,6 +862,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4415A863244DFAAE00314D26 /* SalesMaterial */,
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
 				84855BD82251E6F200DBB626 /* lyfinshdfcinputModel.swift */,
 				44B648902440A441006347D8 /* DynamicDashboardModel.swift */,
@@ -1250,6 +1261,7 @@
 				84F4114F220AF254001407EE /* whatsNewTVCell.swift in Sources */,
 				44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */,
 				840562D921D4D2B90099DDE8 /* incmCalculatrVC.swift in Sources */,
+				4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */,
 				84DB47772227E66E00EBDA3C /* commonQuotesTVCell.swift in Sources */,
 				84D2E0CA21EDB91A00991D47 /* AttendanceModel.swift in Sources */,
 				8403E89421BFC21A0009662A /* LoginVC.swift in Sources */,
@@ -1442,7 +1454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.landmarkinsurance.MagicFinmart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.magicfinmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1464,7 +1476,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.landmarkinsurance.MagicFinmart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.magicfinmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

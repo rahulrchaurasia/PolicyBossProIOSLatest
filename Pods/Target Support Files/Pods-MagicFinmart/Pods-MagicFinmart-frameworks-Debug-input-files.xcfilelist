@@ -6,7 +6,9 @@ ${BUILT_PRODUCTS_DIR}/CustomIOSAlertView/CustomIOSAlertView.framework
 ${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework
 ${BUILT_PRODUCTS_DIR}/KYDrawerController/KYDrawerController.framework
 ${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
 ${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework
 ${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/TTGSnackbar/TTGSnackbar.framework
+${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework

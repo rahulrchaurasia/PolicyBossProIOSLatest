@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class imgsalesmaterialVC: UIViewController {
 
@@ -19,8 +20,11 @@ class imgsalesmaterialVC: UIViewController {
         
         print("detailImg=",detailImg)
         let url = URL(string: detailImg)
-        let data = try? Data(contentsOf: url!)
-        detailImgView.image = UIImage(data: data!)
+        
+//        let data = try? Data(contentsOf: url!)
+//        detailImgView.image = UIImage(data: data!)
+        
+         detailImgView.sd_setImage(with: url)
         
     }
     

@@ -11,6 +11,7 @@ import CustomIOSAlertView
 import TTGSnackbar
 import SwiftyJSON
 import Alamofire
+import SDWebImage
 
 
 class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate {
@@ -212,6 +213,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
              //  cell.cellImage = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
                 
+                 let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
+    
+                 cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
+                
+                
                 //loadimages
 //                let imgURL = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
 //                if imgURL != nil {
@@ -220,21 +226,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //                }
                 
                 // Binding Image Using Alamofire
-                let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
-                 Alamofire.request(remoteImageURL).responseData { (response) in
-                    if response.error == nil {
-                        print(response.result)
-                        // Show the downloaded image:
-                    
-                        if let data = response.data {
-                    
-                            DispatchQueue.main.async {
-                                
-                               cell.cellImage.image = UIImage(data: data)
-                            }
-                       }
-                    }
-                }
+//                let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
+//                 Alamofire.request(remoteImageURL).responseData { (response) in
+//                    if response.error == nil {
+//                        print(response.result)
+//                        // Show the downloaded image:
+//
+//                        if let data = response.data {
+//
+//                            DispatchQueue.main.async {
+//
+//                               cell.cellImage.image = UIImage(data: data)
+//                            }
+//                       }
+//                    }
+//                }
                
             }
             else if(indexPath.section == 1)

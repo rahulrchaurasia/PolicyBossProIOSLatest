@@ -9,6 +9,7 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import SDWebImage
 
 class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
@@ -23,6 +24,9 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     var passindexlbl = ""
     var tIndex = Int()
     
+    var salesDetailModel = [SalesDetailModel]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +34,13 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         switchBtn.isOn = false
         
         //--<apiCall>--
-        materialproductdetailsAPI()
+        if(productId == "7"){
+            
+            LoanprodDetailAPI()
+        }else{
+            materialproductdetailsAPI()
+        }
+        
     }
     
     @IBAction func backBtnCliked(_ sender: Any)
@@ -64,25 +74,32 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     
     //---<collectionView Datasource+Delegates>---
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imagepathArray.count
+        return salesDetailModel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! insalesmaterialCVCell
         
         //loadimages
-        let imgURL = NSURL(string: imagepathArray[indexPath.row])
-        if imgURL != nil {
-            let data = NSData(contentsOf: (imgURL as URL?)!)
-            cell.collImgView.image = UIImage(data: data! as Data)
+        
+        if let path = NSURL(string: salesDetailModel[indexPath.row].image_path){
+            print("DDDD",path)
+            let imgURL = path
+            if imgURL != nil {
+                //let data = NSData(contentsOf: (imgURL as URL?)!)
+                //cell.collImgView.image = UIImage(data: data! as Data)
+                cell.collImgView.sd_setImage(with: path as URL)
+            }
         }
+        
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let imgsalesmaterial : imgsalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialVC") as! imgsalesmaterialVC
-        imgsalesmaterial.detailImg = imagepathArray[indexPath.row]
+        imgsalesmaterial.detailImg = salesDetailModel[indexPath.row].image_path
         self.addChild(imgsalesmaterial)
         self.view.addSubview(imgsalesmaterial.view)
     }
@@ -110,15 +127,111 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSDictionary
-            let docs = jsonData?.value(forKey: "docs") as AnyObject
-            let image_path = docs.value(forKey: "image_path") as AnyObject
-            self.imagepathArray = image_path as! [String]
+            print("SALES DATA",jsonData)
+            let salesDtl = jsonData?.value(forKey: "docs") as! NSArray
+//            let image_path = docs.value(forKey: "image_path") as AnyObject
+//            self.imagepathArray = image_path as! [String]
             
 //            DispatchQueue.main.async
 //            {
-                    self.insalesCView.reloadData()
+//                    self.insalesCView.reloadData()
 //            }
             
+            ///
+            
+        
+          
+            for index in 0...(salesDtl.count)-1 {
+                let aObject = salesDtl[index] as! [String : AnyObject]
+
+                let model = SalesDetailModel(language: aObject["language"] as! String, image_path: aObject["image_path"] as! String,
+                                             imagelink: "",title: "",shorturl: "",url: "", baseurl: "")
+
+                self.salesDetailModel.append(model)
+
+                let menuName = aObject["image_path"] as! String
+                 print("SALES DATA",menuName)
+
+                DispatchQueue.main.async {
+                   self.insalesCView.reloadData()
+                }
+            }
+
+            
+        }, onError: { errorData in
+            alertView.close()
+            print("Error",errorData.errorMessage)
+            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            snackbar.show()
+        }, onForceUpgrade: {errorData in})
+        
+    }
+    
+    
+   ////////////////////////////////////////////////
+    
+    //---<APICALL>---
+    func LoanprodDetailAPI()
+    {
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        let params: [String: AnyObject] =
+            [ "LoanId": "0" as AnyObject,
+              "FBAID": FBAId as AnyObject,
+              "Source": "Finmart" as AnyObject,]
+        
+        let url = "/api/getfincampaign"
+        
+        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+            alertView.close()
+            
+            self.view.layoutIfNeeded()
+            let jsonData = userObject as? NSArray
+            //           print("SALES DATA",jsonData)
+         //   let salesDtl = jsonData?.value(forKey: "docs") as! NSArray
+           
+            
+            guard let salesDtl = jsonData else{
+                
+                return
+            }
+            
+            for index in 0...(salesDtl.count)-1 {
+                let aObject = salesDtl[index] as! [String : AnyObject]
+                
+
+                let model = SalesDetailModel(language: "", image_path: aObject["imagelink"] as! String,
+                                             imagelink: "",title: "",shorturl: "",url: "", baseurl: "")
+
+                
+//                let model = SalesDetailModel(language: "", image_path: aObject["imagelink"] as! String,
+//                                             imagelink: aObject["imagelink"] as! String,
+//                                             title: aObject["title"] as! String,
+//                                             shorturl: aObject["shorturl"] as! String,
+//                                             url: aObject["url"] as! String,
+//                                             baseurl: aObject["baseurl"] as! String)
+                
+                self.salesDetailModel.append(model)
+                
+                self.salesDetailModel.append(model)
+                
+                let menuName = aObject["imagelink"] as! String
+                print("SALES DATA",menuName)
+                
+                DispatchQueue.main.async {
+                    self.insalesCView.reloadData()
+                }
+            }
+          
             
         }, onError: { errorData in
             alertView.close()
@@ -127,5 +240,6 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         }, onForceUpgrade: {errorData in})
         
     }
+
 
 }
