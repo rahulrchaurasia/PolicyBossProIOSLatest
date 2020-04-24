@@ -269,7 +269,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     
     private func setupWKWebview() {
         
-        let wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40) , configuration: self.getWKWebViewConfiguration())
+        let wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20) , configuration: self.getWKWebViewConfiguration())
         // wkWebView.translatesAutoresizingMaskIntoConstraints = false
         
         //        self.webView = WKWebView(frame: self.view.frame, configuration: self.getWKWebViewConfiguration())

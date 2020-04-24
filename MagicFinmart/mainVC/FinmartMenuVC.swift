@@ -81,10 +81,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     {
 //        let notipopupurl : notipopupurlVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnotipopupurlVC") as! notipopupurlVC
 //        present(notipopupurl, animated: true, completion: nil)
-        
+//
         
         let url = UserDefaults.standard.string(forKey: "notificationpopupurl")
-        
+
         guard let popupUrl = url else {
             return
         }
