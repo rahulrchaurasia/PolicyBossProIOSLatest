@@ -210,7 +210,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
               
                
                 cell.cellTitleLbl.text! = dynamicDashboardModel[indexPath.row].menuname
-                cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
+              //  cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
+                
+                 cell.celldetailTextLbl.text! = "adjoisdjviodjsiocvjdsiocfjw iopciowvjiorwjiovjwriovjiorw wnfiowrhiowrhfiohwiorfhoiwhfiowhiofhwoi"
+                
              //  cell.cellImage = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
                 
                  let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
@@ -511,16 +514,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(popUpbackgroundView.isHidden == false)
-        {
-            return 160
-        }
-        else{
-           return 110
-        }
-        
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if(popUpbackgroundView.isHidden == false)
+//        {
+//            return 160
+//        }
+//        else{
+//           return 110
+//        }
+//        
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if(popUpbackgroundView.isHidden == false)
