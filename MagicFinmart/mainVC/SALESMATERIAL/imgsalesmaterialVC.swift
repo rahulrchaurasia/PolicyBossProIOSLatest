@@ -42,10 +42,15 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
          // let text = "This is the text...."
         guard let image = NSURL(string:detailImg) else {return }
         
-//        guard let image = UIImage(named: "info")else{
-//            return
-//        }
+
        
+//        let img: UIImage = detailImgView
+//        saveImage(image: img, filename: "salesMaterial.jpg") //This is where you change your extension name
+//        
+//        let newImage: UIImage = loadImageFromName(name: "salesMaterial.jpg") //Retrieve your image with the correct extension
+//        
+//        share(shareText: "Image going to Instagram", shareImage: newImage)
+//        
         let shareAll =  [image  ] as [Any]
 
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
@@ -64,9 +69,58 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
         self.present(KYDrawer, animated: true, completion: nil)
     }
     
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
+    }
+    func downloadImage(from url: URL) {
+        print("Download Started")
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            print(response?.suggestedFilename ?? url.lastPathComponent)
+            print("Download Finished")
+            
+            DispatchQueue.main.async() {
+                let img = UIImage(data: data)
+                
+                
+            }
+        }
+    }
+    
+    //Retrieve the correct directory URL
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    
+    //Saving an image to that directory
+    func saveImage (image: UIImage, filename: String ){
+        print("Saving image with name \(filename)")
+        if let data = image.pngData() {
+            let fullURL = getDocumentsDirectory().appendingPathComponent(filename)
+            try? data.write(to: fullURL)
+        }
+    }
+    
+    //Retrieving an image from the directory
+    func loadImageFromName(name: String) -> UIImage? {
+        print("Loading image with name \(name)")
+        let path = getDocumentsDirectory().appendingPathComponent(name).path
+        
+        let image = UIImage(contentsOfFile: path)
+        
+        if image == nil {
+            
+            print("missing image at: \(path)")
+        }
+        return image
+    }
     
     
-    //////////////
+    /////////////////////////////////////////////////////////////////////////////////////////
     
     // MARK: bfbdbdbdbd
     private func generateImage(strUrl : String){

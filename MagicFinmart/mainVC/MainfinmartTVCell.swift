@@ -21,6 +21,9 @@ class MainfinmartTVCell: UITableViewCell {
     
     @IBOutlet weak var cellbtnInfoProduct: UIButton!
     
+    @IBOutlet weak var cellImageShareProduct: UIImageView!
+    @IBOutlet weak var cellImageInfoProduct: UIImageView!
+    
     
     
     // We are Using closure for click listenre alternative is Protocal-Delegate and add Target

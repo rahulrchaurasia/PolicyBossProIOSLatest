@@ -186,22 +186,27 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellbtnInfoProduct.isHidden = false
                 cell.cellbtnShareProduct.isHidden = false
                 
-                
+                cell.cellImageInfoProduct.isHidden = false
+                cell.cellImageShareProduct.isHidden = false
                 // check if Info  is not empty   //05
                 if(dynamicDashboardModel[indexPath.row].info.isEmpty )
                 {
                     cell.cellbtnInfoProduct.isHidden = true
+                    cell.cellImageInfoProduct.isHidden = true
                 }else{
                     cell.cellbtnInfoProduct.isHidden = false
+                      cell.cellImageInfoProduct.isHidden = false
                 }
                 
                 // check if Share  is not empty
                 if(dynamicDashboardModel[indexPath.row].IsSharable == "Y" )
                 {
                      cell.cellbtnShareProduct.isHidden = false
+                     cell.cellbtnShareProduct.isHidden = false
                   
                 }else{
                      cell.cellbtnShareProduct.isHidden = true
+                     cell.cellImageShareProduct.isHidden = false
                 }
                 
               //  cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
@@ -250,6 +255,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellbtnInfoProduct.isHidden = true
                 cell.cellbtnShareProduct.isHidden = true
                 
+                cell.cellImageInfoProduct.isHidden = true
+                cell.cellImageShareProduct.isHidden = true
+                
                 cell.cellTitleLbl.text! = loansArray[indexPath.row]
                 cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
                 cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
@@ -258,6 +266,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             {
                 cell.cellbtnInfoProduct.isHidden = true
                 cell.cellbtnShareProduct.isHidden = true
+                
+                cell.cellImageInfoProduct.isHidden = true
+                cell.cellImageShareProduct.isHidden = true
                 
                 cell.cellTitleLbl.text! = moreservicesArray[indexPath.row]
                 cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
