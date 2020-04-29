@@ -50,14 +50,22 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
 //        let newImage: UIImage = loadImageFromName(name: "salesMaterial.jpg") //Retrieve your image with the correct extension
 //        
 //        share(shareText: "Image going to Instagram", shareImage: newImage)
-//        
-        let shareAll =  [image  ] as [Any]
-
-        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+//
         
-      //  generateImage(strUrl: detailImg)
+        ///2 /////
+//        let shareAll =  [image  ] as [Any]
+//
+//        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//        self.present(activityViewController, animated: true, completion: nil)
+        
+        ////////evd 2 ///////
+        
+        ///3 /////
+        
+            generateImage(strUrl: detailImg)
+        
+        //////end 3////////
         
 
     
@@ -126,18 +134,18 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     private func generateImage(strUrl : String){
         
         
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
+//        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+//        if let parentView = self.navigationController?.view
+//        {
+//            alertView.parentView = parentView
+//        }
+//        else
+//        {
+//            alertView.parentView = self.view
+//        }
+//        alertView.show()
         
-        var filename = "salesMaterial"
+        var filename = "salesMaterial1"
         
         let request = URLRequest(url:  URL(string: strUrl )!)
         let config = URLSessionConfiguration.default
@@ -145,30 +153,34 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if error == nil{
                 if let pdfData = data {
-                    let pathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename).jpg")
-                    do {
-                         alertView.close()
-                        print("open \(pathURL.path)")
-                        try pdfData.write(to: pathURL, options: .atomic)
-                        
-                      
-                        
+                    let pathURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("\(filename).png")
                     
+                    
+                   
+                    do {
+                         //alertView.close()
+                        print("open \(pathURL.path)")
+                       
+                         try pdfData.write(to: pathURL)
+
+                        
                     }catch{
                         print("Error while writting")
-                        alertView.close()
+                       // alertView.close()
                     }
+                        
                     
                     DispatchQueue.main.async {
                         
                         self.sharePdf(path: pathURL)
                     }
+                 
                     
                     
                 }
             }else{
                 print(error?.localizedDescription ?? "")
-                alertView.close()
+                //alertView.close()
             }
         }); task.resume()
     }
@@ -178,18 +190,39 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     // Share Pdf Using Path
     func sharePdf(path:URL) {
         
-       // let text = "This is the text...."
+        let shareText = "This is the text...."
 
-        let shareAll =  [ path ] as [Any]
+      //  let shareAll =  [ path,shareText ] as [Any]
+        
+        var objectsToShare = [AnyObject]()
+       
+        objectsToShare.append(path as AnyObject)
+        objectsToShare.append(shareText as AnyObject)
+      
+        
         
         let fileManager = FileManager.default
         
         if fileManager.fileExists(atPath: path.path) {
             
             // Below is Default Sharing
-                        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+                        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                         activityViewController.popoverPresentationController?.sourceView = self.view
-                        self.present(activityViewController, animated: true, completion: nil)
+            
+            
+            
+            //avoiding to crash on iPad
+            if let popoverController = activityViewController.popoverPresentationController {
+                popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+                popoverController.sourceView = self.view
+                popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            }
+
+                self.present(activityViewController, animated: true, completion: nil)
+            
+            
+            
+            
             
             // For Showing Preview
             

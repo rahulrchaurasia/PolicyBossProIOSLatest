@@ -35,6 +35,11 @@ class MainfinmartTVCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        cellImageInfoProduct.isUserInteractionEnabled = true
+        cellImageInfoProduct.addGestureRecognizer(tapGestureRecognizer)
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,6 +57,16 @@ class MainfinmartTVCell: UITableViewCell {
     @IBAction func btnInfomProductClick(_ sender: Any) {
         
         tapInfoProd?()
+    }
+    
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+       // let tappedImage = tapGestureRecognizer.view as! UIImageView
+        
+        // Your action
+        
+          tapInfoProd?()
     }
     
     //
