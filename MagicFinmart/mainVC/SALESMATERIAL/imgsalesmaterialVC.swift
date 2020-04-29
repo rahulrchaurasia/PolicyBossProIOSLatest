@@ -218,7 +218,7 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
                 popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             }
 
-                self.present(activityViewController, animated: true, completion: nil)
+            self.present(activityViewController, animated: true, completion: nil)
             
             
             
