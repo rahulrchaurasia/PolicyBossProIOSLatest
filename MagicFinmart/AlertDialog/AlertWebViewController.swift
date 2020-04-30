@@ -19,7 +19,7 @@ class AlertWebViewController: UIViewController, WKNavigationDelegate,UIScrollVie
     
     
    
-     var strURL = String()
+    var strURL : String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,7 +37,10 @@ class AlertWebViewController: UIViewController, WKNavigationDelegate,UIScrollVie
         
        // let myUrl  = URL(string:"http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html")
         
-         let myUrl  = URL(string:strURL)
+        guard let webURL = strURL else{
+            return
+        }
+         let myUrl  = URL(string:webURL)
         
         let request =  URLRequest(url: myUrl!)
         

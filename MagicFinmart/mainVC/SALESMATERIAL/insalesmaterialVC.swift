@@ -83,7 +83,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         //loadimages
         
         if let path = NSURL(string: salesDetailModel[indexPath.row].image_path){
-            print("DDDD",path)
+            //print("DDDD",path)
             let imgURL = path
             if imgURL != nil {
                 //let data = NSData(contentsOf: (imgURL as URL?)!)
@@ -150,7 +150,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
                 self.salesDetailModel.append(model)
 
                 let menuName = aObject["image_path"] as! String
-                 print("SALES DATA",menuName)
+                // print("SALES DATA",menuName)
 
                 DispatchQueue.main.async {
                    self.insalesCView.reloadData()
@@ -222,10 +222,6 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
                 
                 self.salesDetailModel.append(model)
                 
-                self.salesDetailModel.append(model)
-                
-                let menuName = aObject["imagelink"] as! String
-                print("SALES DATA",menuName)
                 
                 DispatchQueue.main.async {
                     self.insalesCView.reloadData()

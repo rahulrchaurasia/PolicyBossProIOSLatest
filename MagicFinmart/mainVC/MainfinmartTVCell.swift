@@ -39,6 +39,11 @@ class MainfinmartTVCell: UITableViewCell {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         cellImageInfoProduct.isUserInteractionEnabled = true
         cellImageInfoProduct.addGestureRecognizer(tapGestureRecognizer)
+        
+        
+//        let tapGestureShareeRecognizer = UITapGestureRecognizer(target: self, action: #selector(ImageShareTapped(tapGestureShareeRecognizer:)))
+//        cellImageShareProduct.isUserInteractionEnabled = true
+//        cellImageShareProduct.addGestureRecognizer(tapGestureRecognizer)
 
     }
 
@@ -68,6 +73,16 @@ class MainfinmartTVCell: UITableViewCell {
         
           tapInfoProd?()
     }
+    
+    
+//    @objc func ImageShareTapped(tapGestureShareeRecognizer: UITapGestureRecognizer){
+//        
+//        tapShareProd?()
+//        
+//    }
+    
+    
+    
     
     //
     

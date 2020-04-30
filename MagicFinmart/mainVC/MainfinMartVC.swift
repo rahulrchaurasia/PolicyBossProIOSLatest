@@ -21,7 +21,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var pendingcasesView: UIView!
     @IBOutlet weak var knowguruView: UIView!
     
-     var dynamicDashboardModel = [DynamicDashboardModel]()
+    
+    @IBOutlet weak var MainScrollView: UIScrollView!
+    var dynamicDashboardModel = [DynamicDashboardModel]()
      var userDashboardModel = [UserConstDashboarddModel]()
     // For AlertDialog
      let alertService = AlertService()
@@ -63,6 +65,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         userconstantAPI()
         getdynamicappAPI()
        // insurancebusinessAPI()      // 05 temp committed
+        
+        MainScrollView.isScrollEnabled = false
         
     }
    
@@ -185,11 +189,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             {
                 cell.cellbtnInfoProduct.isHidden = false
                 cell.cellbtnShareProduct.isHidden = false
-                
+
                 cell.cellImageInfoProduct.isHidden = false
                 cell.cellImageShareProduct.isHidden = false
                 // check if Info  is not empty   //05
-                if(dynamicDashboardModel[indexPath.row].info.isEmpty )
+                if(dynamicDashboardModel[indexPath.row].info == "" )
                 {
                     cell.cellbtnInfoProduct.isHidden = true
                     cell.cellImageInfoProduct.isHidden = true
@@ -202,11 +206,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 if(dynamicDashboardModel[indexPath.row].IsSharable == "Y" )
                 {
                      cell.cellbtnShareProduct.isHidden = false
-                     cell.cellbtnShareProduct.isHidden = false
+                     cell.cellImageShareProduct.isHidden = false
                   
                 }else{
                      cell.cellbtnShareProduct.isHidden = true
-                     cell.cellImageShareProduct.isHidden = false
+                     cell.cellImageShareProduct.isHidden = true
                 }
                 
               //  cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
