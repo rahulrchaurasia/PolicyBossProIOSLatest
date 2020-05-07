@@ -14,7 +14,18 @@ import Alamofire
 import SDWebImage
 
 class RazorPayementController: UIViewController {
-
+    
+    
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var btnSubmit: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
+    
+    @IBOutlet weak var lblCustomerName: UILabel!
+    @IBOutlet weak var lblProductName: UILabel!
+    @IBOutlet weak var lblAmount: UILabel!
+    
+    
+    
     // RazorPayementController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +34,14 @@ class RazorPayementController: UIViewController {
     }
     
 
+    @IBAction func btnBuyNowClick(_ sender: Any) {
+    }
+    
+    
+    @IBAction func btnCancelClick(_ sender: Any) {
+    }
+    
+    
     
     func getShareData(){
 

@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "paymnet_bg.png",
+      "filename" : "bg_payment.png",
       "scale" : "1x"
     },
     {
