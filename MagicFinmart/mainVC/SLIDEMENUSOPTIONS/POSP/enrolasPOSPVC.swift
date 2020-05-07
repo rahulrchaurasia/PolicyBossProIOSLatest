@@ -558,6 +558,11 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             TTGSnackbar.init(message: "Posp registered successfully.", duration: .long).show()
             
             
+            let razorController : RazorPayementController = self.storyboard?.instantiateViewController(withIdentifier: "stbRazorPayementController") as! RazorPayementController
+          
+            self.present(razorController, animated:true, completion: nil)
+            
+            
         }, onError: { errorData in
             alertView.close()
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)

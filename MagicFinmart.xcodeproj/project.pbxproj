@@ -11,6 +11,10 @@
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
+		443D35F42462991400C8F763 /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443D35F2246298DE00C8F763 /* Razorpay.framework */; };
+		443D35F52462991400C8F763 /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 443D35F2246298DE00C8F763 /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		443D35F92462AC6A00C8F763 /* RazorPayementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35F82462AC6A00C8F763 /* RazorPayementController.swift */; };
+		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */; };
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */; };
@@ -182,6 +186,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		443D35F62462991400C8F763 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				443D35F52462991400C8F763 /* Razorpay.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicFinmart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +207,9 @@
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
+		443D35F2246298DE00C8F763 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
+		443D35F82462AC6A00C8F763 /* RazorPayementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayementController.swift; sourceTree = "<group>"; };
+		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloanselectCityVC.swift; sourceTree = "<group>"; };
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
 		449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingRevampTVCell.swift; sourceTree = "<group>"; };
@@ -359,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				443D35F42462991400C8F763 /* Razorpay.framework in Frameworks */,
 				B5204133BFEC6C6EB3692E18 /* Pods_MagicFinmart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +410,22 @@
 				4415A864244DFAFA00314D26 /* SalesDetailModel.swift */,
 			);
 			path = SalesMaterial;
+			sourceTree = "<group>";
+		};
+		443D35F72462A30F00C8F763 /* PaymentGateway */ = {
+			isa = PBXGroup;
+			children = (
+				443D35F82462AC6A00C8F763 /* RazorPayementController.swift */,
+			);
+			path = PaymentGateway;
+			sourceTree = "<group>";
+		};
+		443D35FA24632F2000C8F763 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		44AB3967243E1C550009BD86 /* AlertDialog */ = {
@@ -506,6 +544,7 @@
 		840AC5C321BE80AB004DCB26 = {
 			isa = PBXGroup;
 			children = (
+				443D35F2246298DE00C8F763 /* Razorpay.framework */,
 				840AC5CE21BE80AB004DCB26 /* MagicFinmart */,
 				840AC5E321BE80AC004DCB26 /* MagicFinmartTests */,
 				840AC5EE21BE80AC004DCB26 /* MagicFinmartUITests */,
@@ -528,6 +567,7 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				443D35F72462A30F00C8F763 /* PaymentGateway */,
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
 				840AC5DB21BE80AC004DCB26 /* Info.plist */,
@@ -862,6 +902,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				443D35FA24632F2000C8F763 /* Payment */,
 				4415A863244DFAAE00314D26 /* SalesMaterial */,
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
 				84855BD82251E6F200DBB626 /* lyfinshdfcinputModel.swift */,
@@ -905,6 +946,7 @@
 				840AC5C921BE80AB004DCB26 /* Frameworks */,
 				840AC5CA21BE80AB004DCB26 /* Resources */,
 				200D3CAD711905B7120BF57E /* [CP] Embed Pods Frameworks */,
+				443D35F62462991400C8F763 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1131,6 +1173,7 @@
 				8410F8D621F835DF00DFC974 /* insalesmaterialCVCell.swift in Sources */,
 				8480BBE2220811D300BEEDF4 /* hnfdisclosureVC.swift in Sources */,
 				840AC5D221BE80AB004DCB26 /* ViewController.swift in Sources */,
+				443D35F92462AC6A00C8F763 /* RazorPayementController.swift in Sources */,
 				44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */,
 				84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */,
 				84D2E0C721EDB85500991D47 /* LoginAPI.swift in Sources */,
@@ -1264,6 +1307,7 @@
 				4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */,
 				84DB47772227E66E00EBDA3C /* commonQuotesTVCell.swift in Sources */,
 				84D2E0CA21EDB91A00991D47 /* AttendanceModel.swift in Sources */,
+				443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */,
 				8403E89421BFC21A0009662A /* LoginVC.swift in Sources */,
 				846F65382281994300F9A92F /* healthTestsVC.swift in Sources */,
 				8480BBEE220856E900BEEDF4 /* addraiseticktVC.swift in Sources */,
@@ -1444,10 +1488,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60DB1E330948984A6DEC335C /* Pods-MagicFinmart.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MagicFinmart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1466,10 +1515,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = MagicFinmart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
