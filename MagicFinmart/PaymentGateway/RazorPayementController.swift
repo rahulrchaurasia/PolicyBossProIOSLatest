@@ -64,14 +64,13 @@ class RazorPayementController: UIViewController ,RazorpayPaymentCompletionProtoc
     @IBAction func btnBuyClick(_ sender: UIButton) {
         
           print("BUY NOW.")
-        showPaymentForm()
     }
     
     
     @IBAction func btnCancelClick(_ sender: UIButton) {
         
         
-         print("CANCEL CLICK")
+         print("BUY NOW.")
     }
     
     ///////////
