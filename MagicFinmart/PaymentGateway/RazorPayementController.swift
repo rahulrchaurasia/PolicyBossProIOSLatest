@@ -12,38 +12,82 @@ import TTGSnackbar
 import SwiftyJSON
 import Alamofire
 import SDWebImage
+import Razorpay
 
-class RazorPayementController: UIViewController {
+ let razorpaykey = "rzp_live_b7vQ8lyFs69syy"
+
+class RazorPayementController: UIViewController ,RazorpayPaymentCompletionProtocol {
     
     
+   
     @IBOutlet weak var mainView: UIView!
-    @IBOutlet weak var btnSubmit: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
-    
+   
     @IBOutlet weak var lblCustomerName: UILabel!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
     
+    
+    var razorpay: Razorpay!
+    let rupee = "\u{20B9}"
     
     
     // RazorPayementController
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       getShareData()
+         razorpay = Razorpay.initWithKey(razorpaykey, andDelegate: self)
+        
+        initialize()
+        
+         getPaymentDetail()
     }
     
 
-    @IBAction func btnBuyNowClick(_ sender: Any) {
+    func initialize()
+    {
+        mainView.backgroundColor = .white
+        
+        mainView.layer.cornerRadius = 10.0
+        
+        mainView.layer.shadowColor = UIColor.gray.cgColor
+        
+        mainView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        
+        mainView.layer.shadowRadius = 6.0
+        
+        mainView.layer.shadowOpacity = 0.7
     }
     
     
-    @IBAction func btnCancelClick(_ sender: Any) {
+    
+   
+    @IBAction func btnBuyClick(_ sender: UIButton) {
+        
+          print("BUY NOW.")
+        showPaymentForm()
     }
     
     
+    @IBAction func btnCancelClick(_ sender: UIButton) {
+        
+        
+         print("CANCEL CLICK")
+    }
     
-    func getShareData(){
+    ///////////
+    
+   
+    
+    func onPaymentSuccess(_ payment_id: String) {
+        
+      
+    }
+    
+    func onPaymentError(_ code: Int32, description str: String){
+        
+    }
+    
+    func getPaymentDetail(){
 
         if Connectivity.isConnectedToInternet()
         {
@@ -82,11 +126,20 @@ class RazorPayementController: UIViewController {
                     guard let data = response.data else { return }
                     do {
                         let decoder = JSONDecoder()
-                        let objModel = try decoder.decode(PaymentDetailModel.self, from: data)
+                        let obj = try decoder.decode(PaymentDetailModel.self, from: data)
 
                       //  print("Payment ",shareModel.MasterData.Name + shareModel.MasterData.Email)
 
-                      print("response= ",objModel)
+                      print("response= ",obj)
+                        
+                        if obj.StatusNo == 0 {
+                            self.setPaymentDetail(objModel: obj.MasterData)
+                            
+                        }else{
+                         
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                        snackbar.show()
+                        }
 
 
                     } catch let error {
@@ -114,4 +167,31 @@ class RazorPayementController: UIViewController {
 
     }
 
+    func setPaymentDetail(objModel :PaymentDetailMasterData ){
+        
+        lblCustomerName.text = objModel.Name + "-" + objModel.CustID
+        lblProductName.text  = objModel.productname
+        lblAmount.text       = rupee + " " + objModel.displayamounts
+    }
+    
+    //////////////////
+    
+    internal func showPaymentForm(){
+        let options: [String:Any] = [
+            "amount": "100", //This is in currency subunits. 100 = 100 paise= INR 1.
+            "currency": "INR",//We support more that 92 international currencies.
+            "description": "purchase description",
+            "image": "https://www.rupeeboss.com/image/logo.png",
+            
+            "name": "Platform for onboarding for Fin-Mart",
+            "prefill": [
+                "contact": "9773113793",
+                "email": "rahulrchaurasia@gmail.com"
+            ],
+            "theme": [
+                "color": "#009ee3"
+            ]
+        ]
+        razorpay.open(options)
+    }
 }

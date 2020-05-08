@@ -653,6 +653,7 @@
 		8410403F21D7897D00C3B7A7 /* CONFIGURATION */ = {
 			isa = PBXGroup;
 			children = (
+				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
 				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				8410404121D789C200C3B7A7 /* CommonSettings.swift */,
 				8410404221D789C200C3B7A7 /* Configuration.swift */,
@@ -907,7 +908,6 @@
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
 				84855BD82251E6F200DBB626 /* lyfinshdfcinputModel.swift */,
 				44B648902440A441006347D8 /* DynamicDashboardModel.swift */,
-				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
 				4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */,
 			);
 			path = Model;
