@@ -558,9 +558,25 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             TTGSnackbar.init(message: "Posp registered successfully.", duration: .long).show()
             
             
-            let razorController : RazorPayementController = self.storyboard?.instantiateViewController(withIdentifier: "stbRazorPayementController") as! RazorPayementController
+//            let razorController : RazorPayementController = self.storyboard?.instantiateViewController(withIdentifier: "stbRazorPayementController") as! RazorPayementController
+//
+//            self.present(razorController, animated:true, completion: nil)
+//
+            
+//            let razorController : PaymentController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentController") as! PaymentController
+//
+//            self.present(razorController, animated:true, completion: nil)
+            
+            
           
-            self.present(razorController, animated:true, completion: nil)
+            
+            
+            let storyboard = UIStoryboard(name: "payment", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "stbPaymentMainController") as UIViewController
+
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            //show window
+            appDelegate.window?.rootViewController = vc
             
             
         }, onError: { errorData in
@@ -570,6 +586,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         }, onForceUpgrade: {errorData in})
         
     }
+    
+  
     
     func getpospdetailAPI()
     {

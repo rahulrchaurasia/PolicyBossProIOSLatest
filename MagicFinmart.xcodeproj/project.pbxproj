@@ -11,14 +11,17 @@
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
-		443D35F42462991400C8F763 /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 443D35F2246298DE00C8F763 /* Razorpay.framework */; };
-		443D35F52462991400C8F763 /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 443D35F2246298DE00C8F763 /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		443D35F92462AC6A00C8F763 /* RazorPayementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35F82462AC6A00C8F763 /* RazorPayementController.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */; };
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
+		447DF6302466DDD400D0F545 /* payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447DF62F2466DDD400D0F545 /* payment.storyboard */; };
+		447DF6342466DF3E00D0F545 /* PaymentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447DF6332466DF3E00D0F545 /* PaymentMainController.swift */; };
+		449EDBA22466A837006280CA /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449EDBA02466A826006280CA /* Razorpay.framework */; };
+		449EDBA32466A837006280CA /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 449EDBA02466A826006280CA /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */; };
 		449F17F622DCA87C00C9A2BF /* addSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */; };
+		44A3E0D824686B1E00A50332 /* PaymentCancelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A3E0D724686B1E00A50332 /* PaymentCancelController.swift */; };
 		44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A685CC22DDA170001295F0 /* addSubUserTVCell.swift */; };
 		44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A685CE22DDA77C001295F0 /* newaddSubUserVC.swift */; };
 		44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */; };
@@ -193,7 +196,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				443D35F52462991400C8F763 /* Razorpay.framework in Embed Frameworks */,
+				449EDBA32466A837006280CA /* Razorpay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -207,13 +210,16 @@
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
-		443D35F2246298DE00C8F763 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		443D35F82462AC6A00C8F763 /* RazorPayementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayementController.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloanselectCityVC.swift; sourceTree = "<group>"; };
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
+		447DF62F2466DDD400D0F545 /* payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = payment.storyboard; sourceTree = "<group>"; };
+		447DF6332466DF3E00D0F545 /* PaymentMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMainController.swift; sourceTree = "<group>"; };
+		449EDBA02466A826006280CA /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingRevampTVCell.swift; sourceTree = "<group>"; };
 		449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubUserVC.swift; sourceTree = "<group>"; };
+		44A3E0D724686B1E00A50332 /* PaymentCancelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCancelController.swift; sourceTree = "<group>"; };
 		44A685CC22DDA170001295F0 /* addSubUserTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubUserTVCell.swift; sourceTree = "<group>"; };
 		44A685CE22DDA77C001295F0 /* newaddSubUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = newaddSubUserVC.swift; sourceTree = "<group>"; };
 		44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AlertWebViewStoryboard.storyboard; sourceTree = "<group>"; };
@@ -380,7 +386,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				443D35F42462991400C8F763 /* Razorpay.framework in Frameworks */,
+				449EDBA22466A837006280CA /* Razorpay.framework in Frameworks */,
 				B5204133BFEC6C6EB3692E18 /* Pods_MagicFinmart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +422,9 @@
 			isa = PBXGroup;
 			children = (
 				443D35F82462AC6A00C8F763 /* RazorPayementController.swift */,
+				447DF62F2466DDD400D0F545 /* payment.storyboard */,
+				447DF6332466DF3E00D0F545 /* PaymentMainController.swift */,
+				44A3E0D724686B1E00A50332 /* PaymentCancelController.swift */,
 			);
 			path = PaymentGateway;
 			sourceTree = "<group>";
@@ -544,7 +553,6 @@
 		840AC5C321BE80AB004DCB26 = {
 			isa = PBXGroup;
 			children = (
-				443D35F2246298DE00C8F763 /* Razorpay.framework */,
 				840AC5CE21BE80AB004DCB26 /* MagicFinmart */,
 				840AC5E321BE80AC004DCB26 /* MagicFinmartTests */,
 				840AC5EE21BE80AC004DCB26 /* MagicFinmartUITests */,
@@ -567,6 +575,7 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				449EDBA02466A826006280CA /* Razorpay.framework */,
 				443D35F72462A30F00C8F763 /* PaymentGateway */,
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
@@ -1054,6 +1063,7 @@
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
 				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
+				447DF6302466DDD400D0F545 /* payment.storyboard in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
 				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
 			);
@@ -1251,6 +1261,7 @@
 				840562E121D4D3270099DDE8 /* syncContactsVC.swift in Sources */,
 				845A9691224B74CC0045B416 /* lyfinshdfcInputPageVC.swift in Sources */,
 				84BD5C1421EC6E3100982C15 /* healthInsApplictnVC.swift in Sources */,
+				447DF6342466DF3E00D0F545 /* PaymentMainController.swift in Sources */,
 				44B26D9E230E99FA0017DBAD /* iciciCreditCardVC.swift in Sources */,
 				8411808721C5105D00D5638B /* Interactor.swift in Sources */,
 				84347425222D4312004A418A /* cmnQuotesLifeinsVC.swift in Sources */,
@@ -1305,6 +1316,7 @@
 				44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */,
 				840562D921D4D2B90099DDE8 /* incmCalculatrVC.swift in Sources */,
 				4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */,
+				44A3E0D824686B1E00A50332 /* PaymentCancelController.swift in Sources */,
 				84DB47772227E66E00EBDA3C /* commonQuotesTVCell.swift in Sources */,
 				84D2E0CA21EDB91A00991D47 /* AttendanceModel.swift in Sources */,
 				443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */,
@@ -1496,6 +1508,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MagicFinmart",
 				);
 				INFOPLIST_FILE = MagicFinmart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -1523,6 +1536,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MagicFinmart",
 				);
 				INFOPLIST_FILE = MagicFinmart/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;

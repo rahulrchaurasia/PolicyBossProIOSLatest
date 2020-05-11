@@ -109,6 +109,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         let forgtPass : forgtPassVC = self.storyboard?.instantiateViewController(withIdentifier: "stbforgtPassVC") as! forgtPassVC
         self.addChild(forgtPass)
         self.view.addSubview(forgtPass.view)
+        
+        
+        
     }
     
     

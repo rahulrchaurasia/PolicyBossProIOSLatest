@@ -42,6 +42,12 @@ class RazorPayementController: UIViewController ,RazorpayPaymentCompletionProtoc
          getPaymentDetail()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showPaymentForm()
+    }
+    
 
     func initialize()
     {
