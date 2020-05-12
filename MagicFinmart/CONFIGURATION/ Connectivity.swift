@@ -14,6 +14,8 @@ class Connectivity {
         return NetworkReachabilityManager()!.isReachable
     }
     
+    
+    
     static let message = "No Internet Access Available"
 }
 

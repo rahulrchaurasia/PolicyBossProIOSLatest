@@ -20,6 +20,14 @@ class FinmartRestClient {
     static let basegenerateloanLeadURLString = Configuration.basegenerateloanLeadURL
     static let basehealthassureURLString = Configuration.basehealthassureURL
     
+    
+    /// new Created
+    
+   static let headers: HTTPHeaders = [
+        "Content-Type": "application/json",
+        "token": "1234567890"
+    ]
+    
     /**
      * Server key in the returned JSON where the success/failure status is
      * stored

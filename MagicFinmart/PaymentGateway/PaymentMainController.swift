@@ -21,7 +21,14 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     let rupee = "\u{20B9}"
     
     var razorpay: Razorpay!
-   
+    
+  
+  
+    
+    var paymentDtlObj: PaymentDetailMasterData? = nil
+    
+    
+    
     
     @IBOutlet weak var btnCancel: UIButton!
     
@@ -46,6 +53,8 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
        initialize()
     
          getPaymentDetail()
+        
+        
     }
     
     
@@ -93,53 +102,76 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
 //        present(KYDrawer, animated: true, completion: nil)
         
         
+        ////////////////  05  ///////////////////////////
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//         let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//
+//         present(KYDrawer, animated: true, completion: nil)
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-         let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        ////////////
         
-         present(KYDrawer, animated: true, completion: nil)
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        //show window
-//        appDelegate.window?.rootViewController = vc
+
     }
     
 
     func onPaymentError(_ code: Int32, description str: String) {
         
-//        let PaymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
-//        present(PaymentCancelVC, animated:true, completion: nil)
+       let paymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
+
+        paymentCancelVC.custID = paymentDtlObj?.CustID ?? ""
+        self.addChild(paymentCancelVC)
+        self.view.addSubview(paymentCancelVC.view)
         
+        //05
         
-       let PaymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
-        self.addChild(PaymentCancelVC)
-        self.view.addSubview(PaymentCancelVC.view)
+      
     }
     
     func onPaymentSuccess(_ payment_id: String) {
+        
+        
+        moveToSuccessVC(paymentID: payment_id)
         
     }
    
     
     
+    @IBAction func backBtnClick(_ sender: Any) {
+        
+        
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+       let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        
+      present(KYDrawer, animated: true, completion: nil)
+        
+    }
+    
+    
     internal func showPaymentForm(){
-        navigationController?.setNavigationBarHidden(true, animated: true)
+       // navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        if (paymentDtlObj?.CustID) != nil {
         let options: [String:Any] = [
-            "amount": "100", //This is in currency subunits. 100 = 100 paise= INR 1.
-            "currency": "INR",//We support more that 92 international currencies.
-            "description": "purchase description",
-            "image": "https://www.rupeeboss.com/image/logo.png",
+            "amount": paymentDtlObj!.amount as Any, //This is in currency subunits. 100 = 100 paise= INR 1.
+            "currency": "INR",
+            "description": paymentDtlObj!.CustID ,
+            "image":  paymentDtlObj!.image ,
             
-            "name": "Platform for onboarding for Fin-Mart",
+            "name": paymentDtlObj!.Name ,
             "prefill": [
-                "contact": "9773113793",
-                "email": "rahulrchaurasia@gmail.com"
+                "contact": paymentDtlObj!.Mobile  ,
+                "email": paymentDtlObj?.Email
             ],
             "theme": [
                 "color": "#009ee3"
             ]
         ]
-        razorpay.open(options)
+         razorpay.open(options)
+            
+        }
     }
+    
+ 
     
     
     func getPaymentDetail(){
@@ -161,7 +193,8 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
             
             let FBAId = UserDefaults.standard.string(forKey: "FBAId")
             
-            
+
+        
             let parameter  :[String: AnyObject] = [
                 
                 "FBAID": FBAId as AnyObject
@@ -170,7 +203,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",parameter)
-            Alamofire.request(url, method: .post, parameters: parameter).responseJSON(completionHandler: { (response) in
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
                 switch response.result {
                     
                 case .success(let value):
@@ -183,11 +216,13 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
                         let decoder = JSONDecoder()
                         let obj = try decoder.decode(PaymentDetailModel.self, from: data)
                         
-                        //  print("Payment ",shareModel.MasterData.Name + shareModel.MasterData.Email)
+                        
                         
                         print("response= ",obj)
                         
                         if obj.StatusNo == 0 {
+                            
+                            self.paymentDtlObj = obj.MasterData
                             self.setPaymentDetail(objModel: obj.MasterData)
                             
                         }else{
@@ -222,12 +257,36 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         
     }
     
+    
+
+    
     func setPaymentDetail(objModel :PaymentDetailMasterData ){
+     
         
         lblCustomerName.text = objModel.Name + "-" + objModel.CustID
         lblProductName.text  = objModel.productname
         lblAmount.text       = rupee + " " + objModel.displayamounts
     }
+    
+    
+     func moveToSuccessVC(paymentID : String){
+        
+        guard let CustomerID = paymentDtlObj?.CustID else{
+            let snackbar = TTGSnackbar.init(message: "Customer ID Not Found", duration: .middle )
+            snackbar.show()
+            return
+        }
+        let paymentSuccessVC : PaymentSuccessVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentSuccessVC") as! PaymentSuccessVC
+        
+        paymentSuccessVC.paymentID = paymentID
+        paymentSuccessVC.CustId = CustomerID
+        self.addChild(paymentSuccessVC)
+        self.view.addSubview(paymentSuccessVC.view)
+        
+    }
+    
+   
+    
 }
 
 

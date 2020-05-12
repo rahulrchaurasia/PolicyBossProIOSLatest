@@ -1003,9 +1003,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         ]
          let endUrl = "/api/GetShareUrl"
         let url =  FinmartRestClient.baseURLString  + endUrl
-        Alamofire.request(url, method: .post, parameters: parameter).responseJSON(completionHandler: { (response) in
-            switch response.result {
-                
+     Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+        switch response.result {
+                    
+        
             case .success(let value):
                 
                 alertView.close()

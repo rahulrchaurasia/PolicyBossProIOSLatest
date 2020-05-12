@@ -10,36 +10,35 @@ import UIKit
 
 class PaymentCancelController: UIViewController {
     
+    
+    var custID = ""
+    
+    
+    
     @IBOutlet weak var mainView: UIView!
     
     
     @IBOutlet weak var cardView: UIView!
+    
+    @IBOutlet weak var lblCustomerID: UILabel!
+    
+    
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initialize()
-
-        // Do any additional setup after loading the view.
+    
+        setData()
+      
     }
     
     
     func initialize()
     {
         
-        
-//        mainView.backgroundColor = .white
-//
-//        mainView.layer.cornerRadius = 10.0
-//
-//        mainView.layer.shadowColor = UIColor.gray.cgColor
-//
-//        mainView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-//
-//        mainView.layer.shadowRadius = 6.0
-//
-//        mainView.layer.shadowOpacity = 0.7
-        
-        
+    
         cardView.backgroundColor = .white
 
         cardView.layer.cornerRadius = 10.0
@@ -51,11 +50,42 @@ class PaymentCancelController: UIViewController {
         cardView.layer.shadowRadius = 6.0
 
         cardView.layer.shadowOpacity = 0.7
-//
-        
-        
+
     }
     
+    func setData(){
+        
+        lblCustomerID.text = custID
+    }
+    
+    
+    
+//    @IBAction func btnBackToPospClick(_ sender: Any) {
+//
+//        print ("posp clicled")
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
+//
+//        present(enrolasPOSPVC, animated: true, completion: nil)
+//
+//    }
+    
 
-  
+    @IBAction func btnBackPospClick(_ sender: Any) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
+        
+        present(enrolasPOSPVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func backBtnCliked(_ sender: Any) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
+        
+        present(enrolasPOSPVC, animated: true, completion: nil)
+        
+    }
 }
