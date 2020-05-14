@@ -14,6 +14,8 @@ import CobrowseIO
 
 class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate,UIScrollViewDelegate {
     
+    
+    
     @IBOutlet weak var menuTV: UITableView!
     @IBOutlet weak var menuprofileImgView: UIImageView!
     @IBOutlet weak var fullNameLbl: UILabel!
@@ -52,6 +54,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+     //   mainScrollView.isScrollEnabled = false
         //--<api>--
         userconstantAPI()
         //CheckAppAccessAPI()

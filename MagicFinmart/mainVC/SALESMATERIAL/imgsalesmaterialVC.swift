@@ -17,6 +17,12 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     
     var detailImg = ""
     
+   var  empName = ""
+   var  empEmail = ""
+   var  empDesignation = ""
+   var  empMobileNo = ""
+   var  PhotoUrl  = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,6 +33,26 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
 //        detailImgView.image = UIImage(data: data!)
         
          detailImgView.sd_setImage(with: url)
+        
+    }
+    
+    func pospDetails(){
+        
+          empName = UserDefaults.standard.string(forKey: "pospsendname") ?? ""
+          empEmail = UserDefaults.standard.string(forKey: "pospsendemail") ?? ""
+          empMobileNo = UserDefaults.standard.string(forKey: "pospsendmobile") ?? ""
+          empDesignation = UserDefaults.standard.string(forKey: "pospsenddesignation") ?? ""
+          PhotoUrl = UserDefaults.standard.string(forKey: "pospsendphoto") ?? ""
+        
+    }
+    
+    func loanDetails(){
+        
+        empName = UserDefaults.standard.string(forKey: "loansendname") ?? ""
+        empEmail = UserDefaults.standard.string(forKey: "loansendemail") ?? ""
+        empMobileNo = UserDefaults.standard.string(forKey: "loansendmobile") ?? ""
+        empDesignation = UserDefaults.standard.string(forKey: "loansenddesignation") ?? ""
+        PhotoUrl = UserDefaults.standard.string(forKey: "loansendphoto") ?? ""
         
     }
     
@@ -53,17 +79,18 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
 //
         
         ///2 /////
-//        let shareAll =  [image  ] as [Any]
-//
-//        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-//        activityViewController.popoverPresentationController?.sourceView = self.view
-//        self.present(activityViewController, animated: true, completion: nil)
+       // let shareAll =  [image  ] as [Any]
+        let shareAll: [Any] = ["This app is my favorite", URL(string: detailImg)!]
+
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
         
         ////////evd 2 ///////
         
         ///3 /////
         
-            generateImage(strUrl: detailImg)
+        //    generateImage(strUrl: detailImg)
         
         //////end 3////////
         

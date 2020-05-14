@@ -739,13 +739,36 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let CVUrl = jsonData?.value(forKey: "CVUrl") as AnyObject
             let notificationpopupurl = jsonData?.value(forKey: "notificationpopupurl") as AnyObject
             
+            /// posp
+              let pospsendname = jsonData?.value(forKey: "pospsendname") as AnyObject
+              let pospsendemail = jsonData?.value(forKey: "pospsendemail") as AnyObject
+              let pospsendmobile = jsonData?.value(forKey: "pospsendmobile") as AnyObject
+              let pospsenddesignation = jsonData?.value(forKey: "pospsenddesignation") as AnyObject
+              let pospsendphoto = jsonData?.value(forKey: "pospsendphoto") as AnyObject
+            
+            
+            
+          
+            
+            /// loan
+          
+            let loansendemail = jsonData?.value(forKey: "loansendemail") as AnyObject
+            let loansendmobile = jsonData?.value(forKey: "loansendmobile") as AnyObject
+            let loansenddesignation = jsonData?.value(forKey: "loansenddesignation") as AnyObject
+            let loansendphoto = jsonData?.value(forKey: "loansendphoto") as AnyObject
+            
+            
+          
+            
+            
+            
             UserDefaults.standard.set(String(describing: uid), forKey: "uid")
             UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
             UserDefaults.standard.set(String(describing: emplat), forKey: "emplat")
             UserDefaults.standard.set(String(describing: emplng), forKey: "emplng")
             UserDefaults.standard.set(String(describing: loanselfemail), forKey: "loanselfemail")
             UserDefaults.standard.set(String(describing: loanselfmobile), forKey: "loanselfmobile")
-            UserDefaults.standard.set(String(describing: loansendname), forKey: "loansendname")
+          
             UserDefaults.standard.set(String(describing: LoginID), forKey: "LoginID")
             UserDefaults.standard.set(String(describing: ManagName), forKey: "ManagName")
             UserDefaults.standard.set(String(describing: POSP_STATUS), forKey: "POSP_STATUS")
@@ -765,6 +788,18 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: healthurl), forKey: "healthurl")
             UserDefaults.standard.set(String(describing: CVUrl), forKey: "CVUrl")
             UserDefaults.standard.set(String(describing: notificationpopupurl), forKey: "notificationpopupurl")
+            
+            UserDefaults.standard.set(String(describing: pospsendname), forKey: "pospsendname")
+            UserDefaults.standard.set(String(describing: pospsendemail), forKey: "pospsendemail")
+            UserDefaults.standard.set(String(describing: pospsendmobile), forKey: "pospsendmobile")
+            UserDefaults.standard.set(String(describing: pospsenddesignation), forKey: "pospsenddesignation")
+            UserDefaults.standard.set(String(describing: pospsendphoto), forKey: "pospsendphoto")
+            
+            UserDefaults.standard.set(String(describing: loansendname), forKey: "loansendname")
+            UserDefaults.standard.set(String(describing: loansendemail), forKey: "loansendemail")
+            UserDefaults.standard.set(String(describing: loansendmobile), forKey: "loansendmobile")
+            UserDefaults.standard.set(String(describing: loansenddesignation), forKey: "loansenddesignation")
+            UserDefaults.standard.set(String(describing: loansendphoto), forKey: "loansendphoto")
             
         }, onError: { errorData in
             alertView.close()

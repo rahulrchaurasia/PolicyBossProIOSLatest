@@ -77,6 +77,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         cell.salescellView.layer.shadowRadius = 10.0
         cell.salescellView.layer.shadowOpacity = 0.8
         
+        
         cell.salescellLbl.text! = ProductNameArray[indexPath.row]
 //        cell.salescellCountLbl.text! = countstringArray[indexPath.row]
         //loadimages
@@ -93,9 +94,26 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         let mod = sMaterialModel[indexPath.row]
         let pCount = mod.productCount
         let proCount = String(pCount)
+       // 05
+        
+        productID = ProductIdstringArray[indexPath.row]
+        
+        if(productID == "7"){
+            
+            cell.salescellCountLbl.text = ""
+            cell.salescellCountLbl.isHidden = true
+            
+        }else{
+            cell.salescellCountLbl.text = proCount
+            cell.salescellCountLbl.isHidden = false
+        }
+        
+        
         if(fromScreen == "passindex")
         {
             if(indexR != nil){
+                
+                
                 if(productCnt == proCount)
                 {
                     cell.salescellCountLbl.text = proCount
