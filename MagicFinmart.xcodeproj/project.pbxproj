@@ -415,6 +415,8 @@
 		4415A863244DFAAE00314D26 /* SalesMaterial */ = {
 			isa = PBXGroup;
 			children = (
+				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
+				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
 				4415A864244DFAFA00314D26 /* SalesDetailModel.swift */,
 			);
 			path = SalesMaterial;
@@ -665,8 +667,6 @@
 		8410403F21D7897D00C3B7A7 /* CONFIGURATION */ = {
 			isa = PBXGroup;
 			children = (
-				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
-				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				8410404121D789C200C3B7A7 /* CommonSettings.swift */,
 				8410404221D789C200C3B7A7 /* Configuration.swift */,
 				8410404321D789C300C3B7A7 /* PBLogs.swift */,

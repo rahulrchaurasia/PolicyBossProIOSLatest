@@ -16,12 +16,14 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     @IBOutlet weak var detailImgView: UIImageView!
     
     var detailImg = ""
+    var productID = ""
     
    var  empName = ""
    var  empEmail = ""
    var  empDesignation = ""
    var  empMobileNo = ""
    var  PhotoUrl  = ""
+     var newline  = "\n\n"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,15 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
 //        detailImgView.image = UIImage(data: data!)
         
          detailImgView.sd_setImage(with: url)
+        
+        if(productID == "4" || productID == "7" ){
+            
+             loanDetails()
+        }else{
+               pospDetails()
+        }
+       
+      
         
     }
     
@@ -66,7 +77,7 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     @IBAction func shareBtnCliked(_ sender: Any)
     {
          // let text = "This is the text...."
-        guard let image = NSURL(string:detailImg) else {return }
+     //   guard let image = NSURL(string:detailImg) else {return }
         
 
        
@@ -80,9 +91,12 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
         
         ///2 /////
        // let shareAll =  [image  ] as [Any]
-        let shareAll: [Any] = ["This app is my favorite", URL(string: detailImg)!]
+        let title = "Finmart"
+      
+        let shareAll: [Any] = [ empName,empDesignation,empMobileNo,empEmail , URL(string: detailImg)!]
 
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.setValue(title, forKey: "Subject")
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
         

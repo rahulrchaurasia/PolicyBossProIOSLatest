@@ -18,5 +18,5 @@ class Configuration: NSObject {
     static let basegenerateloanLeadURL = "http://services.rupeeboss.com"
     static let basehealthassureURL = "http://www.healthassure.in"
     
-
+    static let appVersion = "2.0"
 }

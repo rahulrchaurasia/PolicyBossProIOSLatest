@@ -100,6 +100,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     {
         let imgsalesmaterial : imgsalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialVC") as! imgsalesmaterialVC
         imgsalesmaterial.detailImg = salesDetailModel[indexPath.row].image_path
+        imgsalesmaterial.productID = productId
         self.addChild(imgsalesmaterial)
         self.view.addSubview(imgsalesmaterial.view)
     }

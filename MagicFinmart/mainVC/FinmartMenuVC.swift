@@ -23,6 +23,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var refcodeLbl: UILabel!
     @IBOutlet weak var pospNoLbl: UILabel!
     @IBOutlet weak var erpIdLbl: UILabel!
+    
+    
+    @IBOutlet weak var versionLbl: UILabel!
     var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
     var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
     var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
@@ -54,6 +57,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        versionLbl.text = "Ver." + Configuration.appVersion
         
      //   mainScrollView.isScrollEnabled = false
         //--<api>--

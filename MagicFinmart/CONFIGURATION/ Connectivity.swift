@@ -3,7 +3,7 @@
 //  MagicFinmart
 //
 //  Created by iOS Developer on 17/04/20.
-//  Copyright © 2020 Ashwini. All rights reserved.
+//  Copyright © 2020 Rahul. All rights reserved.
 //
 
 import Foundation

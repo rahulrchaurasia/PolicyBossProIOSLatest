@@ -353,9 +353,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 
                                 let ProdId = self.dynamicDashboardModel[indexPath.row].ProdId
                                 let pospNo = UserDefaults.standard.string(forKey: "POSPNo") ?? "0"
+                                let appVersion = Configuration.appVersion
                                 
-                                
-                                let info = "&ip_address=10.0.3.64&mac_address=10.0.3.64&app_version=2.0&product_id=\(ProdId)&login_ssid=\(pospNo)"
+                                let info = "&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=\(ProdId)&login_ssid=\(pospNo)"
                                 
                               
                                 let finalURL = modelURL + info
