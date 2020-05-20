@@ -126,6 +126,10 @@ class creditCardListVC: UIViewController,UITableViewDataSource,UITableViewDelega
     //---<APICALL>---
     func getcreditcarddataAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -210,6 +214,10 @@ class creditCardListVC: UIViewController,UITableViewDataSource,UITableViewDelega
             snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     

@@ -183,6 +183,10 @@ class QuickLeadVC: UIViewController,WKNavigationDelegate,getPickerDataDelegate,S
     //---<APICALL>---
     func quickleadAPI()
     {
+        
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -223,6 +227,11 @@ class QuickLeadVC: UIViewController,WKNavigationDelegate,getPickerDataDelegate,S
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
 

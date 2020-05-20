@@ -71,6 +71,8 @@ class loans_shareData_VC: UIViewController,UITableViewDelegate,UITableViewDataSo
     //---<APICALL>---
     func generateloanLeadAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -110,6 +112,11 @@ class loans_shareData_VC: UIViewController,UITableViewDelegate,UITableViewDataSo
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},checkLead: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

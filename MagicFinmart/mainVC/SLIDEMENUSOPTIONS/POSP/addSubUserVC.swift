@@ -69,6 +69,8 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     //--<APICALL>--
     func getchildfbaAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -112,6 +114,11 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

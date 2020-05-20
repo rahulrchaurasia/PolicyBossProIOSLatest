@@ -68,6 +68,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         MainScrollView.isScrollEnabled = false
         
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            print("VERSION SHORT",version)
+        }
+        
+        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            print("VERSION BUILD",build)
+        }
+        
     }
    
     @IBAction func finmartMenuBtn(_ sender: Any)

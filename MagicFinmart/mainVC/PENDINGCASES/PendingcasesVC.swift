@@ -46,7 +46,13 @@ class PendingcasesVC: UIViewController {
         capsMenu()
         
         //--<apiCall>--
+        if Connectivity.isConnectedToInternet()
+        {
         pendingcasesinsurenceandloanAPI()
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+          }
         
     }
     
@@ -251,6 +257,7 @@ class PendingcasesVC: UIViewController {
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+        
         
     }
 

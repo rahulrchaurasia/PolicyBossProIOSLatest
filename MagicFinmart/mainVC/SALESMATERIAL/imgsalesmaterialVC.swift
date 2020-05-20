@@ -36,7 +36,7 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
         
          detailImgView.sd_setImage(with: url)
         
-        if(productID == "4" || productID == "7" ){
+        if(productID == "4" ||  productID == "5" || productID == "6" || productID == "7" ){
             
              loanDetails()
         }else{

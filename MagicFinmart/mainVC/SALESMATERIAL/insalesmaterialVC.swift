@@ -98,16 +98,28 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let imgsalesmaterial : imgsalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialVC") as! imgsalesmaterialVC
-        imgsalesmaterial.detailImg = salesDetailModel[indexPath.row].image_path
-        imgsalesmaterial.productID = productId
-        self.addChild(imgsalesmaterial)
-        self.view.addSubview(imgsalesmaterial.view)
+//        let imgsalesmaterial : imgsalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialVC") as! imgsalesmaterialVC
+//        imgsalesmaterial.detailImg = salesDetailModel[indexPath.row].image_path
+//        imgsalesmaterial.productID = productId
+//        self.addChild(imgsalesmaterial)
+//        self.view.addSubview(imgsalesmaterial.view)
+        
+        
+        //////////////////
+        
+        
+        let imgsalesmaterialNew : imgsalesmaterialNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialNewVC") as! imgsalesmaterialNewVC
+        imgsalesmaterialNew.detailImg = salesDetailModel[indexPath.row].image_path
+        imgsalesmaterialNew.productID = productId
+        self.addChild(imgsalesmaterialNew)
+        self.view.addSubview(imgsalesmaterialNew.view)
     }
 
     //---<APICALL>---
     func materialproductdetailsAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -166,6 +178,11 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
     }
     
     
@@ -174,6 +191,8 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     //---<APICALL>---
     func LoanprodDetailAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -236,6 +255,10 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
 
 

@@ -17,6 +17,9 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     @IBOutlet weak var salesmaterialViewLbl: UILabel!
     @IBOutlet weak var salesmaterialdownldbckView: UIView!
     
+     var isUpdate = false
+     var selectedRow = 0
+    
     var ProductNameArray = [String]()
     var ProductimageArray = [String]()
     var CountArray = [Int]()
@@ -30,8 +33,11 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     var sMaterialModel = [salesMaterialModel]()
     var indexR = Int()
     
+    var productCount = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         salesmaterialdownldbckView.isHidden = true
 //        salesmaterialdownldView.isHidden = true
         
@@ -87,9 +93,9 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             cell.salesmcellImgView.image = UIImage(data: data! as Data)
         }
         
-        let productCnt = UserDefaults.standard.string(forKey: "productCnt")
+ //       let productCnt = UserDefaults.standard.string(forKey: "productCnt")
 //        print("productCnt=",productCnt!)
-        let indexR = UserDefaults.standard.string(forKey: "indexR")
+ //       let indexR = UserDefaults.standard.string(forKey: "indexR")
         
         let mod = sMaterialModel[indexPath.row]
         let pCount = mod.productCount
@@ -109,32 +115,50 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         }
         
         
-        if(fromScreen == "passindex")
-        {
-            if(indexR != nil){
-                
-                
-                if(productCnt == proCount)
-                {
-                    cell.salescellCountLbl.text = proCount
-                    cell.salescellCountLbl.isHidden = true
-                }else{
-                    cell.salescellCountLbl.text = proCount
-                    cell.salescellCountLbl.isHidden = false
-                }
-            }
-            else{
-                if(productCnt != proCount)
-                {
-                    cell.salescellCountLbl.text = proCount
-                    cell.salescellCountLbl.isHidden = false
-                }
-            }
-            
-        }else{
-            cell.salescellCountLbl.text = proCount
-        }
+//        if(fromScreen == "passindex")
+//        {
+//            if(indexR != nil){
+//
+//
+//                if(productCnt == proCount)
+//                {
+//                    cell.salescellCountLbl.text = proCount
+//                    cell.salescellCountLbl.isHidden = true
+//                }else{
+//                    cell.salescellCountLbl.text = proCount
+//                    cell.salescellCountLbl.isHidden = false
+//                }
+//            }
+//            else{
+//                if(productCnt != proCount)
+//                {
+//                    cell.salescellCountLbl.text = proCount
+//                    cell.salescellCountLbl.isHidden = false
+//                }
+//            }
+//
+//        }else{
+//            cell.salescellCountLbl.text = proCount
+//        }
+//
         
+         if (self.isKeyPresentInUserDefaults(key:"SalesProductCount")) {
+
+            print("table SalesProductCount Present")  // 0005
+            let oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+            print("table Old Count",oldCountArray)
+            if( sMaterialModel[indexPath.row].productCount == oldCountArray[indexPath.row]){
+
+                
+                cell.salescellCountLbl.isHidden = true
+            }else{
+                cell.salescellCountLbl.isHidden = false
+
+                let tempCount =  sMaterialModel[indexPath.row].productCount - oldCountArray[indexPath.row]
+                cell.salescellCountLbl.text = String(tempCount)
+            }
+
+        }
         
         return cell
         
@@ -143,6 +167,18 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let cell = tableView.cellForRow(at: indexPath) as! salesmaterialTVCell
+        
+        
+        cell.salescellCountLbl.layer.cornerRadius = cell.salescellCountLbl.frame.size.width/2
+        cell.salescellCountLbl.clipsToBounds = true
+        salesMTView.backgroundColor = UIColor.init(red: 234/255, green: 234/255, blue: 234/255, alpha: 1)
+        //shadowColor for uiview
+        cell.salescellView.layer.cornerRadius = 4.0
+        cell.salescellView.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.salescellView.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+        cell.salescellView.layer.shadowRadius = 10.0
+        cell.salescellView.layer.shadowOpacity = 0.8
+        
 //        cell.salescellCountLbl.isHidden = true
         productID = ProductIdstringArray[indexPath.row]
         productName = ProductNameArray[indexPath.row]
@@ -153,10 +189,15 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         indexR = indexPath.row
         UserDefaults.standard.set(String(describing: indexR), forKey: "indexR")
         
+  
+        
+       // .............
+
+        
         if (cell.salescellCountLbl.isHidden == false)
         {
             salesmaterialdownldbckView.isHidden = false
-            salesmaterialViewLbl.text! = countstringArray[indexPath.row]+" new Images are available for downloading."
+            salesmaterialViewLbl.text! = String(sMaterialModel[indexPath.row].productCount) + " new Images are available for downloading."
         }
         else{
             cell.salescellCountLbl.isHidden = true
@@ -165,7 +206,16 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             insalesmaterial.passindexlbl = ProductNameArray[indexPath.row]
             self.addChild(insalesmaterial)
             self.view.addSubview(insalesmaterial.view)
-            
+
+
+
+            /////////////////////////////////
+
+            print("Row Selected Count", sMaterialModel[indexPath.row].productCount)
+            var oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+            oldCountArray[indexPath.row] = sMaterialModel[indexPath.row].productCount
+            UserDefaults.standard.set( oldCountArray, forKey: "SalesProductCount")
+
         }
         
         
@@ -174,6 +224,8 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     //---<APICALL>---
     func salesmaterialproductAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -194,14 +246,36 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
+            
+            
+          
+//             if (jsonData?.count)! > 0{
+//              UserDefaults.standard.set(jsonData, forKey: "SalesProductData")
+//
+//              let SalesProduct = UserDefaults.standard.object(forKey: "SalesProductData") as! NSArray
+//
+//                        if(SalesProduct.count > 0){
+//                            for index in 0...(SalesProduct.count)-1 {
+//                                let aObject = SalesProduct[index] as! [String : AnyObject]
+//
+//
+//                                print("SALESDATA",aObject["Count"] as! Int)
+//
+//                            }
+//                        }
+//
+//            }
+            
+            
             let Product_Name = jsonData?.value(forKey: "Product_Name") as AnyObject
 //            print("Product_Name= ", Product_Name)
             self.ProductNameArray = Product_Name as! [String]
             //Convert int to string array
             let Count = jsonData?.value(forKey: "Count") as AnyObject
-            self.CountArray = Count as! [Int]
             self.countstringArray = self.CountArray.map { String($0) }
 
+            self.CountArray = Count as! [Int]
+       
 
             let Product_Id = jsonData?.value(forKey: "Product_Id") as AnyObject
             self.ProductIdArray = Product_Id  as! [String]
@@ -211,22 +285,126 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             let Product_image = jsonData?.value(forKey: "Product_image") as AnyObject
             self.ProductimageArray = Product_image as! [String]
             
+          ////////////////////////////
+            
+            
             if (jsonData?.count)! > 0{
                 self.sMaterialModel = [salesMaterialModel]()
                 for index in 0...(jsonData?.count)!-1 {
                     let aObject = jsonData?[index] as! [String : AnyObject]
-                    let model1 = salesMaterialModel(productCount: aObject["Count"] as! Int)
+                    let model1 = salesMaterialModel(productCount: aObject["Count"] as! Int ,Product_Id : aObject["Product_Id"] as! String)
+                    
+                    model1.productOldCount = 0
                     
                     self.sMaterialModel.append(model1)//+=[model1]
+                   
+                    
+                  
                 }
-//                DispatchQueue.main.async {
-                    self.salesMTView.reloadData()
-//                }
+                
+              
             }
-//            DispatchQueue.main.async
-//            {
-//                self.salesMTView.reloadData()
-//            }
+            //////
+            
+        
+    if (self.isKeyPresentInUserDefaults(key:"SalesProductData")   &&    self.isKeyPresentInUserDefaults(key:"SalesProductCount") ) {
+        
+        print("Old Product Present")
+        //  if (self.isKeyPresentInUserDefaults(key:"SalesProductCount")) {
+
+          let  compLst = UserDefaults.standard.object(forKey: "SalesProductData") as! NSArray
+            
+            let oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+
+                if(compLst.count > 0){
+
+                    
+                    
+                    // case 1 : for first time when db data is empty OR Server list size is change ie product is increased / decreased
+                  
+                    if(compLst.count != self.sMaterialModel.count  || self.isUpdate ){
+                        
+                        var OldCountArray = [Int]()
+                        for currObject in self.sMaterialModel{
+                            
+                            OldCountArray.append(0)
+                            print("OldCount set 1 : 0")
+                        }
+                        
+                        UserDefaults.standard.set(jsonData, forKey: "SalesProductData")
+                        UserDefaults.standard.set( OldCountArray, forKey: "SalesProductCount")
+                        
+                    } else{
+                    
+                       for currObject in self.sMaterialModel{
+
+                      //print("SALESDATA_1",currObject.productCount )
+
+                         for index in 0...(compLst.count)-1 {
+                            let oldObject = compLst[index] as! [String : AnyObject]
+                            // print("SALESDATA_2",oldObject["Count"] as! Int)
+
+                            if(currObject.product_Id   == oldObject["Product_Id"] as! String ){
+                                
+                                if(oldCountArray[index]  > currObject.productCount){
+                             
+                                    self.isUpdate = true
+                                     break
+                        
+                                }
+                                
+                                self.sMaterialModel[index].productOldCount = oldCountArray[index]
+                                print("productOldCount",oldCountArray[index])
+                            }
+
+                        }
+
+                    }
+                // case 2 : if sever product count is lesss than db product count than db should update
+                        
+                        if(self.isUpdate ){
+                            
+                            var OldCountArray = [Int]()
+                            for currObject in self.sMaterialModel{
+                                
+                                OldCountArray.append(0)
+                                print("OldCount set 2 : 0")
+                            }
+                            
+                            UserDefaults.standard.set(jsonData, forKey: "SalesProductData")
+                            UserDefaults.standard.set( OldCountArray, forKey: "SalesProductCount")
+                            
+                        }
+                        
+                        
+                //////end case 2        //////
+                }
+               
+            }
+        
+        
+     }else{
+        
+        var OldCountArray = [Int]()
+        for currObject in self.sMaterialModel{
+            
+          //  currObject.productOldCount = 0
+            OldCountArray.append(0)
+            print("OldCount set 3 : 0")
+        }
+            
+        UserDefaults.standard.set(jsonData, forKey: "SalesProductData")
+        UserDefaults.standard.set( OldCountArray, forKey: "SalesProductCount")
+        
+        }
+            
+            
+   DispatchQueue.main.async {
+                self.salesMTView.reloadData()
+    
+            }
+            
+
             
             
         }, onError: { errorData in
@@ -234,6 +412,10 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
@@ -258,6 +440,17 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         self.addChild(insalesmaterial)
         self.view.addSubview(insalesmaterial.view)
         
+    
+        print("Row Selected Count", self.sMaterialModel[indexR].productCount)
+        var oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+        oldCountArray[indexR] = sMaterialModel[indexR].productCount
+        UserDefaults.standard.set(oldCountArray, forKey: "SalesProductCount")    // 05//
+
+        
+    }
+    
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
     }
     
 

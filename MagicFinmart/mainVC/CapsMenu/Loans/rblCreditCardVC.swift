@@ -339,6 +339,9 @@ class rblCreditCardVC: UIViewController,getPickerDataDelegate,SelectedDateDelega
     //----<APICALL>----
     func getrblcityAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -370,11 +373,18 @@ class rblCreditCardVC: UIViewController,getPickerDataDelegate,SelectedDateDelega
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func creditcardrblAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -445,6 +455,10 @@ class rblCreditCardVC: UIViewController,getPickerDataDelegate,SelectedDateDelega
             snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
 
 }

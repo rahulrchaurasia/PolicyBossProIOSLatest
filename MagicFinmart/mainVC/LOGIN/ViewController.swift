@@ -664,6 +664,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     //---<APICALL>---
     func generateOTPAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -697,11 +700,20 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func retriveOTPAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+        
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -752,11 +764,20 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+            
         
     }
     
     func getCityStateAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -788,10 +809,18 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+       }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+         }
+        
+   
     }
     
     func validaterefercodeAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -821,10 +850,17 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+    }else{
+    let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+    snackbar.show()
+    }
+        
     }
     
     func getregistrationsourceAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -860,11 +896,20 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func getfieldsalesAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -900,11 +945,19 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func registrationSubmitAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -1041,6 +1094,11 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

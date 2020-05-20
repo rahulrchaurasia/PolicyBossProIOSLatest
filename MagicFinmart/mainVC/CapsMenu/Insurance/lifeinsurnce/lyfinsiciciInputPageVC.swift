@@ -1112,7 +1112,13 @@ class lyfinsiciciInputPageVC: UIViewController,SelectedDateDelegate,getPickerDat
     {
         if(firstNameTf.text! != "" && lastNameTf.text! != "" && mobNoTf.text! != "" && mobNoTf.text!.count == 10)
         {
-            smarttermlifeAPI()
+            if Connectivity.isConnectedToInternet()
+            {
+                  smarttermlifeAPI()
+            }else{
+                let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                snackbar.show()
+            }
         }
         else if(firstNameTf.text! == ""){
             TTGSnackbar.init(message: "Enter First Name", duration: .long).show()

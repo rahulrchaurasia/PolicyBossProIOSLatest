@@ -226,6 +226,8 @@ class viewCommentnAddVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     //--<APICALL>--
     func getticketrequestAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -259,6 +261,11 @@ class viewCommentnAddVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+        
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

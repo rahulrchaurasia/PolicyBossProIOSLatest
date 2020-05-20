@@ -264,6 +264,8 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--<APICALL>--
     func PackDetailsAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -327,11 +329,18 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},healthAssure: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func PackParamAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -415,6 +424,11 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},healthAssure: true)
+        
+    }else{
+    let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+    snackbar.show()
+    }
         
     }
     

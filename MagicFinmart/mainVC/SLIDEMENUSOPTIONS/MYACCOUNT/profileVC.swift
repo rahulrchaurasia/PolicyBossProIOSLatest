@@ -625,6 +625,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         }, onForceUpgrade: {errorData in})
         */
         
+        if Connectivity.isConnectedToInternet()
+        {
         
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
         
@@ -639,6 +641,9 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 "DocFile":dataImage
             ]
             
+            let endUrl = "/api/upload-doc"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            // to:"http://preprodapiqa.mgfm.in/api/upload-doc")
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 //            multipartFormData.append(UIImageJPEGRepresentation(self.pickedImage.image!, 0.5)!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
                 multipartFormData.append(imageData!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
@@ -646,7 +651,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                     multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                     
                 }
-            }, to:"http://preprodapiqa.mgfm.in/api/upload-doc")
+            }, to: url)
             { (result) in
                 switch result {
                 case .success(let upload, _, _):
@@ -675,13 +680,21 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 
             }
 
+            }
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
         }
+        
+        
         //-----<Multipart image Upload>------
         
     }
     
     func getmyaccountAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -780,12 +793,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
-        
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     
     func myaccountAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -917,6 +936,10 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             snackbar.show()
         }, onForceUpgrade: {errorData in})
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     

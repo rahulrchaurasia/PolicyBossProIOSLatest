@@ -63,6 +63,8 @@ class transctionHistoryVC: UIViewController,UITableViewDataSource,UITableViewDel
     //--<APICALL>--
     func gettransactionhistoryAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -110,6 +112,11 @@ class transctionHistoryVC: UIViewController,UITableViewDataSource,UITableViewDel
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

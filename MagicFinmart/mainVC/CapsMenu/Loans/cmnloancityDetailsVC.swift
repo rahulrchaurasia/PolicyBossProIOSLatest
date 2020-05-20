@@ -488,6 +488,9 @@ class cmnloancityDetailsVC: UIViewController,UITableViewDataSource,UITableViewDe
     //---<APICALL>---
     func GetCitywiseBankListAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -583,6 +586,10 @@ class cmnloancityDetailsVC: UIViewController,UITableViewDataSource,UITableViewDe
             snackbar.show()
         }, onForceUpgrade: {errorData in},checkLead: true)
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     

@@ -70,6 +70,8 @@ class loanleadHistoryVC: UIViewController,UITableViewDataSource,UITableViewDeleg
    //----APICALL-----
     func getleadHistoryAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -125,6 +127,10 @@ class loanleadHistoryVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             snackbar.show()
         }, onForceUpgrade: {errorData in},checkLead: true)
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     

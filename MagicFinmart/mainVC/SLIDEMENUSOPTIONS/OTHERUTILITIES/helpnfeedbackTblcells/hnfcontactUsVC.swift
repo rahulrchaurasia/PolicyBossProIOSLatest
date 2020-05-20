@@ -91,6 +91,9 @@ class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--<APICALL>--
     func contactusAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -132,6 +135,10 @@ class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

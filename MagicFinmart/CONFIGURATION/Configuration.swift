@@ -18,5 +18,9 @@ class Configuration: NSObject {
     static let basegenerateloanLeadURL = "http://services.rupeeboss.com"
     static let basehealthassureURL = "http://www.healthassure.in"
     
-    static let appVersion = "2.0"
+   // static let appVersion = "2.0"
+    
+    static let appVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+    
+    static let buildVersion =  Bundle.main.infoDictionary?["CFBundleVersion"] as! String
 }

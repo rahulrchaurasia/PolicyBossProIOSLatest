@@ -65,6 +65,10 @@ class attendenceRegistratnVC: UIViewController {
     
     //---<APICALL>---
     func getAddress(lng: String,lat: String) {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -131,6 +135,11 @@ class attendenceRegistratnVC: UIViewController {
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},service: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
@@ -167,6 +176,8 @@ class attendenceRegistratnVC: UIViewController {
     
     func updateEmployeeProfile_IOSAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -219,6 +230,10 @@ class attendenceRegistratnVC: UIViewController {
             snackbar.show()
         }, onForceUpgrade: {errorData in},service: true)
         
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
 

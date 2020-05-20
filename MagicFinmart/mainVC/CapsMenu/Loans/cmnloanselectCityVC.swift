@@ -236,6 +236,9 @@ class cmnloanselectCityVC: UIViewController,UITextFieldDelegate,getPickerDataDel
     //--<APICALL>--
     func dsplyCityDtlsAPI()
     {
+        
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -277,6 +280,11 @@ class cmnloanselectCityVC: UIViewController,UITextFieldDelegate,getPickerDataDel
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},checkLead: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

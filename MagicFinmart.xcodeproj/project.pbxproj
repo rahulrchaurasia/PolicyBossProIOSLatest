@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
+		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
 		444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */; };
+		445040BF2471767500CF6780 /* salesMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445040BE2471767500CF6780 /* salesMainModel.swift */; };
 		446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */; };
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		447DF6302466DDD400D0F545 /* payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447DF62F2466DDD400D0F545 /* payment.storyboard */; };
@@ -208,12 +210,14 @@
 		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicFinmart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
+		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
 		444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToRazorpayModel.swift; sourceTree = "<group>"; };
+		445040BE2471767500CF6780 /* salesMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMainModel.swift; sourceTree = "<group>"; };
 		446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloanselectCityVC.swift; sourceTree = "<group>"; };
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
 		447DF62F2466DDD400D0F545 /* payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = payment.storyboard; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
 				4415A864244DFAFA00314D26 /* SalesDetailModel.swift */,
+				445040BE2471767500CF6780 /* salesMainModel.swift */,
 			);
 			path = SalesMaterial;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				8410F8D321F835C000DFC974 /* insalesmaterialVC.swift */,
 				8410F8D521F835DF00DFC974 /* insalesmaterialCVCell.swift */,
 				8410F8D721F84F9C00DFC974 /* imgsalesmaterialVC.swift */,
+				4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */,
 			);
 			path = SALESMATERIAL;
 			sourceTree = "<group>";
@@ -1312,6 +1318,7 @@
 				840562CF21D49F3F0099DDE8 /* changePasswrdVC.swift in Sources */,
 				8413349721C8FD350084AFC2 /* KYEmbedDrawerControllerSegue.swift in Sources */,
 				84B76C39226AF71900501033 /* healthAssure2TVCell.swift in Sources */,
+				445040BF2471767500CF6780 /* salesMainModel.swift in Sources */,
 				84BD5C1D21ECB8AC00982C15 /* myLocationVC.swift in Sources */,
 				84DB47752227E62C00EBDA3C /* commonApplicatnVC.swift in Sources */,
 				8410404721D789C300C3B7A7 /* PBLogs.swift in Sources */,
@@ -1325,6 +1332,7 @@
 				84D2E0CA21EDB91A00991D47 /* AttendanceModel.swift in Sources */,
 				443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */,
 				8403E89421BFC21A0009662A /* LoginVC.swift in Sources */,
+				4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */,
 				846F65382281994300F9A92F /* healthTestsVC.swift in Sources */,
 				8480BBEE220856E900BEEDF4 /* addraiseticktVC.swift in Sources */,
 				8407146121C0EB1100D35C55 /* PickerViewVC.swift in Sources */,

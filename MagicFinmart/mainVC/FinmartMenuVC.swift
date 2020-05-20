@@ -576,6 +576,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     //---<APICALL>---
     func CheckAppAccessAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -620,6 +623,12 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in},service: true)
+            
+        
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

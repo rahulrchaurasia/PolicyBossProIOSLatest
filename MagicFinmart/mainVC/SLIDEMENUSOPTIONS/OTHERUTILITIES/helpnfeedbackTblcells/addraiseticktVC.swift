@@ -365,6 +365,8 @@ class addraiseticktVC: UIViewController,getPickerDataDelegate,UIDocumentMenuDele
     //--<APICALL>--
     func getticketcategoriesAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -392,14 +394,14 @@ class addraiseticktVC: UIViewController,getPickerDataDelegate,UIDocumentMenuDele
             let CateName = category.value(forKey: "CateName") as AnyObject
             self.categoryArray = CateName as! [String]
             let CateCode = category.value(forKey: "CateCode") as AnyObject
-            let subCateCodeid = CateCode as! [Int]
+            print ("CateCode",CateCode)
+            let subCateCodeid = CateCode as! [String]
             self.CateCodeArray = subCateCodeid.map { String($0) }
-//            self.CateCodeArray = CateCode as! [String]
-//            print("CateCodeArray=",self.CateCodeArray)
+
             
             //subcategory
             let subcategory = jsonData!.value(forKey: "subcategory") as! NSArray
-            
+            print ("subcategory",subcategory)
             for i in 0..<subcategory.count {
                 
                 let dict = subcategory[i]
@@ -690,11 +692,19 @@ class addraiseticktVC: UIViewController,getPickerDataDelegate,UIDocumentMenuDele
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
     func createticketAPI()
     {
+        if Connectivity.isConnectedToInternet()
+        {
+            
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -735,6 +745,11 @@ class addraiseticktVC: UIViewController,getPickerDataDelegate,UIDocumentMenuDele
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
             snackbar.show()
         }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     
