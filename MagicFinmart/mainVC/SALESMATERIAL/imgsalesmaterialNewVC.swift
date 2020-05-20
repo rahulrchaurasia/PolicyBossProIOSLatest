@@ -66,6 +66,10 @@ class imgsalesmaterialNewVC: UIViewController {
         let url = URL(string: PhotoUrl)
         imgUser.sd_setImage(with: url)
         
+        lblEmpName.text = empName
+        lblDesignation.text = empDesignation
+        lblMobile.text = empMobileNo
+        lblEmail.text = empEmail
     }
     
     func loanDetails(){
@@ -80,18 +84,54 @@ class imgsalesmaterialNewVC: UIViewController {
         let url = URL(string: PhotoUrl)
         imgUser.sd_setImage(with: url)
         
+        lblEmpName.text = empName
+        lblDesignation.text = empDesignation
+        lblMobile.text = empMobileNo
+        lblEmail.text = empEmail
+        
     }
     
     
     
     @IBAction func backBtnClick(_ sender: Any) {
+        
+        self.willMove(toParent: nil)
+        self.view.removeFromSuperview()
+        self.removeFromParent()
+
     }
     
 
     @IBAction func shareBtnClick(_ sender: Any) {
+        
+       var  shareImage =  image(with: mainView)
+        
+        
+        // let title = "Finmart"
+        let shareAll: [Any] = [ shareImage ]
+        
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+      //  activityViewController.setValue(title, forKey: "Subject")
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func homeBtnClick(_ sender: Any) {
+        
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        self.present(KYDrawer, animated: true, completion: nil)
     }
     
+    
+    
+    func image(with view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        if let context = UIGraphicsGetCurrentContext() {
+            view.layer.render(in: context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            return image
+        }
+        return nil
+    }
 }
