@@ -9,6 +9,7 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import SDWebImage
 
 class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDelegate,MyCellDelegate {
     
@@ -76,6 +77,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
 
+    // 05 temp
     @IBAction func pendingCallBtnCliked(_ sender: Any)
     {
         callNumber(phoneNumber:"8237362825")
@@ -146,12 +148,25 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
 //                cell.pImageView.image = UIImage(data: data! as Data)
 //            }
 //        }
+       
         
-        let imgURL = NSURL(string: bankImage[indexPath.row])
-        if (imgURL != nil){
-            let data = NSData(contentsOf: (imgURL as URL?)!)
-            cell.pImageView.image = UIImage(data: data! as Data)
+        ///////// 05//////////
+        
+         print("bankImageData=",bankImage[indexPath.row])
+        let imgURL = URL(string: bankImage[indexPath.row])
+         if (imgURL != nil){
+            
+          cell.pImageView.sd_setImage(with: imgURL)
         }
+//        if (imgURL != nil){
+//            let data = NSData(contentsOf: (imgURL as URL?)!)
+//            cell.pImageView.image = UIImage(data: data! as Data)
+//        }
+        
+        
+     
+        ///////////05 end ////////////////
+        
 
 //        if let imageURL = URL(string: bankImage[indexPath.row]) {
 //            DispatchQueue.global().async {

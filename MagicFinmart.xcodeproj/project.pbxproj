@@ -309,7 +309,7 @@
 		8413349221C8FD340084AFC2 /* KYDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYDrawerController.swift; sourceTree = "<group>"; };
 		8413349321C8FD340084AFC2 /* KYEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
 		8413349421C8FD340084AFC2 /* KYEmbedDrawerControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYEmbedDrawerControllerSegue.swift; sourceTree = "<group>"; };
-		8415D25621EEFFE000C07577 /* pendingcaseTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pendingcaseTVCell.swift; sourceTree = "<group>"; };
+		8415D25621EEFFE000C07577 /* pendingcaseTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = pendingcaseTVCell.swift; path = ../CapsMenu/pendingcaseTVCell.swift; sourceTree = "<group>"; };
 		84186CD72215735B0069F152 /* transctnHisTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transctnHisTVCell.swift; sourceTree = "<group>"; };
 		841BEA932255D25900855EB0 /* lyfinsQuotesPageTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lyfinsQuotesPageTVCell.swift; sourceTree = "<group>"; };
 		841BEADB2256372800855EB0 /* lyfinsQuotesPage2TVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lyfinsQuotesPage2TVCell.swift; sourceTree = "<group>"; };
@@ -357,7 +357,7 @@
 		84BD5C1E21ECB8CC00982C15 /* attenReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = attenReportVC.swift; sourceTree = "<group>"; };
 		84BD5C2021ECBD3D00982C15 /* addAttenTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addAttenTVCell.swift; sourceTree = "<group>"; };
 		84C368BC21C76D9300BB2E9B /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
-		84C368BE21C7706E00BB2E9B /* pendingcasescapsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pendingcasescapsVC.swift; sourceTree = "<group>"; };
+		84C368BE21C7706E00BB2E9B /* pendingcasescapsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = pendingcasescapsVC.swift; path = ../CapsMenu/pendingcasescapsVC.swift; sourceTree = "<group>"; };
 		84C368C021C778BC00BB2E9B /* knowGuruTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = knowGuruTVCell.swift; sourceTree = "<group>"; };
 		84C368C621C7AB0800BB2E9B /* finmartMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = finmartMenuCell.swift; sourceTree = "<group>"; };
 		84C4D08A21C230C500A677B7 /* forgtPassVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgtPassVC.swift; sourceTree = "<group>"; };
@@ -637,6 +637,8 @@
 		840C4BDA21C382FA000B8D49 /* PENDINGCASES */ = {
 			isa = PBXGroup;
 			children = (
+				8415D25621EEFFE000C07577 /* pendingcaseTVCell.swift */,
+				84C368BE21C7706E00BB2E9B /* pendingcasescapsVC.swift */,
 				840C4BDE21C3838D000B8D49 /* PendingcasesVC.swift */,
 			);
 			path = PENDINGCASES;
@@ -857,8 +859,6 @@
 				84C368BC21C76D9300BB2E9B /* CAPSPageMenu.swift */,
 				84347420222D415D004A418A /* Insurance */,
 				84347421222D4191004A418A /* Loans */,
-				84C368BE21C7706E00BB2E9B /* pendingcasescapsVC.swift */,
-				8415D25621EEFFE000C07577 /* pendingcaseTVCell.swift */,
 				84BD5C1121EC6E1800982C15 /* healthInsQuoteVC.swift */,
 				84BD5C1321EC6E3100982C15 /* healthInsApplictnVC.swift */,
 			);

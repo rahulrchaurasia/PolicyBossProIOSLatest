@@ -104,16 +104,30 @@ class imgsalesmaterialNewVC: UIViewController {
 
     @IBAction func shareBtnClick(_ sender: Any) {
         
-       var  shareImage =  image(with: mainView)
         
+        if(image(with: mainView) != nil){
+            
+            print("Image was created")
+            guard let  shareImage =  image(with: mainView) else{
+            
+               return
+            }
         
-        // let title = "Finmart"
-        let shareAll: [Any] = [ shareImage ]
+            let shareAll: [Any] = [ shareImage ]
         
-        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-      //  activityViewController.setValue(title, forKey: "Subject")
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
+             let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+              activityViewController.popoverPresentationController?.sourceView = self.view
+              self.present(activityViewController, animated: true, completion: nil)
+        }else{
+            
+               print("Image was not created")
+            let shareAll: [Any] = [ empName,empDesignation,empMobileNo,empEmail , URL(string: detailImg)!]
+            
+            let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+          
+        }
     }
     
     @IBAction func homeBtnClick(_ sender: Any) {

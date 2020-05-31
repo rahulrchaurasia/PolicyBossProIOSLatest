@@ -113,7 +113,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         multiselctionTV.delegateData = self
     
         getregistrationsourceAPI()
-        getfieldsalesAPI()
+       // getfieldsalesAPI()
     }
     
     func getselectedData(selectedData: [String], stringId : String) {
@@ -435,6 +435,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         case "source":
             self.sourceLbl.text = pickerSelectedData
             self.sourceId = pickerSelectedId
+            
+           
+          //  05temp
             if(self.sourceLbl.text == "Finmart"){
                 fieldSaleView.isHidden = true
                 fieldSaleViewHeight.constant = 0
@@ -445,6 +448,11 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
                 persnlTfViewHeight.constant = 660
+                
+                if(self.sourceLbl.text != "Select"){
+                    
+                    getfieldsalesAPI(campaignid: pickerSelectedId)
+                }
             }
             break
         case "fieldSale":
@@ -592,17 +600,19 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             registrationSubmitAPI()
         }
         else if((firstNameTf.text?.isEmpty)!){
-            if(self.sourceLbl.text == "Finmart"){
-                fieldSaleView.isHidden = true
-                fieldSaleViewHeight.constant = 0
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
-            }else{
-                fieldSaleView.isHidden = false
-                fieldSaleViewHeight.constant = 60
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
-            }
+            
+            // 05temp
+//            if(self.sourceLbl.text == "Finmart"){
+//                fieldSaleView.isHidden = true
+//                fieldSaleViewHeight.constant = 0
+//                persnlTfView.isHidden = false
+//                persnlTfViewHeight.constant = 600
+//            }else{
+//                fieldSaleView.isHidden = false
+//                fieldSaleViewHeight.constant = 60
+//                persnlTfView.isHidden = false
+//                persnlTfViewHeight.constant = 660
+//            }
             perArrowImg.image = UIImage(named: "up_arrow.png")
             profTfView.isHidden = true
             profTfViewHeight.constant = 0
@@ -611,17 +621,19 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertCall(message:"Enter First Name")
         }
         else{
-            if(self.sourceLbl.text == "Finmart"){
-                fieldSaleView.isHidden = true
-                fieldSaleViewHeight.constant = 0
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
-            }else{
-                fieldSaleView.isHidden = false
-                fieldSaleViewHeight.constant = 60
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
-            }
+            
+             // 05temp
+//            if(self.sourceLbl.text == "Finmart"){
+//                fieldSaleView.isHidden = true
+//                fieldSaleViewHeight.constant = 0
+//                persnlTfView.isHidden = false
+//                persnlTfViewHeight.constant = 600
+//            }else{
+//                fieldSaleView.isHidden = false
+//                fieldSaleViewHeight.constant = 60
+//                persnlTfView.isHidden = false
+//                persnlTfViewHeight.constant = 660
+//            }
             perArrowImg.image = UIImage(named: "up_arrow.png")
             profTfView.isHidden = true
             profTfViewHeight.constant = 0
@@ -905,7 +917,64 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
     }
     
-    func getfieldsalesAPI()
+    
+    
+    func getfieldsalesAPI( campaignid : String)
+    {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            //var selectedValue = sourceNameArray[Picker.selectedRowInComponent(0)]
+//          let Picker : PickerViewVC! = storyboard?.instantiateViewController(withIdentifier: "stbPickerViewVC") as? PickerViewVC
+//            var selectedValue = Picker.selectedId
+//            print("selected id",selectedValue)
+            let params: [String: AnyObject] = ["campaignid": campaignid as AnyObject]
+            
+            let url = "/api/getempbyregsource"
+            
+            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                alertView.close()
+                
+                self.view.layoutIfNeeded()
+                
+                let jsonData = userObject as? NSArray
+                let EmployeeName = jsonData?.value(forKey: "EmployeeName") as AnyObject
+                let Uid = jsonData?.value(forKey: "Uid") as AnyObject
+                
+                self.EmployeeNameArray = EmployeeName as! [String]
+                
+                print("FIELD SALE",self.EmployeeNameArray )
+                let UIdArr = Uid as! NSArray
+                //            let string1 = String(describing: sourceIdArr[0])
+                //            let string2 = String(describing: sourceIdArr[1])
+                //            self.sourceIdArray = [string1,string2]
+                self.EmployeeIdArray =  UIdArr.map { ($0 as AnyObject).stringValue }
+                
+            }, onError: { errorData in
+                alertView.close()
+                let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                snackbar.show()
+            }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+    }
+    
+    
+    func getfieldsalesAPIold()
     {
         
         if Connectivity.isConnectedToInternet()
@@ -934,6 +1003,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             let Uid = jsonData?.value(forKey: "Uid") as AnyObject
             
             self.EmployeeNameArray = EmployeeName as! [String]
+            
+            print("FIELD SALE",self.EmployeeNameArray )
             let UIdArr = Uid as! NSArray
             //            let string1 = String(describing: sourceIdArr[0])
             //            let string2 = String(describing: sourceIdArr[1])

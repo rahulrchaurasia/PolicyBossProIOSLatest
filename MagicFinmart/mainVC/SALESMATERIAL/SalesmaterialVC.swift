@@ -144,7 +144,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
          if (self.isKeyPresentInUserDefaults(key:"SalesProductCount")) {
 
-            print("table SalesProductCount Present")  // 0005
+            print("table SalesProductCount Present")
             let oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
             print("table Old Count",oldCountArray)
             if( sMaterialModel[indexPath.row].productCount == oldCountArray[indexPath.row]){
@@ -191,9 +191,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
   
         
-       // .............
-
-        
+      
         if (cell.salescellCountLbl.isHidden == false)
         {
             salesmaterialdownldbckView.isHidden = false

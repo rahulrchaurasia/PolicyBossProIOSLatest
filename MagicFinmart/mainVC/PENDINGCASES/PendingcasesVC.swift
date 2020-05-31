@@ -165,7 +165,7 @@ class PendingcasesVC: UIViewController {
                 
                 let dict = Insurance[i]
                 let BankImage1 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
-                if(BankImage1 is NSNull || BankImage1 as! String == "")
+                if(BankImage1 is NSNull || BankImage1 as! String == "" || BankImage1 as! String == "0")
                 {
                     print("null>")
                     self.BankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
@@ -211,7 +211,7 @@ class PendingcasesVC: UIViewController {
                 
                 let dict = Loan[i]
                 let lBankImage2 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
-                if(lBankImage2 is NSNull || lBankImage2 as! String == "")
+                if(lBankImage2 is NSNull || lBankImage2 as! String == "" || lBankImage2 as! String == "0")
                 {
                     print("null>")
                     self.lBankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
