@@ -83,6 +83,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var multipleSelectedData = String()
     
     var multiselctionTV : multiselctionTVC! = multiselctionTVC()
+    
+    var PinCode = ""
+    var ReferrerCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +100,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         profTfViewHeight.constant = 0
         fieldSaleView.isHidden = true
         fieldSaleViewHeight.constant = 0
+        
         //--<border>--
         let borderColr = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
         self.maleBtn.layer.cornerRadius=2.0;
@@ -108,12 +112,18 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         self.femaleBtn.layer.borderColor=borderColor.cgColor;
         self.maleBtn.setTitleColor(UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1), for: UIControl.State.normal)
 
+        
+        // Editable False City and State
+        
+        cityTf.isEnabled = false
+        stateTf.isEnabled = false
+        
         //--<textField>--
         aTextField.delegate = self
         multiselctionTV.delegateData = self
     
         getregistrationsourceAPI()
-       // getfieldsalesAPI()
+      
     }
     
     func getselectedData(selectedData: [String], stringId : String) {
@@ -172,46 +182,81 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 return newLength <= (textField.text?.count)!
             }
         }
-        else if(textField == pincodeTf || textField == referrCodeTf)
+        
+        if(textField == referrCodeTf  )
         {
-            if((textField.text?.count)! < 6)
+            
+            let currentText = textField.text ?? ""
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            if(updatedText.count <= 6 )
             {
-               
+                
+                if(updatedText.count == 6)
+                {
+                    print("referrCodeTf.text?=",updatedText)
+                    validaterefercodeAPI(refferCode: updatedText)
+                
+                }
+                return true
+            }
+            else{
+                
+                return false
+            }
+        }
+        
+         if(textField == pincodeTf)
+         {
+            ////////////////////
+            
+            var blnStatus : Bool = false
+            
+            // get the current text, or use an empty string if that failed
+            let currentText = textField.text ?? ""
+            
+            // attempt to read the range they are trying to change, or exit if we can't
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            
+        
+            // add their new text to the existing text
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            ////////////////////////////
+        
+            
+            if(updatedText.count <= 6 && textField == pincodeTf)
+            {
+                
                  let allowedCharacters = CharacterSet.decimalDigits
                  let characterSet = NSCharacterSet(charactersIn: string)
-                 return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-
-            }
-//            else if(pincodeTf.text!.count == 6)
-//            {
-//                print("pincodeTf.text?=",pincodeTf.text!)
-////                pincodeTf.text? = textField.text!
-//                getCityStateAPI()
-//
-//                return false
-//            }
-//            else if(referrCodeTf.text!.count == 6)
-//            {
-//                print("referrCodeTf.text?=",referrCodeTf.text!)
-//                //                pincodeTf.text? = textField.text!
-//                validaterefercodeAPI()
-//
-//                return false
-//            }
-            else{
-                //            let characterCountLimit = 30
-                // We need to figure out how many characters would be in the string after the change happens
-                let startingLength = textField.text?.count ?? 0
-                let lengthToAdd = string.count
-                let lengthToReplace = range.length
-                let newLength = startingLength + lengthToAdd - lengthToReplace
                 
-                return newLength <= (textField.text?.count)!
+                 blnStatus = allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                
+                if(updatedText.count == 6)
+                {
+                    if(blnStatus){
+                        print("pincodeTf.text?=",updatedText)
+                        getCityStateAPI(pinCode: updatedText)
+                    }
+                   
+                }else{
+                    cityTf.text = ""
+                    stateTf.text = ""
+                }
+                
+                return blnStatus
+                
+
+            }else{
+                 return false
             }
-            
+                
+ 
         }
         else{
-            if((textField.text?.count)! <= 30)
+            if((textField.text?.count)! <= 50)
             {
                 var allowedCharacters = CharacterSet.letters
                 allowedCharacters.formUnion(CharacterSet.whitespaces)
@@ -233,14 +278,16 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        if (textField == self.cityTf || textField == self.stateTf)
-        {
-            getCityStateAPI()
-        }
-        if(textField == self.referrCodeTf)
-        {
-            validaterefercodeAPI()
-        }
+        
+       
+//        if (textField == self.cityTf || textField == self.stateTf)
+//        {
+//            getCityStateAPI()
+//        }
+//        if(textField == self.referrCodeTf)
+//        {
+//            validaterefercodeAPI()
+//        }
         
         //            else if(pincodeTf.text!.count == 6)
         //            {
@@ -419,14 +466,18 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
     @IBAction func fieldSaleBtnCliked(_ sender: Any)
     {
-        self.view.endEditing(true)
-        let Picker : PickerViewVC! = storyboard?.instantiateViewController(withIdentifier: "stbPickerViewVC") as? PickerViewVC
-        Picker.fromScreen = "fieldSale"
-        Picker.pickerData = ["Select"]+EmployeeNameArray
-        Picker.pickerIdData = [""]+EmployeeIdArray
-        self.addChild(Picker)
-        self.view.addSubview(Picker.view)
-        Picker.pickerdelegate = self
+        if(self.EmployeeIdArray.count > 0 ){
+            
+            self.view.endEditing(true)
+            let Picker : PickerViewVC! = storyboard?.instantiateViewController(withIdentifier: "stbPickerViewVC") as? PickerViewVC
+            Picker.fromScreen = "fieldSale"
+            Picker.pickerData = ["Select"]+EmployeeNameArray
+            Picker.pickerIdData = [""]+EmployeeIdArray
+            self.addChild(Picker)
+            self.view.addSubview(Picker.view)
+            Picker.pickerdelegate = self
+            }
+      
     }
     
     func getPickerDataValue(pickerSelectedData: String, fromScreen: String, pickerSelectedId: String) {
@@ -456,6 +507,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             }
             break
         case "fieldSale":
+            
+            print("DROPDOWN SELECTED")
             self.fieldSaleLbl.text = pickerSelectedData
             self.EmployeeId = pickerSelectedId
             break
@@ -785,7 +838,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
     }
     
-    func getCityStateAPI()
+    func getCityStateAPI(pinCode : String)
     {
         if Connectivity.isConnectedToInternet()
         {
@@ -800,7 +853,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = ["PinCode": pincodeTf.text! as AnyObject]
+        let params: [String: AnyObject] = ["PinCode":pinCode as AnyObject]
         
         let url = "/api/get-city-and-state"
         
@@ -819,6 +872,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertView.close()
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
+            
+            self.stateTf.text! = ""
+            self.cityTf.text! = ""
+            
         }, onForceUpgrade: {errorData in})
         
        }else{
@@ -829,7 +886,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
    
     }
     
-    func validaterefercodeAPI()
+    func validaterefercodeAPI(refferCode : String)
     {
         if Connectivity.isConnectedToInternet()
         {
@@ -843,7 +900,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = ["ref_code": "Kxwz4l" as AnyObject,
+        let params: [String: AnyObject] = ["ref_code": refferCode as AnyObject,
                                            "ref_type":"0" as AnyObject]
         
         let url = "/api/validate-refer-code"
@@ -860,6 +917,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertView.close()
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
+            self.referrCodeTf.text = ""
         }, onForceUpgrade: {errorData in})
         
     }else{
@@ -955,10 +1013,16 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 
                 print("FIELD SALE",self.EmployeeNameArray )
                 let UIdArr = Uid as! NSArray
-                //            let string1 = String(describing: sourceIdArr[0])
-                //            let string2 = String(describing: sourceIdArr[1])
-                //            self.sourceIdArray = [string1,string2]
                 self.EmployeeIdArray =  UIdArr.map { ($0 as AnyObject).stringValue }
+                
+                if(self.EmployeeIdArray.count > 0 ){
+                    self.fieldSaleLbl.text = self.EmployeeNameArray[0]
+                    self.EmployeeId =  self.EmployeeIdArray[0]
+                }else{
+                    self.fieldSaleLbl.text = ""
+                    self.EmployeeId =  "0"
+                }
+               
                 
             }, onError: { errorData in
                 alertView.close()
@@ -974,55 +1038,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
     
     
-    func getfieldsalesAPIold()
-    {
-        
-        if Connectivity.isConnectedToInternet()
-        {
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        let params: [String: AnyObject] = [:]
-        
-        let url = "/api/get-field-sales"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let jsonData = userObject as? NSArray
-            let EmployeeName = jsonData?.value(forKey: "EmployeeName") as AnyObject
-            let Uid = jsonData?.value(forKey: "Uid") as AnyObject
-            
-            self.EmployeeNameArray = EmployeeName as! [String]
-            
-            print("FIELD SALE",self.EmployeeNameArray )
-            let UIdArr = Uid as! NSArray
-            //            let string1 = String(describing: sourceIdArr[0])
-            //            let string2 = String(describing: sourceIdArr[1])
-            //            self.sourceIdArray = [string1,string2]
-            self.EmployeeIdArray =  UIdArr.map { ($0 as AnyObject).stringValue }
-            
-        }, onError: { errorData in
-            alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
-        }, onForceUpgrade: {errorData in})
-            
-        }else{
-            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-            snackbar.show()
-        }
-        
-    }
     
     func registrationSubmitAPI()
     {
