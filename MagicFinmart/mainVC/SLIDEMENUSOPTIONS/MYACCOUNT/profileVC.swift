@@ -915,7 +915,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                                             "Stock": "" as AnyObject,
                                             "Stock_Comp": "" as AnyObject,
                                             "Type": "0" as AnyObject,
-                                            "VersionCode": "" as AnyObject,
+                                            "VersionCode": Configuration.appVersion as AnyObject,
                                             "password": "" as AnyObject,
                                             "referedby_code": "null" as AnyObject]
         

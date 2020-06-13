@@ -25,14 +25,14 @@ class DatePickerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //--<set18YearValidation>--
-        if(fromScreen == "fromlyfInsInput" || fromScreen == "fromEnrolPOSP")
+        if(fromScreen == "fromlyfInsInput" || fromScreen == "fromEnrolPOSP" || fromScreen == "fromRegisterPage")
         {
             var components = DateComponents()
-//            components.year = -100
-//            let minDate = Calendar.current.date(byAdding: components, to: Date())
+            components.year = -100
+            let minDate = Calendar.current.date(byAdding: components, to: Date())
             components.year = -18
             let maxDate = Calendar.current.date(byAdding: components, to: Date())
-//            datePicker.minimumDate = minDate
+           datePicker.minimumDate = minDate
             datePicker.maximumDate = maxDate
         }
         else if(fromScreen == "crdtcardrbl")

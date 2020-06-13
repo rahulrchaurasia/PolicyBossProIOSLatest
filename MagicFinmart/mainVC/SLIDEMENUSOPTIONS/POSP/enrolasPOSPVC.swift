@@ -55,12 +55,25 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     var gender = "M"
     var accType = "SAVING"
     var stateid = String()
+    var stateName = String()
+    var strPosp_DOB  = ""
+    var LINK = ""
+    var CUSTOMER_ID  = ""
+    var POSPNo = ""
+    var PaymStat = ""
     var result = Bool()
+    var isPospInfo  = false
+     var isAddress = false
+     var isBankDetails = false
+     var isMale  = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedAround()
+       
+       
         
         enpanTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         enifscCodeTf.autocapitalizationType = .allCharacters
@@ -106,6 +119,17 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     //---<textFieldRange>---
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        
+        
+        if(textField == enbankaccnoTf  )
+        {
+           
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            
+            
+        }
         if(textField == enmob1Tf  ||  textField == enmob2Tf)
         {
             if((textField.text?.count)! <= 9)
@@ -187,7 +211,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             
         }
         else{
-            if((textField.text?.count)! <= 30)
+            if((textField.text?.count)! <= 60)
             {
                 var allowedCharacters = CharacterSet.letters
                 allowedCharacters.formUnion(CharacterSet.whitespaces)
@@ -220,9 +244,195 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         }
         
     }
-   
-    @IBAction func pospinfoCliked(_ sender: Any)
-    {
+    
+    
+    /******************************************************************/
+    // Validation pospInfo
+    
+    func pospInfoValidate()  -> Bool {
+        
+        if( enfirstNameTf.text!.isEmpty){
+            alertCall(message: "Enter First Name")
+            return false
+        }
+        if( enlastNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Last Name")
+            return false
+        }
+         if( endobTf.text!.isEmpty){
+            alertCall(message: "Enter Dob")
+            return false
+        }
+         if( enmob1Tf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Mobile1")
+            return false
+        }
+        if(!isValidEmail(testStr: enemailTf.text!))
+        {
+             alertCall(message: "Invalid Email Id")
+             return false
+        }
+        
+        
+        if(!validatePanCardNumber(candidate: enpanTf.text!))
+        {
+            return false
+        }
+        
+      
+
+        
+        
+//        if(validatePanCardNumber(candidate: enpanTf.text!) && enpanTf.text!.count == 10) == false
+//        {
+//             return false
+//        }
+//        else{
+//            alertCall(message: "Enter 10 digit PAN")
+//        }
+        return true
+    }
+    
+     func pospAddressValidate()  -> Bool {
+        
+        if( enaddress1Tf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Address 1")
+            return false
+        }
+        if( enaddress2Tf.text!.isEmpty){
+            alertCall(message: "Enter Address 2")
+            return false
+        }
+        if( enpincodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Pincode")
+            return false
+        }
+        if( enpincodeTf.text?.count != 6){
+            alertCall(message: "Enter Pincode")
+            return false
+        }
+        if( encityTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter City")
+            return false
+        }
+        if( enstateTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter State")
+            return false
+        }
+         return true
+        
+    }
+    func pospBankValidate()  -> Bool {
+        
+        if( enbankaccnoTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank Account No.")
+            return false
+        }
+        if( enifscCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank IFSC")
+            return false
+        }
+        if( enstateTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter State")
+            return false
+        }
+        if( enmicrCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank MICR")
+            return false
+        }
+        
+        if(enbankNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank Name")
+            return false
+        }
+        if( enbankBranchTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank Branch")
+            return false
+        }
+        if( enbankCityTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Bank City")
+            return false
+        }
+        return true
+        
+    }
+   /******************************************************************/
+    
+    
+    /******************************************************************/
+    
+    func openValidatePosp(strData : String){
+        
+        
+        if(strData == "INFO")
+        {
+            pospinfoView.isHidden = false
+            pospinfoViewHeight.constant = 520
+            posparrowImg.image = UIImage(named: "up_arrow.png")
+         
+            addressarrowImg.image = UIImage(named: "down_arrow.png")
+            bankdetailsarrowImg.image = UIImage(named: "down_arrow.png")
+            docuploadarrowImg.image = UIImage(named: "down_arrow.png")
+            addressView.isHidden = true
+            addressViewHeight.constant = 0
+            bankdetailsView.isHidden = true
+            bankdetailsViewHeight.constant = 0
+            docuploadView.isHidden = true
+            docuploadViewHeight.constant = 0
+        }
+        else if(strData == "ADDR"){
+    
+            addressView.isHidden = false
+            addressViewHeight.constant = 310
+            addressarrowImg.image = UIImage(named: "up_arrow.png")
+            
+            posparrowImg.image = UIImage(named: "down_arrow.png")
+            bankdetailsarrowImg.image = UIImage(named: "down_arrow.png")
+            docuploadarrowImg.image = UIImage(named: "down_arrow.png")
+            pospinfoView.isHidden = true
+            pospinfoViewHeight.constant = 0
+            bankdetailsView.isHidden = true
+            bankdetailsViewHeight.constant = 0
+            docuploadView.isHidden = true
+            docuploadViewHeight.constant = 0
+        } else if(strData == "BANK"){
+            
+            
+            bankdetailsView.isHidden = false
+            bankdetailsViewHeight.constant = 310
+            bankdetailsarrowImg.image = UIImage(named: "up_arrow.png")
+            
+            posparrowImg.image = UIImage(named: "down_arrow.png")
+            addressarrowImg.image = UIImage(named: "down_arrow.png")
+            docuploadarrowImg.image = UIImage(named: "down_arrow.png")
+            pospinfoView.isHidden = true
+            pospinfoViewHeight.constant = 0
+            addressView.isHidden = true
+            addressViewHeight.constant = 0
+            docuploadView.isHidden = true
+            docuploadViewHeight.constant = 0
+        }else if(strData == "DOC"){
+            
+            
+            docuploadView.isHidden = false
+            docuploadViewHeight.constant = 335
+            docuploadarrowImg.image = UIImage(named: "up_arrow.png")
+            
+            addressarrowImg.image = UIImage(named: "down_arrow.png")
+            bankdetailsarrowImg.image = UIImage(named: "down_arrow.png")
+            posparrowImg.image = UIImage(named: "down_arrow.png")
+            pospinfoView.isHidden = true
+            pospinfoViewHeight.constant = 0
+            addressView.isHidden = true
+            addressViewHeight.constant = 0
+            bankdetailsView.isHidden = true
+            bankdetailsViewHeight.constant = 0
+        }
+      
+    }
+    // Layout Click Method
+    func pospInfoClik(){
+        
         if(pospinfoView.isHidden)
         {
             pospinfoView.isHidden = false
@@ -242,12 +452,14 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         bankdetailsViewHeight.constant = 0
         docuploadView.isHidden = true
         docuploadViewHeight.constant = 0
-        
     }
     
-    @IBAction func addressCliked(_ sender: Any)
-    {
-        getCityStateAPI()
+    
+    func addressCliked(){
+        
+        //getCityStateAPI()
+        
+       
         
         if(addressView.isHidden)
         {
@@ -268,11 +480,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         bankdetailsViewHeight.constant = 0
         docuploadView.isHidden = true
         docuploadViewHeight.constant = 0
-        
     }
     
-    @IBAction func bankdetailsCliked(_ sender: Any)
-    {
+    func bankdetailsCliked (){
+        
         if(bankdetailsView.isHidden)
         {
             bankdetailsView.isHidden = false
@@ -294,8 +505,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         docuploadViewHeight.constant = 0
     }
     
-    @IBAction func docuuploadCliked(_ sender: Any)
-    {
+    func docuuploadCliked(){
+        
         if(docuploadView.isHidden)
         {
             docuploadView.isHidden = false
@@ -316,6 +527,75 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         bankdetailsView.isHidden = true
         bankdetailsViewHeight.constant = 0
     }
+    /******************************************************************/
+    
+    // Action Button
+    
+    @IBAction func pospinfoCliked(_ sender: Any)
+    {
+       
+         pospInfoClik()
+        
+    }
+    
+    @IBAction func addressCliked(_ sender: Any)
+    {
+        if( pospInfoValidate() == false){
+           
+            openValidatePosp(strData: "INFO")
+            return
+            
+        }
+        
+    
+        addressCliked()
+        
+    }
+    
+    @IBAction func bankdetailsCliked(_ sender: Any)
+    {
+       
+        if( pospInfoValidate() == false){
+           
+            openValidatePosp(strData: "INFO")
+        }
+            
+        else  if(pospAddressValidate() == false){
+            
+            openValidatePosp(strData: "ADDR")
+        }
+            
+        else{
+            bankdetailsCliked()
+        }
+        
+
+    }
+    
+    @IBAction func docuuploadCliked(_ sender: Any)
+    {
+        
+        if( pospInfoValidate() == false){
+            
+            openValidatePosp(strData: "INFO")
+        }
+            
+        else  if(pospAddressValidate() == false){
+            
+            openValidatePosp(strData: "ADDR")
+        }
+            
+        else   if(pospBankValidate() == false){
+            
+            openValidatePosp(strData: "BANK")
+        }
+        else{
+            docuuploadCliked()
+        }
+        
+    
+     
+    }
     
     
     @IBAction func dobBtnCliked(_ sender: Any)
@@ -332,6 +612,12 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         print(currDate)
         endobTf.text = currDate
         endobTf.textColor = UIColor.black
+        
+        let requiredFormat = currDate.toDateString(inputDateFormat: "dd-MM-yyyy", ouputDateFormat:
+            "yyyy-MM-dd")
+       
+        self.strPosp_DOB = requiredFormat
+         print("MyDate",requiredFormat)
     }
     
     func getintData(indata: Int) {
@@ -373,7 +659,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         {
             if(validatePanCardNumber(candidate: enpanTf.text!) && enpanTf.text!.count == 10)
             {
-                if(enmob1Tf.text!.count == 10/* && enmob2Tf.text!.count == 10*/)
+                if(enmob1Tf.text!.count == 10 )
                 {
                     pospregistrationAPI()
                 }
@@ -405,15 +691,15 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     //---<EmailValidation>---
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
     
     //----<Validation for PAN>----
     func validatePanCardNumber(candidate: String) -> Bool {
-        print("validate emilId: \(candidate)")
-        let emailRegEx = "[A-Z]{3}P[A-Z]{1}[0-9]{4}[A-Z]{1}"
+        print("validate PanCard: \(candidate)")
+       // let emailRegEx = "[A-Z]{3}P[A-Z]{1}[0-9]{4}[A-Z]{1}"
+         let emailRegEx = "[A-Z]{5}[0-9]{4}[A-Z]{1}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         result = emailTest.evaluate(with: candidate)
         print("result=",result)
@@ -443,32 +729,41 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         }
         alertView.show()
         
-        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            
+            let CustID = UserDefaults.standard.string(forKey: "CustID")
+            
+            if(CustID is NSNull){
+                
+                CUSTOMER_ID = ""
+                
+            }else{
+                
+                CUSTOMER_ID = CustID as! String
+            }
         
-        let params: [String: AnyObject] = [ "Address_1": "Bail Bazar" as AnyObject,
-                                            "Address_2": "Kurla " as AnyObject,
-                                            "Address_3": "Near Police Station" as AnyObject,
-                                            "AppSource": "null" as AnyObject,
+        let params: [String: AnyObject] = [
+                                            "AppSource": "" as AnyObject,
                                             "Bonds": "" as AnyObject,
                                             "Bonds_Comp": "" as AnyObject,
                                             "BrokID": 0 as AnyObject,
-                                            "City": "Dhule" as AnyObject,
-                                            "CustID": 6707992 as AnyObject,
-                                            "DOB": "31-01-2001" as AnyObject,
+                                          
+                                            "CustID": CustID as AnyObject,       // logic 05
+                                            "DOB": endobTf.text! as AnyObject,
                                             "DisplayDesignation": "" as AnyObject,
                                             "DisplayEmail": "" as AnyObject,
                                             "DisplayPhoneNo": "" as AnyObject,
                                             "EmailId": enemailTf.text! as AnyObject,
                                             "FBAID": FBAId as AnyObject,
                                             "FBALiveID": 0 as AnyObject,
-                                            "FBAPan": "AGSUU1533V" as AnyObject,
+                                            "FBAPan": enpanTf.text! as AnyObject,
                                             "FBAStat": "" as AnyObject,
                                             "FBA_Designation": " " as AnyObject,
-                                            "FirstName": "Test" as AnyObject,
+                                            "FirstName": enfirstNameTf.text! as AnyObject,
                                             "GIC_Comp": "" as AnyObject,
                                             "GIC_Comp_ID": "" as AnyObject,
                                             "GSTNumb": "" as AnyObject,
-                                            "Gender": "M" as AnyObject,
+                                            "Gender": gender as AnyObject,
                                             "Health_Comp": "" as AnyObject,
                                             "Health_Comp_ID": "" as AnyObject,
                                             "IsFOC": "" as AnyObject,
@@ -477,8 +772,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
                                             "IsLic": "" as AnyObject,
                                             "LIC_Comp": "" as AnyObject,
                                             "LIC_Comp_ID": "" as AnyObject,
-                                            "LastName": "Jatin" as AnyObject,
-                                            "Link": "http://www.dwtgo.in/9hV2FCD3" as AnyObject,
+                                            "LastName": enlastNameTf.text! as AnyObject,
+                                            "Link": self.LINK as AnyObject,           // logic 05
                                             "Loan_Aadhaar": "" as AnyObject,
                                             "Loan_Account_Type": "" as AnyObject,
                                             "Loan_BankAcNo": "" as AnyObject,
@@ -507,47 +802,72 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
                                             "Other_LastName": "" as AnyObject,
                                             "Other_MICR": "" as AnyObject,
                                             "Other_PAN": "" as AnyObject,
-                                            "POSPID": 0 as AnyObject,
+                                            "POSPID": self.POSPNo as AnyObject,         // logic 05
                                             "ParentId": "0" as AnyObject,
-                                            "PinCode": "425406" as AnyObject,
-                                            "Posp_Aadhaar": enadhrTf.text! as AnyObject,
-                                            "Posp_Account_Type": accType as AnyObject,
-                                            "Posp_Address1": enaddress1Tf.text! as AnyObject,
-                                            "Posp_Address2": enaddress2Tf.text! as AnyObject,
-                                            "Posp_Address3": enaddress3Tf.text! as AnyObject,
-                                            "Posp_BankAcNo": enbankaccnoTf.text! as AnyObject,
-                                            "Posp_BankBranch": enbankBranchTf.text! as AnyObject,
-                                            "Posp_BankCity": enbankCityTf.text! as AnyObject,
-                                            "Posp_BankID": 0 as AnyObject,
-                                            "Posp_BankName": enbankNameTf.text! as AnyObject,
-                                            "Posp_ChanPartCode": "" as AnyObject,
-                                            "Posp_City": encityTf.text! as AnyObject,
-                                            "Posp_DOB": endobTf.text! as AnyObject,
-                                            "Posp_Email": enemailTf.text! as AnyObject,
-                                            "Posp_FirstName": enfirstNameTf.text! as AnyObject,
-                                            "Posp_Gender": gender as AnyObject,
-                                            "Posp_IFSC": enifscCodeTf.text! as AnyObject,
-                                            "Posp_LastName": enlastNameTf.text! as AnyObject,
-                                            "Posp_MICR": enmicrCodeTf.text! as AnyObject,
-                                            "Posp_Mobile1": enmob1Tf.text! as AnyObject,
-                                            "Posp_Mobile2": enmob2Tf.text! as AnyObject,
-                                            "Posp_PAN": enpanTf.text! as AnyObject,
-                                            "Posp_PinCode": enpincodeTf.text! as AnyObject,
-                                            "Posp_ServiceTaxNo": "" as AnyObject,
-                                            "Posp_StatID": enstateTf.text! as AnyObject,
+                                         
+                                          
                                             "Postal": "" as AnyObject,
                                             "Postal_Comp": "" as AnyObject,
                                             "SMID": 0 as AnyObject,
                                             "SM_Name": "" as AnyObject,
                                             "StatActi": "" as AnyObject,
-                                            "State": self.stateid as AnyObject,
+                                            "State":   enstateTf as AnyObject,
                                             "StateID": self.stateid as AnyObject,
                                             "Stock": "" as AnyObject,
                                             "Stock_Comp": "" as AnyObject,
                                             "Type": "" as AnyObject,
-                                            "VersionCode": "" as AnyObject,
+                                            "VersionCode": Configuration.appVersion as AnyObject,
                                             "password": "" as AnyObject,
-                                            "referedby_code": "null" as AnyObject]
+                                           
+    
+                                            
+                                           /********************************************************/
+                                           // Info Dtl
+                                            "Posp_FirstName": enfirstNameTf.text! as AnyObject,
+                                            "Posp_LastName": enlastNameTf.text! as AnyObject,
+                                            "Posp_Mobile1": enmob1Tf.text! as AnyObject,
+                                            "Posp_Mobile2": enmob2Tf.text! as AnyObject,
+                                            "Posp_DOB":   self.strPosp_DOB as AnyObject,
+                                            "Posp_Gender": gender as AnyObject,
+                                            "Posp_Email": enemailTf.text! as AnyObject,
+                                            "Posp_PAN": enpanTf.text! as AnyObject,
+                                            "Posp_Aadhaar": enadhrTf.text! as AnyObject,
+                
+                                            "Posp_ServiceTaxNo": engstTf.text! as AnyObject,
+                                            "Posp_ChanPartCode": enchnlpartnrTf.text! as AnyObject,
+                                            
+                                            //end OF Info
+            
+                                            /********************************************************/
+                                            // Address Dtl
+                                            "Posp_Address1": enaddress1Tf.text! as AnyObject,
+                                            "Posp_Address2": enaddress2Tf.text! as AnyObject,
+                                            "Posp_Address3": enaddress3Tf.text! as AnyObject,
+                                            "Posp_PinCode": enpincodeTf.text! as AnyObject,
+                                            "Posp_City": encityTf.text! as AnyObject,
+                                            "Posp_StatID": enstateTf.text! as AnyObject,
+                                            // non posp Address Dtl
+                                            "Address_1": enaddress1Tf.text! as AnyObject,
+                                            "Address_2": enaddress2Tf.text! as AnyObject,
+                                            "Address_3": enaddress3Tf.text! as AnyObject,
+                                            "PinCode":   enpincodeTf.text! as AnyObject,
+                                            "City":      encityTf.text! as AnyObject,
+                                            
+                                            //end OF Adress
+            
+                                            /********************************************************/
+                                            // Bank  Dtl
+            
+                                            "Posp_BankAcNo": enbankaccnoTf.text! as AnyObject,
+                                            "Posp_IFSC": enifscCodeTf.text! as AnyObject,
+                                            "Posp_MICR": enmicrCodeTf.text! as AnyObject,
+                                            "Posp_Account_Type": accType as AnyObject,
+                                            "Posp_BankBranch": enbankBranchTf.text! as AnyObject,
+                                            "Posp_BankCity": enbankCityTf.text! as AnyObject,
+                                            "Posp_BankID": 0 as AnyObject,
+                                            "Posp_BankName": enbankNameTf.text! as AnyObject,
+                                            
+                                            "referedby_code": "" as AnyObject]
         
         let url = "/api/posp-registration"
         
@@ -687,6 +1007,36 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             else{
                 self.enbankCityTf.text? = POSPBankCity as! String
             }
+             let POSPLink = (jsonData![0] as AnyObject).value(forKey: "Link") as AnyObject
+            
+            if(POSPLink is NSNull)
+            {
+                self.LINK = ""
+            }
+            else{
+                self.LINK = POSPLink as! String
+            }
+            
+            let POSPNomber = (jsonData![0] as AnyObject).value(forKey: "POSPNo") as AnyObject
+            
+            if(POSPNomber is NSNull)
+            {
+                self.POSPNo = ""
+            }
+            else{
+                self.POSPNo = POSPNomber as! String
+            }
+          
+            let PaymStatus = (jsonData![0] as AnyObject).value(forKey: "PaymStat") as AnyObject
+            
+            if(PaymStatus is NSNull)
+            {
+                self.PaymStat = ""
+            }
+            else{
+                self.PaymStat = PaymStatus as! String
+            }
+            
             
         }, onError: { errorData in
             alertView.close()
@@ -727,7 +1077,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             
             let jsonData = userObject as? NSDictionary
             let state_name = jsonData?.value(forKey: "state_name") as? String
-            self.stateid = (jsonData?.value(forKey: "stateid") as? String)!
+            self.stateid = (jsonData?.value(forKey: "stateid") as? String ?? "")
+            self.stateName = state_name ?? ""
             let cityname = jsonData?.value(forKey: "cityname") as? String
             self.enstateTf.text! = state_name!
             self.encityTf.text! = cityname!
@@ -769,15 +1120,19 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
-            let MICRCode = (jsonData![0] as AnyObject).value(forKey: "MICRCode") as AnyObject
-            let BankBran = (jsonData![0] as AnyObject).value(forKey: "BankBran") as AnyObject
-            let CityName = (jsonData![0] as AnyObject).value(forKey: "CityName") as AnyObject
-            let BankName = (jsonData![0] as AnyObject).value(forKey: "BankName") as AnyObject
-            self.enmicrCodeTf.text! = MICRCode as! String
-            self.enbankBranchTf.text! = BankBran as! String
-            self.enbankCityTf.text! = CityName as! String
-            self.enbankNameTf.text! = BankName as! String
+         
+             
+                let MICRCode = (jsonData![0] as AnyObject).value(forKey: "MICRCode") as AnyObject
+                let BankBran = (jsonData![0] as AnyObject).value(forKey: "BankBran") as AnyObject
+                let CityName = (jsonData![0] as AnyObject).value(forKey: "CityName") as AnyObject
+                let BankName = (jsonData![0] as AnyObject).value(forKey: "BankName") as AnyObject
+                self.enmicrCodeTf.text! = MICRCode as! String
+                self.enbankBranchTf.text! = BankBran as! String
+                self.enbankCityTf.text! = CityName as! String
+                self.enbankNameTf.text! = BankName as! String
+                
             
+           
         }, onError: { errorData in
             alertView.close()
             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
@@ -820,7 +1175,18 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+   
     
 }
 
-
+extension String
+{
+    func toDateString( inputDateFormat inputFormat  : String,  ouputDateFormat outputFormat  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = inputFormat
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = outputFormat
+        return dateFormatter.string(from: date!)
+    }
+}

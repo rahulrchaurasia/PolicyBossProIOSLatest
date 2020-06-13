@@ -148,7 +148,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                                              "MobileNo": "" as AnyObject,
                                              "OldPassword": "" as AnyObject,
                                              "Password": passwordTf.text! as AnyObject,
-                                             "TokenId": "e-VNs90R42E:APA91bHm6R1GEqRRCe3XrJ3Kq4Vb7V8BDbeluJFKMy0y0AsyijTQY1L-gXI1Yi7kA5PXRGx8we_h4Zy7OtFmz-SDO9R76xjEqP85Ng_lQWqJO1O7eB1NoNfggUOX6CgoLlXN_ncXrxWv" as AnyObject,
+                                             "TokenId": "" as AnyObject,
                                              "UserId": userId as AnyObject,
                                              "UserName": emailTf.text! as AnyObject,
                                              "UserType": "" as AnyObject,
@@ -166,9 +166,11 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             let FBAId = jsonData?.value(forKey: "FBAId") as AnyObject
             let referer_code = jsonData?.value(forKey: "referer_code") as AnyObject
             let POSPNo = jsonData?.value(forKey: "POSPNo") as AnyObject
+            let CustID = jsonData?.value(forKey: "CustID") as AnyObject
             UserDefaults.standard.set(String(describing: FBAId), forKey: "FBAId")
             UserDefaults.standard.set(String(describing: referer_code), forKey: "referer_code")
             UserDefaults.standard.set(String(describing: POSPNo), forKey: "POSPNo")
+            UserDefaults.standard.set(String(describing: CustID), forKey: "CustID")
             let FullName = jsonData?.value(forKey: "FullName") as AnyObject
             let EmailID = jsonData?.value(forKey: "EmailID") as AnyObject
 //            let IsFirstLogin = jsonData?.value(forKey: "IsFirstLogin") as AnyObject

@@ -363,6 +363,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 let pospNo = UserDefaults.standard.string(forKey: "POSPNo") ?? "0"
                                 let appVersion = Configuration.appVersion
                                 
+                              
                                 let info = "&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=\(ProdId)&login_ssid=\(pospNo)"
                                 
                               

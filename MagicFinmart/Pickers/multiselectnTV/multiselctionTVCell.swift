@@ -10,17 +10,29 @@ import UIKit
 
 class multiselctionTVCell: UITableViewCell {
 
+     var tapCheckClicked: ( () -> Void)? = nil
+    
     @IBOutlet weak var tableLbl: UILabel!
+    
+    @IBOutlet weak var tableCheckbox: UIImageView!
+    
+    
+//    @IBAction func btnCheckBoxClick(_ sender: Any) {
+//
+//         tapCheckClicked?()
+//
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
+
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        // update UI
+      //  accessoryType = selected ? .checkmark : .none
     }
-
 }

@@ -403,7 +403,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Type": "" as AnyObject,
                                             "password": "01011980" as AnyObject,
                                             "referedby_code": "" as AnyObject,
-                                            "VersionCode": "2.1.1" as AnyObject,
+                                            "VersionCode": Configuration.appVersion as AnyObject,
                                             "AppSource": "2" as AnyObject,
                                             "ParentId": FBAId as AnyObject]
         

@@ -9,8 +9,11 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import Alamofire
 
 class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,getPickerDataDelegate,selectedDataDelegate {
+    
+    
   
     let aTextField = ACFloatingTextfield()
 
@@ -82,10 +85,19 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var fromScreen = ""
     var multipleSelectedData = String()
     
+    var lifeSelectedData = ""
+    var genSelectedData = ""
+    var healthSelectedData = ""
+    
     var multiselctionTV : multiselctionTVC! = multiselctionTVC()
     
     var PinCode = ""
     var ReferrerCode = ""
+    var Password = ""
+    var StateID = ""
+    
+    var insuranceCompObj: InsuranceCompModel? = nil
+     var insuranceLifeData = [InsuranceData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,6 +125,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         self.maleBtn.setTitleColor(UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1), for: UIControl.State.normal)
 
         
+       
         // Editable False City and State
         
         cityTf.isEnabled = false
@@ -123,23 +136,32 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         multiselctionTV.delegateData = self
     
         getregistrationsourceAPI()
+        getInsuranceCompany()
       
     }
     
-    func getselectedData(selectedData: [String], stringId : String) {
-        print("selectedData=",selectedData)
+   
+    //05 temp
+    func getselectedData(insuranceCompObj: InsuranceCompModel? ,selectedData: [String], selectedID: [String], stringId : String) {
+        print("selected Joined=",selectedData)
         print("stringId=",stringId)
+        self.insuranceCompObj = insuranceCompObj
+        
         if(stringId == "lyf")
         {
             lifeinsuranceLbl.text = selectedData.joined(separator: ",")
+           
+            lifeSelectedData = selectedID.joined(separator: ",")
         }
         else if(stringId == "gen")
         {
             gernlinsuranceLbl.text = selectedData.joined(separator: ",")
+            genSelectedData = selectedID.joined(separator: ",")
         }
         else if(stringId == "health")
         {
             healthinsuranceLbl.text = selectedData.joined(separator: ",")
+            healthSelectedData = selectedID.joined(separator: ",")
         }
     }
     
@@ -410,6 +432,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     {
         self.view.endEditing(true)
         let DatePicker : DatePickerVC = storyboard?.instantiateViewController(withIdentifier: "stbDatePickerVC") as! DatePickerVC
+        DatePicker.fromScreen = "fromRegisterPage"
         self.addChild(DatePicker)
         self.view.addSubview(DatePicker.view)
         DatePicker.dateDelegate = self
@@ -417,6 +440,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
     func getDateData(currDate: String, fromScreen: String) {
         print(currDate)
+        Password = currDate.replacingOccurrences(of: "-", with: "")
+        print("password",Password)
         dobTf.text = currDate
         dobTf.textColor = UIColor.black
     }
@@ -487,8 +512,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             self.sourceLbl.text = pickerSelectedData
             self.sourceId = pickerSelectedId
             
-           
-          //  05temp
             if(self.sourceLbl.text == "Finmart"){
                 fieldSaleView.isHidden = true
                 fieldSaleViewHeight.constant = 0
@@ -524,6 +547,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         {
             multiselctionTV = storyboard?.instantiateViewController(withIdentifier: "stbmultiselctionTVC") as? multiselctionTVC
             multiselctionTV.fromScreen = "lifeInsurance"
+            multiselctionTV.insuranceCompObj = self.insuranceCompObj
+            multiselctionTV.insuranceLifeData = self.insuranceLifeData
+            
             multiselctionTV.delegateData = self
             self.addChild(multiselctionTV)
             self.view.addSubview(multiselctionTV.view)
@@ -536,6 +562,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         {
             multiselctionTV = storyboard?.instantiateViewController(withIdentifier: "stbmultiselctionTVC") as? multiselctionTVC
             multiselctionTV.fromScreen = "genInsurance"
+            multiselctionTV.insuranceCompObj = self.insuranceCompObj
             multiselctionTV.delegateData = self
             self.addChild(multiselctionTV)
             self.view.addSubview(multiselctionTV.view)
@@ -548,6 +575,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         {
             multiselctionTV = storyboard?.instantiateViewController(withIdentifier: "stbmultiselctionTVC") as? multiselctionTVC
             multiselctionTV.fromScreen = "healthInsurance"
+            multiselctionTV.insuranceCompObj = self.insuranceCompObj
             multiselctionTV.delegateData = self
             self.addChild(multiselctionTV)
             self.view.addSubview(multiselctionTV.view)
@@ -581,6 +609,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             gernalinsuranceCheckbox.image = UIImage(named: "check-box-empty.png")
             gernlinsuranceLbl.isEnabled = false
             gernlinsuranceBtn.tag = 0
+            gernalinsuranceSelected = "0"
         }
     }
     @IBAction func healthinsuranceBtnCliked(_ sender: Any)
@@ -595,6 +624,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             healthinsuranceCheckbox.image = UIImage(named: "check-box-empty.png")
             healthinsuranceLbl.isEnabled = false
             healthinsuranceBtn.tag = 0
+            healthinsuranceSelected = "0"
         }
     }
     @IBAction func mutualfundBtnCliked(_ sender: Any)
@@ -607,6 +637,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         }else{
             mutualfundCheckbox.image = UIImage(named: "check-box-empty.png")
             mutualfundBtn.tag = 0
+            mutualFundSelected = "0"
         }
     }
     @IBAction func stocksBtnCliked(_ sender: Any)
@@ -619,6 +650,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         }else{
             stockinsuranceCheckbox.image = UIImage(named: "check-box-empty.png")
             stockBtn.tag = 0
+             stocksSelected = "0"
         }
     }
     @IBAction func postalBtnCliked(_ sender: Any)
@@ -631,6 +663,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         }else{
             postalinsuranceCheckbox.image = UIImage(named: "check-box-empty.png")
             postalBtn.tag = 0
+            postalSelected = "0"
         }
     }
     @IBAction func bondsBtnCliked(_ sender: Any)
@@ -643,6 +676,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         }else{
             bondsinsuranceCheckbox.image = UIImage(named: "check-box-empty.png")
             bondBtn.tag = 0
+            bondsSelected = "0"
         }
     }
     
@@ -838,6 +872,106 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
     }
     
+    
+    func getInsuranceCompany(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            
+            
+            
+            let parameter  :[String: AnyObject] = [
+                
+                "FBAID": FBAId as AnyObject
+            ]
+            let endUrl = "/api/get-insurance-company"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            print("parameter= ",parameter)
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(let value):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(InsuranceCompModel.self, from: data)
+                        
+                        
+                        
+                        print("response= ",obj)
+                        
+                        if obj.StatusNo == 0 {
+                            
+                            
+                            self.insuranceCompObj = obj
+                            
+                            
+                            for index in 0...(self.insuranceCompObj?.MasterData.lifeinsurance.count ?? 0)-1 {
+                                
+                                let model = InsuranceData(
+                                    InsuID: self.insuranceCompObj?.MasterData.lifeinsurance[index].InsuID ?? 0,
+                                    
+                                    InsuShorName:self.insuranceCompObj?.MasterData.lifeinsurance[index].InsuShorName ?? "" )
+                                self.insuranceLifeData.append(model)
+                            }
+                            
+                         
+                            
+                            
+                            
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                            snackbar.show()
+                        }
+                        
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
+    
+    
+
     func getCityStateAPI(pinCode : String)
     {
         if Connectivity.isConnectedToInternet()
@@ -865,8 +999,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             let jsonData = userObject as? NSDictionary
             let state_name = jsonData?.value(forKey: "state_name") as? String
             let cityname = jsonData?.value(forKey: "cityname") as? String
+            self.StateID = jsonData?.value(forKey: "stateid") as? String ?? ""
             self.stateTf.text! = state_name!
             self.cityTf.text! = cityname!
+         
  
         }, onError: { errorData in
             alertView.close()
@@ -1074,17 +1210,17 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                                            "FBAStat": ""as AnyObject,
                                            "FBA_Designation": "" as AnyObject,
                                            "FirstName": firstNameTf.text! as AnyObject,
-                                           "GIC_Comp": "" as AnyObject,
+                                           "GIC_Comp": genSelectedData as AnyObject,
                                            "GIC_Comp_ID": "" as AnyObject,
                                            "GSTNumb": "" as AnyObject,
                                            "Gender": Gender as AnyObject,
-                                           "Health_Comp": "" as AnyObject,
+                                           "Health_Comp": healthSelectedData as AnyObject,
                                            "Health_Comp_ID": "" as AnyObject,
                                            "IsFOC": "" as AnyObject,
                                            "IsGic": gernalinsuranceSelected as AnyObject,
                                            "IsHealth": healthinsuranceSelected as AnyObject,
                                            "IsLic": lifeinsuranceSelected as AnyObject,
-                                           "LIC_Comp": "" as AnyObject,
+                                           "LIC_Comp": lifeSelectedData as AnyObject,
                                            "LIC_Comp_ID": "" as AnyObject,
                                            "LastName": lastNameTf.text! as AnyObject,
                                            "Link": "null" as AnyObject,
@@ -1150,13 +1286,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                                            "SM_Name": "" as AnyObject,
                                            "StatActi": "" as AnyObject,
                                            "State": stateTf.text! as AnyObject,
-                                           "StateID": "33" as AnyObject,
+                                           "StateID": StateID as AnyObject,
                                            "Stock": stocksSelected as AnyObject,
                                            "Stock_Comp": "" as AnyObject,
                                            "Type": "" as AnyObject,
-                                           "VersionCode": "2.1.6" as AnyObject,
+                                           "VersionCode": Configuration.appVersion as AnyObject,
                                            "field_sales_uid": EmployeeId as AnyObject,
-                                           "password": "09012019" as AnyObject,
+                                           "password": Password as AnyObject,
                                            "referedby_code": referrCodeTf.text! as AnyObject]
         
         let url = "/api/insert-fba-registration"

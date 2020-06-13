@@ -11,7 +11,9 @@
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
+		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
+		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
 		444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */; };
@@ -213,7 +215,9 @@
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
+		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
+		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
 		444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToRazorpayModel.swift; sourceTree = "<group>"; };
@@ -425,6 +429,15 @@
 				445040BE2471767500CF6780 /* salesMainModel.swift */,
 			);
 			path = SalesMaterial;
+			sourceTree = "<group>";
+		};
+		44394A31248A26310095ADF5 /* register */ = {
+			isa = PBXGroup;
+			children = (
+				44394A32248A26980095ADF5 /* InsuranceCompModel.swift */,
+				44354AA4248FCCF800F9BD80 /* InsuranceData.swift */,
+			);
+			path = register;
 			sourceTree = "<group>";
 		};
 		443D35F72462A30F00C8F763 /* PaymentGateway */ = {
@@ -921,6 +934,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				44394A31248A26310095ADF5 /* register */,
 				443D35FA24632F2000C8F763 /* Payment */,
 				4415A863244DFAAE00314D26 /* SalesMaterial */,
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
@@ -1190,6 +1204,7 @@
 				84B93B4F222FE2EC00CB936F /* lyfinsInputPageVC.swift in Sources */,
 				8410F8D821F84F9C00DFC974 /* imgsalesmaterialVC.swift in Sources */,
 				8410F8D621F835DF00DFC974 /* insalesmaterialCVCell.swift in Sources */,
+				44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */,
 				8480BBE2220811D300BEEDF4 /* hnfdisclosureVC.swift in Sources */,
 				840AC5D221BE80AB004DCB26 /* ViewController.swift in Sources */,
 				44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */,
@@ -1198,6 +1213,7 @@
 				840DE862220DA6BC0060003E /* cmnquotesTVCell.swift in Sources */,
 				84A1E5822293D63200C401CD /* motorinsuranceTVCell.swift in Sources */,
 				840C4BDF21C3838D000B8D49 /* PendingcasesVC.swift in Sources */,
+				44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */,
 				8410403E21D786E500C3B7A7 /* FinmartRestClient.swift in Sources */,
 				44C6E49122E2E7F700D3F4B3 /* detailscontentTVCell.swift in Sources */,
 				84BD5C1F21ECB8CC00982C15 /* attenReportVC.swift in Sources */,
