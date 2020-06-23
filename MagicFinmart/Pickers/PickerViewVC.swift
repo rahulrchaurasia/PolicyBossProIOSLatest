@@ -36,12 +36,28 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
 
     @IBAction func pickerOkBtnCliked(_ sender: Any)
     {
-        if(selectedOption == "")
+        if(selectedOption == "" || selectedOption == "Select")
         {
+            
+            
             let alert = UIAlertController(title: "Alert", message: "Please select from the below options", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
+            
+            
+            
         }else{
+            
+//            if(fromScreen == "source"  && selectedOption == "Select"){
+//
+//                    let alert = UIAlertController(title: "Alert", message: "Please select from the below options", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//                    self.present(alert, animated: true, completion: nil)
+//                    return
+//
+//            }
+            
+            
             self.pickerdelegate?.getPickerDataValue(pickerSelectedData:selectedOption, fromScreen: fromScreen, pickerSelectedId: selectedId)
             if(txt != "")
             {

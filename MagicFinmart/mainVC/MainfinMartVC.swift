@@ -45,7 +45,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var othrImgArray = ["health_checkup_plan.png"]
     //--<detailsTVArrays>--
     var insuranceDetailArray = ["Best quotes for Private Car Insurance of your customers with instant policy.","Best quotes for Two Wheeler Insurance of your customers with instant policy.","Best quotes for CV Insurance of your customers with instant policy.","Get quotes and compare benefits of health insurance from top insurance companies.","Get quotes and compare benefits of life insurance from top insurance companies.","Get offline quotes"]
+    
+    
     var loansDetailArray = ["Home loan at best intrest rates from over 20+ banks & NBFCs.","Provide instant approval for your customers at attractive intrest rates.","Maximum loan amount at competitive intrest rate against property.","Get instant Credit card approvals with amazing offers and deals.","Transfer existing loans at lower intrest rate.And help customers to save more on existing loans.","Get your credit report with score at no cost.","Enjoy chatting with your BOT freind & provide instant loan sanction to your customer for Personal Loan,Home Loan,Business Loan,Car Loan,LAP,Gold Loan,etc.","Submit leads for products like Car Loan,Business Loan,Working Capital,Term Loan,LRD,etc.","Loan disbursed in just few hours!!!","We Finance your growth","Improve your credit score."]
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,29 +241,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                  cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
                 
                 
-                //loadimages
-//                let imgURL = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
-//                if imgURL != nil {
-//                    let data = NSData(contentsOf: (imgURL as URL?)!)
-//                    cell.cellImage.image = UIImage(data: data! as Data)
-//                }
-                
-                // Binding Image Using Alamofire
-//                let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
-//                 Alamofire.request(remoteImageURL).responseData { (response) in
-//                    if response.error == nil {
-//                        print(response.result)
-//                        // Show the downloaded image:
-//
-//                        if let data = response.data {
-//
-//                            DispatchQueue.main.async {
-//
-//                               cell.cellImage.image = UIImage(data: data)
-//                            }
-//                       }
-//                    }
-//                }
+  
                
             }
             else if(indexPath.section == 1)

@@ -685,7 +685,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let imgURL = NSURL(string: loanselfphoto as! String)
                 if imgURL != nil {
                     let data = NSData(contentsOf: (imgURL as URL?)!)
-                    self.menuprofileImgView.image = UIImage(data: data! as Data)
+                    // cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
+                    self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
+                   // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
                 }
             }
             

@@ -9,8 +9,9 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import Alamofire
 
-class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
+class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var posparrowImg: UIImageView!
     @IBOutlet weak var addressarrowImg: UIImageView!
@@ -52,6 +53,25 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     @IBOutlet weak var enbankBranchTf: ACFloatingTextfield!
     @IBOutlet weak var enbankCityTf: ACFloatingTextfield!
     
+    
+    @IBOutlet weak var imgDoc1: UIImageView!
+    
+    @IBOutlet weak var imgDoc2: UIImageView!
+    
+    @IBOutlet weak var imgDoc3: UIImageView!
+    
+    @IBOutlet weak var imgDoc4: UIImageView!
+    
+    @IBOutlet weak var imgDoc5: UIImageView!
+    
+    @IBOutlet weak var imgDoc6: UIImageView!
+    
+    var imagePicker = UIImagePickerController()
+    var pickedImage = UIImage()
+     var dataImage = ""
+    var uploadDoc = ""
+    
+    
     var gender = "M"
     var accType = "SAVING"
     var stateid = String()
@@ -66,13 +86,26 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
      var isAddress = false
      var isBankDetails = false
      var isMale  = false
+    var isAllImageUpload  = false
+     var isPaymentDone  = false
+    var isPaymentLinkAvailable  = false
+     var isPospAvailable  = false
+      var pospDocModel = [pospDoc]()
     
+    let PHOTO_File = "POSPPhotograph"
+    let PAN_File = "POSPPanCard"
+    let CANCEL_CHQ_File = "POSPCancelledChq"
+    let AADHAR_FRONT_File = "POSPAadharCard"
+    let AADHAR_BACK_File = "POSPAadharCardBack"
+    let EDU_FILE = "POSPHighestEducationProof"
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.hideKeyboardWhenTappedAround()
-       
+        imagePicker.delegate = self
        
         
         enpanTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -107,7 +140,26 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         
         //--<apiCall>--
         getpospdetailAPI()
-
+        
+        enmob1Tf.isEnabled = false
+        enemailTf.isEnabled = false
+        
+       let EmailID = UserDefaults.standard.string(forKey: "EmailID")
+       let MobiNumb1 = UserDefaults.standard.string(forKey: "MobiNumb1")
+        
+        
+        if let email = EmailID {
+            self.enemailTf.text! = email as! String
+        }
+        if let mob = MobiNumb1 {
+            self.enmob1Tf.text! = mob as! String
+        }
+        
+      //  self.enmob1Tf.text! = EmailID as! String    //05 pending
+      //  self.enemailTf.text! = MobiNumb1 as! String
+        
+       
+        
     }
     
     @IBAction func backBtnCliked(_ sender: Any)
@@ -151,23 +203,48 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         }
         else if(textField == enpincodeTf)
         {
-            if((textField.text?.count)! <= 5)
+            ////////////////////
+            
+            var blnStatus : Bool = false
+            
+            // get the current text, or use an empty string if that failed
+            let currentText = textField.text ?? ""
+            
+            // attempt to read the range they are trying to change, or exit if we can't
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            
+            
+            // add their new text to the existing text
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            ////////////////////////////
+            
+            
+            if(updatedText.count <= 6 && textField == enpincodeTf)
             {
+                
                 let allowedCharacters = CharacterSet.decimalDigits
                 let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-               
-            }
-            else{
-                //            let characterCountLimit = 30
-                // We need to figure out how many characters would be in the string after the change happens
-                let startingLength = textField.text?.count ?? 0
-                let lengthToAdd = string.count
-                let lengthToReplace = range.length
-                let newLength = startingLength + lengthToAdd - lengthToReplace
                 
-                return newLength <= (textField.text?.count)!
+                blnStatus = allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                
+                if(updatedText.count == 6)
+                {
+                    if(blnStatus){
+                        print("pincodeTf.text?=",updatedText)
+                        getCityStateAPI(pincode: updatedText)
+                    }
+                    
+                }
+                
+                return blnStatus
+                
+                
+            }else{
+                return false
             }
+            
+
             
         }
         else if(textField == enifscCodeTf)
@@ -234,10 +311,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        if (textField == self.encityTf || textField == self.enstateTf)
-        {
-            getCityStateAPI()
-        }
+//        if (textField == self.encityTf || textField == self.enstateTf)
+//        {
+//            getCityStateAPI()
+//        }
         if(textField == self.enmicrCodeTf || textField == self.enbankBranchTf || textField == self.enbankCityTf || textField == self.enbankNameTf)
         {
             getifsccodeAPI()
@@ -281,15 +358,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         
       
 
-        
-        
-//        if(validatePanCardNumber(candidate: enpanTf.text!) && enpanTf.text!.count == 10) == false
-//        {
-//             return false
-//        }
-//        else{
-//            alertCall(message: "Enter 10 digit PAN")
-//        }
+    
         return true
     }
     
@@ -356,6 +425,27 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         return true
         
     }
+    func pospDOCValidate()  -> Bool {
+        
+       var blnChk = true
+        if(imgDoc1.tag == 0 ){
+            blnChk = false
+        } else if(imgDoc2.tag == 0 ){
+            blnChk = false
+        }else if(imgDoc3.tag == 0 ){
+            blnChk = false
+        }else if(imgDoc4.tag == 0 ){
+            blnChk = false
+        }else if(imgDoc5.tag == 0 ){
+            blnChk = false
+        }else if(imgDoc6.tag == 0 ){
+            blnChk = false
+        }
+        
+
+         return blnChk
+    }
+    
    /******************************************************************/
     
     
@@ -527,7 +617,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         bankdetailsView.isHidden = true
         bankdetailsViewHeight.constant = 0
     }
-    /******************************************************************/
+    /**************************** Tap Clicked  **************************************/
     
     // Action Button
     
@@ -541,10 +631,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     @IBAction func addressCliked(_ sender: Any)
     {
         if( pospInfoValidate() == false){
-           
+
             openValidatePosp(strData: "INFO")
             return
-            
+
         }
         
     
@@ -556,18 +646,19 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     {
        
         if( pospInfoValidate() == false){
-           
+
             openValidatePosp(strData: "INFO")
         }
-            
+
         else  if(pospAddressValidate() == false){
-            
+
             openValidatePosp(strData: "ADDR")
         }
-            
+
         else{
             bankdetailsCliked()
         }
+        
         
 
     }
@@ -576,24 +667,24 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
     {
         
         if( pospInfoValidate() == false){
-            
+
             openValidatePosp(strData: "INFO")
         }
-            
+
         else  if(pospAddressValidate() == false){
-            
+
             openValidatePosp(strData: "ADDR")
         }
-            
+
         else   if(pospBankValidate() == false){
-            
+
             openValidatePosp(strData: "BANK")
         }
         else{
             docuuploadCliked()
         }
         
-    
+   
      
     }
     
@@ -652,29 +743,386 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         btnColorChangeGray(Btn: encsavingBtn)
     }
     
-    
+      /**************************** Submit  Clicked  **************************************/
     @IBAction func submitBtnCliked(_ sender: Any)
     {
-        if(isValidEmail(testStr: enemailTf.text!))
-        {
-            if(validatePanCardNumber(candidate: enpanTf.text!) && enpanTf.text!.count == 10)
-            {
-                if(enmob1Tf.text!.count == 10 )
-                {
-                    pospregistrationAPI()
+        
+        if( pospInfoValidate() == false){
+            
+            openValidatePosp(strData: "INFO")
+        }
+            
+        else  if(pospAddressValidate() == false){
+            
+            openValidatePosp(strData: "ADDR")
+        }
+            
+        else   if(pospBankValidate() == false){
+            
+            openValidatePosp(strData: "BANK")
+        }
+        
+        else {
+            
+            if(pospDOCValidate() == true){
+                
+               
+                
+                if(isPaymentDone){
+                    
+                   
+                     self.showToast(controller: self, message: "POSP Already exist!!", seconds: 4)
+                    openValidatePosp(strData: "DOC")
                 }
                 else{
-                    TTGSnackbar.init(message: "Enter 10 digit Mobile Number", duration: .long).show()
+                    pospregistrationAPI()
                 }
+            }else{
+                
+                if(isPaymentDone){
+                    
+                    self.showToast(controller: self, message: "Payment Already Done,Please upload Remaining Documents !!", seconds: 4)
+                    
+                    openValidatePosp(strData: "DOC")
+                }else{
+                    
+                      pospregistrationAPI()
+                }
+                
             }
-            else{
-                alertCall(message: "Enter 10 digit PAN")
-            }
-        }else{
-            alertCall(message: "Invalid Email Id")
+            
+        }
+
+        
+        
+    
+    }
+    
+    
+    
+    
+    @IBAction func docUpload1btnClick(_ sender: Any) {
+        
+         uploadDoc = "DOC6"
+         callCamera((Any).self)
+    }
+    
+
+    @IBAction func docUpload2btnClick(_ sender: Any) {
+        
+        uploadDoc = "DOC7"
+        callCamera((Any).self)
+    }
+    
+    
+    @IBAction func docUpload3btnClick(_ sender: Any) {
+        
+        uploadDoc = "DOC8"
+        callCamera((Any).self)
+    }
+    
+    
+    @IBAction func docUpload4btnClick(_ sender: Any) {
+        
+        uploadDoc = "DOC9"
+        callCamera((Any).self)
+    }
+    
+    
+    
+    @IBAction func docUpload5btnClick(_ sender: Any) {
+        
+        uploadDoc = "DOC10"
+        callCamera((Any).self)
+    }
+    
+    
+    @IBAction func docUpload6btnClick(_ sender: Any) {
+        
+        uploadDoc = "DOC11"
+        callCamera((Any).self)
+    }
+    
+    
+    
+   /********************************* Open Camera and Gallery ***********************************************/
+    
+    func callCamera(_ sender: Any)
+    {
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallary()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        /*If you want work actionsheet on ipad
+         then you have to use popoverPresentationController to present the actionsheet,
+         otherwise app will crash on iPad */
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            alert.popoverPresentationController?.sourceView = sender as? UIView
+            alert.popoverPresentationController?.sourceRect = (sender as AnyObject).bounds
+            alert.popoverPresentationController?.permittedArrowDirections = .up
+        default:
+            break
+        }
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        pickedImage = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
+        
+      //  print("pickedImage==",pickedImage)
+        
+        
+        if(uploadDoc == "DOC6"){
+        
+            
+            uploaddocAPI(documentName: PHOTO_File, documentType: "6")
+        }
+        else if(uploadDoc == "DOC7"){
+          
+             uploaddocAPI(documentName: PAN_File, documentType: "7")
+        }
+        else if(uploadDoc == "DOC8"){
+         
+             uploaddocAPI(documentName: CANCEL_CHQ_File, documentType: "8")
+        }
+        else if(uploadDoc == "DOC9"){
+            
+             uploaddocAPI(documentName: AADHAR_FRONT_File, documentType: "9")
+        }
+        else if(uploadDoc == "DOC10"){
+           
+             uploaddocAPI(documentName: AADHAR_BACK_File, documentType: "10")
+        } else if(uploadDoc == "DOC11"){
+            
+          
+             uploaddocAPI(documentName: EDU_FILE, documentType: "11")
+        }
+
+        self.view.layoutIfNeeded()
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+//    func validated_ticketSupportInsertAPI()
+//    {
+//        if Connectivity.isConnectedToInternet() {
+//            print("Yes! internet is available.")
+//
+//
+//            SVProgressHUD.show()
+//            //        SVProgressHUD.setBackgroundColor(primaryColor)
+//            SVProgressHUD.setForegroundColor(orangeColor)
+//            //SVProgressHUD.dismiss()
+//
+//            let sellerid : String = "\(UserDefaults.standard.value(forKey:"sellerid")!)"
+//            let data = supportImage.image!.pngData()
+//            let parameters: [String: Any] = [
+//
+//                "sellerid": sellerid,
+//                "msg":supportCommentTextField.text!,
+//                "subject" :supportSubjectTextField.text!,
+//                "title" :  supportDropDown.text!,
+//                "name" : supportNameTextField.text!,
+//                "email" :supportEmailTextField.text!,
+//                "upload_file" : "file.png",
+//                "mobile" : supportMobileNumberTextField.text!
+//
+//            ]
+//
+//            Alamofire.upload(multipartFormData: { multipartFormData in
+//                for (key,value) in parameters {
+//                    multipartFormData.append((value as! String).data(using: .utf8)!, withName: key)
+//                }
+//                multipartFormData.append(data!, withName: "file_upload", fileName: "file.png", mimeType: "image/jpeg")
+//            },
+//                             to:webservice.TicketSupportInsert)
+//            { (result) in
+//                switch result {
+//                case .success(let upload, _, _):
+//                    upload.responseJSON { response in
+//                        debugPrint(response)
+//
+//                        DispatchQueue.main.async {
+//                            SVProgressHUD.dismiss()
+//                        }
+//
+//                        print(response)
+//
+//                        if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+//                            //print("Data: \(utf8Text)") // original server data as UTF8 string
+//                            if let newData = utf8Text.data(using: String.Encoding.utf8){
+//                                do{
+//                                    let json = try JSON(data: newData)
+//                                    let thedata = json["message"].stringValue
+//                                    let result = json["result"]
+//                                    if thedata == "Success" {
+//                                        // print(result)
+//                                        self.navigationController?.popViewController(animated: true)
+//                                        //                                        self.ShowAlert("Beldara", AlertMessage: result.stringValue ,AlertTag: 1001)
+//
+//                                    }else{
+//                                        self.ShowAlert("Beldara", AlertMessage: thedata ,AlertTag: 1001)
+//                                    }
+//                                }catch _ as NSError {
+//                                    // error
+//                                }
+//                            }
+//                        }
+//
+//                    }
+//                case .failure(let encodingError):
+//                    print(encodingError)
+//                    self.ShowAlert("Beldara", AlertMessage: "Something Went Wrong",AlertTag: 1001)
+//                }
+//            }
+//
+//        }else {
+//            self.ShowAlert("Beldara", AlertMessage: "Check Internet Connectivity",AlertTag: 1001)
+//        }
+//
+//    }
+    
+    
+    
+    func uploaddocAPI(documentName:String, documentType:String)
+    {
+        
+        
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            let imageData = pickedImage.jpegData(compressionQuality: 1)
+            //  let imageData = imgDoc1.image!.pngData()
+            if imageData != nil
+            {
+                let parameters = [
+                    "FBAID":FBAId,
+                    "DocType":documentType,
+                    "DocName":documentName,
+                    "DocFile": "swift_file.jpeg"
+                ]
+                
+                let endUrl = "/api/upload-doc"
+                let url =  FinmartRestClient.baseURLString  + endUrl
+                // to:"http://preprodapiqa.mgfm.in/api/upload-doc")
+                Alamofire.upload(multipartFormData: { (multipartFormData) in
+                  
+                    multipartFormData.append(imageData!, withName: "DocFile", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                    for (key, value) in parameters {
+                        multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+                        
+                    }
+                }, to: url)
+                { (result) in
+                    switch result {
+                    case .success(let upload, _, _):
+                        
+                        upload.uploadProgress(closure: { (Progress) in
+                            print("Upload Progress: \(Progress.fractionCompleted)")
+                        })
+                        
+                        upload.responseJSON { response in
+                            
+                            DispatchQueue.main.async {
+                                                            alertView.close()
+                                                        }
+                            //self.delegate?.showSuccessAlert()
+                            print(response.request!)  // original URL request
+                            print(response.response!) // URL response
+                            print(response.data!)     // server data
+                            print(response.result)   // result of response serialization
+                            //                        self.showSuccesAlert()
+                          
+                            if let JSON = response.result.value {
+                                print("JSON: \(JSON)")
+                                
+                                self.setupUploadDoc(type: Int(documentType)!)
+                                
+//                                let jsonData = (JSON as AnyObject).value(forKey: "MasterData") as! AnyObject
+//
+//                                let status =    jsonData.value(forKey: "SavedStatus") as! Int
+//                                  let prv_file =    jsonData.value(forKey: "prv_file") as! String
+//
+//                                   print("FILE : \(prv_file)")
+    
+                            }
+                        }
+                        
+                    case .failure(let encodingError):
+                        //self.delegate?.showFailAlert()
+                        print("Error",encodingError)
+                        
+                    }
+                    
+                }
+                
+            }
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
+
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+//
+//
+//    }
+
+    /**********************************************************/
     //---<keyboard change for PAN text>---
     @objc func handleTextChange(_ textChange: UITextField) {
         if enpanTf.text?.count == 5 || enpanTf.text?.count == 6 || enpanTf.text?.count == 7 || enpanTf.text?.count == 8
@@ -711,6 +1159,13 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         return result
         
     }
+    
+    
+    /////////////////
+    
+    
+    
+    ////////////////
     
     
     //---<APICALL>---
@@ -811,7 +1266,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
                                             "SMID": 0 as AnyObject,
                                             "SM_Name": "" as AnyObject,
                                             "StatActi": "" as AnyObject,
-                                            "State":   enstateTf as AnyObject,
+                                            "State":   enstateTf.text! as AnyObject,
                                             "StateID": self.stateid as AnyObject,
                                             "Stock": "" as AnyObject,
                                             "Stock_Comp": "" as AnyObject,
@@ -838,14 +1293,16 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
                                             
                                             //end OF Info
             
-                                            /********************************************************/
+                                            /****************************NOT USED "POSPStat": enstateTf.text! as AnyObject, *****/
                                             // Address Dtl
                                             "Posp_Address1": enaddress1Tf.text! as AnyObject,
                                             "Posp_Address2": enaddress2Tf.text! as AnyObject,
                                             "Posp_Address3": enaddress3Tf.text! as AnyObject,
                                             "Posp_PinCode": enpincodeTf.text! as AnyObject,
                                             "Posp_City": encityTf.text! as AnyObject,
-                                            "Posp_StatID": enstateTf.text! as AnyObject,
+                                            "Posp_StatID": self.stateid as AnyObject,
+                                         
+                                           
                                             // non posp Address Dtl
                                             "Address_1": enaddress1Tf.text! as AnyObject,
                                             "Address_2": enaddress2Tf.text! as AnyObject,
@@ -870,6 +1327,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
                                             "referedby_code": "" as AnyObject]
         
         let url = "/api/posp-registration"
+            
+           // print("GGGGGGGG",params)
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -878,19 +1337,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             
             let jsonData = userObject as? NSDictionary
             TTGSnackbar.init(message: "Posp registered successfully.", duration: .long).show()
-            
-            
-//            let razorController : RazorPayementController = self.storyboard?.instantiateViewController(withIdentifier: "stbRazorPayementController") as! RazorPayementController
-//
-//            self.present(razorController, animated:true, completion: nil)
-//
-            
-//            let razorController : PaymentController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentController") as! PaymentController
-//
-//            self.present(razorController, animated:true, completion: nil)
-            
-            
-          
+            // self.showToast(controller: self, message: "Posp registered successfully.", seconds: 4)
             
             
             let storyboard = UIStoryboard(name: "payment", bundle: nil)
@@ -943,6 +1390,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSArray
+            
+            
             let Posp_First_Name = (jsonData![0] as AnyObject).value(forKey: "Posp_First_Name") as AnyObject
             let Posp_Last_Name = (jsonData![0] as AnyObject).value(forKey: "Posp_Last_Name") as AnyObject
             self.enfirstNameTf.text! = Posp_First_Name as! String
@@ -970,8 +1419,48 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             self.enbankNameTf.text! = Posp_BankName as! String
             let Posp_City = (jsonData![0] as AnyObject).value(forKey: "Posp_City") as AnyObject
             self.encityTf.text! = Posp_City as! String
+            
+            
+            let Posp_StatID = (jsonData![0] as AnyObject).value(forKey: "Posp_City") as AnyObject
+            if(Posp_StatID is NSNull){
+                
+                self.stateid = ""
+            }else{
+                 self.stateid = Posp_StatID as! String
+            }
+            
+            
+//            let POSPStat = (jsonData![0] as AnyObject).value(forKey: "POSPStat") as AnyObject
+//            if(POSPStat is NSNull){
+//
+//                self.enstateTf.text? = POSPStat as! String
+//            }else{
+//                self.enstateTf.text! = POSPStat as! String
+//            }
+       
             let Posp_DOB = (jsonData![0] as AnyObject).value(forKey: "Posp_DOB") as AnyObject
-            self.endobTf.text! = Posp_DOB as! String
+            
+            if(Posp_DOB is NSNull)
+            {
+                self.endobTf.text? = ""
+            }
+            else{
+               // self.enbankCityTf.text? = POSPBankCity as! String
+                let currDate = Posp_DOB as! String
+
+                if(currDate.isEmpty){
+                     self.endobTf.text? = ""
+                }else{
+                    let requiredFormat = currDate.toDateString(inputDateFormat: "yyyy-MM-dd", ouputDateFormat:
+                        "dd-MM-yyyy")
+                    
+                    self.endobTf.text! = requiredFormat
+                    self.strPosp_DOB  = requiredFormat
+                    print("MyDate",requiredFormat)
+                }
+               
+            }
+            
             let Posp_Email = (jsonData![0] as AnyObject).value(forKey: "Posp_Email") as AnyObject
             self.enemailTf.text! = Posp_Email as! String
             let Posp_IFSC = (jsonData![0] as AnyObject).value(forKey: "Posp_IFSC") as AnyObject
@@ -995,8 +1484,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             self.enpanTf.text! = Posp_PAN as! String
             let Posp_PinCode = (jsonData![0] as AnyObject).value(forKey: "Posp_PinCode") as AnyObject
             self.enpincodeTf.text! = Posp_PinCode as! String
-//            let POSPStat = (jsonData![0] as AnyObject).value(forKey: "POSPStat") as AnyObject
-//            self.enstateTf.text! = POSPStat as! String
+            self.getCityStateAPI(pincode: Posp_PinCode as! String)
+          
             let Posp_Aadhaar = (jsonData![0] as AnyObject).value(forKey: "Posp_Aadhaar") as AnyObject
             self.enadhrTf.text! = Posp_Aadhaar as! String
             let POSPBankCity = (jsonData![0] as AnyObject).value(forKey: "POSPBankCity") as AnyObject
@@ -1007,6 +1496,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             else{
                 self.enbankCityTf.text? = POSPBankCity as! String
             }
+            
+/****************************** Checking FOR PAYMENT and LINK **************************************************************/
              let POSPLink = (jsonData![0] as AnyObject).value(forKey: "Link") as AnyObject
             
             if(POSPLink is NSNull)
@@ -1015,6 +1506,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             }
             else{
                 self.LINK = POSPLink as! String
+                
+                
             }
             
             let POSPNomber = (jsonData![0] as AnyObject).value(forKey: "POSPNo") as AnyObject
@@ -1025,6 +1518,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             }
             else{
                 self.POSPNo = POSPNomber as! String
+                
             }
           
             let PaymStatus = (jsonData![0] as AnyObject).value(forKey: "PaymStat") as AnyObject
@@ -1035,8 +1529,85 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             }
             else{
                 self.PaymStat = PaymStatus as! String
+                
+               
             }
             
+            
+            //............................
+            if(!self.LINK .isEmpty) {
+                self.isPaymentLinkAvailable = true
+            }
+            if(!self.POSPNo.isEmpty) {
+                self.isPospAvailable = true
+            }
+            if(!self.PaymStat.isEmpty) {
+                self.isPaymentDone = true
+            }
+            
+           
+            
+            
+      /************************************* END  ******************************************************/
+            
+            
+     /*********************************DOC Availabilty From server***********************************************/
+            //
+            
+            let doc = (jsonData![0] as AnyObject).value(forKey: "doc_available") as? NSArray
+            
+            
+            
+            if(doc?.count ?? 0 > 0){
+                
+                self.pospDocModel = [pospDoc]()
+                var count = 0
+                for index in 0...(doc?.count ?? 0)-1 {
+                    
+                    let aObject = doc?[index] as! [String : AnyObject]
+                    
+                    let DocType = (doc![index] as AnyObject).value(forKey: "DocType") as! Int
+                    if(DocType == 6 || DocType == 7 ||  DocType == 8 || DocType == 9 ||  DocType == 10 ||  DocType == 11 ){
+                        count = count + 1
+                        
+                    }
+                    
+                    self.setupUploadDoc(type : DocType)   // Set the Doc URL
+                    
+                    let model = pospDoc(DocType:  aObject["DocType"] as! Int ,            // Bind the all doc
+                                        FileName: aObject["FileName"] as! String,
+                                        DocName: aObject["DocName"] as! String
+                    )
+                    
+                    self.pospDocModel.append(model)
+                }
+                
+                
+                if(count >= 6){
+                    
+                    self.isAllImageUpload = true
+                }else{
+                    self.isAllImageUpload = false
+                }
+                
+                
+            }else{
+                self.isAllImageUpload = false
+            }
+            
+            
+            
+            self.checkPospStatus()        // Posp Status Check
+            
+           
+                
+        /********************************************************************************************/
+            
+           
+            
+            
+
+           
             
         }, onError: { errorData in
             alertView.close()
@@ -1051,7 +1622,79 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         
     }
     
-    func getCityStateAPI()
+    
+    func checkPospStatus(){
+    
+        if(self.isAllImageUpload == true){
+            
+            if(isPaymentDone){
+                
+            
+                 self.showToast(controller: self, message: "POSP Already exist!!", seconds: 4)
+                
+               // openValidatePosp(strData: "DOC")  // 05 pending  (Hide the Main View)
+            }
+          
+        }else{
+            
+            if(isPaymentDone){
+                
+                alertCall(message: "Upload Remaining Documents !!")
+                openValidatePosp(strData: "DOC")
+            }
+        }
+    
+    }
+   
+    func setupUploadDoc(type : Int){
+        
+        switch(type) {
+            
+        case 6  :
+            
+            print("DOC Image 1 ")
+            imgDoc1.image = UIImage(named: "doc_uploaded")
+            imgDoc1.tag = 1
+            break;
+            
+        case 7  :
+            print("DOC Image 2 ")
+            imgDoc2.image = UIImage(named: "doc_uploaded")
+            imgDoc2.tag = 1
+            break;
+            
+        case 8 :
+            print("DOC Image 3 ")
+            imgDoc3.image = UIImage(named: "doc_uploaded")
+            imgDoc3.tag = 1
+            break;
+            
+        case 9 :
+            print("DOC Image 4 ")
+            imgDoc4.image = UIImage(named: "doc_uploaded")
+            imgDoc4.tag = 1
+            break;
+            
+            
+        case 10  :
+            print("DOC Image 5 ")
+            imgDoc5.image = UIImage(named: "doc_uploaded")
+            imgDoc5.tag = 1
+            break;
+            
+        case 11  :
+            print("DOC Image 5 ")
+            imgDoc6.image = UIImage(named: "doc_uploaded")
+            imgDoc6.tag = 1
+            break;
+            
+        default:
+            print("DOC : No Data")
+        }
+        
+    }
+    
+    func getCityStateAPI(pincode : String)
     {
         
         if Connectivity.isConnectedToInternet()
@@ -1066,7 +1709,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = ["PinCode": enpincodeTf.text as AnyObject]
+        let params: [String: AnyObject] = ["PinCode": pincode as AnyObject]
         
         let url = "/api/get-city-and-state"
         
@@ -1175,6 +1818,19 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+//    func showToast(controller: UIViewController,message : String, seconds : Double){
+//
+//         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+//         alert.view.backgroundColor = UIColor.black
+//         alert.view.alpha = 0.6
+//        alert.view.layer.cornerRadius = 15
+//
+//        controller.present(alert, animated: true, completion: nil)
+//
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds){
+//            alert.dismiss(animated: true)
+//        }
+//    }
    
     
 }

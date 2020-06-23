@@ -90,25 +90,10 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         print("cancel")
         
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
         
-        //            let razorController : PaymentController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentController") as! PaymentController
-        //
-        //            self.present(razorController, animated:true, completion: nil)
-        
-//        let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
-//        present(LifeInsurance, animated:true, completion: nil)
-//
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
-        
-        
-        ////////////////  05  ///////////////////////////
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//         let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//
-//         present(KYDrawer, animated: true, completion: nil)
-        
-        ////////////
+        present(KYDrawer, animated: true, completion: nil)
         
 
     }
@@ -223,7 +208,15 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
                         if obj.StatusNo == 0 {
                             
                             self.paymentDtlObj = obj.MasterData
-                            self.setPaymentDetail(objModel: obj.MasterData)
+
+                            if( self.paymentDtlObj?.CustID == "0"){
+                                
+                                self.alertCustomCall(message: self.paymentDtlObj!.dispmsg)
+                                
+                            }else{
+                                 self.setPaymentDetail(objModel: obj.MasterData)
+                            }
+                         
                             
                         }else{
                             
@@ -263,6 +256,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     func setPaymentDetail(objModel :PaymentDetailMasterData ){
      
         
+        
         lblCustomerName.text = objModel.Name + "-" + objModel.CustID
         lblProductName.text  = objModel.productname
         lblAmount.text       = rupee + " " + objModel.displayamounts
@@ -283,6 +277,26 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         self.addChild(paymentSuccessVC)
         self.view.addSubview(paymentSuccessVC.view)
         
+    }
+    
+   
+    
+    //--<showalertView>--
+    func alertCustomCall(message:String)
+    {
+       // let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        
+        let action1 = UIAlertAction(title: "Default", style: .default) { (action:UIAlertAction) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+            
+            self.present(KYDrawer, animated: true, completion: nil)
+            
+        }
+        
+        alert.addAction(action1)
+        self.present(alert, animated: true, completion: nil)
     }
     
    

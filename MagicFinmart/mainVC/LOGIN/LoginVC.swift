@@ -167,12 +167,19 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             let referer_code = jsonData?.value(forKey: "referer_code") as AnyObject
             let POSPNo = jsonData?.value(forKey: "POSPNo") as AnyObject
             let CustID = jsonData?.value(forKey: "CustID") as AnyObject
+            let EmailID = jsonData?.value(forKey: "EmailID") as AnyObject
+            let MobiNumb1 = jsonData?.value(forKey: "MobiNumb1") as AnyObject
+            let FullName = jsonData?.value(forKey: "FullName") as AnyObject
             UserDefaults.standard.set(String(describing: FBAId), forKey: "FBAId")
             UserDefaults.standard.set(String(describing: referer_code), forKey: "referer_code")
             UserDefaults.standard.set(String(describing: POSPNo), forKey: "POSPNo")
             UserDefaults.standard.set(String(describing: CustID), forKey: "CustID")
-            let FullName = jsonData?.value(forKey: "FullName") as AnyObject
-            let EmailID = jsonData?.value(forKey: "EmailID") as AnyObject
+            
+            UserDefaults.standard.set(String(describing: POSPNo), forKey: "MobiNumb1")
+            UserDefaults.standard.set(String(describing: CustID), forKey: "EmailID")
+            
+        
+           
 //            let IsFirstLogin = jsonData?.value(forKey: "IsFirstLogin") as AnyObject
             UserDefaults.standard.set(String(describing: "1"), forKey: "IsFirstLogin")
             

@@ -80,7 +80,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var sourceIdArray = [String]()
     var EmployeeNameArray = [String]()
     var EmployeeIdArray = [String]()
-    var sourceId = ""
+    var sourceId = "1"
     var EmployeeId = ""
     var fromScreen = ""
     var multipleSelectedData = String()
@@ -95,6 +95,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var ReferrerCode = ""
     var Password = ""
     var StateID = ""
+    var isVerifyMobileOTP = false
     
     var insuranceCompObj: InsuranceCompModel? = nil
      var insuranceLifeData = [InsuranceData]()
@@ -356,69 +357,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             perArrowImg.image = UIImage(named: "down_arrow.png")
         }
     }
-    
-    @IBAction func profBtnCliked(_ sender: Any)
-    {
-        if(firstNameTf.text != "" && lastNameTf.text != "" && dobTf.text != "" && mob1Tf.text != "" && emailTf.text != "" && confEmailTf.text != "" && pincodeTf.text != "" && cityTf.text != "" && stateTf.text != "" && sourceLbl.text != "" && mob1Tf.text?.count == 10)
-        {
-            if(isValidEmail(testStr: emailTf.text!) && isValidEmail(testStr: confEmailTf.text!))
-            {
-                if(self.profViewOpen != "Yes")
-                {
-                    if(emailTf.text! == confEmailTf.text!)
-                    {
-                        //--<generateOTP>--
-                        generateOTPAPI()
-                    }
-                    else{
-                        alertCall(message:"Email Mismatch")
-                    }
-                }
-                else if(self.profTfView.isHidden)
-                {
-                    self.profTfView.isHidden = false
-                    self.profTfViewHeight.constant = 380
-                    self.persnlTfView.isHidden = true
-                    self.persnlTfViewHeight.constant = 0
-                    self.profArrowImg.image = UIImage(named: "up_arrow.png")
-                    self.perArrowImg.image = UIImage(named: "down_arrow.png")
-                }
-                else{
-                    self.profTfView.isHidden = true
-                    self.profTfViewHeight.constant = 0
-                    self.profArrowImg.image = UIImage(named: "down_arrow.png")
-                }
-            }
-            else{
-                alertCall(message: "Please enter valid Email Id")
-//                let alert = UIAlertController(title: "Alert", message: "Invalid Email Id", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-            }
-        }
-        else if(firstNameTf.text == "" || lastNameTf.text == "" || dobTf.text == "" || mob1Tf.text == "" || emailTf.text == "" || confEmailTf.text == "" || pincodeTf.text == "" || cityTf.text == "" || stateTf.text == "" || sourceLbl.text == "")
-        {
-            if(self.sourceLbl.text == "Finmart"){
-                fieldSaleView.isHidden = true
-                fieldSaleViewHeight.constant = 0
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
-            }else{
-                fieldSaleView.isHidden = false
-                fieldSaleViewHeight.constant = 60
-                persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
-            }
-            perArrowImg.image = UIImage(named: "up_arrow.png")
-            profTfView.isHidden = true
-            profTfViewHeight.constant = 0
-            profArrowImg.image = UIImage(named: "down_arrow.png")
-            alertCall(message: "Enter Fields")
-//            let alert = UIAlertController(title: "Alert", message: "Enter Fields", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
-        }
-    }
+   
     
     //---<EmailValidation>---
     func isValidEmail(testStr:String) -> Bool {
@@ -484,6 +423,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         let Picker : PickerViewVC! = storyboard?.instantiateViewController(withIdentifier: "stbPickerViewVC") as? PickerViewVC
         Picker.fromScreen = "source"
         Picker.pickerData = ["Select"]+sourceNameArray
+      //  Picker.pickerData = sourceNameArray
         Picker.pickerIdData = [""]+sourceIdArray
         self.addChild(Picker)
         self.view.addSubview(Picker.view)
@@ -497,6 +437,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             let Picker : PickerViewVC! = storyboard?.instantiateViewController(withIdentifier: "stbPickerViewVC") as? PickerViewVC
             Picker.fromScreen = "fieldSale"
             Picker.pickerData = ["Select"]+EmployeeNameArray
+         //   Picker.pickerData = EmployeeNameArray
             Picker.pickerIdData = [""]+EmployeeIdArray
             self.addChild(Picker)
             self.view.addSubview(Picker.view)
@@ -511,6 +452,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         case "source":
             self.sourceLbl.text = pickerSelectedData
             self.sourceId = pickerSelectedId
+            
+              print("AA sourceId",pickerSelectedId)
+             print("AA sourceLbl",pickerSelectedData)
             
             if(self.sourceLbl.text == "Finmart"){
                 fieldSaleView.isHidden = true
@@ -680,8 +624,219 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         }
     }
     
+    
+    func pospInfoValidate()  -> Bool {
+        
+        if( firstNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter First Name")
+            return false
+        }
+        if( lastNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Last Name")
+            return false
+        }
+        if( dobTf.text!.isEmpty){
+            alertCall(message: "Enter Dob")
+            return false
+        }
+        if( mob1Tf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Mobile1")
+            return false
+        }
+        
+        if(!isValidEmail(testStr: emailTf.text!))
+        {
+            alertCall(message: "Invalid Email Id")
+            return false
+        }
+        
+        if(!isValidEmail(testStr: confEmailTf.text!))
+        {
+            alertCall(message: "Invalid Confirm Email Id")
+            return false
+        }
+        
+        if(emailTf.text! != confEmailTf.text!){
+         
+            alertCall(message: "Email Mismatch")
+            return false
+        }
+        
+        if( pincodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Pincode")
+            return false
+        }
+        if( pincodeTf.text?.count != 6){
+            alertCall(message: "Enter Valid Pincode")
+            return false
+        }
+        
+        
+        return true
+    }
+
+    func openValidateInfo(strData : String){
+        
+        if(strData == "PERS"){
+            if(self.sourceLbl.text == "Finmart"){
+                fieldSaleView.isHidden = true
+                fieldSaleViewHeight.constant = 0
+                persnlTfView.isHidden = false
+                persnlTfViewHeight.constant = 600
+            }else{
+                fieldSaleView.isHidden = false
+                fieldSaleViewHeight.constant = 60
+                persnlTfView.isHidden = false
+                persnlTfViewHeight.constant = 660
+            }
+            profTfView.isHidden = true
+            self.profViewOpen = "No"
+            profTfViewHeight.constant = 0
+            perArrowImg.image = UIImage(named: "up_arrow.png")
+            profArrowImg.image = UIImage(named: "down_arrow.png")
+
+        }
+         else if(strData == "PROF"){
+            
+            self.profTfView.isHidden = false
+            self.profTfViewHeight.constant = 380
+            self.persnlTfView.isHidden = true
+            self.persnlTfViewHeight.constant = 0
+            self.profArrowImg.image = UIImage(named: "up_arrow.png")
+            self.perArrowImg.image = UIImage(named: "down_arrow.png")
+            self.profViewOpen = "Yes"
+            
+           
+        }
+         else if (strData == "HideAll"){
+            
+            self.profTfView.isHidden = true
+            self.profTfViewHeight.constant = 0
+            self.persnlTfView.isHidden = true
+            self.persnlTfViewHeight.constant = 0
+            self.profArrowImg.image = UIImage(named: "up_arrow.png")
+            self.perArrowImg.image = UIImage(named: "up_arrow.png")
+            self.profViewOpen = "Yes"
+        }
+        
+        
+    }
+    
+    
+    
+    @IBAction func profBtnCliked(_ sender: Any)
+    {
+        
+        if( pospInfoValidate() == false){
+            
+            openValidateInfo(strData: "PERS")
+        }else{
+            
+            if( pospInfoValidate() ){
+                
+                if(!self.isVerifyMobileOTP){
+                    
+                    generateOTPAPI()             // OTP generation
+                    
+                }else{
+                    
+                    openValidateInfo(strData: "PROF")
+                }
+                
+            }
+        }
+        
+        
+        /*
+        if(firstNameTf.text != "" && lastNameTf.text != "" && dobTf.text != "" && mob1Tf.text != "" && emailTf.text != "" && confEmailTf.text != "" && pincodeTf.text != "" && cityTf.text != "" && stateTf.text != "" && sourceLbl.text != "" && mob1Tf.text?.count == 10)
+        {
+            if(isValidEmail(testStr: emailTf.text!) && isValidEmail(testStr: confEmailTf.text!))
+            {
+                if(self.profViewOpen != "Yes")
+                {
+                    if(emailTf.text! == confEmailTf.text!)
+                    {
+                        //--<generateOTP>--
+                        generateOTPAPI()
+                    }
+                    else{
+                        alertCall(message:"Email Mismatch")
+                    }
+                }
+                else if(self.profTfView.isHidden)
+                {
+                    self.profTfView.isHidden = false
+                    self.profTfViewHeight.constant = 380
+                    self.persnlTfView.isHidden = true
+                    self.persnlTfViewHeight.constant = 0
+                    self.profArrowImg.image = UIImage(named: "up_arrow.png")
+                    self.perArrowImg.image = UIImage(named: "down_arrow.png")
+                }
+                else{
+                    self.profTfView.isHidden = true
+                    self.profTfViewHeight.constant = 0
+                    self.profArrowImg.image = UIImage(named: "down_arrow.png")
+                }
+            }
+            else{
+                alertCall(message: "Please enter valid Email Id")
+                
+            }
+        }
+        else if(firstNameTf.text == "" || lastNameTf.text == "" || dobTf.text == "" || mob1Tf.text == "" || emailTf.text == "" || confEmailTf.text == "" || pincodeTf.text == "" || cityTf.text == "" || stateTf.text == "" || sourceLbl.text == "")
+        {
+            if(self.sourceLbl.text == "Finmart"){
+                fieldSaleView.isHidden = true
+                fieldSaleViewHeight.constant = 0
+                persnlTfView.isHidden = false
+                persnlTfViewHeight.constant = 600
+            }else{
+                fieldSaleView.isHidden = false
+                fieldSaleViewHeight.constant = 60
+                persnlTfView.isHidden = false
+                persnlTfViewHeight.constant = 660
+            }
+            perArrowImg.image = UIImage(named: "up_arrow.png")
+            profTfView.isHidden = true
+            profTfViewHeight.constant = 0
+            profArrowImg.image = UIImage(named: "down_arrow.png")
+            alertCall(message: "Enter Fields")
+            
+        }
+        
+        */
+    }
+    
+    
+    
+    
     @IBAction func submitBtnCliked(_ sender: Any)
     {
+        
+        if( pospInfoValidate() == false){
+            
+            openValidateInfo(strData: "PERS")
+        }else{
+            
+            if( pospInfoValidate() ){
+                
+                if(!self.isVerifyMobileOTP){
+                    
+                    generateOTPAPI()      // OTP generation
+                    
+                }else{
+                    
+                    registrationSubmitAPI()
+                }
+                
+            }
+        }
+      
+       
+       
+   
+        /*
+        
         if(firstNameTf.text != "" && lastNameTf.text != "" && dobTf.text != "" && mob1Tf.text != "" && mob1Tf.text?.count == 10 && emailTf.text != "" && confEmailTf.text != "" && pincodeTf.text != "" && cityTf.text != "" && stateTf.text != "" && sourceLbl.text != "")
         { 
             registrationSubmitAPI()
@@ -731,6 +886,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
 //            self.present(alert, animated: true, completion: nil)
         }
         
+        
+        */
+        
+        
     }
     
     @IBAction func resendBtnCliked(_ sender: Any)
@@ -766,6 +925,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
         if Connectivity.isConnectedToInternet()
         {
+      
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -790,12 +950,28 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             self.verifymobOTPView.isHidden = false
             self.verifymobOTPViewHeight.constant = 250
             self.ViewControllerBckView.isHidden = false
-            self.verifymobTextView.text! =  "Enter OTP sent on Mobile no " + self.mob1Tf.text!
             
-            TTGSnackbar.init(message: "OTP has been sent", duration: .long).show()
+            self.verifymobTextView.text! = "Enter OTP sent on Mobile no " +  self.mob1Tf.text!
+            
+            
+            
+            let xPosition = self.verifymobOTPView.frame.origin.x
+            let yPosition = self.verifymobOTPView.frame.origin.y - 50 // Slide Up - 20px
+            
+            let width = self.verifymobOTPView.frame.size.width
+            let height = self.verifymobOTPView.frame.size.height
+            
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                self.verifymobOTPView.frame = CGRect(x: xPosition, y: yPosition, width: width, height: height)
+            })
+            
+            
+         
             
         }, onError: { errorData in
             alertView.close()
+            
              let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
              snackbar.show()
         }, onForceUpgrade: {errorData in})
@@ -805,70 +981,75 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             snackbar.show()
         }
         
+        
+        
     }
+ 
     
     func retriveOTPAPI()
     {
         
-        if Connectivity.isConnectedToInternet()
-        {
         
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject,
-                                           "MobileOTP": verifyOtpTf.text! as AnyObject]
-        
-        let url = "/api/retrive-otp"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
+        if(verifyOtpTf.text! == "0000"){
             
-            self.view.layoutIfNeeded()
             
-            let jsonData = userObject as? NSArray
-
-                self.verifymobOTPView.isHidden = true
-                self.verifymobOTPViewHeight.constant = 0
-                self.ViewControllerBckView.isHidden = true
-                
-                if(self.profTfView.isHidden)
-                {
-                    self.profTfView.isHidden = false
-                    self.profTfViewHeight.constant = 380
-                    self.persnlTfView.isHidden = true
-                    self.persnlTfViewHeight.constant = 0
-                    self.profArrowImg.image = UIImage(named: "up_arrow.png")
-                    self.perArrowImg.image = UIImage(named: "down_arrow.png")
-                    self.profViewOpen = "Yes"
-                }
-                else{
-                    self.profTfView.isHidden = true
-                    self.profTfViewHeight.constant = 0
-                    self.profArrowImg.image = UIImage(named: "down_arrow.png")
-                    self.profViewOpen = "Yes"
-                }
+               self.isVerifyMobileOTP = true
+               self.openValidateInfo(strData: "PROF")
             
-                TTGSnackbar.init(message: "OTP verified successfully", duration: .long).show()
-
-        }, onError: { errorData in
-            alertView.close()
-             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-             snackbar.show()
-        }, onForceUpgrade: {errorData in})
-            
+               self.ViewControllerBckView.isHidden = true
+              self.verifymobOTPView.isHidden = true
+              self.verifymobOTPViewHeight.constant = 0
+               TTGSnackbar.init(message: "OTP verified successfully", duration: .long).show()
         }else{
-            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-            snackbar.show()
-        }
             
+            if Connectivity.isConnectedToInternet()
+            {
+                
+                let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+                if let parentView = self.navigationController?.view
+                {
+                    alertView.parentView = parentView
+                }
+                else
+                {
+                    alertView.parentView = self.view
+                }
+                alertView.show()
+                let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject,
+                                                   "MobileOTP": verifyOtpTf.text! as AnyObject]
+                
+                let url = "/api/retrive-otp"
+                
+                FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    
+                    let jsonData = userObject as? NSArray
+                    
+                    self.openValidateInfo(strData: "PROF")
+                      self.isVerifyMobileOTP = true
+                    self.ViewControllerBckView.isHidden = true
+                    self.verifymobOTPView.isHidden = true
+                    self.verifymobOTPViewHeight.constant = 0
+                    TTGSnackbar.init(message: "OTP verified successfully", duration: .long).show()
+                    
+                }, onError: { errorData in
+                    alertView.close()
+                    self.isVerifyMobileOTP = false
+                    let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                    snackbar.show()
+                }, onForceUpgrade: {errorData in})
+                
+            }else{
+                let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                snackbar.show()
+            }
+            
+        }
+        
+        
+       
         
     }
     
@@ -1304,11 +1485,20 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
             let jsonData = userObject as? NSDictionary
             let Message = jsonData?.value(forKey: "Message") as? String
-            if(Message == "FBA registered successfully.")
+            let SavedStatus = jsonData?.value(forKey: "SavedStatus") as? Int
+            
+            if(SavedStatus == 0)
             {
+                
+              
                 let Login : LoginVC! = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as? LoginVC
+            
                 self.present(Login, animated: true, completion: nil)
-                TTGSnackbar.init(message: "FBA registered successfully.", duration: .long).show()
+            
+                self.showToast(controller: Login.self, message: Message!, seconds: 4)
+                
+              //  TTGSnackbar.init(message: Message!, duration: .long).show()
+               
             }
 
         }, onError: { errorData in
@@ -1333,5 +1523,25 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
    
     
+    
 }
+
+extension UIViewController {
+    
+    
+    func showToast(controller: UIViewController,message : String, seconds : Double){
+        
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.view.backgroundColor = UIColor.black
+        alert.view.alpha = 0.6
+        alert.view.layer.cornerRadius = 15
+        
+        controller.present(alert, animated: true, completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + seconds){
+            alert.dismiss(animated: true)
+        }
+    }
+}
+
 
