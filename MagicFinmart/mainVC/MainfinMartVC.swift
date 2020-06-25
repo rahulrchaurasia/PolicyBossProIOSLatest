@@ -24,6 +24,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @IBOutlet weak var MainScrollView: UIScrollView!
     var dynamicDashboardModel = [DynamicDashboardModel]()
+    var loanModel = [DynamicDashboardModel]()
      var userDashboardModel = [UserConstDashboarddModel]()
     // For AlertDialog
      let alertService = AlertService()
@@ -66,6 +67,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         knowguruView.layer.borderColor=borderColor.cgColor;
         
         //--<api>--
+        getLoanStaticDashboard()
         userconstantAPI()
         getdynamicappAPI()
        // insurancebusinessAPI()      // 05 temp committed
@@ -133,7 +135,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
             else if(section == 1)
             {
-                return loansArray.count
+                return loanModel.count
             }
             else if(section == 2)
             {
@@ -164,32 +166,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         else{
             let cell = mainTV.dequeueReusableCell(withIdentifier: "cell") as! MainfinmartTVCell
 
-            
-           // When Dashboard cell's share Icon Clicked
-            cell.tapShareProd = {
-
-                let alertVC =  self.alertService.alert(title: self.dynamicDashboardModel[indexPath.row].title,
-                                body:self.dynamicDashboardModel[indexPath.row].popupmsg,
-                                buttonTitle: "SHARE")
-                
-                // When Alert Dialog Share Button Click
-                alertVC.didClickShare = {
-                    print("share the Data ")
-                    self.getShareData(prdID: self.dynamicDashboardModel[indexPath.row].ProdId)
-                    
-                }
-               self.present(alertVC, animated: true)
-                
-            
-            }
-
-            // When Alert Dialog Info Button Click
-            cell.tapInfoProd = {
-
-               
-                let alertWebVC = self.alertService.alertWebView(webURL: self.dynamicDashboardModel[indexPath.row].info)
-                self.present(alertWebVC, animated: true)
-            }
+           
             //shadowColor for uiview
             cell.inTView.layer.cornerRadius = 4.0
             cell.inTView.layer.shadowColor = UIColor.gray.cgColor
@@ -199,6 +176,36 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             if(indexPath.section == 0)
             {
+                
+                /*********************************  Insurance *********************************************************/
+                // When Dashboard cell's share Icon Clicked
+                cell.tapShareProd = {
+                    
+                    let alertVC =  self.alertService.alert(title: self.dynamicDashboardModel[indexPath.row].title,
+                                                           body:self.dynamicDashboardModel[indexPath.row].popupmsg,
+                                                           buttonTitle: "SHARE")
+                    
+                    // When Alert Dialog Share Button Click
+                    alertVC.didClickShare = {
+                        print("share the Data ")
+                        self.getShareData(prdID: self.dynamicDashboardModel[indexPath.row].ProdId)
+                        
+                    }
+                    self.present(alertVC, animated: true)
+                    
+                    
+                }
+                
+                // When Alert Dialog Info Button Click
+                cell.tapInfoProd = {
+                    
+                    
+                    let alertWebVC = self.alertService.alertWebView(webURL: self.dynamicDashboardModel[indexPath.row].info)
+                    self.present(alertWebVC, animated: true)
+                }
+                
+                /******************************************************************************************/
+                
                 cell.cellbtnInfoProduct.isHidden = false
                 cell.cellbtnShareProduct.isHidden = false
 
@@ -246,15 +253,74 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
             else if(indexPath.section == 1)
             {
-                cell.cellbtnInfoProduct.isHidden = true
-                cell.cellbtnShareProduct.isHidden = true
                 
-                cell.cellImageInfoProduct.isHidden = true
-                cell.cellImageShareProduct.isHidden = true
                 
-                cell.cellTitleLbl.text! = loansArray[indexPath.row]
-                cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
-                cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
+                /*********************************  Loan  *********************************************************/
+                // When Dashboard cell's share Icon Clicked
+                cell.tapShareProd = {
+                    
+                    let alertVC =  self.alertService.alert(title: self.loanModel[indexPath.row].title,
+                                                           body:self.loanModel[indexPath.row].popupmsg,
+                                                           buttonTitle: "SHARE")
+                    
+                    // When Alert Dialog Share Button Click
+                    alertVC.didClickShare = {
+                        print("share the Data 5 ")
+                        self.getShareData(prdID: self.loanModel[indexPath.row].ProdId)
+                        
+                    }
+                    self.present(alertVC, animated: true)
+                    
+                    
+                }
+                
+                // When Alert Dialog Info Button Click
+                cell.tapInfoProd = {
+                    
+                    
+                    let alertWebVC = self.alertService.alertWebView(webURL: self.loanModel[indexPath.row].info)
+                    self.present(alertWebVC, animated: true)
+                }
+                
+                /******************************************************************************************/
+            
+                
+                
+                cell.cellbtnInfoProduct.isHidden = false
+                cell.cellbtnShareProduct.isHidden = false
+                
+                cell.cellImageInfoProduct.isHidden = false
+                cell.cellImageShareProduct.isHidden = false
+                // check if Info  is not empty
+                if(loanModel[indexPath.row].info == "" )
+                {
+                    cell.cellbtnInfoProduct.isHidden = true
+                    cell.cellImageInfoProduct.isHidden = true
+                }else{
+                    cell.cellbtnInfoProduct.isHidden = false
+                    cell.cellImageInfoProduct.isHidden = false
+                }
+                
+                // check if Share  is not empty
+                if(loanModel[indexPath.row].IsSharable == "Y" )
+                {
+                    cell.cellbtnShareProduct.isHidden = false
+                    cell.cellImageShareProduct.isHidden = false
+                    
+                }else{
+                    cell.cellbtnShareProduct.isHidden = true
+                    cell.cellImageShareProduct.isHidden = true
+                }
+                
+                
+                //loanModel
+//                cell.cellTitleLbl.text! = loansArray[indexPath.row]
+//                cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
+//                cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
+                
+                cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname
+                cell.celldetailTextLbl.text! = loanModel[indexPath.row].dashdescription
+                cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
             }
             else if(indexPath.section == 2)
             {
@@ -430,10 +496,67 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                  // // Comment ended
                 */
                 
+                
                 //************** End OF  Insurance Tap **********//
             }
             if(indexPath.section == 1)
             {
+                
+                switch Int(self.loanModel[indexPath.row].ProdId) {
+                case 4  :  // credit Loan
+                    
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "credit"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                case 19  :  // personal Loan
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "personal"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    
+                    
+                case 6  :  // "business Loan"
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "business"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    
+                    
+                    
+                case 7  :  // home Loan
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "home"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    
+                    
+                    
+                case 8  :  // lap Loan
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "lap"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    
+                    
+                    
+                case 81  :  // car Loan
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "car"
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    present(commonWeb, animated: true, completion: nil)
+                    break
+                    
+                default :
+                   print("Loan Clicked")
+                    
+                    
+                }
+                
+                /*
+                
+                ////////////// OLD Code Commented /////////////////////////
                 if(indexPath.row == 0)
                 {
                     let creditCard : creditCardVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcreditCardVC") as! creditCardVC
@@ -441,9 +564,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 }
                 if(indexPath.row == 1)
                 {
-//                    let MotorInsuranceV : MotorInsuranceVCS = self.storyboard?.instantiateViewController(withIdentifier: "stbMotorInsuranceVCS") as! MotorInsuranceVCS
-//                    MotorInsuranceV.fromScreen = "personalLoan"
-//                    present(MotorInsuranceV, animated:true, completion: nil)
+
                     let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
                     commonQuotes.titleL = "PERSONAL LOAN"
                     commonQuotes.loanType = "PSL"
@@ -451,9 +572,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 }
                 if(indexPath.row == 2)
                 {
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.webfromScreen = "businessLoan"
-//                    present(commonWeb, animated: true, completion: nil)
+
                     let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
                     commonQuotes.titleL = "BUSINESS LOAN"
                     commonQuotes.loanType = "BL"
@@ -476,6 +595,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     commonQuotes.loanType = "LAP"
                     present(commonQuotes, animated:true, completion: nil)
                 }
+                
+                */
+                //////////////// End OF Old code //////////////////////////
 //                if(indexPath.row == 6)
 //                {
 //                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -854,7 +976,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
                                                   link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
                            isActive: aObject["isActive"] as! Int, dashdescription: aObject["dashdescription"] as! String,
-                           type: aObject["type"] as! Int, dashboard_type: aObject["dashboard_type"] as! String,
+                           modalType: "INSURANCE" , dashboard_type: aObject["dashboard_type"] as! String,
                            
                            ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
                                 ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
@@ -892,6 +1014,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
         
     }
+    
+    
     
     //////////////
     
@@ -1090,6 +1214,61 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         // present the view controller
         self.present(activityViewController, animated: true, completion: nil)
+        
+    }
+    
+    func getLoanStaticDashboard(){
+        
+        loanModel = [DynamicDashboardModel]()
+        
+        loanModel.append(DynamicDashboardModel(menuid: 0, menuname: "KOTAK GROUP HEALTH CARE",
+                                               link: "", iconimage: "kotak_elite.png", isActive: 1,
+                                               dashdescription: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
+                                               modalType: "LOAN", dashboard_type: "0",
+                                               ProdId: "23",
+                                               ProductNameFontColor: "", ProductDetailsFontColor: "",
+                                               ProductBackgroundColor: "",
+                                               IsExclusive: "Y", IsNewprdClickable: "Y", IsSharable: "Y",
+                                               popupmsg: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
+                                               title: "Kotak Group health Care",
+                                               info: "http://origin-cdnh.policyboss.com/fmweb/GroupHealthCare/update.html"))
+        
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "4",
+                                               menuname: "CREDIT CARD",
+                                               dashdescription: "Get instant Credit card approvals with amazing offers & deals.",
+                                               iconimage: "credit_card.png"))
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "19",
+                                               menuname: "PERSONAL LOAN",
+                                               dashdescription: "Provide Instant approval for your customers at attractive interest rates.",
+                                               iconimage: "personal_loan.png"))
+        
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "6",
+                                               menuname: "BUSINESS LOAN",
+                                               dashdescription: "Maximum loan amount at competitive interest rate.",
+                                               iconimage: "balance_transfer.png"))
+        
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "7",
+                                               menuname: "HOME LOAN",
+                                               dashdescription: "Home loan at best interest rates from over 20+ banks & NBFCs.",
+                                               iconimage: "home_loan.png"))
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "8",
+                                               menuname: "LOAN AGAINST PROPERTY",
+                                               dashdescription: "Maximum loan amount at competitive interest rate against the property.",
+                                               iconimage: "loan_against_property.png"))
+        
+        
+        loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "81",
+                                               menuname: "CAR LOAN TOP UP",
+                                               dashdescription: "Sell car loan Top-Up, upto 200% of the car value of your customer!",
+                                               iconimage: "carloan.png"))
+        
+        
+        
         
     }
     

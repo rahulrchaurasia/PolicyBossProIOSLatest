@@ -19,7 +19,7 @@ class DynamicDashboardModel: NSObject {
 
     var isActive: Int
     var dashdescription : String
-    var type: Int
+    var modalType: String
     var dashboard_type : String
 
     var ProdId: String
@@ -39,7 +39,7 @@ class DynamicDashboardModel: NSObject {
     
     
     init(menuid: Int, menuname: String,link: String,iconimage :String,
-         isActive: Int, dashdescription: String,type: Int,dashboard_type :String,
+         isActive: Int, dashdescription: String,modalType: String,dashboard_type :String,
         ProdId: String, ProductNameFontColor:String,ProductDetailsFontColor:String,ProductBackgroundColor :String,
         IsExclusive: String, IsNewprdClickable:String,IsSharable:String,popupmsg :String,
         title:String,info: String) {
@@ -51,7 +51,7 @@ class DynamicDashboardModel: NSObject {
         
         self.isActive = isActive
         self.dashdescription = dashdescription
-        self.type = type
+        self.modalType = modalType
         self.dashboard_type=dashboard_type
         
         self.ProdId = ProdId
@@ -68,7 +68,35 @@ class DynamicDashboardModel: NSObject {
         self.info = info
         
     }
-    
-   
+    init( modalType: String,ProdId: String , menuname: String,dashdescription: String,iconimage :String)
+    {
+        
+         self.menuid = 0
+         self.iconimage = iconimage
+         self.link = ""
+         self.isActive = 1
+     
+        self.dashdescription = dashdescription
+         self.modalType = modalType
+        self.dashboard_type = ""
+        
+        self.ProdId = ProdId
+        self.menuname = menuname
+        
+        self.dashdescription = dashdescription
+        
+        self.ProductNameFontColor = ""
+        self.ProductDetailsFontColor = ""
+        self.ProductBackgroundColor = ""
+        
+        self.IsExclusive = ""
+        self.IsNewprdClickable = ""
+        self.IsSharable = ""
+        self.popupmsg = ""
+        
+        self.title = ""
+        self.info = ""
+        
+    }
 
 }

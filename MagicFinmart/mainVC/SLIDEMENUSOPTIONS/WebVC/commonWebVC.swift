@@ -26,9 +26,11 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     var bankUrl = ""
     var bankName = ""
     
+    var webTitle = ""
+    
     var dynamicUrl = ""
     var dynamicName = ""
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,6 +53,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
          let HealthUrl = UserDefaults.standard.string(forKey: "healthurl")
          let CVUrl = UserDefaults.standard.string(forKey: "CVUrl")
         
+        let LoanId = UserDefaults.standard.string(forKey: "LoanId")
         
         let deviceID = UIDevice.current.identifierForVendor?.uuidString
         let appVersion = Configuration.appVersion
@@ -79,6 +82,85 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             webView.load(URLRequest(url: URL(string: CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")!))
             print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
         }
+            
+            
+            
+      /********************************************Loan URL ******************************************************************/
+            
+            
+        else if(webfromScreen == "credit")
+        {
+            
+            let creditURL = "https://www.rupeeboss.com/finmart-credit-card-loan-new?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: creditURL)!))
+            print("URL",creditURL)
+            
+             // webView.load(URLRequest(url: URL(string: dynamicUrl)!))
+        }
+            
+        else if(webfromScreen == "personal")
+        {
+            
+            let tempURL = "https://www.rupeeboss.com/finmart-personal-loan-new?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: tempURL)!))
+            print("URL",tempURL)
+            
+        }
+            
+        else if(webfromScreen == "business")
+        {
+            
+            let tempURL = "https://www.rupeeboss.com/finmart-business-loan-new?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: tempURL)!))
+            print("URL",tempURL)
+            
+        }
+            
+       
+            
+            
+        else if(webfromScreen == "home")
+        {
+            
+            let tempURL = "https://www.rupeeboss.com/finmart-home-loan-new?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: tempURL)!))
+            print("URL",tempURL)
+            
+        }
+            
+        else if(webfromScreen == "lap")
+        {
+            
+            let tempURL = "https://www.rupeeboss.com/finmart-property-loan?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: tempURL)!))
+            print("URL",tempURL)
+            
+        }
+        else if(webfromScreen == "car")
+        {
+            
+            let tempURL = "https://www.rupeeboss.com/car-loan-new?BrokerId="+(LoanId!)+"&client_source=finmart"
+            
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: tempURL)!))
+            print("URL",tempURL)
+            
+        }
+            
+     /**********************************************End   OF Loan ***********************************************************/
+            
+            
+     /********************************************Not in used ******************************************************************/
         else if(webfromScreen == "loanAgreement")
         {
             titleLbl.text! = "LOAN AGREEMENT"
@@ -111,13 +193,12 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/motor-lead-details/"+(FBAId!))!))
             print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
         }
+            
+             /**************************************************************************************************************/
         else if(webfromScreen == "HealthInsurance")
         {
             titleLbl.text! = "HEALTH INSURANCE"
-//            webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/quote_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.6.13.&mac_address=38:c9:86:e9:76:da&app_version=1.0")!))
 
-//             webView.load(URLRequest(url: URL(string:"http://qa.policyboss.com/Health_Web/quote_list.html?ss_id=14265&fba_id=37292&sub_fba_id=0&v=20200218&ip_address=90:78:b2:b0:11:d5&app_version=2.3.4&device_id=594ad17c0ec7fd1e&login_ssid=")!))
-            
             
 
             let health_url = HealthUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=3&device_id=594ad17c0ec7fd1e&login_ssid="

@@ -170,6 +170,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             let EmailID = jsonData?.value(forKey: "EmailID") as AnyObject
             let MobiNumb1 = jsonData?.value(forKey: "MobiNumb1") as AnyObject
             let FullName = jsonData?.value(forKey: "FullName") as AnyObject
+            let LoanId   = jsonData?.value(forKey: "LoanId") as AnyObject
+            
             UserDefaults.standard.set(String(describing: FBAId), forKey: "FBAId")
             UserDefaults.standard.set(String(describing: referer_code), forKey: "referer_code")
             UserDefaults.standard.set(String(describing: POSPNo), forKey: "POSPNo")
@@ -177,13 +179,15 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             
             UserDefaults.standard.set(String(describing: POSPNo), forKey: "MobiNumb1")
             UserDefaults.standard.set(String(describing: CustID), forKey: "EmailID")
-            
+            UserDefaults.standard.set(String(describing: LoanId), forKey: "LoanId")
         
            
 //            let IsFirstLogin = jsonData?.value(forKey: "IsFirstLogin") as AnyObject
             UserDefaults.standard.set(String(describing: "1"), forKey: "IsFirstLogin")
             
            //--DemoUsingCoBrowserIO--
+            
+                /*****************  Commented **************************
                 CobrowseIO.instance().license = "-6ym5GFRbN0OdQ"
                 // print("Cobrowse device id:  \(CobrowseIO.instance().deviceId)")
                 CobrowseIO.instance().customData = [
@@ -193,6 +197,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                     kCBIODeviceIdKey: CobrowseIO.instance().deviceId as NSObject, //
                     kCBIODeviceNameKey: "iOS" as NSObject
                 ]
+            
+                ******************************************************/
              //--DemoUsingCoBrowserIO--
             
                 let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController

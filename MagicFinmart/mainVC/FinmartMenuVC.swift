@@ -26,9 +26,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     
     @IBOutlet weak var versionLbl: UILabel!
-    var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
-    var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
-    var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
+   // var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
+      var myFinItems = ["HOME","MY FINBOX","FINPERKS"]
+   // var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
+     //var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
+    var myaccountItems = ["My Profile","Enrol as POSP","Change Password"]
+     var myaccountItems2 = ["My Profile","Add Sub User","Change Password"]
+  
     var mydocumentItems = ["Loan Agreement","POSP Appointment Letter","POSP Application Form"]
     var transactionsItems = ["My Insurance Business","My Transactions","My Messages","Get Policy by CRN"]
 //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
@@ -38,8 +42,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var otherutilitiesItems = ["OTHER LOAN PRODUCTS","MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
     var attendanceItems = ["Add Attendance","My Location","Report"]
     //--<cellImages>--
-    var myFinImages = ["","home.png","mps.png","ic_business_name.png"]
-    var myaccountImages = ["vector_person.png","posp_enrollment.png","posp_enrollment.png","change_password.png"]
+  //  var myFinImages = ["","home.png","mps.png","ic_business_name.png"]
+     var myFinImages = ["home.png","mps.png","ic_business_name.png"]
+    var myaccountImages = ["vector_person.png","posp_enrollment.png","change_password.png"]
+    //  var myaccountImages = ["vector_person.png","posp_enrollment.png","posp_enrollment.png","change_password.png"]
     var mydocumentImges = ["agreemnet.png","agreemnet.png","agreemnet.png"]
     var transactionImges = ["ic_business_name.png","vector_date.png","sms.png","insurance_policy_ic.png"]
     var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
@@ -205,10 +211,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             cell.cellLbl?.text = transactionsItems[indexPath.row]
             cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
         }
-        else if(indexPath.section == 4){
-            cell.cellLbl?.text = leadsItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
-        }
+//        else if(indexPath.section == 4){
+//            cell.cellLbl?.text = leadsItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
+//        }
         else if(self.appaccessStatus == "Active")
         {
             if(indexPath.section == 5){
@@ -313,24 +319,24 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
         if(indexPath.section == 0)
         {
-            if(indexPath.row == 0)
-            {
-                let sessionController = CBIOViewController()
-                present(sessionController, animated: true, completion: nil)
-//                self.navigationController?.pushViewController(sessionController, animated: true)
-            }
-            else if(indexPath.row == 1)
+//            if(indexPath.row == 0)
+//            {
+//                let sessionController = CBIOViewController()
+//                present(sessionController, animated: true, completion: nil)
+////                self.navigationController?.pushViewController(sessionController, animated: true)
+//            }
+             if(indexPath.row == 0)
             {
                 let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
                 present(KYDrawer, animated: true, completion: nil)
             }
-            else if(indexPath.row == 2)
+            else if(indexPath.row == 1)
             {
                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                 commonWeb.webfromScreen = "myFinbox"
                 present(commonWeb, animated: true, completion: nil)
             }
-            else if(indexPath.row == 3)
+            else if(indexPath.row == 2)
             {
                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                 commonWeb.webfromScreen = "Finperks"
@@ -360,12 +366,12 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 }
                 
             }
+//            else if(indexPath.row == 2)
+//            {
+//                let hnfraiseTickt : hnfraiseTicktVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfraiseTicktVC") as! hnfraiseTicktVC
+//                present(hnfraiseTickt, animated: true, completion: nil)
+//            }
             else if(indexPath.row == 2)
-            {
-                let hnfraiseTickt : hnfraiseTicktVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfraiseTicktVC") as! hnfraiseTicktVC
-                present(hnfraiseTickt, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 3)
             {
                 let changePasswrd : changePasswrdVC = self.storyboard?.instantiateViewController(withIdentifier: "stbchangePasswrdVC") as! changePasswrdVC
                 present(changePasswrd, animated: true, completion: nil)
