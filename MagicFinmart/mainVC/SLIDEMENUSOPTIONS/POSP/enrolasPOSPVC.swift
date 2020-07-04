@@ -149,14 +149,13 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
         
         if let email = EmailID {
-            self.enemailTf.text! = email as! String
+            self.enemailTf.text! = email
         }
         if let mob = MobiNumb1 {
-            self.enmob1Tf.text! = mob as! String
+            self.enmob1Tf.text! = mob
         }
         
-      //  self.enmob1Tf.text! = EmailID as! String    //05 pending
-      //  self.enemailTf.text! = MobiNumb1 as! String
+        
         
        
         
@@ -1462,7 +1461,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             }
             
             let Posp_Email = (jsonData![0] as AnyObject).value(forKey: "Posp_Email") as AnyObject
-            self.enemailTf.text! = Posp_Email as! String
+           
+           
+            // self.enemailTf.text! = Posp_Email as! String      // Note : Its Fixed
             let Posp_IFSC = (jsonData![0] as AnyObject).value(forKey: "Posp_IFSC") as AnyObject
             self.enifscCodeTf.text! = Posp_IFSC as! String
             let Posp_Gender = (jsonData![0] as AnyObject).value(forKey: "Posp_Gender") as AnyObject
@@ -1477,14 +1478,18 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             let Posp_MICR = (jsonData![0] as AnyObject).value(forKey: "Posp_MICR") as AnyObject
             self.enmicrCodeTf.text! = Posp_MICR as! String
             let Posp_Mobile1 = (jsonData![0] as AnyObject).value(forKey: "Posp_Mobile1") as AnyObject
-            self.enmob1Tf.text! = Posp_Mobile1 as! String
+            //self.enmob1Tf.text! = Posp_Mobile1 as! String      // Note : Its Fixed
             let Posp_Mobile2 = (jsonData![0] as AnyObject).value(forKey: "Posp_Mobile2") as AnyObject
             self.enmob2Tf.text! = Posp_Mobile2 as! String
             let Posp_PAN = (jsonData![0] as AnyObject).value(forKey: "Posp_PAN") as AnyObject
             self.enpanTf.text! = Posp_PAN as! String
             let Posp_PinCode = (jsonData![0] as AnyObject).value(forKey: "Posp_PinCode") as AnyObject
             self.enpincodeTf.text! = Posp_PinCode as! String
-            self.getCityStateAPI(pincode: Posp_PinCode as! String)
+            if(self.enpincodeTf.text!.count > 0 ){
+                
+                 self.getCityStateAPI(pincode: Posp_PinCode as! String)
+            }
+           
           
             let Posp_Aadhaar = (jsonData![0] as AnyObject).value(forKey: "Posp_Aadhaar") as AnyObject
             self.enadhrTf.text! = Posp_Aadhaar as! String

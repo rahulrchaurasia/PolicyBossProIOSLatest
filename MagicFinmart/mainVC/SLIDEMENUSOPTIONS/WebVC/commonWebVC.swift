@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import CustomIOSAlertView
 import TTGSnackbar
+import Alamofire
 
 class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,WKScriptMessageHandler ,UIDocumentInteractionControllerDelegate{
 
@@ -17,7 +18,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-   
+    var addType = ""
     var webfromScreen = ""
     var fromcontctWebsite = String()
     var ProposerPageUrl = ""
@@ -33,9 +34,11 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+      
 
-        print("fromcontctWebsite??=",fromcontctWebsite)
-        print("ProposerPageUrl=",ProposerPageUrl)
+//        print("fromcontctWebsite??=",fromcontctWebsite)
+//        print("ProposerPageUrl=",ProposerPageUrl)
         
         // add activity
         self.webView.addSubview(self.activityIndicator)
@@ -45,7 +48,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
 //        let SSID = UserDefaults.standard.string(forKey: "POSPNo")
-        let Url = UserDefaults.standard.string(forKey: "Url")
+       // let Url = UserDefaults.standard.string(forKey: "Url")
         let loanselfmobile = UserDefaults.standard.string(forKey: "loanselfmobile")
         let TwoWheelerUrl = UserDefaults.standard.string(forKey: "TwoWheelerUrl")
         let FourWheelerUrl = UserDefaults.standard.string(forKey: "FourWheelerUrl")
@@ -58,33 +61,55 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         let deviceID = UIDevice.current.identifierForVendor?.uuidString
         let appVersion = Configuration.appVersion
         
-         self.setupWKWebview()
-        
-        if(webfromScreen == "private")
+        // self.setupWKWebview()
+        webView.configuration.userContentController.add(self, name: "finmartios")
+      
+        if(webfromScreen == "private")      //  PrdID =1
         {
-            titleLbl.text! = "PRIVATE CAR"
-            webView.load(URLRequest(url: URL(string: FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1")!))
             
-            print("URL", FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1")
+            
+            
+//            titleLbl.text! = "PRIVATE CAR"
+//            bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
+            
+            
+            let myUrl = "http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html"
+            titleLbl.text! = "PRIVATE CAR"                                           // for testing
+            webView.load(URLRequest(url: URL(string: myUrl)!))
+            print("URL",myUrl)
+            //////
+            
+            
+            
+//            webView.load(URLRequest(url: URL(string: FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1&device_id=594ad17c0ec7fd1e&login_ssid=")!))
+//
+//            print("URL", FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1&device_id=594ad17c0ec7fd1e&login_ssid=")
             
         }
-        else if(webfromScreen == "twoWheeler")
+        else if(webfromScreen == "twoWheeler")  //  PrdID =10
         {
 
             titleLbl.text! = "TWO WHEELER"
-            webView.load(URLRequest(url: URL(string: TwoWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=10")!))
-            print("URL",TwoWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=10")
+            bindInsuranceUrl(strURL: TwoWheelerUrl!,prdID: "10")
+            
         }
         else if(webfromScreen == "COMMERCIALVEHICLE")
         {
             titleLbl.text! = "COMMERCIAL VEHICLE"
+             bindInsuranceUrl(strURL: CVUrl!,prdID: "12")
             
-            webView.load(URLRequest(url: URL(string: CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")!))
-            print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
+            
         }
             
             
+        else if(webfromScreen == "HealthInsurance")     //   PrdID = 2
+        {
+            titleLbl.text! = "HEALTH INSURANCE"
+            bindInsuranceUrl(strURL: HealthUrl!,prdID: "2")
             
+            
+
+        }
       /********************************************Loan URL ******************************************************************/
             
             
@@ -157,10 +182,91 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             
         }
             
+ 
      /**********************************************End   OF Loan ***********************************************************/
             
             
-     /********************************************Not in used ******************************************************************/
+       
+     ///////////////////////////////////////////////////////////////////////////////
+                   //    Menu Saction //
+      ///////////////////////////////////////////////////////////////////////////////
+            
+    /****************************** Home Section  ****************************************/
+        else if(webfromScreen == "myFinbox")
+        {
+            
+            let url = UserDefaults.standard.string(forKey: "finboxurl")
+            //finboxurl
+            titleLbl.text! = "MY FINBOX"
+            guard let FINBOX = url else{
+                
+                return
+            }
+            
+            webView.load(URLRequest(url: URL(string: FINBOX)!))
+            print("URL",FINBOX)
+        }
+            
+        else if(webfromScreen == "Finperks")
+        {
+            let url = UserDefaults.standard.string(forKey: "finboxurl")
+            
+         
+            if let finperkurl = url {
+                
+                titleLbl.text! = "FINPERKS"
+                webView.load(URLRequest(url: URL(string: finperkurl)!))
+                print("URL",finperkurl)
+            }
+        }
+            
+      /******************************END OF HOME Section  ****************************************/
+            
+     /****************************** MY TRANSACTION  Section  ****************************************/
+          
+        else if(webfromScreen == "InsuranceBusiness")
+        {
+            insurancebusinessAPI()
+        }
+        else if(webfromScreen == "policyByCRN")
+        {
+            let url = UserDefaults.standard.string(forKey: "PBByCrnSearch")
+        
+            
+            if let mainURL = url {
+                
+                titleLbl.text! = "Search CRN"
+                webView.load(URLRequest(url: URL(string: mainURL)!))
+                print("URL",mainURL)
+            }
+        }
+          
+        /******************************END****************************************/
+    
+        /****************************** MY LEAD Section  ****************************************/
+            
+        else if(webfromScreen == "leadDashboard")
+        {
+            let url = UserDefaults.standard.string(forKey: "LeadDashUrl")
+            
+            
+            if let mainURL = url {
+                
+                titleLbl.text! = "LEAD DASHBOARD"
+                webView.load(URLRequest(url: URL(string: mainURL)!))
+                print("URL",mainURL)
+            }
+        }
+            
+            
+            
+      
+        /******************************END****************************************/
+            
+            
+      
+            
+     /********************************************Not in used ****************************************/
         else if(webfromScreen == "loanAgreement")
         {
             titleLbl.text! = "LOAN AGREEMENT"
@@ -175,11 +281,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         }
         else if(webfromScreen == "myBusiness")
         {
-            let value = UIInterfaceOrientation.landscapeLeft.rawValue
-            UIDevice.current.setValue(value, forKey: "orientation")
-            titleLbl.text! = "MY BUSINESS"
-            webView.load(URLRequest(url: URL(string: Url!)!))
-            print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
+           
         }
         else if(webfromScreen == "Training")
         {
@@ -195,16 +297,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         }
             
              /**************************************************************************************************************/
-        else if(webfromScreen == "HealthInsurance")
-        {
-            titleLbl.text! = "HEALTH INSURANCE"
-
-            
-
-            let health_url = HealthUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=3&device_id=594ad17c0ec7fd1e&login_ssid="
-            print("URL",health_url)
-            webView.load(URLRequest(url: URL(string:health_url )!))
-        }
+        
         else if(webfromScreen == "freeCreditCard")
         {
             titleLbl.text! = "BACK"
@@ -229,11 +322,20 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             webView.load(URLRequest(url: URL(string: "http://www.rupeeboss.com/rectifycredit?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")!))
             print("URL","http://www.rupeeboss.com/rectifycredit?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")
         }
+            
+        
         else if(webfromScreen == "fin-Peace")
         {
+            let finperkurl = UserDefaults.standard.string(forKey: "finperkurl")
+
+            guard let FINPERK = finperkurl else{
+                
+                return
+            }
             titleLbl.text! = "FIN-PEACE"
-            webView.load(URLRequest(url: URL(string: "https://10oqcnw.finpeace.ind.in/app#/53686"+(FBAId!))!))
-            print("URL","https://10oqcnw.finpeace.ind.in/app#/53686"+(FBAId!))
+            webView.load(URLRequest(url: URL(string: FINPERK)!))
+    
+        
         }
         else if(webfromScreen == "healthAssure")
         {
@@ -278,24 +380,9 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             webView.load(URLRequest(url: URL(string: PaymentURL)!))
             print("URL",PaymentURL)
         }
-        else if(webfromScreen == "leadDashboard")
-        {
-            titleLbl.text! = "LEAD DASHBOARD"
-            webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/motor-lead-details/"+(FBAId!))!))
-            print("URL","http://bo.magicfinmart.com/motor-lead-details/"+(FBAId!))
-        }
-        else if(webfromScreen == "myFinbox")
-        {
-            titleLbl.text! = "MY FINBOX"
-            webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/marketing-campaign/12CI63")!))
-            print("URL","http://bo.magicfinmart.com/marketing-campaign/12CI63")
-        }
-        else if(webfromScreen == "Finperks")
-        {
-            titleLbl.text! = "FINPERKS"
-            webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/finperks/index.html?1")!))
-            print("URL","http://bo.magicfinmart.com/finperks/index.html?1")
-        }
+       
+        
+       
         else if(webfromScreen == "homeLoanapplyNow"){
             titleLbl.text! = bankName
             webView.load(URLRequest(url: URL(string: bankUrl)!))
@@ -328,28 +415,52 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+        
+        if(addType == "CHILD"){
+            
+            self.remove()
+     
+        }else{
+            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+            present(KYDrawer, animated: true, completion: nil)
+        }
+     
     }
     
     @IBAction func webbackBtnCliked(_ sender: Any)
     {
-        if(webfromScreen == "contactWebsites")
-        {
-            let hnfcontactUs : hnfcontactUsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfcontactUsVC") as! hnfcontactUsVC
-            present(hnfcontactUs, animated: true, completion: nil)
+        if(addType == "CHILD"){
+             self.remove()
         }
         else{
-            let value = UIInterfaceOrientation.portrait.rawValue
-            UIDevice.current.setValue(value, forKey: "orientation")
-            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-            present(KYDrawer, animated: true, completion: nil)
+            if(webfromScreen == "contactWebsites")
+            {
+                let hnfcontactUs : hnfcontactUsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfcontactUsVC") as! hnfcontactUsVC
+                present(hnfcontactUs, animated: true, completion: nil)
+            }
+            else{
+                let value = UIInterfaceOrientation.portrait.rawValue
+                UIDevice.current.setValue(value, forKey: "orientation")
+                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+                present(KYDrawer, animated: true, completion: nil)
+            }
         }
+        
 
     }
     
     
-    
+    func bindInsuranceUrl(strURL : String, prdID : String ){
+        
+         let appVersion = Configuration.appVersion
+        
+          let insURL = strURL+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id="+(prdID)+"&device_id=594ad17c0ec7fd1e&login_ssid="
+        
+        webView.load(URLRequest(url: URL(string: insURL)!))
+        
+        print("URL",insURL )
+    }
+ 
     ///////////////////////////////////////////////////////
     
     
@@ -367,9 +478,9 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     // Handler for JavaScript Communication
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
-        
-        print("Message",  message.body)
-        generatePdf(strUrl: message.body as! String)
+           print("JAVASCRIPT CALLED")
+       print("Message",  message.body)
+//        generatePdf(strUrl: message.body as! String)
     }
     
     // Configuratyion for Script
@@ -469,6 +580,71 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     }
     
     
+    
+    ///////////////////////////////////////////////////////////////////////
+    
+    
+    func insurancebusinessAPI()
+    {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("Yes! internet is available.")
+            
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            
+            
+            alertView.show()
+            
+            let ERPID = UserDefaults.standard.string(forKey: "ERPID")
+            let fba_uid = UserDefaults.standard.string(forKey: "fba_uid")
+            let fba_campaign_id = UserDefaults.standard.string(forKey: "fba_campaign_id")
+            let fba_campaign_name = UserDefaults.standard.string(forKey: "fba_campaign_name")
+            
+            
+            let params: [String: AnyObject] = ["Id": ERPID as AnyObject,
+                                               "fba_uid": fba_uid as AnyObject,
+                                               "fba_campaign_id": fba_campaign_id as AnyObject,
+                                               "fba_campaign_name": fba_campaign_name as AnyObject,]
+            
+            let url = "/LeadCollection.svc/GetEncryptedErpId"
+            
+            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                alertView.close()
+                
+                self.view.layoutIfNeeded()
+                
+                let Url = userObject as! String
+                print("INSURANCE Url=",Url)
+                let value = UIInterfaceOrientation.landscapeLeft.rawValue
+                UIDevice.current.setValue(value, forKey: "orientation")
+                self.titleLbl.text! = "MY BUSINESS"
+                self.webView.load(URLRequest(url: URL(string: Url)!))
+               
+                
+            }, onError: { errorData in
+                alertView.close()
+                //            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                //            snackbar.show()
+            }, onForceUpgrade: {errorData in},checkStatus: true)
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: "No Internet Access Avaible", duration: .long)
+            snackbar.show()
+        }
+        
+    }
+    
+
 }
 
 

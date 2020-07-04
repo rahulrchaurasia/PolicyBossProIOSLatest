@@ -11,10 +11,11 @@ import CustomIOSAlertView
 import TTGSnackbar
 import WebKit
 import CobrowseIO
+import SafariServices
 
-class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate,UIScrollViewDelegate {
+class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate {
     
-    
+    //UIScrollViewDelegate
     
     @IBOutlet weak var menuTV: UITableView!
     @IBOutlet weak var menuprofileImgView: UIImageView!
@@ -24,39 +25,74 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var pospNoLbl: UILabel!
     @IBOutlet weak var erpIdLbl: UILabel!
     
-    
+
+    @IBOutlet weak var MainScrollView: UIScrollView!
     @IBOutlet weak var versionLbl: UILabel!
    // var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
       var myFinItems = ["HOME","MY FINBOX","FINPERKS"]
-   // var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
-     //var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
-    var myaccountItems = ["My Profile","Enrol as POSP","Change Password"]
-     var myaccountItems2 = ["My Profile","Add Sub User","Change Password"]
-  
-    var mydocumentItems = ["Loan Agreement","POSP Appointment Letter","POSP Application Form"]
-    var transactionsItems = ["My Insurance Business","My Transactions","My Messages","Get Policy by CRN"]
+     var myFinImages = ["home.png","mps.png","ic_business_name.png"]
+   
+     var myaccountItems = ["My Profile","Enrol as POSP","Change Password"]    // 1
+     var myaccountImages = ["vector_person.png","posp_enrollment.png","change_password.png"]
+    
+    
+     var myaccountItems2 = ["My Profile","Change Password"]                  // 2
+     var myaccountImages2 = ["vector_person.png","change_password.png"]
+    
+    var mydocumentItems = ["POSP Appointment Letter","POSP Application Form"]
+    var mydocumentImges = ["agreemnet.png","agreemnet.png","agreemnet.png"]
+    
+    var transactionsItems = ["My Insurance Business","Get Policy by CRN"]
+    var transactionImges = ["ic_business_name.png","insurance_policy_ic.png"]
+    
+    var transactionsItems2 = ["My Insurance Business","Get Policy by CRN"]
+    var transactionImges2 = ["ic_business_name.png","insurance_policy_ic.png"]
+    
+    
+    var leadsItems = ["Lead Dashboard"]
+    var leadsImges = ["insurance_policy_ic.png"]
+    
+    
+    var loansItems = ["Referral Agreement","Free Credit Report"]
+    var loansImges = ["agreemnet.png","agreemnet.png"]
+    
+    //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
+    
+    
+      var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
+    //"Loan Agreement",
+   // var transactionsItems = ["My Insurance Business","My Transactions","My Messages","Get Policy by CRN"]
 //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
-    var leadsItems = ["Create Lead Contact","Generate Motor Leads","Generate Loan Leads","Lead Dashboard","Sms Templates"]
+    
+    // var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
+    //var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
+    
+//     var leadsItems = ["Create Lead Contact","Generate Motor Leads","Generate Loan Leads","Lead Dashboard","Sms Templates"]
+//     var leadsImges = ["sync_contact_ic.png","vehicledetail.png","share_data.png","insurance_policy_ic.png","mps.png"]
+    
 //    var pospItems = ["Enrol as POSP","Add Users"]
 //    var requestItems = ["Offline Quotes","Request Policy by CRN"]
-    var otherutilitiesItems = ["OTHER LOAN PRODUCTS","MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
+    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
+       var otherImges = ["ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
     var attendanceItems = ["Add Attendance","My Location","Report"]
     //--<cellImages>--
   //  var myFinImages = ["","home.png","mps.png","ic_business_name.png"]
-     var myFinImages = ["home.png","mps.png","ic_business_name.png"]
-    var myaccountImages = ["vector_person.png","posp_enrollment.png","change_password.png"]
+  
+ 
     //  var myaccountImages = ["vector_person.png","posp_enrollment.png","posp_enrollment.png","change_password.png"]
-    var mydocumentImges = ["agreemnet.png","agreemnet.png","agreemnet.png"]
-    var transactionImges = ["ic_business_name.png","vector_date.png","sms.png","insurance_policy_ic.png"]
-    var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
-    var leadsImges = ["sync_contact_ic.png","vehicledetail.png","share_data.png","insurance_policy_ic.png","mps.png"]
+  
+    
+   // var transactionImges = ["ic_business_name.png","vector_date.png","sms.png","insurance_policy_ic.png"]
+  
+   
     var pospImges = ["posp_enrollment.png","posp_enrollment.png"]
     var requestImges = ["insurance_policy_ic.png","insurance_policy_ic.png"]
-    var otherImges = ["income_potential_ic.png","ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
+  //  var otherImges = ["income_potential_ic.png","ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
     var fromScreen = ""
     var appaccessStatus = ""
     var isfirstLogin = Int()
     var enableenrolasPOSP = ""
+    var showmyinsurancebusiness = ""
     
     // For AlertDialog
     let alertService = AlertService()
@@ -66,7 +102,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         versionLbl.text = "Ver." + Configuration.appVersion
         
-     //   mainScrollView.isScrollEnabled = false
+         // MainScrollView.isScrollEnabled = false
+        
+     
         //--<api>--
         userconstantAPI()
         //CheckAppAccessAPI()
@@ -131,12 +169,14 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     //-----<tableView Datasource+Deleagtes>-----
     func numberOfSections(in tableView: UITableView) -> Int {
-        if(self.appaccessStatus == "Active"){
-            return 7
-        }
-        else{
-            return 6
-        }
+//        if(self.appaccessStatus == "Active"){
+//            return 7
+//        }
+//        else{
+//            return 6
+//        }
+        
+        return 7
         
     }
     
@@ -144,44 +184,63 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         if(section == 0){
             return myFinItems.count
-        }
-        else if(section == 1){
+        }else if(section == 1){
             if(self.enableenrolasPOSP == "1"){
                 return myaccountItems.count
             }
             else if(self.enableenrolasPOSP == "0"){
                 return myaccountItems2.count
             }
+             return myaccountItems2.count
         }
         else if(section == 2){
             return mydocumentItems.count
         }
         else if(section == 3){
-            return transactionsItems.count
+            
+            if(self.showmyinsurancebusiness == "1"){
+                return transactionsItems.count
+            }
+            else if(self.showmyinsurancebusiness == "0"){
+                return transactionsItems2.count
+            }
+            return transactionsItems2.count
         }
         else if(section == 4){
             return leadsItems.count
         }
-        if(self.appaccessStatus == "Active")
-        {
-            if(section == 5){
-                return attendanceItems.count
-            }
-            else if(section == 6){
-                return otherutilitiesItems.count
-            }
-            else {
-                return 0
-            }
+        else if(section == 5){
+            return loansItems.count
         }
-        else{
-            if(section == 5){
-                return otherutilitiesItems.count
-            }
-            else{
-                return 0
-            }
+       else if(section == 6){
+            return otherutilitiesItems.count
         }
+        return 0
+        
+        
+      //  loansItems
+//        if(self.appaccessStatus == "Active")
+//        {
+//            if(section == 5){
+//                return attendanceItems.count
+//            }
+//            else if(section == 6){
+//                return otherutilitiesItems.count
+//            }
+//            else {
+//                return 0
+//            }
+//        }
+//        else{
+//            if(section == 5){
+//                return otherutilitiesItems.count
+//            }
+//            else{
+//                return 0
+//            }
+//        }
+        
+      
 
     }
     
@@ -200,7 +259,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
             else if(self.enableenrolasPOSP == "0"){
                 cell.cellLbl?.text = myaccountItems2[indexPath.row]
-                cell.cellImgs.image = UIImage(named: myaccountImages[indexPath.row])
+                cell.cellImgs.image = UIImage(named: myaccountImages2[indexPath.row])
             }
         }
         else if(indexPath.section == 2){
@@ -208,30 +267,49 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             cell.cellImgs.image = UIImage(named: mydocumentImges[indexPath.row])
         }
         else if(indexPath.section == 3){
-            cell.cellLbl?.text = transactionsItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
+           
+            
+            if(self.showmyinsurancebusiness == "1"){
+                cell.cellLbl?.text = transactionsItems[indexPath.row]
+                cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
+                
+            }
+            else if(self.showmyinsurancebusiness == "0"){
+                cell.cellLbl?.text = transactionsItems2[indexPath.row]
+                cell.cellImgs.image = UIImage(named: transactionImges2[indexPath.row])
+                
+            }
         }
-//        else if(indexPath.section == 4){
-//            cell.cellLbl?.text = leadsItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
+        else if(indexPath.section == 4){
+            cell.cellLbl?.text = leadsItems[indexPath.row]
+            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
+        }
+        else if(indexPath.section == 5){
+            cell.cellLbl?.text = loansItems[indexPath.row]
+            cell.cellImgs.image = UIImage(named: loansImges[indexPath.row])
+        }
+        else if(indexPath.section == 6){
+            cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
+            cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
+        }
+            
+//        else if(self.appaccessStatus == "Active")
+//        {
+//            if(indexPath.section == 5){
+//                cell.cellLbl?.text = attendanceItems[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: earningToolImges[indexPath.row])
+//            }
+//            else if(indexPath.section == 6){
+//                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
+//            }
 //        }
-        else if(self.appaccessStatus == "Active")
-        {
-            if(indexPath.section == 5){
-                cell.cellLbl?.text = attendanceItems[indexPath.row]
-                cell.cellImgs.image = UIImage(named: earningToolImges[indexPath.row])
-            }
-            else if(indexPath.section == 6){
-                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-            }
-        }
-        else{
-            if(indexPath.section == 5){
-                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-            }
-        }
+//        else{
+//            if(indexPath.section == 6){
+//                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
+//            }
+//        }
         
         return cell
     }
@@ -240,13 +318,23 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         return 50
     }
     
+    
+//    override func updateViewConstraints() {
+//        tableHeightConstraint.constant = tableView.contentSize.height
+//        super.updateViewConstraints()
+//
+//    }
+    
+    
+ 
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView:UIView =  UIView()
         headerView.backgroundColor = UIColor.white
-        
+    
         let label = UILabel()
         label.frame = CGRect.init(x: 15, y: 10, width: 200, height: 30)
-        
+
         if(section == 0)
         {
             label.text = ""
@@ -267,32 +355,38 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             label.text = "MY LEADS"
         }
-        else if(self.appaccessStatus == "Active")
+        else if(section == 5)
         {
-           if(section == 5)
-            {
-                label.text = "ATTENDANCE"
-            }
-            else if(section == 6)
-            {
-                label.text = "OTHER UTILITIES"
-            }
-        }else
+            label.text = "LOANS"
+        }
+            
+//        else if(self.appaccessStatus == "Active")
+//        {
+//           if(section == 5)
+//            {
+//                label.text = "ATTENDANCE"
+//            }
+//            else if(section == 6)
+//            {
+//                label.text = "OTHER UTILITIES"
+//            }
+//        }
+        else
         {
-            if(section == 5)
+            if(section == 6)
             {
                 label.text = "OTHER UTILITIES"
             }
         }
-        
+
         //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
         label.font = UIFont.boldSystemFont(ofSize: 16)
         //        label.textColor = UIColor.charcolBlackColour() // my custom colour
         label.textColor = UIColor.gray
         headerView.addSubview(label)
-        
+
         return headerView
-        
+
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -316,7 +410,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                
+        
+      /***************************** Home SECTION ******************************/
         if(indexPath.section == 0)
         {
 //            if(indexPath.row == 0)
@@ -330,7 +425,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
                 present(KYDrawer, animated: true, completion: nil)
             }
-            else if(indexPath.row == 1)
+            else if(indexPath.row == 1)     // FINBOX
             {
                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                 commonWeb.webfromScreen = "myFinbox"
@@ -345,6 +440,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
            
         }
         //myaccount
+        /*****************************  MY ACCOUNT SECTION ******************************/
         if(indexPath.section == 1)
         {
             if(indexPath.row == 0)
@@ -378,23 +474,24 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
         }
         //mydocument
+            
+     /*****************************  MY DOCUMENT SECTION ******************************/
         else if(indexPath.section == 2)
         {
-            if(indexPath.row == 0)
-            {
-//                let transctionHistory : transctionHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "stbtransctionHistoryVC") as! transctionHistoryVC
-//                present(transctionHistory, animated: true, completion: nil)
-                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                commonWeb.webfromScreen = "loanAgreement"
-                present(commonWeb, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 1)
+//            if(indexPath.row == 0)
+//            {
+//
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.webfromScreen = "loanAgreement"
+//                present(commonWeb, animated: true, completion: nil)
+//            }
+             if(indexPath.row == 0)
             {
                 let incmCalculatr : incmCalculatrVC = self.storyboard?.instantiateViewController(withIdentifier: "stbincmCalculatrVC") as! incmCalculatrVC
                 incmCalculatr.fromScreen = "appoinLetter"
                 present(incmCalculatr, animated: true, completion: nil)
             }
-            else if(indexPath.row == 2)
+            else if(indexPath.row == 1)
             {
                 let incmCalculatr : incmCalculatrVC = self.storyboard?.instantiateViewController(withIdentifier: "stbincmCalculatrVC") as! incmCalculatrVC
                 incmCalculatr.fromScreen = "ApplictnForm"
@@ -402,66 +499,100 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
         }
         //mytransactions
+            
+     /*****************************  MY TRANSACTION SECTION ******************************/
         else if(indexPath.section == 3)
         {
+//            if(indexPath.row == 0)
+//            {
+////                let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
+////                present(mpsV, animated: true, completion: nil)
+////                self.view.removeFromSuperview()
+////                self.removeFromParent()
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.webfromScreen = "myBusiness"
+//                present(commonWeb, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 1)
+//            {
+//                let transctionHistory : transctionHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "stbtransctionHistoryVC") as! transctionHistoryVC
+//                present(transctionHistory, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 2)
+//            {
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.webfromScreen = "messageCenter"
+//                present(commonWeb, animated: true, completion: nil)
+//            }
+           
             if(indexPath.row == 0)
             {
-//                let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
-//                present(mpsV, animated: true, completion: nil)
-//                self.view.removeFromSuperview()
-//                self.removeFromParent()
-                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                commonWeb.webfromScreen = "myBusiness"
+              
+                let commonWeb : InsuranceBussWebVC = self.storyboard?.instantiateViewController(withIdentifier: "InsuranceBussWebVC") as! InsuranceBussWebVC
+                 commonWeb.webfromScreen = "InsuranceBusiness"
                 present(commonWeb, animated: true, completion: nil)
+                
+                
+                            
+                
             }
-            else if(indexPath.row == 1)
+           else  if(indexPath.row == 1)
             {
-                let transctionHistory : transctionHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "stbtransctionHistoryVC") as! transctionHistoryVC
-                present(transctionHistory, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 2)
-            {
-                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                commonWeb.webfromScreen = "messageCenter"
-                present(commonWeb, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 3)
-            {
-                let reqpolicy : reqpolicyVC = self.storyboard?.instantiateViewController(withIdentifier: "stbreqpolicyVC") as! reqpolicyVC
-                present(reqpolicy, animated: true, completion: nil)
+//                let reqpolicy : reqpolicyVC = self.storyboard?.instantiateViewController(withIdentifier: "stbreqpolicyVC") as! reqpolicyVC
+//                present(reqpolicy, animated: true, completion: nil)
+                
+                
+           let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                  commonWeb.webfromScreen = "policyByCRN"
+                  present(commonWeb, animated: true, completion: nil)
             }
         }
         //myleads
+            
+         /*****************************  MY LEADS SECTION ******************************/
         else if(indexPath.section == 4)
         {
+            
             if(indexPath.row == 0)
-            {
-                let syncContacts : syncContactsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbsyncContactsVC") as! syncContactsVC
-                present(syncContacts, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 1)
-            {
-                let motorInsurance : motorInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmotorInsuranceVC") as! motorInsuranceVC
-                present(motorInsurance, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 2)
-            {
-                let loans_shareData : loans_shareData_VC = self.storyboard?.instantiateViewController(withIdentifier: "stbloans_shareData_VC") as! loans_shareData_VC
-                present(loans_shareData, animated: true, completion: nil)
-            }
-            else if(indexPath.row == 3)
             {
                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                 commonWeb.webfromScreen = "leadDashboard"
                 present(commonWeb, animated: true, completion: nil)
             }
-            else if(indexPath.row == 4)
-            {
-                let smsTemplate : smsTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "stbsmsTemplateVC") as! smsTemplateVC
-                present(smsTemplate, animated: true, completion: nil)
-            }
-        }
+//            if(indexPath.row == 0)
+//            {
+//                let syncContacts : syncContactsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbsyncContactsVC") as! syncContactsVC
+//                present(syncContacts, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 1)
+//            {
+//                let motorInsurance : motorInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmotorInsuranceVC") as! motorInsuranceVC
+//                present(motorInsurance, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 2)
+//            {
+//                let loans_shareData : loans_shareData_VC = self.storyboard?.instantiateViewController(withIdentifier: "stbloans_shareData_VC") as! loans_shareData_VC
+//                present(loans_shareData, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 3)
+//            {
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.webfromScreen = "leadDashboard"
+//                present(commonWeb, animated: true, completion: nil)
+//            }
+//            else if(indexPath.row == 4)
+//            {
+//                let smsTemplate : smsTemplateVC = self.storyboard?.instantiateViewController(withIdentifier: "stbsmsTemplateVC") as! smsTemplateVC
+//                present(smsTemplate, animated: true, completion: nil)
+//            }
             
+            
+        }
+        
+        
+        ////////////////////////// Commented  ////////////////////////////
+        
+        /*
         if(self.appaccessStatus == "Active")
         {
             //attendance
@@ -531,18 +662,42 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 }
             }
         }
-        else{
-            //others
-           if(indexPath.section == 5)
+            
+         */
+            
+    /*****************************  LOANS SECTION ******************************/
+        else  if(indexPath.section == 5)
+        {
+            if(indexPath.row == 0)
             {
-                if(indexPath.row == 0)
-                {
-                    let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
-                    addUsersV.fromScreen = "otherloanProduct"
-                    present(addUsersV, animated: true, completion: nil)
-                    
-                }
-                else if(indexPath.row == 1)
+                let StrURL = "http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf"
+                let Url = NSURL(string: StrURL )
+                let svc = SFSafariViewController(url: Url! as URL)
+                self.present(svc, animated: true, completion: nil)
+                
+             
+            } else if(indexPath.row == 1)
+            {
+                 let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+                let StrURL = "http://www.rupeeboss.com/equifax-finmart?fbaid=" + (FBAId!)
+                let Url = NSURL(string: StrURL )
+                let svc = SFSafariViewController(url: Url! as URL)
+                self.present(svc, animated: true, completion: nil)
+            }
+            
+        }
+       
+            //others
+       else  if(indexPath.section == 6)
+            {
+//                if(indexPath.row == 0)
+//                {
+//                    let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
+//                    addUsersV.fromScreen = "otherloanProduct"
+//                    present(addUsersV, animated: true, completion: nil)
+//
+//                }
+                 if(indexPath.row == 0)
                 {
                     //                let helpnfeedback : helpnfeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhelpnfeedbackVC") as! helpnfeedbackVC
                     //                present(helpnfeedback, animated: true, completion: nil)
@@ -550,7 +705,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     addUsersV.fromScreen = "moreServices"
                     present(addUsersV, animated: true, completion: nil)
                 }
-                else if(indexPath.row == 2)
+                else if(indexPath.row == 1)
                 {
                     //                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     //                commonWeb.webfromScreen = "Training"
@@ -559,7 +714,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     addUsersV.fromScreen = "myUtilities"
                     present(addUsersV, animated: true, completion: nil)
                 }
-                else if(indexPath.row == 3)
+                else if(indexPath.row == 2)
                 {
                     //                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     //                commonWeb.webfromScreen = "leadDetails"
@@ -567,12 +722,12 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let whatsNew : whatsNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbwhatsNewVC") as! whatsNewVC
                     present(whatsNew, animated: true, completion: nil)
                 }
-                if(indexPath.row == 4)
+                if(indexPath.row == 3)
                 {
                     callAlertView()
                 }
             }
-        }
+        
         
         
     }
@@ -641,6 +796,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     func userconstantAPI()
     {
         
+        
+       
         if Connectivity.isConnectedToInternet()
         {
            
@@ -676,7 +833,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let referer_code = UserDefaults.standard.string(forKey: "referer_code")
            
             let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
+            let showmyinsurancebusiness = jsonData?.value(forKey: "showmyinsurancebusiness") as AnyObject
+            
             self.enableenrolasPOSP = enableenrolasposp as! String
+            self.showmyinsurancebusiness = showmyinsurancebusiness as! String
+            
             UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
 //            if(loansendname as! String != "" && FBAId as! String != "" && POSPNo as! String != "" && ERPID as! String != "" && loanselfphoto as! String != "" && referer_code as! String != "")
 //            {

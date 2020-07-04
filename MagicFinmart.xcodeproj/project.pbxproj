@@ -10,6 +10,7 @@
 		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
+		442B80A424AF4BF000F4EBDA /* InsuranceBussWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */; };
 		442C140D2497A31700E3C455 /* pospDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C140C2497A31700E3C455 /* pospDoc.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
@@ -215,6 +216,7 @@
 		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
+		442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBussWebVC.swift; sourceTree = "<group>"; };
 		442C140C2497A31700E3C455 /* pospDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospDoc.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
@@ -849,6 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				849B082922017B530055BB80 /* commonWebVC.swift */,
+				442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */,
 			);
 			path = WebVC;
 			sourceTree = "<group>";
@@ -1314,6 +1317,7 @@
 				841BEA952255D25A00855EB0 /* lyfinsQuotesPageTVCell.swift in Sources */,
 				44AC204822D853AC0024E109 /* attendenceRegistratnVC.swift in Sources */,
 				8431D1D621E8604B000419E3 /* MotorInsuranceVCS.swift in Sources */,
+				442B80A424AF4BF000F4EBDA /* InsuranceBussWebVC.swift in Sources */,
 				44B26DA0230E9A1E0017DBAD /* rblCreditCardVC.swift in Sources */,
 				44BB07B7243EFC9A00F14FEE /* AlertViewController.swift in Sources */,
 				840AC5D021BE80AB004DCB26 /* AppDelegate.swift in Sources */,

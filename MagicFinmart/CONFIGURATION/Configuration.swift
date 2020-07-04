@@ -10,16 +10,18 @@ import UIKit
 
 class Configuration: NSObject {
 
-   static let baseURLString = "http://qa.mgfm.in"
-//    static let baseURLString = "http://preprodapiqa.mgfm.in"
- //   static let baseURLString = "http://api.magicfinmart.com"//live
+  // static let baseURLString = "http://qa.mgfm.in"               //testing
+
+    static let baseURLString = "http://api.magicfinmart.com"     //live
     static let baseServiceURLString = "http://49.50.95.141:191"
-    static let baseEncryptedErpIdURL = "http://49.50.95.141:2001"
+    static let baseEncryptedErpIdURL = "http://202.131.96.101:3333"
+  
     static let basegenerateloanLeadURL = "http://services.rupeeboss.com"
     static let basehealthassureURL = "http://www.healthassure.in"
     
    // static let appVersion = "2.0"
-    
+     // static let baseEncryptedErpIdURL = "http://49.50.95.141:2001"
+    //    static let baseURLString = "http://preprodapiqa.mgfm.in"
     static let appVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     
     static let buildVersion =  Bundle.main.infoDictionary?["CFBundleVersion"] as! String

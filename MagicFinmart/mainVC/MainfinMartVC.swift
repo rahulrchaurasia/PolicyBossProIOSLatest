@@ -25,6 +25,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var MainScrollView: UIScrollView!
     var dynamicDashboardModel = [DynamicDashboardModel]()
     var loanModel = [DynamicDashboardModel]()
+    var moreServiceModel = [DynamicDashboardModel]()
+    
      var userDashboardModel = [UserConstDashboarddModel]()
     // For AlertDialog
      let alertService = AlertService()
@@ -41,6 +43,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var insuranceArray = ["PRIVATE CAR","TWO WHEELER","COMMERCIAL VEHICLE","HEALTH INSURANCE","LIFE INSURANCE","REQUEST OFFLINE QUOTES"]
     var loansArray = ["CREDIT CARD","PERSONAL LOAN","BUSINESS LOAN","HOME LOAN","LOAN AGAINST PROPERTY"]
     var moreservicesArray = ["OTHER INVESTMENT PRODUCT-P2P"]
+    
+     var moreservicesArray1 = ["OTHER INVESTMENT PRODUCT-P2P"]
     var insuranceImgArray = ["private_car.png","two_wheeler.png","commercial_vehicle","health_insurance.png","life_insurance.png","offlineportal.png"]
     var loansImgArray = ["credit_card.png","personal_loan.png","balance_transfer.png","home_loan.png","loan_against_property.png"]
     var othrImgArray = ["health_checkup_plan.png"]
@@ -70,7 +74,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         getLoanStaticDashboard()
         userconstantAPI()
         getdynamicappAPI()
-       // insurancebusinessAPI()      // 05 temp committed
+    
         
         MainScrollView.isScrollEnabled = false
         
@@ -82,6 +86,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             print("VERSION BUILD",build)
         }
         
+     
+       // UITableViewCell.appearance().selectionStyle = .none    // for Removing Default Selection
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //for DeSelect the Row After Selection
+        if let index = mainTV.indexPathForSelectedRow{
+            self.mainTV.deselectRow(at: index, animated: true)
+        }
+    }
+    
+    func deSelectDashboard(){
+        
+        if let index = mainTV.indexPathForSelectedRow{
+            self.mainTV.deselectRow(at: index, animated: true)
+        }
     }
    
     @IBAction func finmartMenuBtn(_ sender: Any)
@@ -118,9 +139,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             return 1
         }
         else{
-            return 3
+            return 4
         }
     }
+    
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -139,7 +162,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
             else if(section == 2)
             {
-                return moreservicesArray.count
+                return moreServiceModel.count
+            }
+            else if(section == 3)
+            {
+                return 0
             }
             else{
                 return 0
@@ -211,7 +238,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 
                 cell.cellImageInfoProduct.isHidden = false
                 cell.cellImageShareProduct.isHidden = false
-                // check if Info  is not empty   //05
+                // check if Info  is not empty
                 if(dynamicDashboardModel[indexPath.row].info == "" )
                 {
                     cell.cellbtnInfoProduct.isHidden = true
@@ -321,6 +348,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname
                 cell.celldetailTextLbl.text! = loanModel[indexPath.row].dashdescription
                 cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
+           
             }
             else if(indexPath.section == 2)
             {
@@ -330,8 +358,37 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellImageInfoProduct.isHidden = true
                 cell.cellImageShareProduct.isHidden = true
                 
-                cell.cellTitleLbl.text! = moreservicesArray[indexPath.row]
+//                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname
+//                cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
+                
+                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname
+                cell.celldetailTextLbl.text! = moreServiceModel[indexPath.row].dashdescription
+               // cell.cellImage.image = UIImage(named: moreServiceModel[indexPath.row].iconimage)
+                
+                let remoteImageURL = URL(string: moreServiceModel[indexPath.row].iconimage)!
+                cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
+                
+                
+                
+                
+            }
+            
+            else if(indexPath.section == 3)
+            {
+                cell.cellbtnInfoProduct.isHidden = true
+                cell.cellbtnShareProduct.isHidden = true
+                
+                cell.cellImageInfoProduct.isHidden = true
+                cell.cellImageShareProduct.isHidden = true
+                
+                cell.cellTitleLbl.text! = ""
                 cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
+                
+                
+                
+                
+                
+                
             }
             //        cell.cellTextView.text! =
             //        if(indexPath.section == 0)
@@ -358,9 +415,18 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 switch Int(self.dynamicDashboardModel[indexPath.row].ProdId) {
                 case 1  :  // car
                     
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.webfromScreen = "private"
+//                    present(commonWeb, animated: true, completion: nil)
+                    
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "private"
-                    present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+
+                
+                    add(commonWeb)    // Adding in Parent View
+                    deSelectDashboard()
+                    
                     break
                 case 2  :  // Health
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -386,6 +452,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     present(LifeInsurance, animated:true, completion: nil)
                     break
                     
+                case 16 :    // Offline
+                  
+                    let msg = "Coming soon..."
+                    let snackbar = TTGSnackbar.init(message: msg , duration: .long)
+                    snackbar.show()
+                    
+                    break
+                   
             
                 default :
                     
@@ -408,13 +482,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                             if let modelURL = dynamicURL {
                                 
                                 let ProdId = self.dynamicDashboardModel[indexPath.row].ProdId
-                                let pospNo = UserDefaults.standard.string(forKey: "POSPNo") ?? "0"
+                               // let pospNo = UserDefaults.standard.string(forKey: "POSPNo") ?? "0"
                                 let appVersion = Configuration.appVersion
                                 
                               
-                                let info = "&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=\(ProdId)&login_ssid=\(pospNo)"
+//                                let info =      "&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=\(ProdId)&login_ssid=\(pospNo)"
                                 
-                              
+                                let info = "&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=\(ProdId)&login_ssid="
+                                
                                 let finalURL = modelURL + info
                                 print ("DYNAMIC URL",finalURL)
                                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -503,6 +578,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             {
                 
                 switch Int(self.loanModel[indexPath.row].ProdId) {
+                 
+                case 23  :  // Kotak
+                    let msg = "Coming soon..."
+                    let snackbar = TTGSnackbar.init(message: msg , duration: .long)
+                    snackbar.show()
+                    break
+                 
                 case 4  :  // credit Loan
                     
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -663,6 +745,12 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
+    @objc func buttonTapped(_ button:UIButton){
+        
+        
+        showToast(controller: self, message: "Disclosure", seconds: 4)
+        
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if(popUpbackgroundView.isHidden == false)
@@ -679,21 +767,54 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             let label = UILabel()
             label.frame = CGRect.init(x: 5, y: 10, width: 200, height: 30)
-            let label2 = UILabel()
-            label2.frame = CGRect.init(x: view.frame.maxY, y: 10, width: 200, height: 30)
+//            let label2 = UILabel()
+//            label2.frame = CGRect.init(x: view.frame.maxY, y: 10, width: 200, height: 30)
+//
+          
             if(section == 0)
             {
                 label.text = "INSURANCE"
-                label2.text = "POWERED BY"
+              //  label2.text = "POWERED BY"
             }
             else if(section == 1)
             {
+                
+               // labelDisclose.text = "Disclosure"
                 label.text = "LOANS"
-                label2.text = "POWERED BY"
+              //  label2.text = "POWERED BY"
+                
+//                            labelDisclose.font = UIFont.boldSystemFont(ofSize: 16)
+//                            labelDisclose.textColor = UIColor.white
+//                            headerView.addSubview(labelDisclose)
+    
+               
+
             }
             else if(section == 2)
             {
                 label.text = "MORE SERVICES"
+            }
+            else if(section == 3)  //05 working
+            {
+             
+             
+               headerView.backgroundColor = UIColor.init(red: 0.83, green: 0.83, blue: 0.83, alpha: 1.00)
+                
+                let button = UIButton(frame: CGRect(x: 50, y: 2, width: 300, height: 45))
+               
+                button.setTitle("INSURANCE DISCLOSURE", for: .normal)
+                button.backgroundColor = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                //button.contentHorizontalAlignment = .center
+              
+                button.tag = section  // important
+                button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+                
+                // let headerView1:UIView =  UIView()
+                // headerView1.backgroundColor = UIColor.blue
+                
+                headerView.addSubview(button)   // add the button to the view
             }
             
             //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
@@ -701,11 +822,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //        label.textColor = UIColor.charcolBlackColour() // my custom colour
             label.textColor = UIColor.white
             headerView.addSubview(label)
+            
+//            labelDisclose.font = UIFont.boldSystemFont(ofSize: 16)
+//            labelDisclose.textColor = UIColor.white
+//            headerView.addSubview(labelDisclose)
+            
            
-            label2.font = UIFont.italicSystemFont(ofSize: 16)
-            //        label.textColor = UIColor.charcolBlackColour() // my custom colour
-            label2.textColor = UIColor.white
-            headerView.addSubview(label2)
+//            label2.font = UIFont.italicSystemFont(ofSize: 16)
+//            //        label.textColor = UIColor.charcolBlackColour() // my custom colour
+//            label2.textColor = UIColor.white
+//            headerView.addSubview(label2)
             
             return headerView
         }
@@ -860,9 +986,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
               let pospsendphoto = jsonData?.value(forKey: "pospsendphoto") as AnyObject
             
             
-            
-          
-            
             /// loan
           
             let loansendemail = jsonData?.value(forKey: "loansendemail") as AnyObject
@@ -871,9 +994,17 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let loansendphoto = jsonData?.value(forKey: "loansendphoto") as AnyObject
             
             
-          
+            let finperkurl = jsonData?.value(forKey: "finperkurl") as AnyObject
+            let finboxurl = jsonData?.value(forKey: "finboxurl") as AnyObject
+            let PBByCrnSearch = jsonData?.value(forKey: "PBByCrnSearch") as AnyObject
+            let LeadDashUrl = jsonData?.value(forKey: "LeadDashUrl") as AnyObject
+            let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
+            let showmyinsurancebusiness = jsonData?.value(forKey: "showmyinsurancebusiness") as AnyObject
             
-            
+            let fba_uid = jsonData?.value(forKey: "fba_uid") as AnyObject
+            let fba_campaign_id = jsonData?.value(forKey: "fba_campaign_id") as AnyObject
+            let fba_campaign_name = jsonData?.value(forKey: "fba_campaign_name") as AnyObject
+           
             
             UserDefaults.standard.set(String(describing: uid), forKey: "uid")
             UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
@@ -913,6 +1044,17 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: loansendmobile), forKey: "loansendmobile")
             UserDefaults.standard.set(String(describing: loansenddesignation), forKey: "loansenddesignation")
             UserDefaults.standard.set(String(describing: loansendphoto), forKey: "loansendphoto")
+            
+            UserDefaults.standard.set(String(describing: finperkurl), forKey: "finperkurl")
+            UserDefaults.standard.set(String(describing: finboxurl), forKey: "finboxurl")
+            UserDefaults.standard.set(String(describing: PBByCrnSearch), forKey: "PBByCrnSearch")
+            UserDefaults.standard.set(String(describing: LeadDashUrl), forKey: "LeadDashUrl")
+            UserDefaults.standard.set(String(describing: enableenrolasposp), forKey: "enableenrolasposp")
+            UserDefaults.standard.set(String(describing: showmyinsurancebusiness), forKey: "showmyinsurancebusiness")
+            
+            UserDefaults.standard.set(String(describing: fba_uid), forKey: "fba_uid")
+            UserDefaults.standard.set(String(describing: fba_campaign_id), forKey: "fba_campaign_id")
+            UserDefaults.standard.set(String(describing: fba_campaign_name), forKey: "fba_campaign_name")
             
         }, onError: { errorData in
             alertView.close()
@@ -973,21 +1115,54 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             for index in 0...(Dashboard.count)-1 {
                 let aObject = Dashboard[index] as! [String : AnyObject]
                 
-                let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
-                                                  link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
-                           isActive: aObject["isActive"] as! Int, dashdescription: aObject["dashdescription"] as! String,
-                           modalType: "INSURANCE" , dashboard_type: aObject["dashboard_type"] as! String,
-                           
-                           ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
-                                ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
-                                IsExclusive: aObject["IsExclusive"] as! String,
-                                IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
-                                IsSharable: aObject["IsSharable"] as! String,
-                                popupmsg: aObject["popupmsg"] as! String,
-                                title: aObject["title"] as! String,
-                                info: aObject["info"] as! String)
                 
-                self.dynamicDashboardModel.append(model)
+                if(aObject["ProdId"] as! String != "16"){
+                    
+                    
+                    if(aObject["dashboard_type"] as! String == "1"){
+                        
+                        let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
+                                                          link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
+                                                          isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
+                                                          modalType: "INSURANCE" , dashboard_type: aObject["dashboard_type"] as! String,
+                                                          
+                                                          ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
+                                                          ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
+                                                          IsExclusive: aObject["IsExclusive"] as! String,
+                                                          IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
+                                                          IsSharable: aObject["IsSharable"] as! String,
+                                                          popupmsg: aObject["popupmsg"] as! String,
+                                                          title: aObject["title"] as! String,
+                                                          info: aObject["info"] as! String)
+                        
+                        self.dynamicDashboardModel.append(model)
+                        
+                    }else if(aObject["dashboard_type"] as! String == "3"){
+                        
+                        let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
+                                                          link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
+                                                          isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
+                                                          modalType: "MORESERVICE" , dashboard_type: aObject["dashboard_type"] as! String,
+                                                          
+                                                          ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
+                                                          ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
+                                                          IsExclusive: aObject["IsExclusive"] as! String,
+                                                          IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
+                                                          IsSharable: aObject["IsSharable"] as! String,
+                                                          popupmsg: aObject["popupmsg"] as! String,
+                                                          title: aObject["title"] as! String,
+                                                          info: aObject["info"] as! String)
+                        
+                        
+                        self.moreServiceModel.append(model)
+                    }
+                 
+                    
+                    
+                    
+                }
+                
+                
             
                 //var menuName = aObject["menuname"] as! String
                 // print("DATA",menuName)
@@ -1019,56 +1194,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     //////////////
     
-    func insurancebusinessAPI()
-    {
-        
-        if Connectivity.isConnectedToInternet()
-        {
-            print("Yes! internet is available.")
-          
-        
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        
-        
-        alertView.show()
-        
-        let ERPID = UserDefaults.standard.string(forKey: "ERPID")
-        
-        let params: [String: AnyObject] = ["Id": ERPID as AnyObject]
-        
-        let url = "/LeadCollection.svc/GetEncryptedErpId"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let Url = userObject
-            print("Url=",Url)
-            
-            UserDefaults.standard.set(String(describing: Url), forKey: "Url")
-            
-        }, onError: { errorData in
-            alertView.close()
-//            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-//            snackbar.show()
-        }, onForceUpgrade: {errorData in},checkStatus: true)
-            
-        }else{
-            let snackbar = TTGSnackbar.init(message: "No Internet Access Avaible", duration: .long)
-                    snackbar.show()
-        }
-        
-    }
-        
+   
     
     func usercallingAPI()
     {
@@ -1221,17 +1347,17 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         loanModel = [DynamicDashboardModel]()
         
-        loanModel.append(DynamicDashboardModel(menuid: 0, menuname: "KOTAK GROUP HEALTH CARE",
-                                               link: "", iconimage: "kotak_elite.png", isActive: 1,
-                                               dashdescription: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
-                                               modalType: "LOAN", dashboard_type: "0",
-                                               ProdId: "23",
-                                               ProductNameFontColor: "", ProductDetailsFontColor: "",
-                                               ProductBackgroundColor: "",
-                                               IsExclusive: "Y", IsNewprdClickable: "Y", IsSharable: "Y",
-                                               popupmsg: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
-                                               title: "Kotak Group health Care",
-                                               info: "http://origin-cdnh.policyboss.com/fmweb/GroupHealthCare/update.html"))
+//        loanModel.append(DynamicDashboardModel(menuid: 0, menuname: "KOTAK GROUP HEALTH CARE",
+//                                               link: "", iconimage: "kotak_elite.png", isActive: 1,
+//                                               dashdescription: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
+//                                               modalType: "LOAN", dashboard_type: "0",
+//                                               ProdId: "23",
+//                                               ProductNameFontColor: "", ProductDetailsFontColor: "",
+//                                               ProductBackgroundColor: "",
+//                                               IsExclusive: "Y", IsNewprdClickable: "Y", IsSharable: "Y",
+//                                               popupmsg: "Exclusive Health Insurance plan for Elite Members. Best in class features @ lower premium.",
+//                                               title: "Kotak Group health Care",
+//                                               info: "http://origin-cdnh.policyboss.com/fmweb/GroupHealthCare/update.html"))
         
         
         loanModel.append(DynamicDashboardModel(modalType: "LOAN", ProdId: "4",
