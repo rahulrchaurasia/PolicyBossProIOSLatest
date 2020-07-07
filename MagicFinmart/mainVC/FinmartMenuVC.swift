@@ -25,6 +25,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var pospNoLbl: UILabel!
     @IBOutlet weak var erpIdLbl: UILabel!
     
+    var addType = ""
+    
+
 
     @IBOutlet weak var MainScrollView: UIScrollView!
     @IBOutlet weak var versionLbl: UILabel!
@@ -74,6 +77,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //    var requestItems = ["Offline Quotes","Request Policy by CRN"]
     var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
        var otherImges = ["ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
+    
+    
     var attendanceItems = ["Add Attendance","My Location","Report"]
     //--<cellImages>--
   //  var myFinImages = ["","home.png","mps.png","ic_business_name.png"]
@@ -111,6 +116,17 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
   }
     
+    
+    func deSelectDashboard(){
+        
+        if let index = menuTV.indexPathForSelectedRow{
+            self.menuTV.deselectRow(at: index, animated: true)
+        }
+    }
+    
+    
+    
+    
     @IBAction func menuViewBtnCliked(_ sender: Any)
     {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
@@ -135,6 +151,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        let notipopupurl : notipopupurlVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnotipopupurlVC") as! notipopupurlVC
 //        present(notipopupurl, animated: true, completion: nil)
 //
+      
         
         let url = UserDefaults.standard.string(forKey: "notificationpopupurl")
 
@@ -148,8 +165,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
    
     @IBAction func menuhomeBtnCliked(_ sender: Any)
     {
+        
         let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
         present(KYDrawer, animated: true, completion: nil)
+     
     }
     
     @IBAction func myFinboxBtnCliked(_ sender: Any)
@@ -411,6 +430,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+      
       /***************************** Home SECTION ******************************/
         if(indexPath.section == 0)
         {
@@ -427,9 +447,22 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
             else if(indexPath.row == 1)     // FINBOX
             {
+                
+                // 05
+                
                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                 commonWeb.webfromScreen = "myFinbox"
                 present(commonWeb, animated: true, completion: nil)
+                
+//                if let drawerController = navigationController?.parent as? KYDrawerController {
+//                    drawerController.setDrawerState(.closed, animated: true)
+//
+//
+//                   let parent : MainfinMartVC = self.storyboard?.instantiateViewController(withIdentifier: "stbMainfinMartVC") as! MainfinMartVC
+//
+//                    parent.loadParentFromMenu()
+//                }
+              
             }
             else if(indexPath.row == 2)
             {
@@ -839,8 +872,6 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.showmyinsurancebusiness = showmyinsurancebusiness as! String
             
             UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
-//            if(loansendname as! String != "" && FBAId as! String != "" && POSPNo as! String != "" && ERPID as! String != "" && loanselfphoto as! String != "" && referer_code as! String != "")
-//            {
                 self.fullNameLbl.text! = loansendname.uppercased
                 self.fbaIdLbl.text! = FBAId as! String
                 self.pospNoLbl.text! = POSPNo as! String

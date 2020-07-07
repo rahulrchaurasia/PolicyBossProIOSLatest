@@ -19,6 +19,9 @@ class hnfdisclosureVC: UIViewController{
         disclsureView.layer.borderWidth=1.0;
         disclsureView.layer.borderColor=borderColor.cgColor;
         
+        
+       
+
     }
     
     @IBAction func backBtnCliked(_ sender: Any)
@@ -29,8 +32,12 @@ class hnfdisclosureVC: UIViewController{
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
+        
+         UserDefaults.standard.set(String(describing: "0"), forKey: "enableenrolasposp")
+        
         let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
         present(KYDrawer, animated: true, completion: nil)
+        
     }
     
 }

@@ -10,11 +10,14 @@
 		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
+		4428DAE524B4B80C00D0D86C /* CallingDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428DAE424B4B80C00D0D86C /* CallingDashboardModel.swift */; };
 		442B80A424AF4BF000F4EBDA /* InsuranceBussWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */; };
 		442C140D2497A31700E3C455 /* pospDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C140C2497A31700E3C455 /* pospDoc.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
+		4438D06024B3800800D68498 /* Disclosure.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D05F24B3800600D68498 /* Disclosure.html */; };
+		4438D06224B3802500D68498 /* eula.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D06124B3802500D68498 /* eula.html */; };
 		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
@@ -216,11 +219,14 @@
 		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
+		4428DAE424B4B80C00D0D86C /* CallingDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingDashboardModel.swift; sourceTree = "<group>"; };
 		442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBussWebVC.swift; sourceTree = "<group>"; };
 		442C140C2497A31700E3C455 /* pospDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospDoc.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
+		4438D05F24B3800600D68498 /* Disclosure.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Disclosure.html; sourceTree = "<group>"; };
+		4438D06124B3802500D68498 /* eula.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eula.html; sourceTree = "<group>"; };
 		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
@@ -443,6 +449,15 @@
 			path = pospDoc;
 			sourceTree = "<group>";
 		};
+		4438D06324B398D200D68498 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				4438D05F24B3800600D68498 /* Disclosure.html */,
+				4438D06124B3802500D68498 /* eula.html */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
 		44394A31248A26310095ADF5 /* register */ = {
 			isa = PBXGroup;
 			children = (
@@ -476,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				44B648902440A441006347D8 /* DynamicDashboardModel.swift */,
+				4428DAE424B4B80C00D0D86C /* CallingDashboardModel.swift */,
 			);
 			path = dashboard;
 			sourceTree = "<group>";
@@ -618,6 +634,7 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				4438D06324B398D200D68498 /* html */,
 				449EDBA02466A826006280CA /* Razorpay.framework */,
 				443D35F72462A30F00C8F763 /* PaymentGateway */,
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
@@ -1108,8 +1125,10 @@
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
 				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
+				4438D06224B3802500D68498 /* eula.html in Resources */,
 				447DF6302466DDD400D0F545 /* payment.storyboard in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
+				4438D06024B3800800D68498 /* Disclosure.html in Resources */,
 				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1314,6 +1333,7 @@
 				84347425222D4312004A418A /* cmnQuotesLifeinsVC.swift in Sources */,
 				84DB47792227E6A600EBDA3C /* commonApplictnTVCell.swift in Sources */,
 				44C9635722D340EC0037BC82 /* viewCommentnAddTVCell.swift in Sources */,
+				4428DAE524B4B80C00D0D86C /* CallingDashboardModel.swift in Sources */,
 				841BEA952255D25A00855EB0 /* lyfinsQuotesPageTVCell.swift in Sources */,
 				44AC204822D853AC0024E109 /* attendenceRegistratnVC.swift in Sources */,
 				8431D1D621E8604B000419E3 /* MotorInsuranceVCS.swift in Sources */,

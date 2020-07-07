@@ -13,6 +13,8 @@ class LifeInsuranceVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     var lifeinsuranceLblArray = ["COMPARE TERM INSURANCE","HDFC LIFE INSURANCE","ICICI PRUDENTIAL LIFE INSURANCE"/*,"ULTRA LAKSHYA INSURANCE"*/]
     var lifeinsuranceImgArray = ["compare_term_insurance_icon.png","ezgif.com-webp-to-png (2).png","ezgif.com-webp-to-png (1)"/*,"compare_term_insurance_icon.png"*/]
     
+    var addType = ""
+    
    override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,8 +29,14 @@ class LifeInsuranceVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+        if(addType == "CHILD"){
+            
+            self.remove()
+        }else{
+            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+            present(KYDrawer, animated: true, completion: nil)
+        }
+        
     }
     
     

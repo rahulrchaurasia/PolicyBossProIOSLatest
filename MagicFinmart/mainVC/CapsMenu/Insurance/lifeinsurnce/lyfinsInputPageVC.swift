@@ -214,9 +214,9 @@ class lyfinsInputPageVC: UIViewController,SelectedDateDelegate,getPickerDataDele
         self.hideKeyboardWhenTappedAround()
         
         mobNoTf.text! = cntctMob
-        let frstName = contctNm.components(separatedBy: " ").dropLast().joined(separator: " ")
+        let frstName = contctNm.trimmingCharacters(in: .whitespaces).components(separatedBy: " ").dropLast().joined(separator: " ")
         firstNameTf.text! = frstName.uppercased()
-        let lstName = contctNm.components(separatedBy: " ").dropFirst().joined(separator: " ")
+        let lstName = contctNm.trimmingCharacters(in: .whitespaces).components(separatedBy: " ").dropFirst().joined(separator: " ")
         lastNameTf.text! = lstName.uppercased()
         dobTf.text! = insdob
         let igendr = gendr

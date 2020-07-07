@@ -69,14 +69,14 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             
             
             
-//            titleLbl.text! = "PRIVATE CAR"
-//            bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
+            titleLbl.text! = "PRIVATE CAR"
+            bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
             
             
-            let myUrl = "http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html"
-            titleLbl.text! = "PRIVATE CAR"                                           // for testing
-            webView.load(URLRequest(url: URL(string: myUrl)!))
-            print("URL",myUrl)
+//            let myUrl = "http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html"
+//            titleLbl.text! = "PRIVATE CAR"                                           // for testing
+//            webView.load(URLRequest(url: URL(string: myUrl)!))
+//            print("URL",myUrl)
             //////
             
             
@@ -186,6 +186,17 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
      /**********************************************End   OF Loan ***********************************************************/
             
             
+    /****************************** HTML ****************************************/
+        else if(webfromScreen == "DISCLOSURE")
+        {
+            
+            bindHTMLData()
+        }
+            
+            
+           
+            
+            
        
      ///////////////////////////////////////////////////////////////////////////////
                    //    Menu Saction //
@@ -287,7 +298,8 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         {
             titleLbl.text! = "TRAINING"
             webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/training-schedule-calendar/"+(FBAId!))!))
-            print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
+            
+            print("URL","http://bo.magicfinmart.com/training-schedule-calendar/"+(FBAId!))
         }
         else if(webfromScreen == "leadDetails")
         {
@@ -459,6 +471,18 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         webView.load(URLRequest(url: URL(string: insURL)!))
         
         print("URL",insURL )
+    }
+    
+    
+    func bindHTMLData(){
+        
+        if let resourceURL = Bundle.main.url(forResource: "Disclosure", withExtension: "html") {
+            
+            let urlRequest  = URLRequest.init(url: resourceURL)
+            
+             titleLbl.text! = "DISCLOSURE"
+            webView.load(urlRequest)
+        }
     }
  
     ///////////////////////////////////////////////////////

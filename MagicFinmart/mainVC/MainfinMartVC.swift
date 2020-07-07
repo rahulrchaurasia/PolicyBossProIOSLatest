@@ -28,6 +28,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var moreServiceModel = [DynamicDashboardModel]()
     
      var userDashboardModel = [UserConstDashboarddModel]()
+    var callingDashboardModel = [CallingDashboardModel]()     // For Calling
     // For AlertDialog
      let alertService = AlertService()
     //popUp
@@ -104,6 +105,18 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.mainTV.deselectRow(at: index, animated: true)
         }
     }
+    
+//    func loadParentFromMenu(){
+//
+//        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//        commonWeb.webfromScreen = "HealthInsurance"
+//        commonWeb.addType = "CHILD"
+//
+//        self.add(commonWeb)    // Adding in Parent View
+//
+//    }
+    
+    
    
     @IBAction func finmartMenuBtn(_ sender: Any)
     {
@@ -149,22 +162,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     {
         if(popUpbackgroundView.isHidden == false)
         {
-            return EmployeeNameArray.count
+           // return EmployeeNameArray.count
+             return callingDashboardModel.count
         }
         else{
             if(section == 0)
             {
                 return dynamicDashboardModel.count
             }
-            else if(section == 1)
+            else if(section == 2)
             {
                 return loanModel.count
             }
-            else if(section == 2)
+            else if(section == 3)
             {
                 return moreServiceModel.count
             }
-            else if(section == 3)
+            else if(section == 1)
             {
                 return 0
             }
@@ -180,12 +194,20 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             let cell1 = popUpTV.dequeueReusableCell(withIdentifier: "pcell") as! callingRevampTVCell
             
-            cell1.managerNameLbl.text! = EmployeeNameArray[indexPath.row]
-            cell1.mobLbl.text! = MobileNoArray[indexPath.row]
-            cell1.emailLbl.text! = EmailIdArry[indexPath.row]
-            cell1.levelLbl.text! = DesignationArray[indexPath.row]
+//            cell1.managerNameLbl.text! = EmployeeNameArray[indexPath.row]
+//            cell1.mobLbl.text! = MobileNoArray[indexPath.row]
+//            cell1.emailLbl.text! = EmailIdArry[indexPath.row]
+//            cell1.levelLbl.text! = DesignationArray[indexPath.row]
+            
+            
+            cell1.managerNameLbl.text! = callingDashboardModel[indexPath.row].EmployeeName
+            cell1.mobLbl.text! = callingDashboardModel[indexPath.row].MobileNo
+            cell1.emailLbl.text! = callingDashboardModel[indexPath.row].EmailId
+            cell1.levelLbl.text! = callingDashboardModel[indexPath.row].Designation
             
             cell1.callingDelegate = self
+            
+       
             
             return cell1
             
@@ -278,7 +300,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
   
                
             }
-            else if(indexPath.section == 1)
+            else if(indexPath.section == 2)
             {
                 
                 
@@ -350,7 +372,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
            
             }
-            else if(indexPath.section == 2)
+            else if(indexPath.section == 3)
             {
                 cell.cellbtnInfoProduct.isHidden = true
                 cell.cellbtnShareProduct.isHidden = true
@@ -373,28 +395,19 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
             }
             
-            else if(indexPath.section == 3)
-            {
-                cell.cellbtnInfoProduct.isHidden = true
-                cell.cellbtnShareProduct.isHidden = true
-                
-                cell.cellImageInfoProduct.isHidden = true
-                cell.cellImageShareProduct.isHidden = true
-                
-                cell.cellTitleLbl.text! = ""
-                cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
-                
-                
-                
-                
-                
-                
-            }
-            //        cell.cellTextView.text! =
-            //        if(indexPath.section == 0)
-            //        {
-            //            cell.cellImage.image = UIImage(named: insuranceImgArray[indexPath.row])
-            //        }
+//            else if(indexPath.section == 1)
+//            {
+//                cell.cellbtnInfoProduct.isHidden = true
+//                cell.cellbtnShareProduct.isHidden = true
+//
+//                cell.cellImageInfoProduct.isHidden = true
+//                cell.cellImageShareProduct.isHidden = true
+//
+//                cell.cellTitleLbl.text! = ""
+//                cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
+//
+//            }
+           
             
             return cell
         }
@@ -423,7 +436,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     commonWeb.webfromScreen = "private"
                     commonWeb.addType = "CHILD"
 
-                
                     add(commonWeb)    // Adding in Parent View
                     deSelectDashboard()
                     
@@ -431,25 +443,39 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 2  :  // Health
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "HealthInsurance"
-                    present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    
+                    add(commonWeb)    // Adding in Parent View
+                    deSelectDashboard()
                     break
                     
                 case 10 :  // TWO WHEELER
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "twoWheeler"
-                    present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    
+                    add(commonWeb)
+                    deSelectDashboard()
                     break
                     
                 case 12  :   //COMMERCIAL VEHICLE
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "COMMERCIALVEHICLE"
-                    present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                   // present(commonWeb, animated: true, completion: nil)
+                    add(commonWeb)
+                    deSelectDashboard()
                     break
                     
                 case 18  :    // TermInsurance
                     let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
                     //                LifeInsurance.fromScreen = "LifeInsurance"
-                    present(LifeInsurance, animated:true, completion: nil)
+                   // present(LifeInsurance, animated:true, completion: nil)
+                    
+                    LifeInsurance.addType = "CHILD"
+                    
+                    add(LifeInsurance)
+                    deSelectDashboard()
                     break
                     
                 case 16 :    // Offline
@@ -496,7 +522,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 commonWeb.webfromScreen = "Dynamic"
                                 commonWeb.dynamicUrl = finalURL
                                 commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
-                                present(commonWeb, animated: true, completion: nil)
+                               // present(commonWeb, animated: true, completion: nil)
+                                
+                                commonWeb.addType = "CHILD"
+                                add(commonWeb)
+                                deSelectDashboard()
+                                
+                                
                             }
                             
                         }
@@ -509,7 +541,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         commonWeb.webfromScreen = "Dynamic"
                         commonWeb.dynamicUrl = self.dynamicDashboardModel[indexPath.row].link
                         commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
-                        present(commonWeb, animated: true, completion: nil)
+                       // present(commonWeb, animated: true, completion: nil)
+                        
+                        commonWeb.addType = "CHILD"
+                        add(commonWeb)
+                        deSelectDashboard()
                         
                     }
                    
@@ -574,7 +610,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 //************** End OF  Insurance Tap **********//
             }
-            if(indexPath.section == 1)
+            if(indexPath.section == 2)
             {
                 
                 switch Int(self.loanModel[indexPath.row].ProdId) {
@@ -590,20 +626,29 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "credit"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                   // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     break
                 case 19  :  // personal Loan
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "personal"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                    // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     
                     
                 case 6  :  // "business Loan"
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "business"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                    // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     
                     
                     
@@ -611,7 +656,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "home"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                    // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     
                     
                     
@@ -619,7 +667,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "lap"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                    // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     
                     
                     
@@ -627,7 +678,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "car"
                     commonWeb.webTitle = self.loanModel[indexPath.row].menuname
-                    present(commonWeb, animated: true, completion: nil)
+                    // present(commonWeb, animated: true, completion: nil)
+                    commonWeb.addType = "CHILD"
+                    add(commonWeb)
+                    deSelectDashboard()
                     break
                     
                 default :
@@ -709,7 +763,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //                }
                 
             }
-            if(indexPath.section == 2)
+            if(indexPath.section == 3)
             {
                 if(indexPath.row == 0)
                 {
@@ -745,10 +799,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
-    @objc func buttonTapped(_ button:UIButton){
+    
+    
+    @objc func buttonDisclTapped(_ button:UIButton){
+        
+        // 05
+        //showToast(controller: self, message: "Disclosure", seconds: 4)
+//        let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
+//        present(hnfdisclosure, animated: true, completion: nil)
+        
+        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+     
+        commonWeb.webfromScreen = "DISCLOSURE"
+        commonWeb.addType = "CHILD"
+        add(commonWeb)
+        deSelectDashboard()
         
         
-        showToast(controller: self, message: "Disclosure", seconds: 4)
         
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -763,6 +830,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
         else{
             let headerView:UIView =  UIView()
+     
             headerView.backgroundColor = UIColor.gray
             
             let label = UILabel()
@@ -776,7 +844,29 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 label.text = "INSURANCE"
               //  label2.text = "POWERED BY"
             }
-            else if(section == 1)
+            else if(section == 1)  //05  Disclosure
+            {
+                
+                
+                headerView.backgroundColor = UIColor.init(red: 0.83, green: 0.83, blue: 0.83, alpha: 1.00)
+                
+                let button = UIButton(frame: CGRect(x: 50, y: 2, width: 300, height: 44))
+                
+                button.setTitle("INSURANCE DISCLOSURE", for: .normal)
+                button.backgroundColor = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
+                button.setTitleColor(UIColor.white, for: .normal)
+                button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+                //button.contentHorizontalAlignment = .center
+                
+                button.tag = section  // important
+                button.addTarget(self, action: #selector(self.buttonDisclTapped), for: .touchUpInside)
+                
+                // let headerView1:UIView =  UIView()
+                // headerView1.backgroundColor = UIColor.blue
+                
+                headerView.addSubview(button)   // add the button to the view
+            }
+            else if(section == 2)
             {
                 
                // labelDisclose.text = "Disclosure"
@@ -790,32 +880,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                
 
             }
-            else if(section == 2)
+            else if(section == 3)
             {
                 label.text = "MORE SERVICES"
             }
-            else if(section == 3)  //05 working
-            {
-             
-             
-               headerView.backgroundColor = UIColor.init(red: 0.83, green: 0.83, blue: 0.83, alpha: 1.00)
-                
-                let button = UIButton(frame: CGRect(x: 50, y: 2, width: 300, height: 45))
-               
-                button.setTitle("INSURANCE DISCLOSURE", for: .normal)
-                button.backgroundColor = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
-                button.setTitleColor(UIColor.white, for: .normal)
-                button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-                //button.contentHorizontalAlignment = .center
-              
-                button.tag = section  // important
-                button.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
-                
-                // let headerView1:UIView =  UIView()
-                // headerView1.backgroundColor = UIColor.blue
-                
-                headerView.addSubview(button)   // add the button to the view
-            }
+            
             
             //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
             label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -1230,11 +1299,33 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let Designation = jsonData!.value(forKey: "Designation") as AnyObject
             self.DesignationArray = Designation as! [String]
             let MobileNo = jsonData?.value(forKey: "MobileNo") as AnyObject
-            self.MobileNoArray = MobileNo as! [String]
+           
+            self.MobileNoArray = (MobileNo) as! [String]
+            print("CONTACT",self.MobileNoArray )
             let EmailId = jsonData!.value(forKey: "EmailId") as AnyObject
             self.EmailIdArry = EmailId as! [String]
+             print("Email",self.EmailIdArry )
             
-            self.popUpTV.reloadData()
+          //05
+            self.popUpbackgroundView.isHidden = false
+            for index in 0...(jsonData?.count ?? 0)-1 {
+                let aObject = jsonData![index] as! [String : AnyObject]
+                
+               
+                let model  = CallingDashboardModel(MobileNo: aObject["MobileNo"] as! String,
+                                                EmailId: aObject["EmailId"] as! String,
+                                                EmployeeName: aObject["EmployeeName"] as! String,
+                                                Designation: aObject["Designation"] as! String)
+            
+                self.callingDashboardModel.append(model)
+
+                }
+            
+
+            DispatchQueue.main.async {
+              
+                self.popUpTV.reloadData()
+            }
             
         }, onError: { errorData in
             alertView.close()
@@ -1399,5 +1490,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
     
+
 }
 

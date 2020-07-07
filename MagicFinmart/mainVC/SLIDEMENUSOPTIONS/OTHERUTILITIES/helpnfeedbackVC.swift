@@ -10,7 +10,7 @@ import UIKit
 
 class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    var tableArr = ["CONTACT US","RAISE A TICKET","DISCLOSURE","FINMART WHATSAPP CHAT"]
+    var tableArr = ["CONTACT US","DISCLOSURE"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +46,8 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             let hnfcontactUs : hnfcontactUsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfcontactUsVC") as! hnfcontactUsVC
             present(hnfcontactUs, animated: true, completion: nil)
         }
+       
         else if(indexPath.row == 1)
-        {
-            let hnfraiseTickt : hnfraiseTicktVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfraiseTicktVC") as! hnfraiseTicktVC
-            present(hnfraiseTickt, animated: true, completion: nil)
-        }
-        else if(indexPath.row == 2)
         {
             let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
             present(hnfdisclosure, animated: true, completion: nil)
