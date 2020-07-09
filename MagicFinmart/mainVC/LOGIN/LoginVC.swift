@@ -60,22 +60,12 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func loginSubmitBtnCliked(_ sender: Any)
     {
-        if(emailTf.text != "" && passwordTf.text! != "")
-        {
-//            if(isValidEmail(testStr: emailTf.text!))
-//            {
-//                loginAPI()
-//            }
-//            else{
-//                let alert = UIAlertController(title: "Alert", message: "Invalid Email ID or Password", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }else{
-//            let alert = UIAlertController(title: "Alert", message: "Please enter Email ID or Password", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
+     
+        if(loginValidate() == false){
+            
+            return
         }
+        
         
         if((emailTf.text?.contains("@"))!){
             self.view.endEditing(true)
@@ -114,6 +104,22 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
     }
     
+    func loginValidate()  -> Bool {
+        
+        if( emailTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Valid Email/User Id")
+            return false
+        }
+       
+        if( passwordTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Password")
+            return false
+        }
+        
+        
+        
+        return true
+    }
     
     //---<APICALL>---
     func loginAPI()
@@ -224,6 +230,14 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         }
         
  }
+    
+    
+    func alertCall(message:String)
+    {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
 }

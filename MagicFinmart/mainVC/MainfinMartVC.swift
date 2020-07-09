@@ -12,9 +12,9 @@ import TTGSnackbar
 import SwiftyJSON
 import Alamofire
 import SDWebImage
+import MessageUI
 
-
-class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate {
+class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate {
    
     @IBOutlet weak var mainTV: UITableView!
     @IBOutlet weak var salesmaterialView: UIView!
@@ -777,16 +777,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if(popUpbackgroundView.isHidden == false)
-//        {
-//            return 160
-//        }
-//        else{
-//           return 110
-//        }
-//        
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(popUpbackgroundView.isHidden == false)
+        {
+            return 160
+        }
+        else{
+            return UITableView.automaticDimension //For Auto Height of cell decided by constrain
+        }
+        
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if(popUpbackgroundView.isHidden == false)
@@ -942,25 +942,63 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func callingshareBtnTapped(cell: callingRevampTVCell) {
         let indexPath = self.popUpTV.indexPath(for: cell)
-        mobNo = MobileNoArray[indexPath!.row]
+       let   email = callingDashboardModel[indexPath!.row].EmailId
+//
+//        let text = "Dear Sir/Madam,"
+//        let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
+//        present(vc, animated: true)
         
-        let text = "Dear Sir/Madam,"
-        let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
-        present(vc, animated: true)
+        sendEmail(strReceipt: email)
+        
     }
     
     func callingcallBtnTapped(cell: callingRevampTVCell) {
         let indexPath = self.popUpTV.indexPath(for: cell)
-        mobNo = MobileNoArray[indexPath!.row]
+        mobNo = callingDashboardModel[indexPath!.row].MobileNo
         
         let phoneNumber = mobNo
-        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+        
+//        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+//
+//            let application:UIApplication = UIApplication.shared
+//            if (application.canOpenURL(phoneCallURL)) {
+//                application.open(phoneCallURL, options: [:], completionHandler: nil)
+//            }
+//        }
+        
+        if let phoneCallURL = URL(string: "telprompt://\(phoneNumber)") {
             
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                    application.openURL(phoneCallURL as URL)
+                    
+                }
             }
         }
+    }
+    
+    // Default overide method of MFMailComposeViewControllerDelegate  (Belong to email)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    func sendEmail(strReceipt : String ) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([strReceipt])
+            mail.setSubject("Finmart")
+            mail.setMessageBody("<p>Dear Sir/Madam,</p>", isHTML: true)
+            
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+        
     }
     
     //---<APICALL>---
@@ -1306,6 +1344,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.EmailIdArry = EmailId as! [String]
              print("Email",self.EmailIdArry )
             
+            self.callingDashboardModel.removeAll()
           //05
             self.popUpbackgroundView.isHidden = false
             for index in 0...(jsonData?.count ?? 0)-1 {

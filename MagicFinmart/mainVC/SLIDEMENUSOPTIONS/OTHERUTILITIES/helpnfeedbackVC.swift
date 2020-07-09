@@ -49,8 +49,15 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
        
         else if(indexPath.row == 1)
         {
-            let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
-            present(hnfdisclosure, animated: true, completion: nil)
+//            let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
+//            present(hnfdisclosure, animated: true, completion: nil)
+            
+            
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            
+            commonWeb.webfromScreen = "DISCLOSURE"
+            commonWeb.addType = "CHILD"
+            add(commonWeb)
         }
         
     }

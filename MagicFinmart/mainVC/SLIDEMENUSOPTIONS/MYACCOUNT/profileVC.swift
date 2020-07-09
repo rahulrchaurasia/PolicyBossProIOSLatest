@@ -11,7 +11,7 @@ import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
 
-class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
     @IBOutlet weak var myaccountImgeView: UIImageView!
     @IBOutlet weak var myprofileView: UIView!
@@ -71,6 +71,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     var uploadDoc = ""
     
     var accountType = "SAVING"
+    var stateid = String()
+    var stateName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +82,13 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         imagePicker.delegate = self
         //--<textField>--
         aTextField.delegate = self
+        
+        
+        micrCodeTf.delegate = self
+        bankBranchTf.delegate = self
+        bankNameTf.delegate = self
+        panTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        ifscCodeTf.autocapitalizationType = .allCharacters
         
         //--<cornerradius>--
 //        myaccountImgeView.layer.cornerRadius = 64
@@ -120,6 +129,9 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         //--<apiCall>--
         getmyaccountAPI()
         
+//        enmob1Tf.isEnabled = false
+//        enemailTf.isEnabled = false
+        
     }
     
     //--<roundImageView>--
@@ -152,7 +164,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     //---<textFieldRange>---
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
-        if(textField == mobilenotoshareTf  ||  textField == spprtMobNoLbl ||  textField == abtmeMobnoLbl ||  textField == pospMobNumTf)
+        if(textField == mobilenotoshareTf   ||  textField == pospMobNumTf)
         {
             if((textField.text?.count)! <= 9)
             {
@@ -173,27 +185,97 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         }
         else if(textField == pincodeTf)
         {
-            if((textField.text?.count)! < 6)
+//            if((textField.text?.count)! < 6)
+//            {
+//                let allowedCharacters = CharacterSet.decimalDigits
+//                let characterSet = NSCharacterSet(charactersIn: string)
+//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+//
+//            }
+//            else{
+//                //            let characterCountLimit = 30
+//                // We need to figure out how many characters would be in the string after the change happens
+//                let startingLength = textField.text?.count ?? 0
+//                let lengthToAdd = string.count
+//                let lengthToReplace = range.length
+//                let newLength = startingLength + lengthToAdd - lengthToReplace
+//
+//                return newLength <= (textField.text?.count)!
+//            }
+            
+            
+            
+            var blnStatus : Bool = false
+            
+            // get the current text, or use an empty string if that failed
+            let currentText = textField.text ?? ""
+            
+            // attempt to read the range they are trying to change, or exit if we can't
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            
+            
+            // add their new text to the existing text
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            ////////////////////////////
+            
+            
+            if(updatedText.count <= 6 && textField == pincodeTf)
             {
+                
                 let allowedCharacters = CharacterSet.decimalDigits
                 let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
                 
+                blnStatus = allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                
+                if(updatedText.count == 6)
+                {
+                    if(blnStatus){
+                        print("pincode =",updatedText)
+                       getCityStateAPI(pincode: updatedText)
+                    }
+                    
+                }
+                
+                return blnStatus
+                
+                
+            }else{
+                return false
+            }
+            
+            
+
+        }
+            
+        else if(textField == ifscCodeTf)
+        {
+            if((textField.text?.count)! <= 10)
+            {
+                let allowedCharacters = CharacterSet.alphanumerics
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
             }
             else{
-                //            let characterCountLimit = 30
-                // We need to figure out how many characters would be in the string after the change happens
-                let startingLength = textField.text?.count ?? 0
-                let lengthToAdd = string.count
-                let lengthToReplace = range.length
-                let newLength = startingLength + lengthToAdd - lengthToReplace
-                
-                return newLength <= (textField.text?.count)!
+               return false
+            }
+            
+        }
+        else if(textField == panTf)
+        {
+            if((textField.text?.count)! <= 9)
+            {
+                let allowedCharacters = CharacterSet.alphanumerics
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            }
+            else{
+               return false
             }
             
         }
         else{
-            if((textField.text?.count)! <= 30)
+            if((textField.text?.count)! <= 60)
             {
                 var allowedCharacters = CharacterSet.letters
                 allowedCharacters.formUnion(CharacterSet.whitespaces)
@@ -577,6 +659,21 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
     }
     
+    
+    /**********************************************************/
+    //---<keyboard change for PAN text>---
+    @objc func handleTextChange(_ textChange: UITextField) {
+        if panTf.text?.count == 5 || panTf.text?.count == 6 || panTf.text?.count == 7 || panTf.text?.count == 8
+        {
+            panTf.keyboardType = .numberPad
+            panTf.reloadInputViews() // need to reload the input view for this work
+        } else {
+            panTf.keyboardType = .default
+            panTf.reloadInputViews()
+        }
+    }
+    //---<end keyboard text change for PAN>---
+    
     //---<EmailValidation>---
     func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -584,6 +681,120 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: testStr)
     }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
+    
+        if(ifscCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            
+            return
+        }
+        if(textField == self.micrCodeTf || textField == self.bankBranchTf || textField == self.bankCityTf || textField == self.bankNameTf)
+        {
+            getifsccodeAPI()
+        }
+        
+    }
+    
+    
+    func getCityStateAPI(pincode : String)
+    {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            let params: [String: AnyObject] = ["PinCode": pincode as AnyObject]
+            
+            let url = "/api/get-city-and-state"
+            
+            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                alertView.close()
+                
+                self.view.layoutIfNeeded()
+                
+                let jsonData = userObject as? NSDictionary
+                let state_name = jsonData?.value(forKey: "state_name") as? String
+                self.stateid = (jsonData?.value(forKey: "stateid") as? String ?? "")
+                self.stateName = state_name ?? ""
+                let cityname = jsonData?.value(forKey: "cityname") as? String
+                self.stateTf.text! = state_name!
+                self.cityTf.text! = cityname!
+                
+            }, onError: { errorData in
+                alertView.close()
+                let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                snackbar.show()
+            }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+    }
+    
+    func getifsccodeAPI()
+    {
+        if Connectivity.isConnectedToInternet()
+        {
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            let params: [String: AnyObject] = ["IFSCCode": ifscCodeTf.text! as AnyObject]
+            
+            let url = "/api/get-ifsc-code"
+            
+            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                alertView.close()
+                
+                self.view.layoutIfNeeded()
+                
+                let jsonData = userObject as? NSArray
+                
+                
+                let MICRCode = (jsonData![0] as AnyObject).value(forKey: "MICRCode") as AnyObject
+                let BankBran = (jsonData![0] as AnyObject).value(forKey: "BankBran") as AnyObject
+                let CityName = (jsonData![0] as AnyObject).value(forKey: "CityName") as AnyObject
+                let BankName = (jsonData![0] as AnyObject).value(forKey: "BankName") as AnyObject
+                self.micrCodeTf.text! = MICRCode as! String
+                self.bankBranchTf.text! = BankBran as! String
+                self.bankCityTf.text! = CityName as! String
+                self.bankNameTf.text! = BankName as! String
+                
+                
+                
+            }, onError: { errorData in
+                alertView.close()
+                let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                snackbar.show()
+            }, onForceUpgrade: {errorData in})
+            
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+    }
+
+    
     
     //---<APICALL>---
 //    UpdateDocumentByIDAPI(documentName:String, documentType:String)
@@ -643,7 +854,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
             let endUrl = "/api/upload-doc"
             let url =  FinmartRestClient.baseURLString  + endUrl
-            // to:"http://preprodapiqa.mgfm.in/api/upload-doc")
+         
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 //            multipartFormData.append(UIImageJPEGRepresentation(self.pickedImage.image!, 0.5)!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
                 multipartFormData.append(imageData!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
@@ -815,109 +1026,135 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = [ "Address_1": address1Tf.text! as AnyObject,
-                                            "Address_2": address2Tf.text! as AnyObject,
-                                            "Address_3": address3Tf.text! as AnyObject,
-                                            "AppSource": "null" as AnyObject,
-                                            "Bonds": "" as AnyObject,
-                                            "Bonds_Comp": "" as AnyObject,
-                                            "BrokID": 0 as AnyObject,
-                                            "City": cityTf.text! as AnyObject,
+        let params: [String: AnyObject] = [
+                                            "Type": "0" as AnyObject,
+                                           
+                                          
                                             "CustID": 0 as AnyObject,
-                                            "DOB": "" as AnyObject,
-                                            "DisplayDesignation": pospDesignTf.text! as AnyObject,
-                                            "DisplayEmail": emailtoshareTf.text! as AnyObject,
-                                            "DisplayPhoneNo": "8888888888" as AnyObject,
-                                            "EmailId": emailtoshareTf.text! as AnyObject,
+                                         
                                             "FBAID": fbaIdLbl.text! as AnyObject,
                                             "FBALiveID": 0 as AnyObject,
                                             "FBAPan": "" as AnyObject,
                                             "FBAStat": "" as AnyObject,
+                                            
+                                            ////////**********Profile***********///////
                                             "FBA_Designation": designationTf.text! as AnyObject,
-                                            "FirstName": "" as AnyObject,
-                                            "GIC_Comp": "" as AnyObject,
-                                            "GIC_Comp_ID": "" as AnyObject,
-                                            "GSTNumb": "" as AnyObject,
-                                            "Gender": "" as AnyObject,
-                                            "Health_Comp": "" as AnyObject,
-                                            "Health_Comp_ID": "" as AnyObject,
-                                            "IsFOC": "" as AnyObject,
-                                            "IsGic": "" as AnyObject,
-                                            "IsHealth": "" as AnyObject,
-                                            "IsLic": "" as AnyObject,
-                                            "LIC_Comp": "" as AnyObject,
-                                            "LIC_Comp_ID": "" as AnyObject,
-                                            "LastName": "" as AnyObject,
-                                            "Link": "null" as AnyObject,
+                                            "Mobile_1": mobilenotoshareTf.text! as AnyObject,
+                                             //"Mobile_2": "" as AnyObject,
+                                            "EmailId": emailtoshareTf.text! as AnyObject,
+                                           
+                                             ////////********** POSP ***********///////
+            
+                                            "DisplayDesignation": pospDesignTf.text! as AnyObject,
+                                            "DisplayEmail":  pospemailTf.text! as AnyObject,
+                                            "DisplayPhoneNo": pospMobNumTf.text! as AnyObject,
+            
+            
+                                            ////////**********Designation***********///////
+                                            "Address_1": address1Tf.text! as AnyObject,
+                                            "Address_2": address2Tf.text! as AnyObject,
+                                            "Address_3": address3Tf.text! as AnyObject,
+                                            "PinCode": pincodeTf.text! as AnyObject,
+                                            "City": cityTf.text! as AnyObject,
+                                            "State": stateTf.text! as AnyObject,
+                                            "StateID": "" as AnyObject,     //05
+            
+                                         ////////**********Bank Details ***********///////
+            
+            
+                                            "Loan_FirstName": accountHolderNameTf.text! as AnyObject,
+                                            "Loan_PAN": panTf.text! as AnyObject,
                                             "Loan_Aadhaar": addharTf.text! as AnyObject,
-                                            "Loan_Account_Type": accountType as AnyObject,
                                             "Loan_BankAcNo": bankaccnoTf.text! as AnyObject,
+                                            "Loan_IFSC": ifscCodeTf.text! as AnyObject,
+                                            
+                                            "Loan_MICR": micrCodeTf.text! as AnyObject,
+                                            "Loan_BankName": bankNameTf as AnyObject,
                                             "Loan_BankBranch": bankBranchTf.text! as AnyObject,
                                             "Loan_BankCity": bankCityTf.text! as AnyObject,
-                                            "Loan_BankID": 0 as AnyObject,
-                                            "Loan_BankName": "HDFC BANK" as AnyObject,
-                                            "Loan_FirstName": " NEEL" as AnyObject,
-                                            "Loan_IFSC": ifscCodeTf.text! as AnyObject,
-                                            "Loan_LastName": "" as AnyObject,
-                                            "Loan_MICR": micrCodeTf.text! as AnyObject,
-                                            "Loan_PAN": panTf.text! as AnyObject,
-                                            "MF": "" as AnyObject,
-                                            "MF_Comp": "" as AnyObject,
-                                            "Mobile_1": mobilenotoshareTf.text! as AnyObject,
-                                            "Mobile_2": "" as AnyObject,
-                                            "Other_Aadhaar": "" as AnyObject,
-                                            "Other_Account_Type": "" as AnyObject,
-                                            "Other_BankAcNo": "" as AnyObject,
-                                            "Other_BankBranch": "" as AnyObject,
-                                            "Other_BankCity": "" as AnyObject,
-                                            "Other_BankID": 0 as AnyObject,
-                                            "Other_BankName": "" as AnyObject,
-                                            "Other_FirstName": "" as AnyObject,
-                                            "Other_IFSC": "" as AnyObject,
-                                            "Other_LastName": "" as AnyObject,
-                                            "Other_MICR": "" as AnyObject,
-                                            "Other_PAN": "" as AnyObject,
-                                            "POSPID": 0 as AnyObject,
-                                            "ParentId": "0" as AnyObject,
-                                            "PinCode": pincodeTf.text! as AnyObject,
-                                            "Posp_Aadhaar": "" as AnyObject,
-                                            "Posp_Account_Type": "" as AnyObject,
-                                            "Posp_Address1": "" as AnyObject,
-                                            "Posp_Address2": "" as AnyObject,
-                                            "Posp_Address3": "" as AnyObject,
-                                            "Posp_BankAcNo": "" as AnyObject,
-                                            "Posp_BankBranch": "" as AnyObject,
-                                            "Posp_BankCity": "" as AnyObject,
-                                            "Posp_BankID": 0 as AnyObject,
-                                            "Posp_BankName": "" as AnyObject,
-                                            "Posp_ChanPartCode": "" as AnyObject,
-                                            "Posp_City": "" as AnyObject,
-                                            "Posp_DOB": "" as AnyObject,
-                                            "Posp_Email": pospemailTf.text! as AnyObject,
-                                            "Posp_FirstName": "" as AnyObject,
-                                            "Posp_Gender": "" as AnyObject,
-                                            "Posp_IFSC": "" as AnyObject,
-                                            "Posp_LastName": "" as AnyObject,
-                                            "Posp_MICR": "" as AnyObject,
-                                            "Posp_Mobile1": pospMobNumTf.text! as AnyObject,
-                                            "Posp_Mobile2": "" as AnyObject,
-                                            "Posp_PAN": "" as AnyObject,
-                                            "Posp_PinCode": "" as AnyObject,
-                                            "Posp_ServiceTaxNo": "" as AnyObject,
-                                            "Posp_StatID": "" as AnyObject,
-                                            "Postal": "" as AnyObject,
-                                            "Postal_Comp": "" as AnyObject,
-                                            "SMID": 0 as AnyObject,
-                                            "SM_Name": "" as AnyObject,
-                                            "StatActi": "" as AnyObject,
-                                            "State": stateTf.text! as AnyObject,
-                                            "StateID": "" as AnyObject,
-                                            "Stock": "" as AnyObject,
-                                            "Stock_Comp": "" as AnyObject,
-                                            "Type": "0" as AnyObject,
-                                            "VersionCode": Configuration.appVersion as AnyObject,
-                                            "password": "" as AnyObject,
-                                            "referedby_code": "null" as AnyObject]
+                                            "Loan_Account_Type": accountType as AnyObject,
+                                            
+                                           // "DOB": "" as AnyObject,
+                                            
+//                                            "AppSource": "" as AnyObject,
+//                                            "Bonds": "" as AnyObject,
+//                                            "Bonds_Comp": "" as AnyObject,
+//                                            "BrokID": 0 as AnyObject,
+                                           //  "Loan_LastName": "" as AnyObject,
+//                                            "FirstName": "" as AnyObject,
+//                                            "GIC_Comp": "" as AnyObject,
+//                                            "GIC_Comp_ID": "" as AnyObject,
+//                                            "GSTNumb": "" as AnyObject,
+//                                            "Gender": "" as AnyObject,
+//                                            "Health_Comp": "" as AnyObject,
+//                                            "Health_Comp_ID": "" as AnyObject,
+//                                            "IsFOC": "" as AnyObject,
+//                                            "IsGic": "" as AnyObject,
+//                                            "IsHealth": "" as AnyObject,
+//                                            "IsLic": "" as AnyObject,
+//                                            "LIC_Comp": "" as AnyObject,
+//                                            "LIC_Comp_ID": "" as AnyObject,
+//                                            "LastName": "" as AnyObject,
+//                                            "Link": "null" as AnyObject,
+            
+//
+//                                            "MF": "" as AnyObject,
+//                                            "MF_Comp": "" as AnyObject,
+//
+//                                            "Other_Aadhaar": "" as AnyObject,
+//                                            "Other_Account_Type": "" as AnyObject,
+//                                            "Other_BankAcNo": "" as AnyObject,
+//                                            "Other_BankBranch": "" as AnyObject,
+//                                            "Other_BankCity": "" as AnyObject,
+//                                            "Other_BankID": 0 as AnyObject,
+//                                            "Other_BankName": "" as AnyObject,
+//                                            "Other_FirstName": "" as AnyObject,
+//                                            "Other_IFSC": "" as AnyObject,
+//                                            "Other_LastName": "" as AnyObject,
+//                                            "Other_MICR": "" as AnyObject,
+//                                            "Other_PAN": "" as AnyObject,
+//                                            "POSPID": 0 as AnyObject,
+//                                            "ParentId": "0" as AnyObject,
+//
+//                                            "Posp_Aadhaar": "" as AnyObject,
+//                                            "Posp_Account_Type": "" as AnyObject,
+//                                            "Posp_Address1": "" as AnyObject,
+//                                            "Posp_Address2": "" as AnyObject,
+//                                            "Posp_Address3": "" as AnyObject,
+//                                            "Posp_BankAcNo": "" as AnyObject,
+//                                            "Posp_BankBranch": "" as AnyObject,
+//                                            "Posp_BankCity": "" as AnyObject,
+//                                            "Posp_BankID": 0 as AnyObject,
+//                                            "Posp_BankName": "" as AnyObject,
+//                                            "Posp_ChanPartCode": "" as AnyObject,
+//                                            "Posp_City": "" as AnyObject,
+//                                            "Posp_DOB": "" as AnyObject,
+//                                            "Posp_Email": pospemailTf.text! as AnyObject,
+//                                            "Posp_FirstName": "" as AnyObject,
+//                                            "Posp_Gender": "" as AnyObject,
+//                                            "Posp_IFSC": "" as AnyObject,
+//                                            "Posp_LastName": "" as AnyObject,
+//                                            "Posp_MICR": "" as AnyObject,
+//                                            "Posp_Mobile1": pospMobNumTf.text! as AnyObject,
+//                                            "Posp_Mobile2": "" as AnyObject,
+//                                            "Posp_PAN": "" as AnyObject,
+//                                            "Posp_PinCode": "" as AnyObject,
+//                                            "Posp_ServiceTaxNo": "" as AnyObject,
+//                                            "Posp_StatID": "" as AnyObject,
+//                                            "Postal": "" as AnyObject,
+//                                            "Postal_Comp": "" as AnyObject,
+//                                            "SMID": 0 as AnyObject,
+//                                            "SM_Name": "" as AnyObject,
+//                                            "StatActi": "" as AnyObject,
+//
+//                                            "Stock": "" as AnyObject,
+//                                            "Stock_Comp": "" as AnyObject,
+//
+//                                            "VersionCode": Configuration.appVersion as AnyObject,
+//                                            "password": "" as AnyObject,
+//                                            "referedby_code": "null" as AnyObject
+            
+                                 ]
         
         let url = "/api/my-account"
         
@@ -979,5 +1216,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         view.layer.borderColor=borderColor.cgColor;
     }
     
+    
+    
+  
     
 }

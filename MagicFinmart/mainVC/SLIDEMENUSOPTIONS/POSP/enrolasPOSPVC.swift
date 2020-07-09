@@ -310,10 +310,12 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-//        if (textField == self.encityTf || textField == self.enstateTf)
-//        {
-//            getCityStateAPI()
-//        }
+
+        if(enifscCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+           
+            return
+        }
+      
         if(textField == self.enmicrCodeTf || textField == self.enbankBranchTf || textField == self.enbankCityTf || textField == self.enbankNameTf)
         {
             getifsccodeAPI()

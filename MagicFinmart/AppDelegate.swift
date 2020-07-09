@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //CLLocationManagerDelegate    // Delegate For location
     var window: UIWindow?
     
-    let locationMgr = CLLocationManager()
+   // let locationMgr = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -38,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         
         
         //---<askforLocation>---
+        
+        // location commented
+        /*
+        
         // 1
         let status  = CLLocationManager.authorizationStatus()
         // 2
@@ -60,21 +65,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate,CLLocationManagerDelegate 
         locationMgr.delegate = self
         locationMgr.startUpdatingLocation()
         
+        */
         
+        // end location commented
         return true
         
     }
     
     // 1
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let currentLocation = locations.last!
-        print("Current location: \(currentLocation)")
-    }
-    
-    // 2
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print("Error \(error)")
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let currentLocation = locations.last!
+//        print("Current location: \(currentLocation)")
+//    }
+//
+//    // 2
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Error \(error)")
+//    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

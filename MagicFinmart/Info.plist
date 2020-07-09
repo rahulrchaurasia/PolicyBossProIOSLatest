@@ -31,14 +31,6 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>This app will use camera</string>
-	<key>NSContactsUsageDescription</key>
-	<string>This app requires contacts access to function properly.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow location</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow location to mark your attendance</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>You can select photo</string>
 	<key>UILaunchStoryboardName</key>
