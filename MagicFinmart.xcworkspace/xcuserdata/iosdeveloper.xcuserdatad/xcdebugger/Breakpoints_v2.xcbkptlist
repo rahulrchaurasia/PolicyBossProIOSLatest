@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MagicFinmart/mainVC/SLIDEMENUSOPTIONS/POSP/enrolasPOSPVC.swift"
-            timestampString = "616007910.005237"
+            timestampString = "616062792.171774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1319"
@@ -42,59 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MagicFinmart/mainVC/SLIDEMENUSOPTIONS/POSP/enrolasPOSPVC.swift"
-            timestampString = "616007910.005321"
+            timestampString = "616062792.224333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1046"
             endingLineNumber = "1046"
-            landmarkName = "uploaddocAPI(documentName:documentType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MagicFinmart/mainVC/SLIDEMENUSOPTIONS/POSP/enrolasPOSPVC.swift"
-            timestampString = "616007910.005396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1105"
-            endingLineNumber = "1105"
-            landmarkName = "uploaddocAPI(documentName:documentType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MagicFinmart/mainVC/SLIDEMENUSOPTIONS/POSP/enrolasPOSPVC.swift"
-            timestampString = "616007910.005457"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1083"
-            endingLineNumber = "1083"
-            landmarkName = "uploaddocAPI(documentName:documentType:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MagicFinmart/mainVC/SLIDEMENUSOPTIONS/POSP/enrolasPOSPVC.swift"
-            timestampString = "616007910.005518"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1089"
-            endingLineNumber = "1089"
             landmarkName = "uploaddocAPI(documentName:documentType:)"
             landmarkType = "7">
          </BreakpointContent>

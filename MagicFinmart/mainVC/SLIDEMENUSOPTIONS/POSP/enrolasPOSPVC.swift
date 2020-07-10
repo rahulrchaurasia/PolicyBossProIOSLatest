@@ -1090,13 +1090,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                                 print("JSON: \(JSON)")
                                 
                                 self.setupUploadDoc(type: Int(documentType)!)
-                                
-//                                let jsonData = (JSON as AnyObject).value(forKey: "MasterData") as! AnyObject
-//
-//                                let status =    jsonData.value(forKey: "SavedStatus") as! Int
-//                                  let prv_file =    jsonData.value(forKey: "prv_file") as! String
-//
-//                                   print("FILE : \(prv_file)")
+                            
     
                             }
                         }

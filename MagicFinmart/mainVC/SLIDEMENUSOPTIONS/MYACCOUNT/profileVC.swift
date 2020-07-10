@@ -10,6 +10,7 @@ import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
+import SDWebImage
 
 class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
@@ -63,7 +64,12 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     @IBOutlet weak var spportEmailLbl: UILabel!
     @IBOutlet weak var fbaNameLbl: UILabel!
     @IBOutlet weak var managerNameLbl: UILabel!
-
+    
+    
+    @IBOutlet weak var imgDoc1: UIImageView!
+    @IBOutlet weak var imgDoc2: UIImageView!
+    @IBOutlet weak var imgDoc3: UIImageView!
+    @IBOutlet weak var imgDoc4: UIImageView!
     let aTextField = ACFloatingTextfield()
     var imagePicker = UIImagePickerController()
     var pickedImage = UIImage()
@@ -73,6 +79,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     var accountType = "SAVING"
     var stateid = String()
     var stateName = String()
+    var profileDocModel = [pospDoc]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -466,6 +473,23 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         aboutmeViewHeight.constant = 0
     }
     
+    
+    //05
+    func setAccountType(type: String){
+        
+        if(type == "SAVING"){
+            btnColorChangeGray(Btn: currentBtn)
+            btnColorChangeBlue(Btn: savingBtn)
+            accountType = "SAVING"
+        }else{
+            
+            btnColorChangeGray(Btn: savingBtn)
+            btnColorChangeBlue(Btn: currentBtn)
+            accountType = "CURRENT"
+        }
+     
+    }
+    
     @IBAction func savingBtnCliked(_ sender: Any)
     {
         btnColorChangeGray(Btn: currentBtn)
@@ -565,16 +589,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     //MARK: - ImagePicker delegate
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        pickedImage = (info[UIImagePickerController.InfoKey.originalImage] as? UIImage)!
-        print("pickedImage==",pickedImage)
-        myaccountImgeView.image = pickedImage
-//        myaccountImgeView.layer.cornerRadius = 64
         
-        //--Encoding Base-64 image--
-        let userImage:UIImage = pickedImage
-        print("userImage",userImage)
-        let imageData:NSData = userImage.pngData()! as NSData
-        dataImage = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+          pickedImage = (info[UIImagePickerController.InfoKey.editedImage] as? UIImage)!
+        
+//        print("pickedImage==",pickedImage)
+//        myaccountImgeView.image = pickedImage
+////        myaccountImgeView.layer.cornerRadius = 64
+//
+//        //--Encoding Base-64 image--
+//        let userImage:UIImage = pickedImage
+//        print("userImage",userImage)
+//        let imageData:NSData = userImage.pngData()! as NSData
+//        dataImage = imageData.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
         
         if(uploadDoc == "CameraClick"){
             uploaddocAPI(documentName:"FBAPhotograph", documentType:"1")
@@ -604,58 +630,99 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     //--<endCamera>--
     
     
+    
+    func profileValidate()  -> Bool {
+        
+        
+        if( designationTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Designation")
+            return false
+        }
+        if( mobilenotoshareTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Mobile Number")
+            return false
+        }
+        if(mobilenotoshareTf.text!.count != 10){
+            alertCall(message: "Enter Valid Mobile Number")
+            return false
+        }
+        if( emailtoshareTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Email ID")
+            return false
+        }
+        if(!isValidEmail(testStr: emailtoshareTf.text!))
+        {
+            alertCall(message: "Invalid Email Id")
+            return false
+        }
+        
+        
+        return true
+    }
     @IBAction func savinfoBtnCliked(_ sender: Any)
     {
-        if(designationTf.text! != "" && mobilenotoshareTf.text! != "" && emailtoshareTf.text! != "" && mobilenotoshareTf.text!.count == 10 && pospMobNumTf.text!.count == 10){
+        
+        if(profileValidate() == false){
             
-            if(isValidEmail(testStr: emailtoshareTf.text!) && isValidEmail(testStr: pospemailTf.text!))
-            {
-                myaccountAPI()
-                
-            }else{
-                alertCall(message: "Invalid Email Id")
-            }
+            myprofileView.isHidden = false
+            myprofileViewHeight.constant = 200
+            
+        }else{
+            myaccountAPI()
         }
-        else if(designationTf.text! == "")
-        {
-            if(myprofileView.isHidden)
-            {
-                myprofileView.isHidden = false
-                myprofileViewHeight.constant = 200
-            }
-            alertCall(message: "Please enter Designation")
-        }
-        else if(mobilenotoshareTf.text! == "")
-        {
-            if(myprofileView.isHidden)
-            {
-                myprofileView.isHidden = false
-                myprofileViewHeight.constant = 200
-            }
-            alertCall(message: "Please enter Mobile Number")
-        }
-        else if(emailtoshareTf.text! == "")
-        {
-            if(myprofileView.isHidden)
-            {
-                myprofileView.isHidden = false
-                myprofileViewHeight.constant = 200
-            }
-            alertCall(message: "Please enter Email Id")
-        }
-        else if(mobilenotoshareTf.text!.count != 10)
-        {
-            if(myprofileView.isHidden)
-            {
-                myprofileView.isHidden = false
-                myprofileViewHeight.constant = 200
-            }
-            alertCall(message: "Please enter 10 Digit Mobile number")
-        }
-        else if(pospMobNumTf.text!.count != 10)
-        {
-            alertCall(message: "Please enter 10 Digit Mobile number")
-        }
+        
+        
+        
+//        if(designationTf.text! != "" && mobilenotoshareTf.text! != "" && emailtoshareTf.text! != "" && mobilenotoshareTf.text!.count == 10 && pospMobNumTf.text!.count == 10){
+//
+//            if(isValidEmail(testStr: emailtoshareTf.text!) && isValidEmail(testStr: pospemailTf.text!))
+//            {
+//                myaccountAPI()
+//
+//            }else{
+//                alertCall(message: "Invalid Email Id")
+//            }
+//        }
+//        else if(designationTf.text! == "")
+//        {
+//            if(myprofileView.isHidden)
+//            {
+//                myprofileView.isHidden = false
+//                myprofileViewHeight.constant = 200
+//            }
+//            alertCall(message: "Please enter Designation")
+//        }
+//        else if(mobilenotoshareTf.text! == "")
+//        {
+//            if(myprofileView.isHidden)
+//            {
+//                myprofileView.isHidden = false
+//                myprofileViewHeight.constant = 200
+//            }
+//            alertCall(message: "Please enter Mobile Number")
+//        }
+//        else if(emailtoshareTf.text! == "")
+//        {
+//            if(myprofileView.isHidden)
+//            {
+//                myprofileView.isHidden = false
+//                myprofileViewHeight.constant = 200
+//            }
+//            alertCall(message: "Please enter Email Id")
+//        }
+//        else if(mobilenotoshareTf.text!.count != 10)
+//        {
+//            if(myprofileView.isHidden)
+//            {
+//                myprofileView.isHidden = false
+//                myprofileViewHeight.constant = 200
+//            }
+//            alertCall(message: "Please enter 10 Digit Mobile number")
+//        }
+//        else if(pospMobNumTf.text!.count != 10)
+//        {
+//            alertCall(message: "Please enter 10 Digit Mobile number")
+//        }
         
     }
     
@@ -683,6 +750,12 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     }
     
     
+  
+    
+    
+    
+    //---<end keyboard text change for PAN>---
+    
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
     
@@ -697,6 +770,67 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
     }
     
+    
+    func setupUploadDoc(type : Int, srUrl : String){
+        
+        switch(type) {
+            
+        case 1 :
+            
+            print("DOC FBA PHOtograph ")
+            if(srUrl != ""){
+                  let remoteImageURL = URL(string: srUrl)!
+                  self.myaccountImgeView.sd_setImage(with: remoteImageURL)
+            }else{
+                    myaccountImgeView.image = pickedImage
+            }
+        
+            myaccountImgeView.layer.cornerRadius = 64
+       
+            
+            break;
+            
+       case 2 :
+            print("DOC FBA PHOtograph ")
+            if(srUrl != ""){
+                let remoteImageURL = URL(string: srUrl)!
+                self.myaccountImgeView.sd_setImage(with: remoteImageURL)
+            }else{
+                myaccountImgeView.image = pickedImage
+            }
+            
+            myaccountImgeView.layer.cornerRadius = 64
+            imgDoc1.image = UIImage(named: "doc_uploaded")
+
+            break;
+            
+       case 3 :
+            print("DOC PanCard ")
+            imgDoc2.image = UIImage(named: "doc_uploaded")
+
+            break;
+            
+       case 4 :
+            print("DOC Cancel Cheque")
+            imgDoc3.image = UIImage(named: "doc_uploaded")
+
+            break;
+            
+            
+        case 5 :
+            print("DOC Aadhar")
+            imgDoc4.image = UIImage(named: "doc_uploaded")
+
+            break;
+            
+     
+            
+        default:
+            print("DOC : No Data")
+        }
+        
+    }
+
     
     func getCityStateAPI(pincode : String)
     {
@@ -797,45 +931,11 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     
     //---<APICALL>---
-//    UpdateDocumentByIDAPI(documentName:String, documentType:String)
+
     func uploaddocAPI(documentName:String, documentType:String)
     {
         
-        /*
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        let params: [String: AnyObject] = [ "FBAID":"37292" as AnyObject,
-                                            "DocType":documentType as AnyObject,
-                                            "DocName":documentName as AnyObject,
-                                            "DocFile":dataImage as AnyObject]
-        
-        let url = "/api/upload-doc"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let jsonData = userObject as? NSDictionary
-            print("jsonData=",jsonData!)
-            TTGSnackbar.init(message: "Image uploaded successfully", duration: .long).show()
-            
-            
-        }, onError: { errorData in
-            alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
-        }, onForceUpgrade: {errorData in})
-        */
-        
+       
         if Connectivity.isConnectedToInternet()
         {
         
@@ -849,15 +949,14 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 "FBAID":FBAId,
                 "DocType":documentType,
                 "DocName":documentName,
-                "DocFile":dataImage
+                "DocFile":"swift_file.jpeg"
             ]
             
             let endUrl = "/api/upload-doc"
             let url =  FinmartRestClient.baseURLString  + endUrl
          
             Alamofire.upload(multipartFormData: { (multipartFormData) in
-                //            multipartFormData.append(UIImageJPEGRepresentation(self.pickedImage.image!, 0.5)!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
-                multipartFormData.append(imageData!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(imageData!, withName: "DocFile", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
                 for (key, value) in parameters {
                     multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                     
@@ -881,6 +980,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                         //self.removeImage("frame", fileExtension: "txt")
                         if let JSON = response.result.value {
                             print("JSON: \(JSON)")
+                            
+                            self.setupUploadDoc(type: Int(documentType)!, srUrl: "")
                         }
                     }
                     
@@ -902,6 +1003,77 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
     }
     
+    
+    
+    func uploaddocAPIOLDLogic(documentName:String, documentType:String)
+    {
+        
+       
+//        if Connectivity.isConnectedToInternet()
+//        {
+//
+//            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+//
+//            //        if UIImageJPEGRepresentation(self.pickedImage,1) != nil {
+//            let imageData = pickedImage.jpegData(compressionQuality: 1)
+//            if imageData != nil
+//            {
+//                let parameters = [
+//                    "FBAID":FBAId,
+//                    "DocType":documentType,
+//                    "DocName":documentName,
+//                    "DocFile":dataImage
+//                ]
+//
+//                let endUrl = "/api/upload-doc"
+//                let url =  FinmartRestClient.baseURLString  + endUrl
+//
+//                Alamofire.upload(multipartFormData: { (multipartFormData) in
+//                    //            multipartFormData.append(UIImageJPEGRepresentation(self.pickedImage.image!, 0.5)!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+//                    multipartFormData.append(imageData!, withName: "photo_path", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+//                    for (key, value) in parameters {
+//                        multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+//
+//                    }
+//                }, to: url)
+//                { (result) in
+//                    switch result {
+//                    case .success(let upload, _, _):
+//
+//                        upload.uploadProgress(closure: { (Progress) in
+//                            print("Upload Progress: \(Progress.fractionCompleted)")
+//                        })
+//
+//                        upload.responseJSON { response in
+//                            //self.delegate?.showSuccessAlert()
+//                            print(response.request!)  // original URL request
+//                            print(response.response!) // URL response
+//                            print(response.data!)     // server data
+//                            print(response.result)   // result of response serialization
+//                            //                        self.showSuccesAlert()
+//                            //self.removeImage("frame", fileExtension: "txt")
+//                            if let JSON = response.result.value {
+//                                print("JSON: \(JSON)")
+//                            }
+//                        }
+//
+//                    case .failure(let encodingError):
+//                        //self.delegate?.showFailAlert()
+//                        print(encodingError)
+//                    }
+//
+//                }
+//
+//            }
+//        }else{
+//            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+//            snackbar.show()
+//        }
+//
+        
+      
+        
+    }
     func getmyaccountAPI()
     {
         if Connectivity.isConnectedToInternet()
@@ -931,10 +1103,12 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             let jsonData = userObject as? NSArray
             let Designation = (jsonData![0] as AnyObject).value(forKey: "Designation") as AnyObject
             self.designationTf.text! = Designation as! String
-            let Mobile_1 = (jsonData![0] as AnyObject).value(forKey: "Mobile_1") as AnyObject
-            self.mobilenotoshareTf.text! = Mobile_1 as! String
-            let EmailID = (jsonData![0] as AnyObject).value(forKey: "EmailID") as AnyObject
-            self.emailtoshareTf.text! = EmailID as! String
+            let EditMobiNumb = (jsonData![0] as AnyObject).value(forKey: "EditMobiNumb") as AnyObject
+            self.mobilenotoshareTf.text! = EditMobiNumb as! String
+            let EditEmailId = (jsonData![0] as AnyObject).value(forKey: "EditEmailId") as AnyObject
+            self.emailtoshareTf.text! = EditEmailId as! String
+            
+            
             let Address_1 = (jsonData![0] as AnyObject).value(forKey: "Address_1") as AnyObject
             self.address1Tf.text! = Address_1 as! String
             let Address_2 = (jsonData![0] as AnyObject).value(forKey: "Address_2") as AnyObject
@@ -951,8 +1125,11 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             }else{
                 self.stateTf.text! = StateName as! String
             }
-            let FullName1 = (jsonData![0] as AnyObject).value(forKey: "FullName") as AnyObject
-            self.accountHolderNameTf.text! = FullName1 as! String
+            
+            
+            
+            let LoanName = (jsonData![0] as AnyObject).value(forKey: "LoanName") as AnyObject
+            self.accountHolderNameTf.text! = LoanName as! String
             let Loan_PAN = (jsonData![0] as AnyObject).value(forKey: "Loan_PAN") as AnyObject
             self.panTf.text! = Loan_PAN as! String
             let Loan_Aadhaar = (jsonData![0] as AnyObject).value(forKey: "Loan_Aadhaar") as AnyObject
@@ -969,10 +1146,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             self.bankNameTf.text! = Loan_BankName as! String
             let Loan_BankCity = (jsonData![0] as AnyObject).value(forKey: "Loan_BankCity") as AnyObject
             self.bankCityTf.text! = Loan_BankCity as! String
+            
+            // 05
+           let Loan_Account_Type = (jsonData![0] as AnyObject).value(forKey: "Loan_Account_Type") as AnyObject
+            
+            self.setAccountType(type: Loan_Account_Type as! String)
+           
             let POSPNo = (jsonData![0] as AnyObject).value(forKey: "POSPNo") as AnyObject
             self.pospNoLbl.text! = POSPNo as! String
             let FBAID = (jsonData![0] as AnyObject).value(forKey: "FBAID") as AnyObject
             self.fbaIdLbl.text! = FBAID as! String
+            
+            
             let DisplayDesignation = (jsonData![0] as AnyObject).value(forKey: "DisplayDesignation") as AnyObject
             self.pospDesignTf.text! = DisplayDesignation as! String
             let DisplayPhoneNo = (jsonData![0] as AnyObject).value(forKey: "DisplayPhoneNo") as AnyObject
@@ -998,6 +1183,37 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             self.spprtMobNoLbl.text! = SuppMobile!
             self.spportEmailLbl.text! = SuppEmail!
             
+     /*********************DOC Availabilty From server ***********************************/
+          
+            let doc = (jsonData![0] as AnyObject).value(forKey: "doc_available") as? NSArray
+            
+            if(doc?.count ?? 0 > 0){
+                
+                self.profileDocModel = [pospDoc]()
+                for index in 0...(doc?.count ?? 0)-1 {
+                    
+                    let aObject = doc?[index] as! [String : AnyObject]
+                    
+                    let DocType = (doc![index] as AnyObject).value(forKey: "DocType") as! Int
+                    
+                    let FileName = (doc![index] as AnyObject).value(forKey: "FileName") as! String
+                
+                    self.setupUploadDoc(type : DocType, srUrl: FileName)   // Set the Doc URL
+                    
+                    
+                    let model = pospDoc(DocType:  aObject["DocType"] as! Int ,            // Bind the all doc
+                        FileName: aObject["FileName"] as! String,
+                        DocName: aObject["DocName"] as! String
+                    )
+                    
+                    self.profileDocModel.append(model)
+                }
+                
+
+                
+            }
+            
+              /********************* end DOC ***********************************/
             
         }, onError: { errorData in
             alertView.close()
