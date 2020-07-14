@@ -37,8 +37,19 @@ class loanleadHistoryVC: UIViewController,UITableViewDataSource,UITableViewDeleg
         historyView.layer.borderColor=borderColr.cgColor;
         historyView.layer.shadowColor=borderColr.cgColor;
         
+        initData()
         getleadHistoryAPI()
+      
         
+    }
+    func initData(){
+        self.customNameLbl.text! = ""
+        
+        self.bankNameLbl.text! = ""
+        
+        self.mobileLbl.text! = ""
+        
+        self.prodctNameLbl.text! =  ""
     }
     
     //--<tableViewdatasource + Deleagts method>--
@@ -62,9 +73,15 @@ class loanleadHistoryVC: UIViewController,UITableViewDataSource,UITableViewDeleg
     
     @IBAction func backtoApplication(_ sender: Any)
     {
-        self.willMove(toParent: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParent()
+//        self.willMove(toParent: nil)
+//        self.view.removeFromSuperview()
+//        self.removeFromParent()
+        
+     //   dismiss(animated: true)
+      //  self.dismiss(animated: true, completion: nil)
+        
+        //navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
    //----APICALL-----
@@ -123,8 +140,10 @@ class loanleadHistoryVC: UIViewController,UITableViewDataSource,UITableViewDeleg
             
         }, onError: { errorData in
             alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
+//            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+//            snackbar.show()
+            
+         
         }, onForceUpgrade: {errorData in},checkLead: true)
         
         }else{

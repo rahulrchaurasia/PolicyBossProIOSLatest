@@ -433,8 +433,11 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             self.remove()
      
         }else{
-            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-            present(KYDrawer, animated: true, completion: nil)
+//            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//            present(KYDrawer, animated: true, completion: nil)
+            
+              dismiss(animated: true)
+
         }
      
     }
@@ -451,10 +454,14 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
                 present(hnfcontactUs, animated: true, completion: nil)
             }
             else{
-                let value = UIInterfaceOrientation.portrait.rawValue
-                UIDevice.current.setValue(value, forKey: "orientation")
-                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-                present(KYDrawer, animated: true, completion: nil)
+                
+//                let value = UIInterfaceOrientation.portrait.rawValue
+//                UIDevice.current.setValue(value, forKey: "orientation")
+//                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//                present(KYDrawer, animated: true, completion: nil)
+                
+                 dismiss(animated: true)
+                
             }
         }
         

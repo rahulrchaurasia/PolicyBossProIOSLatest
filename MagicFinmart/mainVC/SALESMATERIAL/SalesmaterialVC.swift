@@ -48,14 +48,12 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     
     @IBAction func salesMaterialBackBtn(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        self.present(KYDrawer, animated: true, completion: nil)
+       self.remove()
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        self.present(KYDrawer, animated: true, completion: nil)
+        self.remove()
     }
     
     //---<tableView Datasource+Delegates>---

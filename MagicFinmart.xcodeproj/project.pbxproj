@@ -11,11 +11,13 @@
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
 		4428DAE524B4B80C00D0D86C /* CallingDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4428DAE424B4B80C00D0D86C /* CallingDashboardModel.swift */; };
+		442A170324BCDB4E00A27412 /* PendingDeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442A170224BCDB4D00A27412 /* PendingDeleteModel.swift */; };
 		442B80A424AF4BF000F4EBDA /* InsuranceBussWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */; };
 		442C140D2497A31700E3C455 /* pospDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C140C2497A31700E3C455 /* pospDoc.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
+		4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */; };
 		4438D06024B3800800D68498 /* Disclosure.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D05F24B3800600D68498 /* Disclosure.html */; };
 		4438D06224B3802500D68498 /* eula.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D06124B3802500D68498 /* eula.html */; };
 		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
@@ -220,11 +222,13 @@
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
 		4428DAE424B4B80C00D0D86C /* CallingDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallingDashboardModel.swift; sourceTree = "<group>"; };
+		442A170224BCDB4D00A27412 /* PendingDeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingDeleteModel.swift; sourceTree = "<group>"; };
 		442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBussWebVC.swift; sourceTree = "<group>"; };
 		442C140C2497A31700E3C455 /* pospDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospDoc.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
+		4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCaseMainModel.swift; sourceTree = "<group>"; };
 		4438D05F24B3800600D68498 /* Disclosure.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Disclosure.html; sourceTree = "<group>"; };
 		4438D06124B3802500D68498 /* eula.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eula.html; sourceTree = "<group>"; };
 		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
@@ -447,6 +451,15 @@
 				442C140C2497A31700E3C455 /* pospDoc.swift */,
 			);
 			path = pospDoc;
+			sourceTree = "<group>";
+		};
+		4438085624BAF4B90046CA81 /* pendingCase */ = {
+			isa = PBXGroup;
+			children = (
+				4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */,
+				442A170224BCDB4D00A27412 /* PendingDeleteModel.swift */,
+			);
+			path = pendingCase;
 			sourceTree = "<group>";
 		};
 		4438D06324B398D200D68498 /* html */ = {
@@ -972,6 +985,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4438085624BAF4B90046CA81 /* pendingCase */,
 				444C6DEB24A259ED003A7528 /* dashboard */,
 				442C140B2497A2B200E3C455 /* pospDoc */,
 				44394A31248A26310095ADF5 /* register */,
@@ -1318,6 +1332,7 @@
 				8403E89821BFE13E0009662A /* ACFloatingTextfield.swift in Sources */,
 				84E1A9322204594F00A94A29 /* QuickLeadVC.swift in Sources */,
 				84E1663C22114802000054B8 /* cmnapplictnTVCell.swift in Sources */,
+				4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */,
 				84BD5C2121ECBD3D00982C15 /* addAttenTVCell.swift in Sources */,
 				8431D1DA21E8B29C000419E3 /* motorInsurance2capsVC.swift in Sources */,
 				840DE864220DAAAA0060003E /* cmnApplicationsVC.swift in Sources */,
@@ -1331,6 +1346,7 @@
 				44B26D9E230E99FA0017DBAD /* iciciCreditCardVC.swift in Sources */,
 				8411808721C5105D00D5638B /* Interactor.swift in Sources */,
 				84347425222D4312004A418A /* cmnQuotesLifeinsVC.swift in Sources */,
+				442A170324BCDB4E00A27412 /* PendingDeleteModel.swift in Sources */,
 				84DB47792227E6A600EBDA3C /* commonApplictnTVCell.swift in Sources */,
 				44C9635722D340EC0037BC82 /* viewCommentnAddTVCell.swift in Sources */,
 				4428DAE524B4B80C00D0D86C /* CallingDashboardModel.swift in Sources */,
@@ -1575,8 +1591,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2QKGN99NT9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1588,9 +1604,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.datacomp.magicfinmart-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MagicFinMart Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1603,8 +1619,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2QKGN99NT9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1616,9 +1632,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.datacomp.magicfinmart-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "MagicFinMart Dev";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -59,6 +59,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var loansItems = ["Referral Agreement","Free Credit Report"]
     var loansImges = ["agreemnet.png","agreemnet.png"]
     
+    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","LOG-OUT"]
+    var otherImges = ["ic_business_name.png","posp_training.png","logout.png"]
+    
     //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
     
     
@@ -75,8 +78,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
 //    var pospItems = ["Enrol as POSP","Add Users"]
 //    var requestItems = ["Offline Quotes","Request Policy by CRN"]
-    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
-       var otherImges = ["ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
+//    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
+//       var otherImges = ["ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
     
     
     var attendanceItems = ["Add Attendance","My Location","Report"]
@@ -176,6 +179,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.webfromScreen = "myFinbox"
         present(commonWeb, animated: true, completion: nil)
+        
+        
     }
     
     @IBAction func myFinperksBtnCliked(_ sender: Any)
@@ -430,6 +435,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        // close the drawer
+        if let drawerController = navigationController?.parent as? KYDrawerController {
+            drawerController.setDrawerState(.closed, animated: false)
+        }
       
       /***************************** Home SECTION ******************************/
         if(indexPath.section == 0)
@@ -454,14 +463,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 commonWeb.webfromScreen = "myFinbox"
                 present(commonWeb, animated: true, completion: nil)
                 
-//                if let drawerController = navigationController?.parent as? KYDrawerController {
-//                    drawerController.setDrawerState(.closed, animated: true)
-//
-//
-//                   let parent : MainfinMartVC = self.storyboard?.instantiateViewController(withIdentifier: "stbMainfinMartVC") as! MainfinMartVC
-//
-//                    parent.loadParentFromMenu()
-//                }
+             
               
             }
             else if(indexPath.row == 2)
@@ -720,7 +722,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
         }
        
-            //others
+   /*****************************  OTHER SECTION ******************************/
        else  if(indexPath.section == 6)
             {
 //                if(indexPath.row == 0)
@@ -740,22 +742,20 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 }
                 else if(indexPath.row == 1)
                 {
-                    //                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    //                commonWeb.webfromScreen = "Training"
-                    //                present(commonWeb, animated: true, completion: nil)
+        
                     let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
                     addUsersV.fromScreen = "myUtilities"
                     present(addUsersV, animated: true, completion: nil)
                 }
-                else if(indexPath.row == 2)
-                {
-                    //                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    //                commonWeb.webfromScreen = "leadDetails"
-                    //                present(commonWeb, animated: true, completion: nil)
-                    let whatsNew : whatsNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbwhatsNewVC") as! whatsNewVC
-                    present(whatsNew, animated: true, completion: nil)
-                }
-                if(indexPath.row == 3)
+//                else if(indexPath.row == 2)
+//                {
+//                    //                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    //                commonWeb.webfromScreen = "leadDetails"
+//                    //                present(commonWeb, animated: true, completion: nil)
+//                    let whatsNew : whatsNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbwhatsNewVC") as! whatsNewVC
+//                    present(whatsNew, animated: true, completion: nil)
+//                }
+                if(indexPath.row == 2)
                 {
                     callAlertView()
                 }

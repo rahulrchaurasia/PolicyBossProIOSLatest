@@ -10,8 +10,14 @@ import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
 import SDWebImage
+import MessageUI
+import Alamofire
 
-class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDelegate,MyCellDelegate {
+class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDelegate,MyCellDelegate , MFMessageComposeViewControllerDelegate {
+    
+    
+   
+    
     
     @IBOutlet weak var pendingTV: UITableView!
     
@@ -31,6 +37,12 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     var ApplnStatusPercntg = [String]()
         var leadID = ""
     
+     var pendingCaseMainObj: PendingCaseMainMasterData? = nil
+    
+    ///////////////////  Added ////////////
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ids",ids)
@@ -43,19 +55,32 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     {
         //Get the indexpath of cell where button was tapped
         let indexPath = self.pendingTV.indexPath(for: cell)
-        indexID = ids[indexPath!.row]
-        quttype = quoteType[indexPath!.row]
-        deletependingcasesAPI()
-        if(indexID != "")
-        {
-            customerName.remove(at: (indexPath?.row)!)
-            category.remove(at: (indexPath?.row)!)
-            ppendingdays.remove(at: (indexPath?.row)!)
-            qaatype.remove(at: (indexPath?.row)!)
-            ApplnStatusPercntg.remove(at: (indexPath?.row)!)
-//            self.pendingTV!.reloadData()
+        var ID = "0"
+        var Quotetype = ""
+        if(lbl == "INSURANCE"){
+            ID =  String((pendingCaseMainObj?.Insurance[indexPath!.row].Id)!)
+            Quotetype =  (pendingCaseMainObj?.Insurance[indexPath!.row].quotetype)!
             
+        }else{
+            ID =   String((pendingCaseMainObj?.Loan[indexPath!.row].Id)!)
+            Quotetype =  (pendingCaseMainObj?.Loan[indexPath!.row].quotetype)!
         }
+        
+     pendingcasesDeleteAPI(ID: ID, Quotetype: Quotetype)
+        
+//        indexID = ids[indexPath!.row]
+//        quttype = quoteType[indexPath!.row]
+//        deletependingcasesAPI()
+//        if(indexID != "")
+//        {
+//            customerName.remove(at: (indexPath?.row)!)
+//            category.remove(at: (indexPath?.row)!)
+//            ppendingdays.remove(at: (indexPath?.row)!)
+//            qaatype.remove(at: (indexPath?.row)!)
+//            ApplnStatusPercntg.remove(at: (indexPath?.row)!)
+////            self.pendingTV!.reloadData()
+//
+//        }
         
     }
     
@@ -64,51 +89,92 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     func leadHistoryTapped(cell: pendingcaseTVCell) {
           //Get the indexpath of cell where button was tapped
         let indexPath = self.pendingTV.indexPath(for: cell)
-        indexID = ids[indexPath!.row]
-
-          quttype = quoteType[indexPath!.row]
-         print(indexID)
-   
-         print(quttype)
+        var leadID = "0"
+        if(lbl == "INSURANCE"){
+            
+            if(pendingCaseMainObj?.Insurance[indexPath!.row].Category == "Credit Card"){
+                 leadID =  (pendingCaseMainObj?.Insurance[indexPath!.row].qatype)!
+            }else{
+                   leadID =  (pendingCaseMainObj?.Insurance[indexPath!.row].ApplicationNo)!
+            }
+           
+            
+            
+        }else{
+            if(pendingCaseMainObj?.Insurance[indexPath!.row].Category == "Credit Card"){
+                leadID =  (pendingCaseMainObj?.Loan[indexPath!.row].qatype)!
+            }else{
+                leadID =  (pendingCaseMainObj?.Loan[indexPath!.row].ApplicationNo)!
+            }
+        }
+    
         let loanleadHistory : loanleadHistoryVC = self.storyboard?.instantiateViewController(withIdentifier: "stbloanleadHistoryVC") as! loanleadHistoryVC
-        loanleadHistory.leadIDString = indexID
-        self.addChild(loanleadHistory)
-        self.view.addSubview(loanleadHistory.view)
+        loanleadHistory.leadIDString = String(leadID)
+        
+        loanleadHistory.modalPresentationStyle = .overFullScreen
+        loanleadHistory.modalTransitionStyle = .crossDissolve
+        self.present(loanleadHistory, animated: true)
+        
         
     }
 
-    // 05 temp
-    @IBAction func pendingCallBtnCliked(_ sender: Any)
-    {
-        callNumber(phoneNumber:"8237362825")
-    }
+ 
     private func callNumber(phoneNumber:String) {
         
-        if let phoneCallURL = URL(string: "tel://\(phoneNumber)") {
+       if let phoneCallURL = URL(string: "telprompt://\(phoneNumber)") {
             
             let application:UIApplication = UIApplication.shared
             if (application.canOpenURL(phoneCallURL)) {
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    application.open(phoneCallURL, options: [:], completionHandler: nil)
+                } else {
+                    // Fallback on earlier versions
+                    application.openURL(phoneCallURL as URL)
+                    
+                }
             }
         }
     }
     
-    @IBAction func pendingEmailBtnCliked(_ sender: Any)
-    {
-        //        let text = "This is the text...."
-        //        let image = UIImage(named: "Product")
-        let myWebsite = NSURL(string:"pending")
-        let shareAll = [myWebsite as Any]
-        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
-        
-    }
+//    @IBAction func pendingEmailBtnCliked(_ sender: Any)
+//    {
+//        //        let text = "This is the text...."
+//        //        let image = UIImage(named: "Product")
+//        let myWebsite = NSURL(string:"pending")
+//        let shareAll = [myWebsite as Any]
+//        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//        self.present(activityViewController, animated: true, completion: nil)
+//
+//    }
     
+    func displayMessageInterface(strMobile : String) {
+        let composeVC = MFMessageComposeViewController()
+        composeVC.messageComposeDelegate = self
+        
+        // Configure the fields of the interface.
+        composeVC.recipients = [strMobile]
+        composeVC.body = "Finmart"
+        
+        // Present the view controller modally.
+        if MFMessageComposeViewController.canSendText() {
+            self.present(composeVC, animated: true, completion: nil)
+        } else {
+            print("Can't send messages.")
+        }
+    }
 
    //---<tableViewDatasource+Delegtes>---
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return customerName.count
+       // return customerName.count
+        
+        if(lbl == "INSURANCE"){
+            
+            return  pendingCaseMainObj?.Insurance.count ?? 0
+        }else{
+            
+           return  pendingCaseMainObj?.Loan.count ?? 0
+        }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
@@ -117,77 +183,109 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         cell.pendingcaseTVCellView.layer.cornerRadius=4.0;
         cell.pendingcaseTVCellView.layer.borderWidth=1.0;
         cell.pendingcaseTVCellView.layer.borderColor=borderColor.cgColor;
+
+//        cell.pendingtitleLbl.text! = customerName[indexPath.row]
+//        cell.categoryLbl.text! = category[indexPath.row]
+//        cell.pendingdyLbl.text! = ppendingdays[indexPath.row]
+//        cell.percentageLbl.text! = ApplnStatusPercntg[indexPath.row]+"%"
         //--<loadData>--
-        cell.pendingtitleLbl.text! = customerName[indexPath.row]
-        cell.categoryLbl.text! = category[indexPath.row]
-        cell.pendingdyLbl.text! = ppendingdays[indexPath.row]
-        cell.percentageLbl.text! = ApplnStatusPercntg[indexPath.row]+"%"
+        
+        
+       
+     
         let borderClr = UIColor.init(red: 0/255.0, green: 125/255.0, blue: 213/255.0, alpha: 1)
         if(lbl == "LOAN"){
             cell.qtypecirclLbl.isHidden = true
             cell.qtypeLbl.layer.borderWidth=1.0;
             cell.qtypeLbl.layer.borderColor=borderClr.cgColor;
             cell.qtypeLbl.layer.cornerRadius = 2.0
-            cell.qtypeLbl.text! = qaatype[indexPath.row]
+            cell.qtypeLbl.text! = pendingCaseMainObj?.Loan[indexPath.row].qatype ?? ""
+          
+            cell.qtypecirclLbl.text! = pendingCaseMainObj?.Loan[indexPath.row].qatype ?? ""
+            cell.pendingtitleLbl.text! = pendingCaseMainObj?.Loan[indexPath.row].CustomerName ?? ""
+            cell.categoryLbl.text! =     pendingCaseMainObj?.Loan[indexPath.row].Category ?? ""
+            cell.pendingdyLbl.text! =    String(pendingCaseMainObj?.Loan[indexPath.row].pendingdays ?? 0)
+            let percet =   pendingCaseMainObj?.Loan[indexPath.row].ApplnStatus ?? "0"
+            cell.percentageLbl.text! =   percet + "%"
+            if let imgURL = URL(string: pendingCaseMainObj?.Loan[indexPath.row].BankImage ?? ""){
+
+
+                    cell.pImageView.sd_setImage(with: imgURL)
+            }
+            
+            //--<show percentage on progressView>--
+            let counter:Int = 0
+            let value = pendingCaseMainObj?.Loan[indexPath.row].ApplnStatus ?? "0"
+            let value1:Float = Float(value)!/100.0
+            let animated = counter != 0
+            cell.progressView.setProgress(value1, animated: animated)
+            
+            // 05
+            cell.tapPhonePending = {
+                
+                let mobile =  self.pendingCaseMainObj?.Loan[indexPath.row].mobile ?? ""
+                
+                self.callNumber(phoneNumber: mobile)
+            }
+            
+            ////displayMessageInterface
+            cell.tapMessagePending = {
+                
+                let mobile =  self.pendingCaseMainObj?.Loan[indexPath.row].mobile ?? ""
+                
+                self.displayMessageInterface(strMobile: mobile)
+            }
+
         }
         else if(lbl == "INSURANCE"){
             cell.qtypeLbl.isHidden = true
             cell.qtypecirclLbl.layer.borderWidth=1.0;
             cell.qtypecirclLbl.layer.borderColor=borderClr.cgColor;
-            cell.qtypecirclLbl.text! = qaatype[indexPath.row]
+          
             cell.qtypecirclLbl.layer.cornerRadius = cell.qtypecirclLbl.frame.size.width/2
             cell.qtypecirclLbl.clipsToBounds = true
-        }
-        //loadimages
-        print("bankImage=",bankImage)
-//        if(bankImage.isEmpty == false)
-//        {
-//            let imgURL = NSURL(string: bankImage[indexPath.row])
-//            if imgURL != nil {
-//                let data = NSData(contentsOf: (imgURL as URL?)!)
-//                cell.pImageView.image = UIImage(data: data! as Data)
-//            }
-//        }
-       
-        
-        ///////// 05//////////
-        
-         print("bankImageData=",bankImage[indexPath.row])
-        let imgURL = URL(string: bankImage[indexPath.row])
-         if (imgURL != nil){
             
-          cell.pImageView.sd_setImage(with: imgURL)
-        }
-//        if (imgURL != nil){
-//            let data = NSData(contentsOf: (imgURL as URL?)!)
-//            cell.pImageView.image = UIImage(data: data! as Data)
-//        }
-        
-        
-     
-        ///////////05 end ////////////////
-        
+            cell.qtypecirclLbl.text! = pendingCaseMainObj?.Insurance[indexPath.row].qatype ?? ""
+       
+            
+            cell.qtypeLbl.text! = pendingCaseMainObj?.Insurance[indexPath.row].qatype ?? ""
+            
+            cell.pendingtitleLbl.text! = pendingCaseMainObj?.Insurance[indexPath.row].CustomerName ?? ""
+            cell.categoryLbl.text! =     pendingCaseMainObj?.Insurance[indexPath.row].Category ?? ""
+            cell.pendingdyLbl.text! =    String(pendingCaseMainObj?.Insurance[indexPath.row].pendingdays ?? 0)
+            let percet =   pendingCaseMainObj?.Insurance[indexPath.row].ApplnStatus ?? "0"
+            cell.percentageLbl.text! =   percet + "%"
+            
+            if let imgURL = URL(string: pendingCaseMainObj?.Insurance[indexPath.row].BankImage ?? ""){
+                
+                
+                cell.pImageView.sd_setImage(with: imgURL)
+            }
+            
+            //--<show percentage on progressView>--
+            let counter:Int = 0
+            let value = pendingCaseMainObj?.Insurance[indexPath.row].ApplnStatus ?? "0"
+            let value1:Float = Float(value)!/100.0
+            let animated = counter != 0
+            cell.progressView.setProgress(value1, animated: animated)
+            
+            cell.tapPhonePending = {
+                
+                let mobile =  self.pendingCaseMainObj?.Insurance[indexPath.row].mobile ?? ""
+                
+                self.callNumber(phoneNumber: mobile)
+            }
+            
+            cell.tapMessagePending = {
+                
+                let mobile =  self.pendingCaseMainObj?.Loan[indexPath.row].mobile ?? ""
+                
+                self.displayMessageInterface(strMobile: mobile)
+            }
 
-//        if let imageURL = URL(string: bankImage[indexPath.row]) {
-//            DispatchQueue.global().async {
-//                let data = try? Data(contentsOf: imageURL)
-//                if let data = data {
-//                    let image = UIImage(data: data)
-//                    DispatchQueue.main.async {
-//                        cell.pImageView.image = image
-//                    }
-//                }
-//            }
-//        }
+        }
         
-        //--<show percentage on progressView>--
-        let counter:Int = 0
-        let value = ApplnStatusPercntg[indexPath.row]
-        let value1:Float = Float(value)!/100.0
-        print("value1",value1)
-        let animated = counter != 0
-        cell.progressView.setProgress(value1, animated: animated)
-    
+      
         //--deleteRow--
         cell.delegate = self
      
@@ -240,6 +338,86 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
 
-    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+    }
+  
+    func pendingcasesDeleteAPI(ID : String, Quotetype : String){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+            
+           
+            
+            let params: [String: AnyObject] = ["id": ID as AnyObject,
+                                               "quotetype": Quotetype as AnyObject
+                                              ]
+            
+            let endUrl = "/api/delete-pending-cases"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            print("parameter= ",params)
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                    
+                case .success(let value):
+                    
+                    alertView.close()
+                    
+//                    self.view.layoutIfNeeded()
+//                    guard let data = response.data else { return }
+//                    do {
+//                        let decoder = JSONDecoder()
+//                        let obj = try decoder.decode(PendingDeleteModel.self, from: data)
+//                        print("pending Case Done", obj)
+//                        if obj.StatusNo == 0 {
+//
+//
+//
+//                        }else{
+//
+//                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+//                            snackbar.show()
+//                        }
+//
+//
+//                    } catch let error {
+//                        print(error)
+//                        alertView.close()
+//
+//                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+//                        snackbar.show()
+//                    }
+                    
+                    
+                case .failure(let error):
+                  //  print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: "Failure", duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
     
 }

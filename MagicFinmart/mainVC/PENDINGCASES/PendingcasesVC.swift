@@ -9,6 +9,7 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import Alamofire
 
 class PendingcasesVC: UIViewController {
 
@@ -40,6 +41,8 @@ class PendingcasesVC: UIViewController {
     var lID = [String]()
     var lquotetype = [String]()
     
+     var pendingCaseMainObj: PendingCaseMainMasterData? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,6 +52,7 @@ class PendingcasesVC: UIViewController {
         if Connectivity.isConnectedToInternet()
         {
         pendingcasesinsurenceandloanAPI()
+            
         }else{
             let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
             snackbar.show()
@@ -64,25 +68,36 @@ class PendingcasesVC: UIViewController {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         
         let controller1: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
+        
+        
         controller1.title = "INSURANCE"
+        controller1.lbl = "INSURANCE"
+        
+        controller1.pendingCaseMainObj = self.pendingCaseMainObj
+         /////////
         controller1.customerName = CustomerName
         controller1.category = Category
         controller1.qaatype = qatype
         controller1.ppendingdays = pendingDays
         controller1.bankImage = BankImage
-        controller1.lbl = "INSURANCE"
         controller1.ids = iID
         controller1.quoteType = iquotetype
         controller1.ApplnStatusPercntg = ApplnStatus
         
+        ////////////
+        
         let controller2: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
         controller2.title = "LOAN"
+        controller2.lbl = "LOAN"
+        controller2.pendingCaseMainObj = self.pendingCaseMainObj
+        
+        
         controller2.customerName = lCustomerName
         controller2.category = lCategory
         controller2.qaatype = lqatype
         controller2.ppendingdays = lpendingDays
         controller2.bankImage = lBankImage
-        controller2.lbl = "LOAN"
+    
         controller2.ids = lID
         controller2.quoteType = lquotetype
         controller2.ApplnStatusPercntg = lApplnStatus
@@ -114,24 +129,27 @@ class PendingcasesVC: UIViewController {
         self.pendingcasesView.addSubview((self.CAPSMenu?.view)!)
         
     }
-    //-------<end capsMenu>--------
+    
     
 
     @IBAction func pendingcasesBackBtn(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        self.remove()
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+          self.remove()
     }
 
     
     //---<APICALL>---
-    func pendingcasesinsurenceandloanAPI()
+    func pendingcasesinsurenceandloanAPI_OLD()
     {
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
@@ -261,6 +279,89 @@ class PendingcasesVC: UIViewController {
         
     }
 
+    
+    
+    
+    ////////////////////////////////////////////
+    
+    func pendingcasesinsurenceandloanAPI(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+           
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            
+            let params: [String: AnyObject] = ["Type":"0" as AnyObject,
+                                               "count":"0" as AnyObject,
+                                               "FBAID": FBAId as AnyObject]
+            
+            let endUrl = "/api/pending-cases-insurence-and-loan"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            print("parameter= ",params)
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                    
+                case .success(let value):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(PendingCaseMainModel.self, from: data)
+                        print("pending Case Done", obj)
+                        if obj.StatusNo == 0 {
+                            
+                            self.pendingCaseMainObj = obj.MasterData
+                            self.capsMenu()               //  Load Page Menu
+                            
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                            snackbar.show()
+                        }
+
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
     
 }
 

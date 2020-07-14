@@ -1254,14 +1254,14 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                                             "FBAStat": "" as AnyObject,
                                             
                                             ////////**********Profile***********///////
-                                            "FBA_Designation": designationTf.text! as AnyObject,
+                                            "FBA_Designation": designationTf.text!.trimmingCharacters(in: .whitespaces) as AnyObject,
                                             "Mobile_1": mobilenotoshareTf.text! as AnyObject,
                                              //"Mobile_2": "" as AnyObject,
                                             "EmailId": emailtoshareTf.text! as AnyObject,
                                            
                                              ////////********** POSP ***********///////
             
-                                            "DisplayDesignation": pospDesignTf.text! as AnyObject,
+                                            "DisplayDesignation": pospDesignTf.text!.trimmingCharacters(in: .whitespaces) as AnyObject,
                                             "DisplayEmail":  pospemailTf.text! as AnyObject,
                                             "DisplayPhoneNo": pospMobNumTf.text! as AnyObject,
             
@@ -1278,14 +1278,14 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                                          ////////**********Bank Details ***********///////
             
             
-                                            "Loan_FirstName": accountHolderNameTf.text! as AnyObject,
+                                            "Loan_FirstName": accountHolderNameTf.text!.trimmingCharacters(in: .whitespaces) as AnyObject,
                                             "Loan_PAN": panTf.text! as AnyObject,
                                             "Loan_Aadhaar": addharTf.text! as AnyObject,
                                             "Loan_BankAcNo": bankaccnoTf.text! as AnyObject,
                                             "Loan_IFSC": ifscCodeTf.text! as AnyObject,
                                             
                                             "Loan_MICR": micrCodeTf.text! as AnyObject,
-                                            "Loan_BankName": bankNameTf as AnyObject,
+                                            "Loan_BankName": bankNameTf.text! as AnyObject,
                                             "Loan_BankBranch": bankBranchTf.text! as AnyObject,
                                             "Loan_BankCity": bankCityTf.text! as AnyObject,
                                             "Loan_Account_Type": accountType as AnyObject,

@@ -128,20 +128,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBAction func salesmaterialBtnCliked(_ sender: Any)
     {
         let Salesmaterial : SalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbSalesmaterialVC") as! SalesmaterialVC
-        self.addChild(Salesmaterial)
-        self.view.addSubview(Salesmaterial.view)
+
+        
+        self.add(Salesmaterial)
     }
     @IBAction func pendingcasesBtnCliked(_ sender: Any)
     {
         let Pendingcases : PendingcasesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPendingcasesVC") as! PendingcasesVC
-        self.addChild(Pendingcases)
-        self.view.addSubview(Pendingcases.view)
+        
+        self.add(Pendingcases)
+  
+
     }
     @IBAction func knowguruBtnCliked(_ sender: Any)
     {
         let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
-        self.addChild(KnowlgeGuru)
-        self.view.addSubview(KnowlgeGuru.view)
+        
+         self.add(KnowlgeGuru)
     }
     
     //tableView Datasource+Delegates
@@ -193,12 +196,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         if(popUpbackgroundView.isHidden == false)
         {
             let cell1 = popUpTV.dequeueReusableCell(withIdentifier: "pcell") as! callingRevampTVCell
-            
-//            cell1.managerNameLbl.text! = EmployeeNameArray[indexPath.row]
-//            cell1.mobLbl.text! = MobileNoArray[indexPath.row]
-//            cell1.emailLbl.text! = EmailIdArry[indexPath.row]
-//            cell1.levelLbl.text! = DesignationArray[indexPath.row]
-            
+
             
             cell1.managerNameLbl.text! = callingDashboardModel[indexPath.row].EmployeeName
             cell1.mobLbl.text! = callingDashboardModel[indexPath.row].MobileNo

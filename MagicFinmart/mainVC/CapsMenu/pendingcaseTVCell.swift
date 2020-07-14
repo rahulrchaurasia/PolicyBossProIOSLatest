@@ -15,6 +15,9 @@ protocol MyCellDelegate: AnyObject {
     func leadHistoryTapped(cell: pendingcaseTVCell)
 }
 
+
+
+
 class pendingcaseTVCell: UITableViewCell {
     //2.
     weak var delegate: MyCellDelegate?
@@ -29,8 +32,19 @@ class pendingcaseTVCell: UITableViewCell {
     @IBOutlet weak var percentageLbl: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
+    
+    
     @IBOutlet weak var leadHistoryBtn: UIButton!
     
+    
+    //  closure
+    /*******************************************************/
+    var tapPhonePending: ( () -> Void)? = nil
+    
+    var tapMessagePending: ( () -> Void)? = nil
+    
+    /*******************************************************/
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -48,13 +62,32 @@ class pendingcaseTVCell: UITableViewCell {
 
     @IBAction func pendingDltBtnCliked(_ sender: Any)
     {
+        // Delete Pending Case
         //4. call delegate method
         //check delegate is not nil with `?`
         delegate?.btnDeleteTapped(cell: self)
     }
     
     
-    @IBAction func leadHistoryBtnCliked(_ sender: Any) {
-        delegate?.leadHistoryTapped(cell:self)
+//    @IBAction func leadHistoryBtnCliked(_ sender: Any) {
+//        delegate?.leadHistoryTapped(cell:self)
+//    }
+//
+    
+    
+    @IBAction func btnPendingCalling(_ sender: Any) {
+        
+         tapPhonePending?()
+    }
+    
+    
+    @IBAction func btnPendingEmail(_ sender: Any) {
+        
+         tapMessagePending?()
+    }
+    
+    @IBAction func btnLeadHistory(_ sender: Any) {
+        
+           delegate?.leadHistoryTapped(cell:self)
     }
 }
