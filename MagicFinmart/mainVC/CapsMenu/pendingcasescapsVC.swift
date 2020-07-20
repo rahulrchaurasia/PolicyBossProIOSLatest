@@ -39,6 +39,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     
      var pendingCaseMainObj: PendingCaseMainMasterData? = nil
     
+    
     ///////////////////  Added ////////////
     
     
@@ -136,17 +137,12 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
     
-//    @IBAction func pendingEmailBtnCliked(_ sender: Any)
-//    {
-//        //        let text = "This is the text...."
-//        //        let image = UIImage(named: "Product")
-//        let myWebsite = NSURL(string:"pending")
-//        let shareAll = [myWebsite as Any]
-//        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-//        activityViewController.popoverPresentationController?.sourceView = self.view
-//        self.present(activityViewController, animated: true, completion: nil)
-//
-//    }
+    
+    // Default overide for MessageDelegate
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        
+        controller.dismiss(animated: true)
+    }
     
     func displayMessageInterface(strMobile : String) {
         let composeVC = MFMessageComposeViewController()
@@ -338,8 +334,16 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         }
     }
 
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+   
+    
+    func calledParentLoad(){
         
+         let Pendingcases : PendingcasesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPendingcasesVC") as! PendingcasesVC
+        
+        
+       
+          present(Pendingcases, animated: true, completion: nil)
+          self.showToast(controller: Pendingcases, message: "Data Deleted Successfully...", seconds: 3)
     }
   
     func pendingcasesDeleteAPI(ID : String, Quotetype : String){
@@ -373,35 +377,15 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
             Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
                 switch response.result {
                     
-                    
+
+
                 case .success(let value):
                     
                     alertView.close()
                     
-//                    self.view.layoutIfNeeded()
-//                    guard let data = response.data else { return }
-//                    do {
-//                        let decoder = JSONDecoder()
-//                        let obj = try decoder.decode(PendingDeleteModel.self, from: data)
-//                        print("pending Case Done", obj)
-//                        if obj.StatusNo == 0 {
-//
-//
-//
-//                        }else{
-//
-//                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
-//                            snackbar.show()
-//                        }
-//
-//
-//                    } catch let error {
-//                        print(error)
-//                        alertView.close()
-//
-//                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
-//                        snackbar.show()
-//                    }
+                   
+              
+                    self.calledParentLoad()
                     
                     
                 case .failure(let error):

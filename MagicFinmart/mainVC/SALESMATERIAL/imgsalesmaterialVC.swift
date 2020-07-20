@@ -11,6 +11,13 @@ import SDWebImage
 import CustomIOSAlertView
 
 
+///******************************///
+
+   // NOT IN USED
+
+// Insted use imgsalesmaterialVCNew
+///******************************///
+
 class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelegate {
 
     @IBOutlet weak var detailImgView: UIImageView!
@@ -24,6 +31,8 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
    var  empMobileNo = ""
    var  PhotoUrl  = ""
      var newline  = "\n\n"
+    
+     // NOT IN USED   //
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +58,10 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     
     func pospDetails(){
         
-          empName = UserDefaults.standard.string(forKey: "pospsendname") ?? ""
-          empEmail = UserDefaults.standard.string(forKey: "pospsendemail") ?? ""
-          empMobileNo = UserDefaults.standard.string(forKey: "pospsendmobile") ?? ""
-          empDesignation = UserDefaults.standard.string(forKey: "pospsenddesignation") ?? ""
+          empName = UserDefaults.standard.string(forKey: "pospsendname") ?? "POSP Name"
+          empEmail = UserDefaults.standard.string(forKey: "pospsendemail") ?? "XXXXXX@finmart.com"
+          empMobileNo = UserDefaults.standard.string(forKey: "pospsendmobile") ?? "98XXXXXXXX"
+          empDesignation = UserDefaults.standard.string(forKey: "pospsenddesignation") ?? "LandMark POSP"
           PhotoUrl = UserDefaults.standard.string(forKey: "pospsendphoto") ?? ""
         
     }
@@ -169,7 +178,7 @@ class imgsalesmaterialVC: UIViewController,UIDocumentInteractionControllerDelega
     }
     
     
-    /////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////// Not Used ///////////////////////////////////////////////////////
     
     // MARK: bfbdbdbdbd
     private func generateImage(strUrl : String){

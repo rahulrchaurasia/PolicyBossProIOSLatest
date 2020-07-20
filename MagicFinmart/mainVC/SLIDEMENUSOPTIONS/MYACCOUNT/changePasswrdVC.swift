@@ -46,8 +46,10 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
 //        if let drawerController = navigationController?.parent as? KYDrawerController {
 //            drawerController.setDrawerState(.opened, animated: true)
 //        }
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+
+            dismiss(animated: true)
     }
     
     @IBAction func submitBtnCliked(_ sender: Any)

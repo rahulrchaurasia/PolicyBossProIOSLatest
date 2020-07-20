@@ -91,18 +91,33 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
        // UITableViewCell.appearance().selectionStyle = .none    // for Removing Default Selection
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+       
+         //userconstantAPI()
+    }
+    
+    
+    //////////////////////  Method For Orientation   ////////////////////////////
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
-        //for DeSelect the Row After Selection
-        if let index = mainTV.indexPathForSelectedRow{
-            self.mainTV.deselectRow(at: index, animated: true)
-        }
+//        //for DeSelect the Row After Selection
+//        if let index = mainTV.indexPathForSelectedRow{
+//            self.mainTV.deselectRow(at: index, animated: true)
+//        }
     }
     
     func deSelectDashboard(){
         
         if let index = mainTV.indexPathForSelectedRow{
-            self.mainTV.deselectRow(at: index, animated: true)
+            self.mainTV.deselectRow(at: index, animated: false)
         }
     }
     
@@ -129,8 +144,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     {
         let Salesmaterial : SalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbSalesmaterialVC") as! SalesmaterialVC
 
+          present(Salesmaterial, animated: true, completion: nil)
         
-        self.add(Salesmaterial)
+       // self.add(Salesmaterial)
     }
     @IBAction func pendingcasesBtnCliked(_ sender: Any)
     {
@@ -1006,16 +1022,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         if Connectivity.isConnectedToInternet()
         {
             print("internet is available.")
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
+//        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+//        if let parentView = self.navigationController?.view
+//        {
+//            alertView.parentView = parentView
+//        }
+//        else
+//        {
+//            alertView.parentView = self.view
+//        }
+//        alertView.show()
         
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
         
@@ -1024,7 +1040,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let url = "/api/user-constant"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
+            
+           // alertView.close()
             
             self.view.layoutIfNeeded()
             
@@ -1162,14 +1179,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: fba_campaign_name), forKey: "fba_campaign_name")
             
         }, onError: { errorData in
-            alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
+           // alertView.close()
+//            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+//            snackbar.show()
         }, onForceUpgrade: {errorData in})
             
         }else{
-            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-            snackbar.show()
+//            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+//            snackbar.show()
         }
         
         

@@ -104,6 +104,11 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
     }
     
+    func resetDefaults() {
+        let defaults = UserDefaults.standard
+        // let dictionary = defaults.dictionaryRepresentation()
+        defaults.dictionaryRepresentation().keys.forEach(defaults.removeObject(forKey:))
+    }
     func loginValidate()  -> Bool {
         
         if( emailTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){

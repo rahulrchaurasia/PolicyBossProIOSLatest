@@ -33,8 +33,10 @@ class incmCalculatrVC: UIViewController {
 
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+         dismiss(animated: true)
     }
     
     @IBAction func sendviaEmailBtnCliked(_ sender: Any)

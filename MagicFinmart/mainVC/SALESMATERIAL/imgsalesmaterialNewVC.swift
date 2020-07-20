@@ -53,18 +53,50 @@ class imgsalesmaterialNewVC: UIViewController {
 
     }
     
+
+    func validate(){
+        
+        if(empName.isEmpty){
+            
+            empName = "POSP Name"
+        }
+        if(empEmail.isEmpty){
+            
+            empEmail = "XXXXXX@finmart.com"
+        }
+        if(empMobileNo.isEmpty){
+            
+            empMobileNo = "98XXXXXXXX"
+        }
+        if(empDesignation.isEmpty){
+            
+            empDesignation = "LandMark POSP"
+        }
+        
+        if(PhotoUrl.isEmpty){
+            
+            PhotoUrl =  "http://qa.mgfm.in/images/profile_pic.png"
+        }
+    }
     
     func pospDetails(){
         
-        empName = UserDefaults.standard.string(forKey: "pospsendname") ?? ""
-        empEmail = UserDefaults.standard.string(forKey: "pospsendemail") ?? ""
-        empMobileNo = UserDefaults.standard.string(forKey: "pospsendmobile") ?? ""
-        empDesignation = UserDefaults.standard.string(forKey: "pospsenddesignation") ?? ""
-        PhotoUrl = UserDefaults.standard.string(forKey: "pospsendphoto") ?? ""
+        empName = UserDefaults.standard.string(forKey: "pospsendname") ?? "POSP Name"
+
+        empEmail = UserDefaults.standard.string(forKey: "pospsendemail") ??  "XXXXXX@finmart.com"
+        empMobileNo = UserDefaults.standard.string(forKey: "pospsendmobile") ?? "98XXXXXXXX"
+        empDesignation = UserDefaults.standard.string(forKey: "pospsenddesignation") ??  "LandMark POSP"
+        PhotoUrl = UserDefaults.standard.string(forKey: "pospsendphoto") ?? "http://qa.mgfm.in/images/profile_pic.png"
         
+          print("PhotoUrl",PhotoUrl)
+        
+        validate()
         
         let url = URL(string: PhotoUrl)
         imgUser.sd_setImage(with: url)
+        
+       
+       
         
         lblEmpName.text = empName
         lblDesignation.text = empDesignation
@@ -74,15 +106,18 @@ class imgsalesmaterialNewVC: UIViewController {
     
     func loanDetails(){
         
-        empName = UserDefaults.standard.string(forKey: "loansendname") ?? ""
-        empEmail = UserDefaults.standard.string(forKey: "loansendemail") ?? ""
-        empMobileNo = UserDefaults.standard.string(forKey: "loansendmobile") ?? ""
-        empDesignation = UserDefaults.standard.string(forKey: "loansenddesignation") ?? ""
-        PhotoUrl = UserDefaults.standard.string(forKey: "loansendphoto") ?? ""
+        empName = UserDefaults.standard.string(forKey: "loansendname") ?? "POSP Name"
+        empEmail = UserDefaults.standard.string(forKey: "loansendemail") ?? "XXXXXX@finmart.com"
+        empMobileNo = UserDefaults.standard.string(forKey: "loansendmobile") ?? "98XXXXXXXX"
+        empDesignation = UserDefaults.standard.string(forKey: "loansenddesignation") ?? "LandMark POSP"
+        PhotoUrl = UserDefaults.standard.string(forKey: "loansendphoto") ?? "http://qa.mgfm.in/images/profile_pic.png"
+         print("PhotoUrl",PhotoUrl)
         
+        validate()
         
         let url = URL(string: PhotoUrl)
         imgUser.sd_setImage(with: url)
+        
         
         lblEmpName.text = empName
         lblDesignation.text = empDesignation

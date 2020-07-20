@@ -134,153 +134,151 @@ class PendingcasesVC: UIViewController {
 
     @IBAction func pendingcasesBackBtn(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
+
         self.remove()
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
+
         
           self.remove()
     }
 
     
-    //---<APICALL>---
-    func pendingcasesinsurenceandloanAPI_OLD()
-    {
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        
-        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-        
-        let params: [String: AnyObject] = ["Type":"0" as AnyObject,
-                                           "count":"0" as AnyObject,
-                                           "FBAID": FBAId as AnyObject]
-        
-        let url = "/api/pending-cases-insurence-and-loan"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let jsonData = userObject as? NSDictionary
-            
-            //<Insurance>
-            let Insurance = jsonData?.value(forKey: "Insurance") as! NSArray
-            for i in 0..<Insurance.count{
-                
-                let dict = Insurance[i]
-                let BankImage1 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
-                if(BankImage1 is NSNull || BankImage1 as! String == "" || BankImage1 as! String == "0")
-                {
-                    print("null>")
-                    self.BankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
-                    print("BankImage== ", self.BankImage)
-                }
-                else{
-                    self.BankImage.append(BankImage1 as! String)
-                    print("BankImage== ", self.BankImage)
-                }
-                
-          
-                let iCustomerName = (dict as AnyObject).value(forKey: "CustomerName") as! String
-                self.CustomerName.append(iCustomerName)
-                let iCategory = (dict as AnyObject).value(forKey: "Category") as! String
-                self.Category.append(iCategory)
-                let iqatype = (dict as AnyObject).value(forKey: "qatype") as! String
-                self.qatype.append(iqatype)
-//                let ipendingdays = Insurance.value(forKey: "pendingdays") as AnyObject
-//                self.pendingdays = ipendingdays as! [Int]
-//                self.pendingDays = self.pendingdays.map { String($0) }
-//                print("pendingDays=",self.pendingDays)
-                let ApplnStatus = (dict as AnyObject).value(forKey: "ApplnStatus") as! String
-                self.ApplnStatus.append(ApplnStatus)
-                let iquotetype = (dict as AnyObject).value(forKey: "quotetype") as! String
-                self.iquotetype.append(iquotetype)
-//                let iId = Insurance.value(forKey: "Id") as AnyObject
-//                self.iId = iId as! [Int]
-//                self.iID = self.iId.map { String($0) }
-//                print("iID=",self.iID)
-                
-            }
-            let ipendingdays = Insurance.value(forKey: "pendingdays") as AnyObject
-            self.pendingdays = ipendingdays as! [Int]
-            self.pendingDays = self.pendingdays.map { String($0) }
-            let iId = Insurance.value(forKey: "Id") as AnyObject
-            self.iId = iId as! [Int]
-            self.iID = self.iId.map { String($0) }
-            
-            
-            //<Loan>
-            let Loan = jsonData?.value(forKey: "Loan") as! NSArray
-            for i in 0..<Loan.count{
-                
-                let dict = Loan[i]
-                let lBankImage2 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
-                if(lBankImage2 is NSNull || lBankImage2 as! String == "" || lBankImage2 as! String == "0")
-                {
-                    print("null>")
-                    self.lBankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
-                    print("lBankImage== ", self.lBankImage)
-                }
-                else{
-                    self.lBankImage.append(lBankImage2 as! String)
-                    print("lBankImage== ", self.lBankImage)
-                }
-                
-              
-                let lCustomerName = (dict as AnyObject).value(forKey: "CustomerName") as! String
-                self.lCustomerName.append(lCustomerName)
-                let lCategory = (dict as AnyObject).value(forKey: "Category") as! String
-                self.lCategory.append(lCategory)
-                let lqatype = (dict as AnyObject).value(forKey: "qatype") as! String
-                self.lqatype.append(lqatype)
-//                let lpendingdays = Loan.value(forKey: "pendingdays") as AnyObject
-//                self.lpendingdays = lpendingdays as! [Int]
-//                self.lpendingDays = self.lpendingdays.map { String($0) }
-//                print("lpendingDays=",self.lpendingDays)
-                let lApplnStatus = (dict as AnyObject).value(forKey: "ApplnStatus") as! String
-                self.lApplnStatus.append(lApplnStatus)
-                let lquotetype = (dict as AnyObject).value(forKey: "quotetype") as! String
-                self.lquotetype.append(lquotetype)
-//                let lId = Loan.value(forKey: "Id") as AnyObject
-//                self.lId = lId as! [Int]
-//                self.lID = self.lId.map { String($0) }
-//                print("lID=",self.lID)
-              
-            }
-            let lpendingdays = Loan.value(forKey: "pendingdays") as AnyObject
-            self.lpendingdays = lpendingdays as! [Int]
-            self.lpendingDays = self.lpendingdays.map { String($0) }
-            let lId = Loan.value(forKey: "Id") as AnyObject
-            self.lId = lId as! [Int]
-            self.lID = self.lId.map { String($0) }
-            
-            self.capsMenu()
-            
-        }, onError: { errorData in
-            alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
-        }, onForceUpgrade: {errorData in})
-        
-        
-    }
-
-    
-    
+//    //---<APICALL>---
+//    func pendingcasesinsurenceandloanAPI_OLD()
+//    {
+//        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+//        if let parentView = self.navigationController?.view
+//        {
+//            alertView.parentView = parentView
+//        }
+//        else
+//        {
+//            alertView.parentView = self.view
+//        }
+//        alertView.show()
+//
+//        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+//
+//        let params: [String: AnyObject] = ["Type":"0" as AnyObject,
+//                                           "count":"0" as AnyObject,
+//                                           "FBAID": FBAId as AnyObject]
+//
+//        let url = "/api/pending-cases-insurence-and-loan"
+//
+//        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+//            alertView.close()
+//
+//            self.view.layoutIfNeeded()
+//
+//            let jsonData = userObject as? NSDictionary
+//
+//            //<Insurance>
+//            let Insurance = jsonData?.value(forKey: "Insurance") as! NSArray
+//            for i in 0..<Insurance.count{
+//
+//                let dict = Insurance[i]
+//                let BankImage1 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
+//                if(BankImage1 is NSNull || BankImage1 as! String == "" || BankImage1 as! String == "0")
+//                {
+//                    print("null>")
+//                    self.BankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
+//                    print("BankImage== ", self.BankImage)
+//                }
+//                else{
+//                    self.BankImage.append(BankImage1 as! String)
+//                    print("BankImage== ", self.BankImage)
+//                }
+//
+//
+//                let iCustomerName = (dict as AnyObject).value(forKey: "CustomerName") as! String
+//                self.CustomerName.append(iCustomerName)
+//                let iCategory = (dict as AnyObject).value(forKey: "Category") as! String
+//                self.Category.append(iCategory)
+//                let iqatype = (dict as AnyObject).value(forKey: "qatype") as! String
+//                self.qatype.append(iqatype)
+////                let ipendingdays = Insurance.value(forKey: "pendingdays") as AnyObject
+////                self.pendingdays = ipendingdays as! [Int]
+////                self.pendingDays = self.pendingdays.map { String($0) }
+////                print("pendingDays=",self.pendingDays)
+//                let ApplnStatus = (dict as AnyObject).value(forKey: "ApplnStatus") as! String
+//                self.ApplnStatus.append(ApplnStatus)
+//                let iquotetype = (dict as AnyObject).value(forKey: "quotetype") as! String
+//                self.iquotetype.append(iquotetype)
+////                let iId = Insurance.value(forKey: "Id") as AnyObject
+////                self.iId = iId as! [Int]
+////                self.iID = self.iId.map { String($0) }
+////                print("iID=",self.iID)
+//
+//            }
+//            let ipendingdays = Insurance.value(forKey: "pendingdays") as AnyObject
+//            self.pendingdays = ipendingdays as! [Int]
+//            self.pendingDays = self.pendingdays.map { String($0) }
+//            let iId = Insurance.value(forKey: "Id") as AnyObject
+//            self.iId = iId as! [Int]
+//            self.iID = self.iId.map { String($0) }
+//
+//
+//            //<Loan>
+//            let Loan = jsonData?.value(forKey: "Loan") as! NSArray
+//            for i in 0..<Loan.count{
+//
+//                let dict = Loan[i]
+//                let lBankImage2 =  (dict as AnyObject).value(forKey:"BankImage") as AnyObject
+//                if(lBankImage2 is NSNull || lBankImage2 as! String == "" || lBankImage2 as! String == "0")
+//                {
+//                    print("null>")
+//                    self.lBankImage.append("https://pngimage.net/wp-content/uploads/2018/06/white-image-png-3.png" as String)
+//                    print("lBankImage== ", self.lBankImage)
+//                }
+//                else{
+//                    self.lBankImage.append(lBankImage2 as! String)
+//                    print("lBankImage== ", self.lBankImage)
+//                }
+//
+//
+//                let lCustomerName = (dict as AnyObject).value(forKey: "CustomerName") as! String
+//                self.lCustomerName.append(lCustomerName)
+//                let lCategory = (dict as AnyObject).value(forKey: "Category") as! String
+//                self.lCategory.append(lCategory)
+//                let lqatype = (dict as AnyObject).value(forKey: "qatype") as! String
+//                self.lqatype.append(lqatype)
+////                let lpendingdays = Loan.value(forKey: "pendingdays") as AnyObject
+////                self.lpendingdays = lpendingdays as! [Int]
+////                self.lpendingDays = self.lpendingdays.map { String($0) }
+////                print("lpendingDays=",self.lpendingDays)
+//                let lApplnStatus = (dict as AnyObject).value(forKey: "ApplnStatus") as! String
+//                self.lApplnStatus.append(lApplnStatus)
+//                let lquotetype = (dict as AnyObject).value(forKey: "quotetype") as! String
+//                self.lquotetype.append(lquotetype)
+////                let lId = Loan.value(forKey: "Id") as AnyObject
+////                self.lId = lId as! [Int]
+////                self.lID = self.lId.map { String($0) }
+////                print("lID=",self.lID)
+//
+//            }
+//            let lpendingdays = Loan.value(forKey: "pendingdays") as AnyObject
+//            self.lpendingdays = lpendingdays as! [Int]
+//            self.lpendingDays = self.lpendingdays.map { String($0) }
+//            let lId = Loan.value(forKey: "Id") as AnyObject
+//            self.lId = lId as! [Int]
+//            self.lID = self.lId.map { String($0) }
+//
+//            self.capsMenu()
+//
+//        }, onError: { errorData in
+//            alertView.close()
+//            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+//            snackbar.show()
+//        }, onForceUpgrade: {errorData in})
+//
+//
+//    }
+//
+//
+//
     
     ////////////////////////////////////////////
     

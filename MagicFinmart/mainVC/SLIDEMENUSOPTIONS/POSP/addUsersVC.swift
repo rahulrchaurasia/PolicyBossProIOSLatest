@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TTGSnackbar
 
 class addUsersVC: UIViewController {
 
@@ -69,20 +70,25 @@ class addUsersVC: UIViewController {
     
     @IBAction func closeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+         dismiss(animated: true)
     }
     
     @IBAction func moreServCloseBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+         dismiss(animated: true)
     }
     
     @IBAction func myUtiliCloseBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+         dismiss(animated: true)
     }
     
     
@@ -135,15 +141,20 @@ class addUsersVC: UIViewController {
     //<moreServicesMenus>
     @IBAction func finpeaceBtnCliked(_ sender: Any)
     {
-        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-        commonWeb.webfromScreen = "fin-Peace"
-        present(commonWeb, animated: true, completion: nil)
+//        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//        commonWeb.webfromScreen = "fin-Peace"
+//        present(commonWeb, animated: true, completion: nil)
+        
+        let snackbar = TTGSnackbar.init(message: "Coming Soon..." , duration: .long)
+        snackbar.show()
     }
     
     @IBAction func healthAssureBtnCliked(_ sender: Any)
     {
+       
         let offlineQuotes : offlineQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbofflineQuotesVC") as! offlineQuotesVC
         present(offlineQuotes, animated: true, completion: nil)
+        
     }
     
     //<myUtilitiesMenus>

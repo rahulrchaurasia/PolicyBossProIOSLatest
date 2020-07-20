@@ -22,9 +22,9 @@
 		4438D06224B3802500D68498 /* eula.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D06124B3802500D68498 /* eula.html */; };
 		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
+		4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
 		444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */; };
-		445040BF2471767500CF6780 /* salesMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445040BE2471767500CF6780 /* salesMainModel.swift */; };
 		446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */; };
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		447DF6302466DDD400D0F545 /* payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447DF62F2466DDD400D0F545 /* payment.storyboard */; };
@@ -233,9 +233,9 @@
 		4438D06124B3802500D68498 /* eula.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eula.html; sourceTree = "<group>"; };
 		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
+		4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailHindiModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
 		444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToRazorpayModel.swift; sourceTree = "<group>"; };
-		445040BE2471767500CF6780 /* salesMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMainModel.swift; sourceTree = "<group>"; };
 		446B0F4B22E1A5DF0083C76B /* cmnloanselectCityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloanselectCityVC.swift; sourceTree = "<group>"; };
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
 		447DF62F2466DDD400D0F545 /* payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = payment.storyboard; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 				84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */,
 				44367ED7244466DC005B9441 /* SharePrdModel.swift */,
 				4415A864244DFAFA00314D26 /* SalesDetailModel.swift */,
-				445040BE2471767500CF6780 /* salesMainModel.swift */,
+				4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */,
 			);
 			path = SalesMaterial;
 			sourceTree = "<group>";
@@ -1380,6 +1380,7 @@
 				444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */,
 				84288B2321CCF3A400BC50BC /* profileVC.swift in Sources */,
 				442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */,
+				4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,
 				8483DC98226749300095AA24 /* healthAssureTVCell.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
@@ -1394,7 +1395,6 @@
 				840562CF21D49F3F0099DDE8 /* changePasswrdVC.swift in Sources */,
 				8413349721C8FD350084AFC2 /* KYEmbedDrawerControllerSegue.swift in Sources */,
 				84B76C39226AF71900501033 /* healthAssure2TVCell.swift in Sources */,
-				445040BF2471767500CF6780 /* salesMainModel.swift in Sources */,
 				84BD5C1D21ECB8AC00982C15 /* myLocationVC.swift in Sources */,
 				84DB47752227E62C00EBDA3C /* commonApplicatnVC.swift in Sources */,
 				8410404721D789C300C3B7A7 /* PBLogs.swift in Sources */,

@@ -15,7 +15,7 @@ class SalesDetailModel: NSObject {
     
     var language = "" as String
     var image_path = "" as String
-  
+   
 
         /// For Loan Service
     var imagelink = "" as String
@@ -23,6 +23,7 @@ class SalesDetailModel: NSObject {
     var shorturl = "" as String
     var url = "" as String
       var baseurl = "" as String
+    var isLoaded  =  "Y" as String
     
 
     
@@ -41,6 +42,9 @@ class SalesDetailModel: NSObject {
         self.shorturl = shorturl
         self.url = url
         self.baseurl = baseurl
+        self.isLoaded = "Y"
+        
+    
     }
         
 }

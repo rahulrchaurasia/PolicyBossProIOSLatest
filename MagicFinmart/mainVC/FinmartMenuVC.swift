@@ -48,8 +48,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var transactionsItems = ["My Insurance Business","Get Policy by CRN"]
     var transactionImges = ["ic_business_name.png","insurance_policy_ic.png"]
     
-    var transactionsItems2 = ["My Insurance Business","Get Policy by CRN"]
-    var transactionImges2 = ["ic_business_name.png","insurance_policy_ic.png"]
+    var transactionsItems2 = ["Get Policy by CRN"]
+    var transactionImges2 = ["insurance_policy_ic.png"]
     
     
     var leadsItems = ["Lead Dashboard"]
@@ -490,10 +490,12 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     let enrolasPOSP : enrolasPOSPVC = self.storyboard?.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
                     present(enrolasPOSP, animated: true, completion: nil)
                 }
-                else if(self.enableenrolasPOSP == "0")
+                else
                 {
-                    let addSubUser : addSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbaddSubUserVC") as! addSubUserVC
-                    present(addSubUser, animated: true, completion: nil)
+                    // For myaccountItems2 array changePasswrdVC position is 2 ie index 1
+                    // hence when enrolasPOSP = 0  than myaccountItems2 array will load
+                    let changePasswrd : changePasswrdVC = self.storyboard?.instantiateViewController(withIdentifier: "stbchangePasswrdVC") as! changePasswrdVC
+                    present(changePasswrd, animated: true, completion: nil)
                 }
                 
             }
@@ -563,11 +565,22 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             if(indexPath.row == 0)
             {
               
-                let commonWeb : InsuranceBussWebVC = self.storyboard?.instantiateViewController(withIdentifier: "InsuranceBussWebVC") as! InsuranceBussWebVC
-                 commonWeb.webfromScreen = "InsuranceBusiness"
-                present(commonWeb, animated: true, completion: nil)
+              
                 
-                
+                if(self.showmyinsurancebusiness == "1")
+                {
+                    let commonWeb : InsuranceBussWebVC = self.storyboard?.instantiateViewController(withIdentifier: "InsuranceBussWebVC") as! InsuranceBussWebVC
+                    commonWeb.webfromScreen = "InsuranceBusiness"
+                    present(commonWeb, animated: true, completion: nil)
+                }
+                else
+                {
+                    // For transactionsItems2 array policyByCRN position is 1 ie index 0
+                    // hence when showmyinsurancebusiness = 0  than transactionsItems2 array will load
+                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+                    commonWeb.webfromScreen = "policyByCRN"
+                    present(commonWeb, animated: true, completion: nil)
+                }
                             
                 
             }
@@ -914,8 +927,15 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let okAction = UIAlertAction(title: "Logout", style: UIAlertAction.Style.default) {
             UIAlertAction in
             NSLog("OK Pressed")
+            
+            
+            
             UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
+         
+            
+           
             let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
+            Login.resetDefaults()
             self.present(Login, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
@@ -928,6 +948,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    
+    
     
         
 }
