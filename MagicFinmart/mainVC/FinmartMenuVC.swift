@@ -117,6 +117,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         userconstantAPI()
         //CheckAppAccessAPI()
         
+        
   }
     
     
@@ -839,11 +840,53 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
+    func bindMenuData(){
+        
+      
+        if(UserDefaults.exists(key: "FBAId") == false) {
+            
+            userconstantAPI()
+            print("User Constant Called")
+        }else{
+            
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            let loansendname = UserDefaults.standard.string(forKey: "loansendname")
+            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo")
+            let ERPID = UserDefaults.standard.string(forKey: "ERPID")
+            
+            let loanselfphoto = UserDefaults.standard.string(forKey: "loanselfphoto")
+            let enableenrolasposp = UserDefaults.standard.string(forKey: "enableenrolasposp")
+            let showmyinsurancebusiness = UserDefaults.standard.string(forKey: "showmyinsurancebusiness")
+            let referer_code = UserDefaults.standard.string(forKey: "referer_code")
+            
+            self.fullNameLbl.text! = loansendname?.uppercased() ?? ""
+            self.fbaIdLbl.text! = FBAId!
+            self.pospNoLbl.text! = POSPNo!
+            self.erpIdLbl.text! = ERPID ?? "0"
+            self.refcodeLbl.text! = referer_code ?? ""
+            
+            self.enableenrolasPOSP = enableenrolasposp!
+            self.showmyinsurancebusiness = showmyinsurancebusiness!
+            
+            if(loanselfphoto != ""){
+                //loadimages
+                let imgURL = NSURL(string: loanselfphoto! )
+                if imgURL != nil {
+                    let data = NSData(contentsOf: (imgURL as URL?)!)
+                    
+                    self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
+                    // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
+                }
+            }
+            
+            self.menuTV.reloadData()
+        }
+        
+    }
+    
     func userconstantAPI()
     {
         
-        
-       
         if Connectivity.isConnectedToInternet()
         {
            
@@ -885,6 +928,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             self.showmyinsurancebusiness = showmyinsurancebusiness as! String
             
             UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
+            
                 self.fullNameLbl.text! = loansendname.uppercased
                 self.fbaIdLbl.text! = FBAId as! String
                 self.pospNoLbl.text! = POSPNo as! String
@@ -896,7 +940,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let imgURL = NSURL(string: loanselfphoto as! String)
                 if imgURL != nil {
                     let data = NSData(contentsOf: (imgURL as URL?)!)
-                    // cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
+                  
                     self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
                    // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
                 }
@@ -929,13 +973,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             NSLog("OK Pressed")
             
             
-            
             UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
          
-            
-           
+
             let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
             Login.resetDefaults()
+          
+            
             self.present(Login, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {

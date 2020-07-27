@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44098B1924CAE42800ADB2C3 /* EulaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44098B1824CAE42800ADB2C3 /* EulaVC.swift */; };
 		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
 		4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */; };
@@ -15,12 +16,17 @@
 		442B80A424AF4BF000F4EBDA /* InsuranceBussWebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */; };
 		442C140D2497A31700E3C455 /* pospDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C140C2497A31700E3C455 /* pospDoc.swift */; };
 		442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442DEDCA2449967200067A3E /*  Connectivity.swift */; };
+		442E20DF24C8347A00FFC075 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 442E20DE24C8347A00FFC075 /* Walkthrough.storyboard */; };
+		442E20E124C8355200FFC075 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E024C8355200FFC075 /* Core.swift */; };
+		442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E224C8388300FFC075 /* TutorialViewController.swift */; };
+		442E20E524C8448F00FFC075 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
 		4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */; };
 		4438D06024B3800800D68498 /* Disclosure.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D05F24B3800600D68498 /* Disclosure.html */; };
 		4438D06224B3802500D68498 /* eula.html in Resources */ = {isa = PBXBuildFile; fileRef = 4438D06124B3802500D68498 /* eula.html */; };
 		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
+		443B4D0A24CC868C00D1FDF7 /* IFSCCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
@@ -218,6 +224,7 @@
 /* Begin PBXFileReference section */
 		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MagicFinmart.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44098B1824CAE42800ADB2C3 /* EulaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaVC.swift; sourceTree = "<group>"; };
 		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
 		4427908B244885E000AFDED9 /* UserConstDashboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserConstDashboardModel.swift; sourceTree = "<group>"; };
@@ -226,12 +233,17 @@
 		442B80A324AF4BF000F4EBDA /* InsuranceBussWebVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceBussWebVC.swift; sourceTree = "<group>"; };
 		442C140C2497A31700E3C455 /* pospDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospDoc.swift; sourceTree = "<group>"; };
 		442DEDCA2449967200067A3E /*  Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " Connectivity.swift"; sourceTree = "<group>"; };
+		442E20DE24C8347A00FFC075 /* Walkthrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		442E20E024C8355200FFC075 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		442E20E224C8388300FFC075 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
 		4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCaseMainModel.swift; sourceTree = "<group>"; };
 		4438D05F24B3800600D68498 /* Disclosure.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Disclosure.html; sourceTree = "<group>"; };
 		4438D06124B3802500D68498 /* eula.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eula.html; sourceTree = "<group>"; };
 		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
+		443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCCodeModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailHindiModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
@@ -449,8 +461,20 @@
 			isa = PBXGroup;
 			children = (
 				442C140C2497A31700E3C455 /* pospDoc.swift */,
+				443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */,
 			);
 			path = pospDoc;
+			sourceTree = "<group>";
+		};
+		442E20DD24C8343900FFC075 /* walkthroughPage */ = {
+			isa = PBXGroup;
+			children = (
+				442E20DE24C8347A00FFC075 /* Walkthrough.storyboard */,
+				442E20E224C8388300FFC075 /* TutorialViewController.swift */,
+				442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */,
+				44098B1824CAE42800ADB2C3 /* EulaVC.swift */,
+			);
+			path = walkthroughPage;
 			sourceTree = "<group>";
 		};
 		4438085624BAF4B90046CA81 /* pendingCase */ = {
@@ -647,6 +671,7 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				442E20DD24C8343900FFC075 /* walkthroughPage */,
 				4438D06324B398D200D68498 /* html */,
 				449EDBA02466A826006280CA /* Razorpay.framework */,
 				443D35F72462A30F00C8F763 /* PaymentGateway */,
@@ -743,6 +768,7 @@
 				8410404321D789C300C3B7A7 /* PBLogs.swift */,
 				8410404021D789C200C3B7A7 /* ResponseMetadata.swift */,
 				442DEDCA2449967200067A3E /*  Connectivity.swift */,
+				442E20E024C8355200FFC075 /* Core.swift */,
 			);
 			path = CONFIGURATION;
 			sourceTree = "<group>";
@@ -1139,6 +1165,7 @@
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
 				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
+				442E20DF24C8347A00FFC075 /* Walkthrough.storyboard in Resources */,
 				4438D06224B3802500D68498 /* eula.html in Resources */,
 				447DF6302466DDD400D0F545 /* payment.storyboard in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
@@ -1263,6 +1290,7 @@
 				8480BBE2220811D300BEEDF4 /* hnfdisclosureVC.swift in Sources */,
 				840AC5D221BE80AB004DCB26 /* ViewController.swift in Sources */,
 				44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */,
+				442E20E524C8448F00FFC075 /* TutorialPageViewController.swift in Sources */,
 				84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */,
 				84D2E0C721EDB85500991D47 /* LoginAPI.swift in Sources */,
 				840DE862220DA6BC0060003E /* cmnquotesTVCell.swift in Sources */,
@@ -1318,6 +1346,7 @@
 				840562DD21D4D2E50099DDE8 /* motorInsuranceVC.swift in Sources */,
 				8480BBDB220807FA00BEEDF4 /* helpnfeedbckTVCell.swift in Sources */,
 				84DB47732227E5E800EBDA3C /* commonQuotesVC.swift in Sources */,
+				442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */,
 				8410404521D789C300C3B7A7 /* CommonSettings.swift in Sources */,
 				8413349621C8FD350084AFC2 /* KYEmbedMainControllerSegue.swift in Sources */,
 				84C4D09A21C2736100A677B7 /* MainfinmartTVCell.swift in Sources */,
@@ -1331,6 +1360,7 @@
 				84AA9F782269C8A9008D6393 /* getmpsTnCVC.swift in Sources */,
 				8403E89821BFE13E0009662A /* ACFloatingTextfield.swift in Sources */,
 				84E1A9322204594F00A94A29 /* QuickLeadVC.swift in Sources */,
+				44098B1924CAE42800ADB2C3 /* EulaVC.swift in Sources */,
 				84E1663C22114802000054B8 /* cmnapplictnTVCell.swift in Sources */,
 				4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */,
 				84BD5C2121ECBD3D00982C15 /* addAttenTVCell.swift in Sources */,
@@ -1366,9 +1396,11 @@
 				84C368C121C778BC00BB2E9B /* knowGuruTVCell.swift in Sources */,
 				44AB6D8D2302B9AC00CE685E /* creditcardListTVCell.swift in Sources */,
 				8434742B222D4372004A418A /* cmnApplictnLifeinsTVCell.swift in Sources */,
+				443B4D0A24CC868C00D1FDF7 /* IFSCCodeModel.swift in Sources */,
 				84EF6E9F2296B2730002E73B /* smsTempTVCell.swift in Sources */,
 				44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */,
 				846F653A2281A2D300F9A92F /* healthTestTVCell.swift in Sources */,
+				442E20E124C8355200FFC075 /* Core.swift in Sources */,
 				44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */,
 				44BC3A2222EAD98B009926FC /* loanleadHistoryVC.swift in Sources */,
 				8480BBDE2208118900BEEDF4 /* hnfcontactUsVC.swift in Sources */,
@@ -1592,7 +1624,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				DEVELOPMENT_TEAM = 87B8AYVD9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1604,7 +1636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.datacomp.magicfinmart-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -1620,7 +1652,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				DEVELOPMENT_TEAM = 87B8AYVD9N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1632,7 +1664,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.datacomp.magicfinmart-";
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;

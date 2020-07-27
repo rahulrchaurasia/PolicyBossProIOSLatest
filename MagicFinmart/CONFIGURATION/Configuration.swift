@@ -13,10 +13,10 @@ class Configuration: NSObject {
   // static let baseURLString = "http://qa.mgfm.in"               //testing
 
    static let baseURLString = "http://api.magicfinmart.com"     //live
-    static let baseServiceURLString = "http://49.50.95.141:191"     // for attendance  Not in used
+    static let baseServiceURLString = "http://49.50.95.141:191"     // for attendance  (Not in used)
     static let baseEncryptedErpIdURL = "http://202.131.96.101:3333"
   
-    static let basegenerateloanLeadURL = "http://services.rupeeboss.com"   // ERP URL {Android}  for loan (currently used in pending case only)
+    static let basegenerateloanLeadURL = "http://services.rupeeboss.com"   //ERP URL {Android}  for loan (currently used in pending case only)
     static let basehealthassureURL = "http://www.healthassure.in"
     
    // static let appVersion = "2.0"

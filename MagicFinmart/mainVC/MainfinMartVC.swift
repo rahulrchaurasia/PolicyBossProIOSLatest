@@ -1238,7 +1238,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let aObject = Dashboard[index] as! [String : AnyObject]
                 
                 
-                if(aObject["ProdId"] as! String != "16"){
+                if(aObject["ProdId"] as! String != "16" && aObject["ProdId"] as! String != "18"  ){
                     
                     
                     if(aObject["dashboard_type"] as! String == "1"){
@@ -1259,7 +1259,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         
                         self.dynamicDashboardModel.append(model)
                         
-                    }else if(aObject["dashboard_type"] as! String == "3"){
+                    }else if(aObject["dashboard_type"] as! String == "3" ){
                         
                         let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
                                                           link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,

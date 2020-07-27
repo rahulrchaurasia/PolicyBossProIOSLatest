@@ -36,7 +36,25 @@ class LoginVC: UIViewController,UITextFieldDelegate {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
+    
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        if(Core.shared.isNewUser()){
+
+            let storyboard = UIStoryboard(name: "Walkthrough", bundle: .main)
+            
+            let WelComePage = storyboard.instantiateViewController(withIdentifier: "TutorialViewController") as!                       TutorialViewController
+            WelComePage.modalPresentationStyle = .fullScreen
+            self.present(WelComePage, animated: false)
+            
+        }
+    }
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -108,6 +126,8 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         let defaults = UserDefaults.standard
         // let dictionary = defaults.dictionaryRepresentation()
         defaults.dictionaryRepresentation().keys.forEach(defaults.removeObject(forKey:))
+        Core.shared.setNewUser()
+         
     }
     func loginValidate()  -> Bool {
         

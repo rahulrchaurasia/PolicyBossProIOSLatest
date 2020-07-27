@@ -509,9 +509,9 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     // Handler for JavaScript Communication
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         
-           print("JAVASCRIPT CALLED")
+       print("JAVASCRIPT CALLED")
        print("Message",  message.body)
-//        generatePdf(strUrl: message.body as! String)
+        generatePdf(strUrl: message.body as! String)
     }
     
     // Configuratyion for Script

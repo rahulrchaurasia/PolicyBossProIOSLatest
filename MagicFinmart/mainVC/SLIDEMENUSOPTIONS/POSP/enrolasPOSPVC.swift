@@ -163,8 +163,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+        self.dismiss(animated: true)
     }
     
     //---<textFieldRange>---
@@ -345,12 +347,19 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             alertCall(message: "Enter Mobile1")
             return false
         }
+        if( enemailTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter Email Id")
+            return false
+        }
         if(!isValidEmail(testStr: enemailTf.text!))
         {
              alertCall(message: "Invalid Email Id")
              return false
         }
-        
+        if(enpanTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            alertCall(message: "Enter PAN")
+            return false
+        }
         
         if(!validatePanCardNumber(candidate: enpanTf.text!))
         {
@@ -700,6 +709,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         DatePicker.dateDelegate = self
     }
     
+    // Delegate Called After Date Selection For
     func getDateData(currDate: String, fromScreen: String) {
         print(currDate)
         endobTf.text = currDate
@@ -944,85 +954,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     }
     
     
-//    func validated_ticketSupportInsertAPI()
-//    {
-//        if Connectivity.isConnectedToInternet() {
-//            print("Yes! internet is available.")
-//
-//
-//            SVProgressHUD.show()
-//            //        SVProgressHUD.setBackgroundColor(primaryColor)
-//            SVProgressHUD.setForegroundColor(orangeColor)
-//            //SVProgressHUD.dismiss()
-//
-//            let sellerid : String = "\(UserDefaults.standard.value(forKey:"sellerid")!)"
-//            let data = supportImage.image!.pngData()
-//            let parameters: [String: Any] = [
-//
-//                "sellerid": sellerid,
-//                "msg":supportCommentTextField.text!,
-//                "subject" :supportSubjectTextField.text!,
-//                "title" :  supportDropDown.text!,
-//                "name" : supportNameTextField.text!,
-//                "email" :supportEmailTextField.text!,
-//                "upload_file" : "file.png",
-//                "mobile" : supportMobileNumberTextField.text!
-//
-//            ]
-//
-//            Alamofire.upload(multipartFormData: { multipartFormData in
-//                for (key,value) in parameters {
-//                    multipartFormData.append((value as! String).data(using: .utf8)!, withName: key)
-//                }
-//                multipartFormData.append(data!, withName: "file_upload", fileName: "file.png", mimeType: "image/jpeg")
-//            },
-//                             to:webservice.TicketSupportInsert)
-//            { (result) in
-//                switch result {
-//                case .success(let upload, _, _):
-//                    upload.responseJSON { response in
-//                        debugPrint(response)
-//
-//                        DispatchQueue.main.async {
-//                            SVProgressHUD.dismiss()
-//                        }
-//
-//                        print(response)
-//
-//                        if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-//                            //print("Data: \(utf8Text)") // original server data as UTF8 string
-//                            if let newData = utf8Text.data(using: String.Encoding.utf8){
-//                                do{
-//                                    let json = try JSON(data: newData)
-//                                    let thedata = json["message"].stringValue
-//                                    let result = json["result"]
-//                                    if thedata == "Success" {
-//                                        // print(result)
-//                                        self.navigationController?.popViewController(animated: true)
-//                                        //                                        self.ShowAlert("Beldara", AlertMessage: result.stringValue ,AlertTag: 1001)
-//
-//                                    }else{
-//                                        self.ShowAlert("Beldara", AlertMessage: thedata ,AlertTag: 1001)
-//                                    }
-//                                }catch _ as NSError {
-//                                    // error
-//                                }
-//                            }
-//                        }
-//
-//                    }
-//                case .failure(let encodingError):
-//                    print(encodingError)
-//                    self.ShowAlert("Beldara", AlertMessage: "Something Went Wrong",AlertTag: 1001)
-//                }
-//            }
-//
-//        }else {
-//            self.ShowAlert("Beldara", AlertMessage: "Check Internet Connectivity",AlertTag: 1001)
-//        }
-//
-//    }
-    
+
     
     
     func uploaddocAPI(documentName:String, documentType:String)
@@ -1147,7 +1079,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         result = emailTest.evaluate(with: candidate)
         print("result=",result)
         if(result == false){
-            let alert = UIAlertController(title: "Alert", message: "Please enter valid PAN", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Alert", message: "Please Enter Valid PAN", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
@@ -1740,7 +1672,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
     }
     
-    func getifsccodeAPI()
+    func getifsccodeAPIOLD()
     {
         if Connectivity.isConnectedToInternet()
         {
@@ -1791,7 +1723,113 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
     }
 
+    //////////
+    
+    
+   
+    
+    func getifsccodeAPI(){
+        
+        
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+            
+            let parameter  :[String: AnyObject] = [
+                
+                "IFSCCode": enifscCodeTf.text! as AnyObject
+              
+            ]
+            let endUrl = "/api/get-ifsc-code"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            print("parameter= ",parameter)
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(let value):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(IFSCCodeModel.self, from: data)
 
+                        print("response= ",obj)
+                        
+                        if obj.StatusNo == 0 {
+                            
+                          
+                            print("IFSC RESPONSE= ",obj.MasterData[0].BankName)
+                            
+                            self.enmicrCodeTf.text! = obj.MasterData[0].MICRCode
+                            self.enbankBranchTf.text! = obj.MasterData[0].BankBran
+                            self.enbankCityTf.text! = obj.MasterData[0].CityName
+                            self.enbankNameTf.text! = obj.MasterData[0].BankName
+                            
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                            snackbar.show()
+                            
+                            self.enmicrCodeTf.text! = ""
+                            self.enbankBranchTf.text! = ""
+                            self.enbankCityTf.text! = ""
+                            self.enbankNameTf.text! = ""
+                        }
+                        
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        self.enmicrCodeTf.text! = ""
+                        self.enbankBranchTf.text! = ""
+                        self.enbankCityTf.text! = ""
+                        self.enbankNameTf.text! = ""
+                        
+                        let snackbar = TTGSnackbar.init(message: "No Data Found", duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
+    
+    ///////
+
+
+    
+    
+    ///////////////
     //----<buttonColor>----
     func btnColorChangeBlue(Btn:UIButton)
     {
@@ -1845,5 +1883,7 @@ extension String
         let date = dateFormatter.date(from: self)
         dateFormatter.dateFormat = outputFormat
         return dateFormatter.string(from: date!)
+        
+        
     }
 }
