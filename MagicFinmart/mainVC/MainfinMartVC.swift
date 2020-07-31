@@ -21,6 +21,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     @IBOutlet weak var pendingcasesView: UIView!
     @IBOutlet weak var knowguruView: UIView!
     
+    @IBOutlet weak var NewImage: UIImageView!
+    
     
     @IBOutlet weak var MainScrollView: UIScrollView!
     var dynamicDashboardModel = [DynamicDashboardModel]()
@@ -59,9 +61,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //hidepopUpView
+
+        rotateToPotrait()
+        
+        
+    
         popUpbackgroundView.isHidden = true
-         self.mainTV.isHidden = true
+        self.mainTV.isHidden = true
         //border
         let borderColor = UIColor.black
         salesmaterialView.layer.borderWidth=1.0;
@@ -71,11 +77,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         knowguruView.layer.borderWidth=1.0;
         knowguruView.layer.borderColor=borderColor.cgColor;
         
+       
+        
         //--<api>--
         getLoanStaticDashboard()
         userconstantAPI()
         getdynamicappAPI()
-    
+        
         
         MainScrollView.isScrollEnabled = false
         
@@ -83,12 +91,35 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             print("VERSION SHORT",version)
         }
         
-        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-            print("VERSION BUILD",build)
-        }
         
-     
-       // UITableViewCell.appearance().selectionStyle = .none    // for Removing Default Selection
+        
+        
+        NewImage.loadGif(name: "newicon")     // Know your Finmart gif image
+        
+        // UITableViewCell.appearance().selectionStyle = .none    // for Removing Default Selection
+        
+        
+        
+        if(UserDefaults.exists(key: "iosversion") == true) {
+            
+            if let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                print("VERSION BUILD",buildVersion)
+                
+                
+                let iosversion = UserDefaults.standard.string(forKey: "iosversion")
+                
+                let ServiceBuildVersion = (iosversion! as NSString).intValue
+                
+                let devicebuildVersion = (buildVersion as NSString).intValue
+                
+                
+                if(devicebuildVersion < ServiceBuildVersion){
+                    
+                    callAppStore()
+                    
+                }
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,12 +129,27 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     
     //////////////////////  Method For Orientation   ////////////////////////////
+    
+    func rotateToPotrait(){
+      
+        
+        /// For Orientation///////////
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UIViewController.attemptRotationToDeviceOrientation()
+        /////////////////////////
+    }
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
     
+    
+    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .portrait
+    }
+    
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,6 +159,35 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //            self.mainTV.deselectRow(at: index, animated: true)
 //        }
     }
+    
+    
+    func callAppStore()
+    {
+        // Create the alert controller
+        let alertController = UIAlertController(title: "UPDATE", message: "New version available on app store, Please update.", preferredStyle: .alert)
+        // Create the actions
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+            
+            
+           // UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
+            
+            
+            let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
+           // Login.resetDefaults()
+            
+            
+            self.present(Login, animated: true, completion: nil)
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        
+        // Present the controller
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
     
     func deSelectDashboard(){
         
@@ -269,11 +344,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 /******************************************************************************************/
                 
-                cell.cellbtnInfoProduct.isHidden = false
-                cell.cellbtnShareProduct.isHidden = false
+                cell.cellbtnInfoProduct.isHidden = true
+                cell.cellbtnShareProduct.isHidden = true
 
-                cell.cellImageInfoProduct.isHidden = false
-                cell.cellImageShareProduct.isHidden = false
+                cell.cellImageInfoProduct.isHidden = true
+                cell.cellImageShareProduct.isHidden = true
+                
+                  cell.cellNewImage.isHidden = true
                 // check if Info  is not empty
                 if(dynamicDashboardModel[indexPath.row].info == "" )
                 {
@@ -295,23 +372,28 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                      cell.cellImageShareProduct.isHidden = true
                 }
                 
-              //  cell.cellTitleLbl.text! = insuranceArray[indexPath.row]
-                //cell.celldetailTextLbl.text! = insuranceDetailArray[indexPath.row]
-               // cell.cellImage.image = UIImage(named: insuranceImgArray[indexPath.row])
-              
+                // check New Product
+                if(dynamicDashboardModel[indexPath.row].IsNewprdClickable == "Y" )
+                {
+                    cell.cellNewImage.isHidden = false
+                    cell.cellNewImageConstant.constant = 26
+                    cell.cellNewImage.loadGif(name: "newicon")
+                    
+                }else{
+                    cell.cellNewImage.isHidden = true
+                    cell.cellNewImageConstant.constant = 0
+                }
+                
+            
                
-                cell.cellTitleLbl.text! = dynamicDashboardModel[indexPath.row].menuname
+                cell.cellTitleLbl.text! = dynamicDashboardModel[indexPath.row].menuname.uppercased()
                 cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
-                
-               
-             // cell.cellImage = NSURL(string: dynamicDashboardModel[indexPath.row].iconimage)
-                
+            
                  let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
     
                  cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
                 
-                
-  
+
                
             }
             else if(indexPath.section == 2)
@@ -349,11 +431,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
                 
                 
-                cell.cellbtnInfoProduct.isHidden = false
-                cell.cellbtnShareProduct.isHidden = false
+                cell.cellbtnInfoProduct.isHidden = true
+                cell.cellbtnShareProduct.isHidden = true
                 
-                cell.cellImageInfoProduct.isHidden = false
-                cell.cellImageShareProduct.isHidden = false
+                cell.cellImageInfoProduct.isHidden = true
+                cell.cellImageShareProduct.isHidden = true
+                cell.cellNewImage.isHidden = true
+                
                 // check if Info  is not empty
                 if(loanModel[indexPath.row].info == "" )
                 {
@@ -381,7 +465,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //                cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
 //                cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
                 
-                cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname
+                cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname.uppercased()
                 cell.celldetailTextLbl.text! = loanModel[indexPath.row].dashdescription
                 cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
            
@@ -393,11 +477,12 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 cell.cellImageInfoProduct.isHidden = true
                 cell.cellImageShareProduct.isHidden = true
+                cell.cellNewImage.isHidden = true
                 
-//                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname
-//                cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
                 
-                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname
+
+                
+                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname.uppercased()
                 cell.celldetailTextLbl.text! = moreServiceModel[indexPath.row].dashdescription
                // cell.cellImage.image = UIImage(named: moreServiceModel[indexPath.row].iconimage)
                 
@@ -535,7 +620,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                                 commonWeb.webfromScreen = "Dynamic"
                                 commonWeb.dynamicUrl = finalURL
-                                commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
+                                commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname.uppercased()
                                // present(commonWeb, animated: true, completion: nil)
                                 
                                 commonWeb.addType = "CHILD"
@@ -554,7 +639,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                         commonWeb.webfromScreen = "Dynamic"
                         commonWeb.dynamicUrl = self.dynamicDashboardModel[indexPath.row].link
-                        commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname
+                        commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname.uppercased()
                        // present(commonWeb, animated: true, completion: nil)
                         
                         commonWeb.addType = "CHILD"
@@ -639,7 +724,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "credit"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                    // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -648,7 +733,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 19  :  // personal Loan
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "personal"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                     // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -658,7 +743,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 6  :  // "business Loan"
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "business"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                     // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -669,7 +754,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 7  :  // home Loan
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "home"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                     // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -680,7 +765,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 8  :  // lap Loan
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "lap"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                     // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -691,7 +776,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 case 81  :  // car Loan
                     let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
                     commonWeb.webfromScreen = "car"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname
+                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
                     // present(commonWeb, animated: true, completion: nil)
                     commonWeb.addType = "CHILD"
                     add(commonWeb)
@@ -1126,6 +1211,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let fba_uid = jsonData?.value(forKey: "fba_uid") as AnyObject
             let fba_campaign_id = jsonData?.value(forKey: "fba_campaign_id") as AnyObject
             let fba_campaign_name = jsonData?.value(forKey: "fba_campaign_name") as AnyObject
+            
+            let iosversion = jsonData?.value(forKey: "iosversion") as AnyObject
+           
            
             
             UserDefaults.standard.set(String(describing: uid), forKey: "uid")
@@ -1177,6 +1265,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: fba_uid), forKey: "fba_uid")
             UserDefaults.standard.set(String(describing: fba_campaign_id), forKey: "fba_campaign_id")
             UserDefaults.standard.set(String(describing: fba_campaign_name), forKey: "fba_campaign_name")
+            
+            UserDefaults.standard.set(String(describing: iosversion), forKey: "iosversion")
+            
             
         }, onError: { errorData in
            // alertView.close()

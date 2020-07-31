@@ -29,7 +29,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
 
 
-    @IBOutlet weak var MainScrollView: UIScrollView!
+   // @IBOutlet weak var MainScrollView: UIScrollView!
     @IBOutlet weak var versionLbl: UILabel!
    // var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
       var myFinItems = ["HOME","MY FINBOX","FINPERKS"]

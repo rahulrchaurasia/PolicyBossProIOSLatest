@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     //CLLocationManagerDelegate    // Delegate For location
     var window: UIWindow?
-    
+
+    //var deviceOrientation = UIInterfaceOrientationMask.portrait
    // let locationMgr = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -105,6 +106,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    // for orientation
+//    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+//        return deviceOrientation
+//    }
 
 }
 

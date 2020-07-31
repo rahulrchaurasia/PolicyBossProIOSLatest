@@ -163,10 +163,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
         
-        self.dismiss(animated: true)
+       // self.dismiss(animated: true)
     }
     
     //---<textFieldRange>---
@@ -719,9 +719,17 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             "yyyy-MM-dd")
        
         self.strPosp_DOB = requiredFormat
-         print("MyDate",requiredFormat)
+         print("POSP Date ",requiredFormat)
     }
     
+    func handleSendPospDate(CurrDate: String){
+        let requiredFormat = CurrDate.toDateString(inputDateFormat: "dd-MM-yyyy", ouputDateFormat:
+            "yyyy-MM-dd")
+        
+        self.strPosp_DOB = requiredFormat
+        print("POSP Date DISPLAY",requiredFormat)
+        
+    }
     func getintData(indata: Int) {
         
     }
@@ -1380,10 +1388,13 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 }else{
                     let requiredFormat = currDate.toDateString(inputDateFormat: "yyyy-MM-dd", ouputDateFormat:
                         "dd-MM-yyyy")
-                    
+
                     self.endobTf.text! = requiredFormat
-                    self.strPosp_DOB  = requiredFormat
-                    print("MyDate",requiredFormat)
+                    self.strPosp_DOB  = currDate
+                   
+                    print("POSP Date Display",requiredFormat)
+                    
+                     self.endobTf.text? = currDate
                 }
                
             }

@@ -168,8 +168,8 @@ class addUsersVC: UIViewController {
     {
        //05      Snackbar
         
-       // let snackbar = TTGSnackbar.init(message: "Comming  soon", duration: .middle )
-       // snackbar.show()
+        let snackbar = TTGSnackbar.init(message: "Comming  soon", duration: .middle )
+        snackbar.show()
     }
     
     @IBAction func myTrainingBtnCliked(_ sender: Any)

@@ -20,6 +20,7 @@
 		442E20E124C8355200FFC075 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E024C8355200FFC075 /* Core.swift */; };
 		442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E224C8388300FFC075 /* TutorialViewController.swift */; };
 		442E20E524C8448F00FFC075 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */; };
+		4434B0B224D47FA30081AD76 /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4434B0B124D47FA30081AD76 /* Razorpay.framework */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
 		4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */; };
@@ -28,6 +29,8 @@
 		44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44394A32248A26980095ADF5 /* InsuranceCompModel.swift */; };
 		443B4D0A24CC868C00D1FDF7 /* IFSCCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */; };
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
+		443F8C3624D03026006BA89F /* newicon.gif in Resources */ = {isa = PBXBuildFile; fileRef = 443F8C3524D03024006BA89F /* newicon.gif */; };
+		443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443F8C4524D0469F006BA89F /* UIImage+Gif.swift */; };
 		4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
 		444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */; };
@@ -35,7 +38,6 @@
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		447DF6302466DDD400D0F545 /* payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447DF62F2466DDD400D0F545 /* payment.storyboard */; };
 		447DF6342466DF3E00D0F545 /* PaymentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447DF6332466DF3E00D0F545 /* PaymentMainController.swift */; };
-		449EDBA22466A837006280CA /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449EDBA02466A826006280CA /* Razorpay.framework */; };
 		449EDBA32466A837006280CA /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 449EDBA02466A826006280CA /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */; };
 		449F17F622DCA87C00C9A2BF /* addSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */; };
@@ -237,6 +239,7 @@
 		442E20E024C8355200FFC075 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		442E20E224C8388300FFC075 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		4434B0B124D47FA30081AD76 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
 		4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCaseMainModel.swift; sourceTree = "<group>"; };
@@ -245,6 +248,8 @@
 		44394A32248A26980095ADF5 /* InsuranceCompModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCompModel.swift; sourceTree = "<group>"; };
 		443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCCodeModel.swift; sourceTree = "<group>"; };
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
+		443F8C3524D03024006BA89F /* newicon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newicon.gif; sourceTree = "<group>"; };
+		443F8C4524D0469F006BA89F /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailHindiModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
 		444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToRazorpayModel.swift; sourceTree = "<group>"; };
@@ -422,7 +427,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				449EDBA22466A837006280CA /* Razorpay.framework in Frameworks */,
+				4434B0B224D47FA30081AD76 /* Razorpay.framework in Frameworks */,
 				B5204133BFEC6C6EB3692E18 /* Pods_MagicFinmart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +529,15 @@
 			path = Payment;
 			sourceTree = "<group>";
 		};
+		443F8C4924D046D6006BA89F /* Gif */ = {
+			isa = PBXGroup;
+			children = (
+				443F8C3524D03024006BA89F /* newicon.gif */,
+				443F8C4524D0469F006BA89F /* UIImage+Gif.swift */,
+			);
+			path = Gif;
+			sourceTree = "<group>";
+		};
 		444C6DEB24A259ED003A7528 /* dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +562,7 @@
 		52A934EAE53DD0331B49402A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4434B0B124D47FA30081AD76 /* Razorpay.framework */,
 				3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */,
 				9AE7C5A6288FD90BDDE5DF5D /* Pods_MagicFinmartTests.framework */,
 				57FE7FB446B44F78308814A5 /* Pods_MagicFinmartUITests.framework */,
@@ -671,6 +686,7 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				443F8C4924D046D6006BA89F /* Gif */,
 				442E20DD24C8343900FFC075 /* walkthroughPage */,
 				4438D06324B398D200D68498 /* html */,
 				449EDBA02466A826006280CA /* Razorpay.framework */,
@@ -1168,6 +1184,7 @@
 				442E20DF24C8347A00FFC075 /* Walkthrough.storyboard in Resources */,
 				4438D06224B3802500D68498 /* eula.html in Resources */,
 				447DF6302466DDD400D0F545 /* payment.storyboard in Resources */,
+				443F8C3624D03026006BA89F /* newicon.gif in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
 				4438D06024B3800800D68498 /* Disclosure.html in Resources */,
 				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
@@ -1415,6 +1432,7 @@
 				4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,
 				8483DC98226749300095AA24 /* healthAssureTVCell.swift in Sources */,
+				443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
 				8431D1D821E86271000419E3 /* motorInsurancecapsVC.swift in Sources */,
 				8434741B222D26E2004A418A /* LifeInsuranceVC.swift in Sources */,

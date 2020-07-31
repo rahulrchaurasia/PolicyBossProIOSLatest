@@ -15,8 +15,8 @@ class MainfinmartTVCell: UITableViewCell {
     @IBOutlet weak var cellTitleLbl: UILabel!
     @IBOutlet weak var cellTextView: UITextView!
     @IBOutlet weak var celldetailTextLbl: UILabel!
-    
-    
+    @IBOutlet weak var cellNewImage: UIImageView!
+    @IBOutlet weak var cellNewImageConstant: NSLayoutConstraint!
     @IBOutlet weak var cellbtnShareProduct: UIButton!
     
     @IBOutlet weak var cellbtnInfoProduct: UIButton!
