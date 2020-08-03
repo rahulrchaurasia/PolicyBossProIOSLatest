@@ -20,7 +20,6 @@
 		442E20E124C8355200FFC075 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E024C8355200FFC075 /* Core.swift */; };
 		442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E224C8388300FFC075 /* TutorialViewController.swift */; };
 		442E20E524C8448F00FFC075 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */; };
-		4434B0B224D47FA30081AD76 /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4434B0B124D47FA30081AD76 /* Razorpay.framework */; };
 		44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44354AA4248FCCF800F9BD80 /* InsuranceData.swift */; };
 		44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44367ED7244466DC005B9441 /* SharePrdModel.swift */; };
 		4438085824BAF5270046CA81 /* PendingCaseMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */; };
@@ -31,6 +30,9 @@
 		443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */; };
 		443F8C3624D03026006BA89F /* newicon.gif in Resources */ = {isa = PBXBuildFile; fileRef = 443F8C3524D03024006BA89F /* newicon.gif */; };
 		443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443F8C4524D0469F006BA89F /* UIImage+Gif.swift */; };
+		4444283A24D70A2C00B559EF /* Pods_MagicFinmart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */; };
+		4444283D24D70C2C00B559EF /* Razorpay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4444283C24D70C2B00B559EF /* Razorpay.framework */; };
+		4444283F24D70C3600B559EF /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4444283C24D70C2B00B559EF /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */; };
 		444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */; };
 		444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */; };
@@ -38,7 +40,6 @@
 		446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */; };
 		447DF6302466DDD400D0F545 /* payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447DF62F2466DDD400D0F545 /* payment.storyboard */; };
 		447DF6342466DF3E00D0F545 /* PaymentMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447DF6332466DF3E00D0F545 /* PaymentMainController.swift */; };
-		449EDBA32466A837006280CA /* Razorpay.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 449EDBA02466A826006280CA /* Razorpay.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */; };
 		449F17F622DCA87C00C9A2BF /* addSubUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */; };
 		44A3E0D824686B1E00A50332 /* PaymentCancelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A3E0D724686B1E00A50332 /* PaymentCancelController.swift */; };
@@ -187,7 +188,6 @@
 		84F4114F220AF254001407EE /* whatsNewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4114E220AF254001407EE /* whatsNewTVCell.swift */; };
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
-		B5204133BFEC6C6EB3692E18 /* Pods_MagicFinmart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */; };
 		EE8902F14257712D11DE6BE7 /* Pods_MagicFinmartTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE7C5A6288FD90BDDE5DF5D /* Pods_MagicFinmartTests.framework */; };
 		F8B87DF77F02AB5E79F1E449 /* Pods_MagicFinmartUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57FE7FB446B44F78308814A5 /* Pods_MagicFinmartUITests.framework */; };
 /* End PBXBuildFile section */
@@ -210,13 +210,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		443D35F62462991400C8F763 /* Embed Frameworks */ = {
+		4437E92624D699BF00CDEADE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				449EDBA32466A837006280CA /* Razorpay.framework in Embed Frameworks */,
+				4444283F24D70C3600B559EF /* Razorpay.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +239,6 @@
 		442E20E024C8355200FFC075 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		442E20E224C8388300FFC075 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		442E20E424C8448F00FFC075 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
-		4434B0B124D47FA30081AD76 /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		44354AA4248FCCF800F9BD80 /* InsuranceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceData.swift; sourceTree = "<group>"; };
 		44367ED7244466DC005B9441 /* SharePrdModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePrdModel.swift; sourceTree = "<group>"; };
 		4438085724BAF5270046CA81 /* PendingCaseMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCaseMainModel.swift; sourceTree = "<group>"; };
@@ -250,6 +249,7 @@
 		443D35FB24632FAA00C8F763 /* PaymentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailModel.swift; sourceTree = "<group>"; };
 		443F8C3524D03024006BA89F /* newicon.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newicon.gif; sourceTree = "<group>"; };
 		443F8C4524D0469F006BA89F /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		4444283C24D70C2B00B559EF /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		4448E59E24C1E7A500CDBFEC /* SalesDetailHindiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailHindiModel.swift; sourceTree = "<group>"; };
 		444DBF91246A97E4009F08F6 /* PaymentSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSuccessVC.swift; sourceTree = "<group>"; };
 		444DBF93246AC2EB009F08F6 /* AddToRazorpayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToRazorpayModel.swift; sourceTree = "<group>"; };
@@ -257,7 +257,6 @@
 		446B0F5F22E1F06C0083C76B /* cmnloancityDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cmnloancityDetailsVC.swift; sourceTree = "<group>"; };
 		447DF62F2466DDD400D0F545 /* payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = payment.storyboard; sourceTree = "<group>"; };
 		447DF6332466DF3E00D0F545 /* PaymentMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMainController.swift; sourceTree = "<group>"; };
-		449EDBA02466A826006280CA /* Razorpay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Razorpay.framework; sourceTree = "<group>"; };
 		449F17ED22DC790200C9A2BF /* callingRevampTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callingRevampTVCell.swift; sourceTree = "<group>"; };
 		449F17F522DCA87C00C9A2BF /* addSubUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addSubUserVC.swift; sourceTree = "<group>"; };
 		44A3E0D724686B1E00A50332 /* PaymentCancelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCancelController.swift; sourceTree = "<group>"; };
@@ -427,8 +426,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4434B0B224D47FA30081AD76 /* Razorpay.framework in Frameworks */,
-				B5204133BFEC6C6EB3692E18 /* Pods_MagicFinmart.framework in Frameworks */,
+				4444283D24D70C2C00B559EF /* Razorpay.framework in Frameworks */,
+				4444283A24D70A2C00B559EF /* Pods_MagicFinmart.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,7 +561,6 @@
 		52A934EAE53DD0331B49402A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4434B0B124D47FA30081AD76 /* Razorpay.framework */,
 				3B58FEDCC3E3BD811E3C46BF /* Pods_MagicFinmart.framework */,
 				9AE7C5A6288FD90BDDE5DF5D /* Pods_MagicFinmartTests.framework */,
 				57FE7FB446B44F78308814A5 /* Pods_MagicFinmartUITests.framework */,
@@ -686,10 +684,10 @@
 		840AC5CE21BE80AB004DCB26 /* MagicFinmart */ = {
 			isa = PBXGroup;
 			children = (
+				4444283C24D70C2B00B559EF /* Razorpay.framework */,
 				443F8C4924D046D6006BA89F /* Gif */,
 				442E20DD24C8343900FFC075 /* walkthroughPage */,
 				4438D06324B398D200D68498 /* html */,
-				449EDBA02466A826006280CA /* Razorpay.framework */,
 				443D35F72462A30F00C8F763 /* PaymentGateway */,
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
@@ -1073,7 +1071,7 @@
 				840AC5C921BE80AB004DCB26 /* Frameworks */,
 				840AC5CA21BE80AB004DCB26 /* Resources */,
 				200D3CAD711905B7120BF57E /* [CP] Embed Pods Frameworks */,
-				443D35F62462991400C8F763 /* Embed Frameworks */,
+				4437E92624D699BF00CDEADE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1638,11 +1636,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 60DB1E330948984A6DEC335C /* Pods-MagicFinmart.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1658,7 +1656,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1666,11 +1664,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1686,7 +1684,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

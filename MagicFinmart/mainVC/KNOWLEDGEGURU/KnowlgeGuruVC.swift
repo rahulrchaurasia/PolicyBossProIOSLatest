@@ -20,15 +20,16 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     
     @IBAction func knowguruBackBtn(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        present(KYDrawer, animated: true, completion: nil)
         
-            self.remove()
+           // self.remove()
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-            self.remove()
+                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+                present(KYDrawer, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

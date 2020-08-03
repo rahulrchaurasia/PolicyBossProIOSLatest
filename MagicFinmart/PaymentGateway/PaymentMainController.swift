@@ -15,15 +15,12 @@ import Alamofire
 class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol {
    
     
-  
+  //,RazorpayPaymentCompletionProtocol
 
     let razorpaykeyLive = "rzp_live_b7vQ8lyFs69syy"
     let rupee = "\u{20B9}"
     
     var razorpay: Razorpay!
-    
-  
-  
     
     var paymentDtlObj: PaymentDetailMasterData? = nil
     
@@ -48,10 +45,11 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // 05
         razorpay = Razorpay.initWithKey(razorpaykeyLive, andDelegate: self)
-        
-       initialize()
-    
+
+         initialize()
+
          getPaymentDetail()
         
         
@@ -81,7 +79,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     @IBAction func btnPayment(_ sender: Any) {
         
        
-        showPaymentForm()
+        showPaymentForm()   //05
     }
     
     
@@ -131,17 +129,17 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         
     }
     
-    
+    //05
     internal func showPaymentForm(){
        // navigationController?.setNavigationBarHidden(true, animated: true)
-        
+
         if (paymentDtlObj?.CustID) != nil {
         let options: [String:Any] = [
             "amount": paymentDtlObj!.amount as Any, //This is in currency subunits. 100 = 100 paise= INR 1.
             "currency": "INR",
             "description": paymentDtlObj!.CustID ,
             "image":  paymentDtlObj!.image ,
-            
+
             "name": paymentDtlObj!.Name ,
             "prefill": [
                 "contact": paymentDtlObj!.Mobile  ,
@@ -152,7 +150,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
             ]
         ]
          razorpay.open(options)
-            
+
         }
     }
     

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Razorpay
 import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
