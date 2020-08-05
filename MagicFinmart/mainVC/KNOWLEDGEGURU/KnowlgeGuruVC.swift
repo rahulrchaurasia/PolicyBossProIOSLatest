@@ -23,13 +23,14 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
         present(KYDrawer, animated: true, completion: nil)
         
-           // self.remove()
+           // self.dismiss(animated: true)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
                 let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
                 present(KYDrawer, animated: true, completion: nil)
+         // self.dismiss(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

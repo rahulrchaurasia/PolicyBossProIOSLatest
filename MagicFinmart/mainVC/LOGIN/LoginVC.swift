@@ -29,7 +29,14 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
         //--<textField>--
         aTextField.delegate = self
+        emailTf.delegate = self
+        passwordTf.delegate = self
+        
+
+        
     }
+    
+
     
     func getRandomColor() -> UIColor{
         return UIColor.init(red: 0/255.0, green: 125/255.0, blue: 213/255.0, alpha: 1)
@@ -122,6 +129,22 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
     }
     
+    
+    override var shouldAutorotate: Bool {
+        
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        
+        return .portrait
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        
+        return .portrait
+    }
+    
     func resetDefaults() {
         let defaults = UserDefaults.standard
         // let dictionary = defaults.dictionaryRepresentation()
@@ -179,7 +202,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                                              "MobileNo": "" as AnyObject,
                                              "OldPassword": "" as AnyObject,
                                              "Password": passwordTf.text! as AnyObject,
-                                             "TokenId": "" as AnyObject,
+                                             "TokenId": "0" as AnyObject,
                                              "UserId": userId as AnyObject,
                                              "UserName": emailTf.text! as AnyObject,
                                              "UserType": "" as AnyObject,

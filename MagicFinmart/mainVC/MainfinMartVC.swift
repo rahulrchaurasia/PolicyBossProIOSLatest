@@ -62,10 +62,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        rotateToPotrait()
-        
-        
-    
         popUpbackgroundView.isHidden = true
         self.mainTV.isHidden = true
         //border
@@ -90,9 +86,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             print("VERSION SHORT",version)
         }
-        
-        
-        
         
         NewImage.loadGif(name: "newicon")     // Know your Finmart gif image
         
@@ -130,27 +123,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     //////////////////////  Method For Orientation   ////////////////////////////
     
-    func rotateToPotrait(){
-      
-        
-        /// For Orientation///////////
-        let value = UIInterfaceOrientation.portrait.rawValue
-        UIDevice.current.setValue(value, forKey: "orientation")
-        UIViewController.attemptRotationToDeviceOrientation()
-        /////////////////////////
-    }
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
-    
-    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
-        return .portrait
-    }
     
     override var shouldAutorotate: Bool {
+        
         return false
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        
+        return .portrait
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        
+        return .portrait
+    }
+    
+    //////////////////////////
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -233,9 +222,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     @IBAction func knowguruBtnCliked(_ sender: Any)
     {
-        let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
+    
+       let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
         
-         self.add(KnowlgeGuru)
+        present(KnowlgeGuru, animated: true, completion: nil)
     }
     
     //tableView Datasource+Delegates

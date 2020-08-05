@@ -58,14 +58,26 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     }
  
     
+  
     //////////////////////  Method For Orientation   ////////////////////////////
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    
+    
+    override var shouldAutorotate: Bool {
+        
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask{
+        
         return .portrait
     }
     
-    override var shouldAutorotate: Bool {
-        return true
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
+        
+        return .portrait
     }
+    
+    //////////////////////////
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
