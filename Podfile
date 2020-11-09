@@ -7,14 +7,14 @@ target 'policyBoss' do
 
   # Pods for policyBoss
 
-  target 'policyBossTests' do
-    inherit! :search_paths
+  #  target 'policyBossTests' do
+  #  inherit! :search_paths
     # Pods for testing
-  end
+    # end
 
-  target 'policyBossUITests' do
+    #  target 'policyBossUITests' do
     # Pods for testing
-  end
+    # end
 
    pod 'KYDrawerController'
    pod 'Alamofire', '4.9.1'

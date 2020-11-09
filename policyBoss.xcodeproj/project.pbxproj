@@ -10,7 +10,6 @@
 		180470C824DFF77600BC2188 /* Razorpay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180470C624DFF76A00BC2188 /* Razorpay.xcframework */; };
 		180470C924DFF77600BC2188 /* Razorpay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 180470C624DFF76A00BC2188 /* Razorpay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1835672B255482AD00799E63 /* ShareImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835672A255482AC00799E63 /* ShareImageVC.swift */; };
-		3FCB5080F537A7943D2608F9 /* Pods_policyBoss_policyBossUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E039E0F51F87B7706D7177F6 /* Pods_policyBoss_policyBossUITests.framework */; };
 		44098B1924CAE42800ADB2C3 /* EulaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44098B1824CAE42800ADB2C3 /* EulaVC.swift */; };
 		4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4415A864244DFAFA00314D26 /* SalesDetailModel.swift */; };
 		4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */; };
@@ -184,7 +183,6 @@
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
-		F4621A37CB073CA24FE55B87 /* Pods_policyBossTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D14927B12218D5FFFF83C5A6 /* Pods_policyBossTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,11 +217,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.release.xcconfig"; sourceTree = "<group>"; };
 		180470C624DFF76A00BC2188 /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Razorpay.xcframework; sourceTree = "<group>"; };
 		1835672A255482AC00799E63 /* ShareImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareImageVC.swift; sourceTree = "<group>"; };
 		1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBoss.debug.xcconfig"; path = "Pods/Target Support Files/Pods-policyBoss/Pods-policyBoss.debug.xcconfig"; sourceTree = "<group>"; };
-		1DA1A3B48FB2055623F0505A /* Pods-policyBossTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBossTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-policyBossTests/Pods-policyBossTests.release.xcconfig"; sourceTree = "<group>"; };
 		44098B1824CAE42800ADB2C3 /* EulaVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulaVC.swift; sourceTree = "<group>"; };
 		4415A864244DFAFA00314D26 /* SalesDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesDetailModel.swift; sourceTree = "<group>"; };
 		4425B11624755E2E00231A1C /* imgsalesmaterialNewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imgsalesmaterialNewVC.swift; sourceTree = "<group>"; };
@@ -280,10 +276,6 @@
 		44C9635422D340CA0037BC82 /* viewCommentnAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewCommentnAddVC.swift; sourceTree = "<group>"; };
 		44C9635622D340EC0037BC82 /* viewCommentnAddTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewCommentnAddTVCell.swift; sourceTree = "<group>"; };
 		483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBoss.release.xcconfig"; path = "Pods/Target Support Files/Pods-policyBoss/Pods-policyBoss.release.xcconfig"; sourceTree = "<group>"; };
-		60DB1E330948984A6DEC335C /* Pods-MagicFinmart.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmart.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmart/Pods-MagicFinmart.debug.xcconfig"; sourceTree = "<group>"; };
-		66BAD0A94800CEA5762393F6 /* Pods-policyBoss-policyBossUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBoss-policyBossUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-policyBoss-policyBossUITests/Pods-policyBoss-policyBossUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		68CE7F58301DFCD59C303E18 /* Pods-MagicFinmartUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmartUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmartUITests/Pods-MagicFinmartUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		6FB2B8C8237C9A26CB97EDEF /* Pods-MagicFinmartTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmartTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmartTests/Pods-MagicFinmartTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8403E89321BFC21A0009662A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		8403E89721BFE13E0009662A /* ACFloatingTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACFloatingTextfield.swift; sourceTree = "<group>"; };
 		840562CE21D49F3F0099DDE8 /* changePasswrdVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = changePasswrdVC.swift; sourceTree = "<group>"; };
@@ -408,13 +400,7 @@
 		84F4114E220AF254001407EE /* whatsNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewTVCell.swift; sourceTree = "<group>"; };
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
-		8C0F07009724CFEAED5F6068 /* Pods-MagicFinmartTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmartTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmartTests/Pods-MagicFinmartTests.release.xcconfig"; sourceTree = "<group>"; };
-		ABD408290E676D6A96571FB3 /* Pods-policyBoss-policyBossUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBoss-policyBossUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-policyBoss-policyBossUITests/Pods-policyBoss-policyBossUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C30696A0890032F5D05EDB55 /* Pods-MagicFinmartUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MagicFinmartUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MagicFinmartUITests/Pods-MagicFinmartUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D14927B12218D5FFFF83C5A6 /* Pods_policyBossTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBossTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D36A3DF20EDC771210B680A7 /* Pods-policyBossTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-policyBossTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-policyBossTests/Pods-policyBossTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E039E0F51F87B7706D7177F6 /* Pods_policyBoss_policyBossUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss_policyBossUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,7 +417,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4621A37CB073CA24FE55B87 /* Pods_policyBossTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,7 +424,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FCB5080F537A7943D2608F9 /* Pods_policyBoss_policyBossUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,8 +550,6 @@
 			isa = PBXGroup;
 			children = (
 				C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */,
-				E039E0F51F87B7706D7177F6 /* Pods_policyBoss_policyBossUITests.framework */,
-				D14927B12218D5FFFF83C5A6 /* Pods_policyBossTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1048,18 +1030,8 @@
 		E995F435A99E140D6BB5F744 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				60DB1E330948984A6DEC335C /* Pods-MagicFinmart.debug.xcconfig */,
-				022EF3D8DE4CEF9B54AA019A /* Pods-MagicFinmart.release.xcconfig */,
-				6FB2B8C8237C9A26CB97EDEF /* Pods-MagicFinmartTests.debug.xcconfig */,
-				8C0F07009724CFEAED5F6068 /* Pods-MagicFinmartTests.release.xcconfig */,
-				68CE7F58301DFCD59C303E18 /* Pods-MagicFinmartUITests.debug.xcconfig */,
-				C30696A0890032F5D05EDB55 /* Pods-MagicFinmartUITests.release.xcconfig */,
 				1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */,
 				483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */,
-				66BAD0A94800CEA5762393F6 /* Pods-policyBoss-policyBossUITests.debug.xcconfig */,
-				ABD408290E676D6A96571FB3 /* Pods-policyBoss-policyBossUITests.release.xcconfig */,
-				D36A3DF20EDC771210B680A7 /* Pods-policyBossTests.debug.xcconfig */,
-				1DA1A3B48FB2055623F0505A /* Pods-policyBossTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1091,7 +1063,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840AC5F721BE80AC004DCB26 /* Build configuration list for PBXNativeTarget "policyBossTests" */;
 			buildPhases = (
-				986E1F4069FFAE7BAC302041 /* [CP] Check Pods Manifest.lock */,
 				840AC5DC21BE80AC004DCB26 /* Sources */,
 				840AC5DD21BE80AC004DCB26 /* Frameworks */,
 				840AC5DE21BE80AC004DCB26 /* Resources */,
@@ -1110,11 +1081,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 840AC5FA21BE80AC004DCB26 /* Build configuration list for PBXNativeTarget "policyBossUITests" */;
 			buildPhases = (
-				02D0A02DC035D0331C0544A7 /* [CP] Check Pods Manifest.lock */,
 				840AC5E721BE80AC004DCB26 /* Sources */,
 				840AC5E821BE80AC004DCB26 /* Frameworks */,
 				840AC5E921BE80AC004DCB26 /* Resources */,
-				46FDA7FF2E4C9833550AC1B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1215,28 +1184,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02D0A02DC035D0331C0544A7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-policyBoss-policyBossUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		200D3CAD711905B7120BF57E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1270,45 +1217,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-policyBoss-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46FDA7FF2E4C9833550AC1B8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-policyBoss-policyBossUITests/Pods-policyBoss-policyBossUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-policyBoss-policyBossUITests/Pods-policyBoss-policyBossUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-policyBoss-policyBossUITests/Pods-policyBoss-policyBossUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		986E1F4069FFAE7BAC302041 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-policyBossTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1713,7 +1621,6 @@
 		};
 		840AC5F821BE80AC004DCB26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D36A3DF20EDC771210B680A7 /* Pods-policyBossTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1735,7 +1642,6 @@
 		};
 		840AC5F921BE80AC004DCB26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DA1A3B48FB2055623F0505A /* Pods-policyBossTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1757,7 +1663,6 @@
 		};
 		840AC5FB21BE80AC004DCB26 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 66BAD0A94800CEA5762393F6 /* Pods-policyBoss-policyBossUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1778,7 +1683,6 @@
 		};
 		840AC5FC21BE80AC004DCB26 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABD408290E676D6A96571FB3 /* Pods-policyBoss-policyBossUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
