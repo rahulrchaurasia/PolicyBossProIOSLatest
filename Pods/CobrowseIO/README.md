@@ -6,17 +6,15 @@ Cobrowse.io is 100% free and easy to try out in your own apps. Please see full d
 
 Try our **online demo** at the bottom of our homepage at <https://cobrowse.io/#tryit>.
 
-*Clients may access and integrate full source code for our SDKs directly upon request.*
-
 ## Installation
 
 We recommend installing the Cobrowse.io SDK using Cocoapods. Add this to your Podfile:
 
-```
-pod 'CobrowseIO'
+```ruby
+pod 'CobrowseIO', '~>2'
 ```
 
-*Don't forget to run `pod install` after you've edited your Podfile.*
+*Don't forget to run `pod repo update` then `pod install` after you've edited your Podfile.*
 
 #### Swift
 ```swift
@@ -37,7 +35,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 - (BOOL)application:(UIApplication*) application didFinishLaunchingWithOptions:(NSDictionary*) launchOptions
 {
     CobrowseIO.instance.license = @"<your license key here>";
-    [CobrowseIO.instance start]
+    [CobrowseIO.instance start];
     return YES;
 }
 ```
@@ -114,6 +112,10 @@ Once you have your app running in the iOS Simulator or on a physical device, nav
 [Requiring acceptance from the user](./docs/require-user-consent.md)
 
 [Customizing the interface](./docs/customizing-the-interface.md)
+
+[Full device screenshare](./docs/full-device-screenshare.md)
+
+[Alternate render method](./docs/alternate-render-method.md)
 
 ## Questions?
 Any questions at all? Please email us directly at [hello@cobrowse.io](mailto:hello@cobrowse.io).

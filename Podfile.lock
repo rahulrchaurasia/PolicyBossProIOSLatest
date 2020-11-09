@@ -1,12 +1,14 @@
 PODS:
-  - Alamofire (4.8.0)
-  - AlamofireImage (3.5.0):
-    - Alamofire (~> 4.8)
-  - CobrowseIO (1.15.2):
-    - CobrowseIO/Release (= 1.15.2)
-    - Socket.IO-Client-Swift (~> 15.1)
-  - CobrowseIO/Release (1.15.2):
-    - Socket.IO-Client-Swift (~> 15.1)
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - CobrowseIO (2.4.0):
+    - CobrowseIO/Framework (= 2.4.0)
+    - Starscream (~> 3.1.1)
+    - SwiftCBOR (~> 0.4.3)
+  - CobrowseIO/Framework (2.4.0):
+    - Starscream (~> 3.1.1)
+    - SwiftCBOR (~> 0.4.3)
   - CustomIOSAlertView (0.9.5)
   - DynamicBlurView (3.0.1)
   - KYDrawerController (2.1.0)
@@ -25,14 +27,13 @@ PODS:
   - SDWebImage/WebP (4.4.8):
     - libwebp (< 2.0, >= 0.5)
     - SDWebImage/Core
-  - Socket.IO-Client-Swift (15.1.0):
-    - Starscream (~> 3.1)
-  - Starscream (3.1.0)
-  - SwiftyJSON (4.2.0)
-  - TTGSnackbar (1.7.5)
+  - Starscream (3.1.1)
+  - SwiftCBOR (0.4.3)
+  - SwiftyJSON (5.0.0)
+  - TTGSnackbar (1.9.2)
 
 DEPENDENCIES:
-  - Alamofire
+  - Alamofire (= 4.9.1)
   - AlamofireImage
   - CobrowseIO
   - CustomIOSAlertView
@@ -43,37 +44,36 @@ DEPENDENCIES:
   - TTGSnackbar
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AlamofireImage
+    - CobrowseIO
     - CustomIOSAlertView
     - DynamicBlurView
     - KYDrawerController
+    - libwebp
     - PopupDialog
+    - SDWebImage
+    - Starscream
+    - SwiftCBOR
     - SwiftyJSON
     - TTGSnackbar
-  trunk:
-    - CobrowseIO
-    - libwebp
-    - SDWebImage
-    - Socket.IO-Client-Swift
-    - Starscream
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
-  CobrowseIO: 580596c92771703de167b0d85eccefbb5b1bad07
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  CobrowseIO: 11edf73324740ac58cca2e08aca1575b6401b421
   CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
   DynamicBlurView: b1df5415f9bd31897549e5d7077e5ec120a4d636
   KYDrawerController: baad0e63b09c0cb564bd48f0f7f70f45d9176ebc
   libwebp: 946cb3063cea9236285f7e9a8505d806d30e07f3
   PopupDialog: f4bb461bf70ff422be0b56656566424ee9273080
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
-  Socket.IO-Client-Swift: 7cb44c0ffb86e158cee32d0642d30ec5fdcf8f61
-  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
-  TTGSnackbar: 2cf4e7b6ffbe5cddf248a73f3ee952b71bee8ea3
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
+  SwiftCBOR: c7d740966575e0fd5d971466de2b6776db3f10c3
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TTGSnackbar: b1da26bd1e791048b08d69e9efb033db0e22d310
 
-PODFILE CHECKSUM: a3795b9e7351b03bc5832e236d6f8a10dd934bb6
+PODFILE CHECKSUM: 15544c5ebe77448d905c43b2b4aa31e0f96b91ed
 
-COCOAPODS: 1.8.0
+COCOAPODS: 1.9.3
