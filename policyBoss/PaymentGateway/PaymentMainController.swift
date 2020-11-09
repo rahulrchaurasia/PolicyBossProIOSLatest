@@ -16,8 +16,11 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
    
     
   //,RazorpayPaymentCompletionProtocol
+    
+    //let razorpaykeyLive = "rzp_live_b7vQ8lyFs69syy"    // old Finmart connected to datacomp
 
-    let razorpaykeyLive = "rzp_live_b7vQ8lyFs69syy"
+    // Below razorpaykeyLive is For PolicyBoss live
+    let razorpaykeyLive = "rzp_live_DFxDFYDslN2DIq"
     let rupee = "\u{20B9}"
     
    // var razorpay: Razorpay!
