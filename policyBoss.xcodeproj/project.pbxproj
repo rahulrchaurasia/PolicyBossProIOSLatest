@@ -1566,10 +1566,10 @@
 			baseConfigurationReference = 1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				DEVELOPMENT_TEAM = 2QKGN99NT9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1582,9 +1582,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart88;
 				PRODUCT_NAME = policyBoss;
-				PROVISIONING_PROFILE_SPECIFIER = "MagicFinMart Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1595,10 +1595,10 @@
 			baseConfigurationReference = 483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				DEVELOPMENT_TEAM = 2QKGN99NT9;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1613,7 +1613,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
 				PRODUCT_NAME = policyBoss;
-				PROVISIONING_PROFILE_SPECIFIER = "MagicFinMart Distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
