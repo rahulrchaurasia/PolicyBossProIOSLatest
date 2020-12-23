@@ -12,11 +12,11 @@ class getmpsTnCVC: UIViewController {
 
     @IBOutlet var tncTextView: UITextView!
     
-    var A = "The Magic Platinum Subscription (MPS) is an offer being extended by Datacomp Web Technologies (India) Pvt. Ltd. (DWTIPL), to its customers who have downloaded and registered themselves as the Finmart Business Associates (FBA) of DWTIPL in the Magic Finmart Mobile App."
+    var A = "The Magic Platinum Subscription (MPS) is an offer being extended by Datacomp Web Technologies (India) Pvt. Ltd. (DWTIPL), to its customers who have downloaded and registered themselves as the Finmart Business Associates (FBA) of DWTIPL in the PolicyBoss Mobile App."
     
     var B = "Your use of the applications provided under the MPS scheme is subject to your acceptance of the “End User Licence Agreement (EULA)” of the respective application."
     
-    var C = "The MPS offer is being extended as a welcome gesture by DWTIPL to its FBA. The gesture is being extended on the good faith that the FBA shall use the Magic Finmart Platform to generate business through the Magic Finmart Principal Service partners."
+    var C = "The MPS offer is being extended as a welcome gesture by DWTIPL to its FBA. The gesture is being extended on the good faith that the FBA shall use the PolicyBoss Platform to generate business through the PolicyBoss Principal Service partners."
     
     var D = "DWTIPL is not bound / obligated to extended this offer indefinitely. DWTIPL reserves the right to withdraw the offer any time without any prior notice. DWTIPL also, at its sole discretion, decline the MPS offer to any FBA, without assigning any reason thereof to the FBA."
     

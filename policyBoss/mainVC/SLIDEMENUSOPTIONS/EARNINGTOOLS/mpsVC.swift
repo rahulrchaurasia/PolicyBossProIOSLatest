@@ -89,7 +89,7 @@ class mpsVC: UIViewController {
             let Amount = jsonData?.value(forKey: "Amount") as AnyObject
             self.amountValuetxt = Amount as! String
             
-            self.mpsContentLbl.text! = "Congratulations and welcome to the Magic Finmart Family. As our privileged assciate, you are eligible to an exclusive magic Platinum Subscription(MPS) for ₹"+self.amountValuetxt+"/- (Incl. GST)) only"
+            self.mpsContentLbl.text! = "Congratulations and welcome to the PolicyBoss Family. As our privileged assciate, you are eligible to an exclusive magic Platinum Subscription(MPS) for ₹"+self.amountValuetxt+"/- (Incl. GST)) only"
             
             
         }, onError: { errorData in
