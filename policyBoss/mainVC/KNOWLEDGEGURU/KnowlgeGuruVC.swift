@@ -10,8 +10,12 @@ import UIKit
 
 class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    var knowtableArray = ["LOANS","INSURANCE","OTHER PRODUCTS"]
-    var knowImgArray = ["knowledge_loan_icon.png","knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
+    var knowtableArray1 = ["LOANS","INSURANCE","OTHER PRODUCTS"]
+    var knowImgArray1 = ["knowledge_loan_icon.png","knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
+    
+    
+    var knowtableArray = ["INSURANCE","OTHER PRODUCTS"]
+    var knowImgArray = ["knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,21 +70,21 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row == 0)
-        {
-            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
-            Loans.wfromScreen = "Loans"
-            Loans.modalPresentationStyle = .fullScreen
-            present(Loans, animated: true, completion: nil)
-        }
-        else if(indexPath.row == 1)
+//        if(indexPath.row == 0)
+//        {
+//            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
+//            Loans.wfromScreen = "Loans"
+//            Loans.modalPresentationStyle = .fullScreen
+//            present(Loans, animated: true, completion: nil)
+//        }
+         if(indexPath.row == 0)
         {
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
             Loans.wfromScreen = "Insurance"
             Loans.modalPresentationStyle = .fullScreen
             present(Loans, animated: true, completion: nil)
         }
-        else if(indexPath.row == 2)
+        else if(indexPath.row == 1)
         {
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
             Loans.wfromScreen = "otherProduct"

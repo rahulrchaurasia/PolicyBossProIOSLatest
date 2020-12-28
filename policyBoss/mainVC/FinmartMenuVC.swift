@@ -205,7 +205,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //            return 6
 //        }
         
-        return 7
+        return 6
         
     }
     
@@ -238,10 +238,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         else if(section == 4){
             return leadsItems.count
         }
-        else if(section == 5){
-            return loansItems.count
-        }
-       else if(section == 6){
+//        else if(section == 5){
+//            return loansItems.count
+//        }
+       else if(section == 5){
             return otherutilitiesItems.count
         }
         return 0
@@ -313,11 +313,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             cell.cellLbl?.text = leadsItems[indexPath.row]
             cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
         }
+//        else if(indexPath.section == 5){
+//            cell.cellLbl?.text = loansItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: loansImges[indexPath.row])
+//        }
         else if(indexPath.section == 5){
-            cell.cellLbl?.text = loansItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: loansImges[indexPath.row])
-        }
-        else if(indexPath.section == 6){
             cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
             cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
         }
@@ -384,10 +384,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             label.text = "MY LEADS"
         }
-        else if(section == 5)
-        {
-            label.text = "LOANS"
-        }
+//        else if(section == 5)
+//        {
+//            label.text = "LOANS"
+//        }
             
 //        else if(self.appaccessStatus == "Active")
 //        {
@@ -402,7 +402,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        }
         else
         {
-            if(section == 6)
+            if(section == 5)
             {
                 label.text = "OTHER UTILITIES"
             }
@@ -733,31 +733,31 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         // End commented
             
     /*****************************  LOANS SECTION ******************************/
-        else  if(indexPath.section == 5)
-        {
-            if(indexPath.row == 0)
-            {
-                let StrURL = "http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf"
-                let Url = NSURL(string: StrURL )
-                let svc = SFSafariViewController(url: Url! as URL)
-                 svc.modalPresentationStyle =  .fullScreen
-                self.present(svc, animated: true, completion: nil)
-                
-             
-            } else if(indexPath.row == 1)
-            {
-                 let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-                let StrURL = "http://www.rupeeboss.com/equifax-finmart?fbaid=" + (FBAId!)
-                let Url = NSURL(string: StrURL )
-                let svc = SFSafariViewController(url: Url! as URL)
-                svc.modalPresentationStyle =  .fullScreen
-                self.present(svc, animated: true, completion: nil)
-            }
-            
-        }
+//        else  if(indexPath.section == 5)
+//        {
+//            if(indexPath.row == 0)
+//            {
+//                let StrURL = "http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf"
+//                let Url = NSURL(string: StrURL )
+//                let svc = SFSafariViewController(url: Url! as URL)
+//                 svc.modalPresentationStyle =  .fullScreen
+//                self.present(svc, animated: true, completion: nil)
+//
+//
+//            } else if(indexPath.row == 1)
+//            {
+//                 let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+//                let StrURL = "http://www.rupeeboss.com/equifax-finmart?fbaid=" + (FBAId!)
+//                let Url = NSURL(string: StrURL )
+//                let svc = SFSafariViewController(url: Url! as URL)
+//                svc.modalPresentationStyle =  .fullScreen
+//                self.present(svc, animated: true, completion: nil)
+//            }
+//
+//        }
        
    /*****************************  OTHER SECTION ******************************/
-       else  if(indexPath.section == 6)
+       else  if(indexPath.section == 5)
             {
 //                if(indexPath.row == 0)
 //                {

@@ -76,7 +76,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
        
         
         //--<api>--
-        getLoanStaticDashboard()
+       // getLoanStaticDashboard()
         userconstantAPI()
         getdynamicappAPI()
         
@@ -239,7 +239,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             return 1
         }
         else{
-            return 4
+            return 3
         }
     }
     
@@ -257,11 +257,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             {
                 return dynamicDashboardModel.count
             }
+//            else if(section == 2)
+//            {
+//                return loanModel.count
+//            }
             else if(section == 2)
-            {
-                return loanModel.count
-            }
-            else if(section == 3)
             {
                 return moreServiceModel.count
             }
@@ -389,81 +389,86 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 
                
             }
-            else if(indexPath.section == 2)
-            {
-                
-                
-                /*********************************  Loan  *********************************************************/
-                // When Dashboard cell's share Icon Clicked
-                cell.tapShareProd = {
-                    
-                    let alertVC =  self.alertService.alert(title: self.loanModel[indexPath.row].title,
-                                                           body:self.loanModel[indexPath.row].popupmsg,
-                                                           buttonTitle: "SHARE")
-                    
-                    // When Alert Dialog Share Button Click
-                    alertVC.didClickShare = {
-                        print("share the Data 5 ")
-                        self.getShareData(prdID: self.loanModel[indexPath.row].ProdId)
-                        
-                    }
-                    self.present(alertVC, animated: true)
-                    
-                    
-                }
-                
-                // When Alert Dialog Info Button Click
-                cell.tapInfoProd = {
-                    
-                    
-                    let alertWebVC = self.alertService.alertWebView(webURL: self.loanModel[indexPath.row].info)
-                    self.present(alertWebVC, animated: true)
-                }
-                
-                /******************************************************************************************/
+            //***********************************************//
+            // *******  Loan Module is Commented *******///
+            //***********************************************//
             
-                
-                
-                cell.cellbtnInfoProduct.isHidden = true
-                cell.cellbtnShareProduct.isHidden = true
-                
-                cell.cellImageInfoProduct.isHidden = true
-                cell.cellImageShareProduct.isHidden = true
-                cell.cellNewImage.isHidden = true
-                
-                // check if Info  is not empty
-                if(loanModel[indexPath.row].info == "" )
-                {
-                    cell.cellbtnInfoProduct.isHidden = true
-                    cell.cellImageInfoProduct.isHidden = true
-                }else{
-                    cell.cellbtnInfoProduct.isHidden = false
-                    cell.cellImageInfoProduct.isHidden = false
-                }
-                
-                // check if Share  is not empty
-                if(loanModel[indexPath.row].IsSharable == "Y" )
-                {
-                    cell.cellbtnShareProduct.isHidden = false
-                    cell.cellImageShareProduct.isHidden = false
-                    
-                }else{
-                    cell.cellbtnShareProduct.isHidden = true
-                    cell.cellImageShareProduct.isHidden = true
-                }
-                
-                
-                //loanModel
-//                cell.cellTitleLbl.text! = loansArray[indexPath.row]
-//                cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
-//                cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
-                
-                cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname.uppercased()
-                cell.celldetailTextLbl.text! = loanModel[indexPath.row].dashdescription
-                cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
-           
-            }
-            else if(indexPath.section == 3)
+//            else if(indexPath.section == 2)
+//            {
+//
+//
+//                /*********************************  Loan  *********************************************************/
+//                // When Dashboard cell's share Icon Clicked
+//                cell.tapShareProd = {
+//
+//                    let alertVC =  self.alertService.alert(title: self.loanModel[indexPath.row].title,
+//                                                           body:self.loanModel[indexPath.row].popupmsg,
+//                                                           buttonTitle: "SHARE")
+//
+//                    // When Alert Dialog Share Button Click
+//                    alertVC.didClickShare = {
+//                        print("share the Data 5 ")
+//                        self.getShareData(prdID: self.loanModel[indexPath.row].ProdId)
+//
+//                    }
+//                    self.present(alertVC, animated: true)
+//
+//
+//                }
+//
+//                // When Alert Dialog Info Button Click
+//                cell.tapInfoProd = {
+//
+//
+//                    let alertWebVC = self.alertService.alertWebView(webURL: self.loanModel[indexPath.row].info)
+//                    self.present(alertWebVC, animated: true)
+//                }
+//
+//                /*************************************************************************************************/
+//
+//
+//
+//                cell.cellbtnInfoProduct.isHidden = true
+//                cell.cellbtnShareProduct.isHidden = true
+//
+//                cell.cellImageInfoProduct.isHidden = true
+//                cell.cellImageShareProduct.isHidden = true
+//                cell.cellNewImage.isHidden = true
+//
+//                // check if Info  is not empty
+//                if(loanModel[indexPath.row].info == "" )
+//                {
+//                    cell.cellbtnInfoProduct.isHidden = true
+//                    cell.cellImageInfoProduct.isHidden = true
+//                }else{
+//                    cell.cellbtnInfoProduct.isHidden = false
+//                    cell.cellImageInfoProduct.isHidden = false
+//                }
+//
+//                // check if Share  is not empty
+//                if(loanModel[indexPath.row].IsSharable == "Y" )
+//                {
+//                    cell.cellbtnShareProduct.isHidden = false
+//                    cell.cellImageShareProduct.isHidden = false
+//
+//                }else{
+//                    cell.cellbtnShareProduct.isHidden = true
+//                    cell.cellImageShareProduct.isHidden = true
+//                }
+//
+//
+//                //loanModel
+////                cell.cellTitleLbl.text! = loansArray[indexPath.row]
+////                cell.celldetailTextLbl.text! = loansDetailArray[indexPath.row]
+////                cell.cellImage.image = UIImage(named: loansImgArray[indexPath.row])
+//
+//                cell.cellTitleLbl.text! = loanModel[indexPath.row].menuname.uppercased()
+//                cell.celldetailTextLbl.text! = loanModel[indexPath.row].dashdescription
+//                cell.cellImage.image = UIImage(named: loanModel[indexPath.row].iconimage)
+//
+//            }
+            
+        else if(indexPath.section == 2)
             {
                 cell.cellbtnInfoProduct.isHidden = true
                 cell.cellbtnShareProduct.isHidden = true
@@ -650,223 +655,104 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
 
                 
-                
-                
-                //////////////////////////////////
-                
-                /*
-                 // Comment started
-                if(indexPath.row == 0)
-                {
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.webfromScreen = "private"
-                    present(commonWeb, animated: true, completion: nil)
-//                    let MotorInsuranceV : MotorInsuranceVCS = self.storyboard?.instantiateViewController(withIdentifier: "stbMotorInsuranceVCS") as! MotorInsuranceVCS
-//                    MotorInsuranceV.fromScreen = "private"
-//                    present(MotorInsuranceV, animated:true, completion: nil)
-                }
-                if(indexPath.row == 1)
-                {
-                    //                let MotorInsuranceV : MotorInsuranceVCS = self.storyboard?.instantiateViewController(withIdentifier: "stbMotorInsuranceVCS") as! MotorInsuranceVCS
-                    //                MotorInsuranceV.fromScreen = "twoWheeler"
-                    //                present(MotorInsuranceV, animated:true, completion: nil)
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.webfromScreen = "twoWheeler"
-                    present(commonWeb, animated: true, completion: nil)
-                    
-                }
-                if(indexPath.row == 2)
-                {
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
-                    present(commonWeb, animated: true, completion: nil)
-                }
-                if(indexPath.row == 3)
-                {
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.webfromScreen = "HealthInsurance"
-                    present(commonWeb, animated: true, completion: nil)
-                }
-                if(indexPath.row == 4)
-                {
-                    let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
-                    //                LifeInsurance.fromScreen = "LifeInsurance"
-                    present(LifeInsurance, animated:true, completion: nil)
-                }
-                if(indexPath.row == 5)
-                {
-                   
-                    let alert = UIAlertController(title: "coming soon!", message: "", preferredStyle: UIAlertController.Style.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-                
-                 // // Comment ended
-                */
-                
-                
                 //************** End OF  Insurance Tap **********//
             }
-            if(indexPath.section == 2)
-            {
-                
-                switch Int(self.loanModel[indexPath.row].ProdId) {
-                 
-                case 23  :  // Kotak
-                    let msg = "Coming soon..."
-                    let snackbar = TTGSnackbar.init(message: msg , duration: .long)
-                    snackbar.show()
-                    break
-                 
-                case 4  :  // credit Loan
-                    
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "credit"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    break
-                case 19  :  // personal Loan
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "personal"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                    // present(commonWeb, animated: true, completion: nil)
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    
-                    
-                case 6  :  // "business Loan"
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "business"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                    // present(commonWeb, animated: true, completion: nil)
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    
-                    
-                    
-                case 7  :  // home Loan
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "home"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                    // present(commonWeb, animated: true, completion: nil)
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    
-                    
-                    
-                case 8  :  // lap Loan
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "lap"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                    // present(commonWeb, animated: true, completion: nil)
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    
-                    
-                    
-                case 81  :  // car Loan
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "car"
-                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
-                    // present(commonWeb, animated: true, completion: nil)
-                    commonWeb.addType = "CHILD"
-                    add(commonWeb)
-                    deSelectDashboard()
-                    break
-                    
-                default :
-                   print("Loan Clicked")
-                    
-                    
-                }
-                
-                /*
-                
-                ////////////// OLD Code Commented /////////////////////////
-                if(indexPath.row == 0)
-                {
-                    let creditCard : creditCardVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcreditCardVC") as! creditCardVC
-                    present(creditCard, animated: true, completion: nil)
-                }
-                if(indexPath.row == 1)
-                {
-
-                    let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
-                    commonQuotes.titleL = "PERSONAL LOAN"
-                    commonQuotes.loanType = "PSL"
-                    present(commonQuotes, animated:true, completion: nil)
-                }
-                if(indexPath.row == 2)
-                {
-
-                    let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
-                    commonQuotes.titleL = "BUSINESS LOAN"
-                    commonQuotes.loanType = "BL"
-                    present(commonQuotes, animated:true, completion: nil)
-                }
-                if(indexPath.row == 3)
-                {
-                    let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
-                    commonQuotes.titleL = "HOME LOAN"
-                    commonQuotes.loanType = "HML"
-                    present(commonQuotes, animated:true, completion: nil)
-                }
-                if(indexPath.row == 4)
-                {
-//                    let MotorInsuranceV : MotorInsuranceVCS = self.storyboard?.instantiateViewController(withIdentifier: "stbMotorInsuranceVCS") as! MotorInsuranceVCS
-//                    MotorInsuranceV.fromScreen = "lap"
-//                    present(MotorInsuranceV, animated:true, completion: nil)
-                    let commonQuotes : commonQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonQuotesVC") as! commonQuotesVC
-                    commonQuotes.titleL = "LAP LOAN"
-                    commonQuotes.loanType = "LAP"
-                    present(commonQuotes, animated:true, completion: nil)
-                }
-                
-                */
-                //////////////// End OF Old code //////////////////////////
-//                if(indexPath.row == 6)
-//                {
+            
+            
+            
+            
+ //           if(indexPath.section == 2)
+//            {
+//
+//                switch Int(self.loanModel[indexPath.row].ProdId) {
+//
+//                case 23  :  // Kotak
+//                    let msg = "Coming soon..."
+//                    let snackbar = TTGSnackbar.init(message: msg , duration: .long)
+//                    snackbar.show()
+//                    break
+//
+//                case 4  :  // credit Loan
+//
 //                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.webfromScreen = "loanonMessanger"
-//                    present(commonWeb, animated: true, completion: nil)
-//                }
-//                if(indexPath.row == 7)
-//                {
-//                    let QuickLead : QuickLeadVC = self.storyboard?.instantiateViewController(withIdentifier: "stbQuickLeadVC") as! QuickLeadVC
-//                    present(QuickLead, animated: true, completion: nil)
-//                }
-//                if(indexPath.row == 8)
-//                {
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "credit"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//                    break
+//                case 19  :  // personal Loan
 //                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.webfromScreen = "cashLoan"
-//                    present(commonWeb, animated: true, completion: nil)
-//                }
-//                if(indexPath.row == 9)
-//                {
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "personal"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//                    // present(commonWeb, animated: true, completion: nil)
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//
+//
+//                case 6  :  // "business Loan"
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "business"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//                    // present(commonWeb, animated: true, completion: nil)
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//
+//
+//
+//                case 7  :  // home Loan
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "home"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//                    // present(commonWeb, animated: true, completion: nil)
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//
+//
+//
+//                case 8  :  // lap Loan
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "lap"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//                    // present(commonWeb, animated: true, completion: nil)
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//
+//
+//
+//                case 81  :  // car Loan
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "car"
+//                    commonWeb.webTitle = self.loanModel[indexPath.row].menuname.uppercased()
+//                    // present(commonWeb, animated: true, completion: nil)
+//                    commonWeb.addType = "CHILD"
+//                    add(commonWeb)
+//                    deSelectDashboard()
+//                    break
+//
+//                default :
+//                   print("Loan Clicked")
+//
 //
 //                }
-//                if(indexPath.row == 10)
-//                {
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.webfromScreen = "rectifyCredit"
-//                    present(commonWeb, animated: true, completion: nil)
-//                }
-                
-            }
-            if(indexPath.section == 3)
+//
+//
+//            }
+            
+            
+            
+            if(indexPath.section == 2)
             {
                 if(indexPath.row == 0)
                 {
@@ -874,6 +760,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     commonWeb.modalPresentationStyle = .fullScreen
                     commonWeb.webfromScreen = "otherInvestmentproductp2p"
                     present(commonWeb, animated: true, completion: nil)
+                    deSelectDashboard()
                 }
                 
             }
@@ -971,21 +858,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 headerView.addSubview(button)   // add the button to the view
             }
-            else if(section == 2)
-            {
-                
-               // labelDisclose.text = "Disclosure"
-                label.text = "LOANS"
-              //  label2.text = "POWERED BY"
-                
-//                            labelDisclose.font = UIFont.boldSystemFont(ofSize: 16)
-//                            labelDisclose.textColor = UIColor.white
-//                            headerView.addSubview(labelDisclose)
-    
-               
 
-            }
-            else if(section == 3)
+            else if(section == 2)
             {
                 label.text = "MORE SERVICES"
             }
