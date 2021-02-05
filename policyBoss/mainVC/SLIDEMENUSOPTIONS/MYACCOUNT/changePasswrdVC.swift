@@ -24,6 +24,9 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         //--<textField>--
         aTextField.delegate = self
+        oldpassTf.delegate = self
+        newpassTf.delegate = self
+        confirmpassTf.delegate = self
 
     }
 
