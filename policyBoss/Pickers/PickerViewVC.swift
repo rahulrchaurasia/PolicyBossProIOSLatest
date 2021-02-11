@@ -40,7 +40,7 @@ class PickerViewVC: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate
         {
             
             
-            let alert = UIAlertController(title: "Alert", message: "Please select from the below options", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Please select from the below options", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             

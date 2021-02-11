@@ -36,18 +36,21 @@ class forgtPassVC: UIViewController {
                 forgotPasswordAPI()
             }
             else{
-                let alert = UIAlertController(title: "Alert", message: "Invalid Email ID", preferredStyle: .alert)
+                let alert = UIAlertController(title: nil, message: "Invalid Email ID", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
         else{
-            let alert = UIAlertController(title: "Alert", message: "Enter Email ID", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Enter Email ID", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         
     }
+    
+    
+    //  commented//
     
     //---<EmailValidation>---
     func isValidEmail(testStr:String) -> Bool {

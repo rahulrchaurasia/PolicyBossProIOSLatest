@@ -1582,7 +1582,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart88;
+				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart89;
 				PRODUCT_NAME = policyBoss;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

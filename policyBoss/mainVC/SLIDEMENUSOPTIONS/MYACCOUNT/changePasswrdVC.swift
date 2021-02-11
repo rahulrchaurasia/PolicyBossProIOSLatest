@@ -62,7 +62,7 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
             changepasswordAPI()
         }
         else{
-            let alert = UIAlertController(title: "Alert", message: "Please Enter Password", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Please Enter Password", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
 

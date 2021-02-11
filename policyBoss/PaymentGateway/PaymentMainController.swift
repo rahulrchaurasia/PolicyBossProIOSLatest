@@ -288,7 +288,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     func alertCustomCall(message:String)
     {
        // let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "Default", style: .default) { (action:UIAlertAction) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

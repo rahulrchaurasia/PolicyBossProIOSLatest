@@ -1088,7 +1088,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         result = emailTest.evaluate(with: candidate)
         print("result=",result)
         if(result == false){
-            let alert = UIAlertController(title: "Alert", message: "Please Enter Valid PAN", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "Please Enter Valid PAN", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
@@ -1865,9 +1865,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     //--<showalertView>--
     func alertCall(message:String)
     {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        
     }
     
 //    func showToast(controller: UIViewController,message : String, seconds : Double){
