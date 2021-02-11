@@ -1002,7 +1002,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
         
-        let url = "/api/user-constant-pb"
+        let url = "/api/user-constant"
+        //let url = "/api/user-constant-pb"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             
@@ -1189,7 +1190,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
         
-        let url = "/api/get-dynamic-app-pb"
+        let url = "/api/get-dynamic-app"
+        //let url = "/api/get-dynamic-app-pb"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

@@ -66,9 +66,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
       
         if(webfromScreen == "private")      //  PrdID =1
         {
-            
-            
-            
+
             titleLbl.text! = "PRIVATE CAR"
             bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
             

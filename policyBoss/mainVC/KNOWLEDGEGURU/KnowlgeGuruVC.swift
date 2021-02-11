@@ -17,6 +17,9 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var knowtableArray = ["INSURANCE","OTHER PRODUCTS"]
     var knowImgArray = ["knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
     
+    
+    @IBOutlet var knowldgeTV: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,19 +27,14 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     
     @IBAction func knowguruBackBtn(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
         
-           // self.dismiss(animated: true)
+            self.dismiss(animated: true)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-               KYDrawer.modalPresentationStyle = .fullScreen
-                present(KYDrawer, animated: true, completion: nil)
-         // self.dismiss(animated: true)
+
+             self.dismiss(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,6 +81,7 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
             Loans.wfromScreen = "Insurance"
             Loans.modalPresentationStyle = .fullScreen
             present(Loans, animated: true, completion: nil)
+            
         }
         else if(indexPath.row == 1)
         {
@@ -90,8 +89,18 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
             Loans.wfromScreen = "otherProduct"
             Loans.modalPresentationStyle = .fullScreen
             present(Loans, animated: true, completion: nil)
+            
         }
+        
+        deSelectROW()
     }
     
 
+    
+    func deSelectROW(){
+
+        if let index = self.knowldgeTV.indexPathForSelectedRow{
+            self.knowldgeTV.deselectRow(at: index, animated: false)
+        }
+    }
 }

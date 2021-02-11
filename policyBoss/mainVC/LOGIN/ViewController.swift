@@ -1526,6 +1526,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
 }
 
+
+//////////////////////// Extension For ViewController 
 extension UIViewController {
     
     
@@ -1561,6 +1563,18 @@ extension UIViewController {
         view.removeFromSuperview()
         removeFromParent()
     }
+    
+    func dismissAll(animated: Bool, completion: (() -> Void)? = nil) {
+           if let optionalWindow = UIApplication.shared.delegate?.window, let window = optionalWindow, let rootViewController = window.rootViewController, let presentedViewController = rootViewController.presentedViewController  {
+               if let snapshotView = window.snapshotView(afterScreenUpdates: false) {
+                   presentedViewController.view.addSubview(snapshotView)
+                   presentedViewController.modalTransitionStyle = .coverVertical
+               }
+               if !isBeingDismissed {
+                   rootViewController.dismiss(animated: animated, completion: completion)
+               }
+           }
+       }
 }
 
 
