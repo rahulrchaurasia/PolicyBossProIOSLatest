@@ -695,7 +695,6 @@
 				8410403F21D7897D00C3B7A7 /* CONFIGURATION */,
 				84C4D08921C2304400A677B7 /* Pickers */,
 				84C4D09621C2675800A677B7 /* mainVC */,
-				84BF349121D33DC10030DC2D /* Storyboard */,
 			);
 			path = policyBoss;
 			sourceTree = "<group>";
@@ -1014,6 +1013,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84BF349121D33DC10030DC2D /* Storyboard */,
 				4438085624BAF4B90046CA81 /* pendingCase */,
 				444C6DEB24A259ED003A7528 /* dashboard */,
 				442C140B2497A2B200E3C455 /* pospDoc */,
@@ -1577,7 +1577,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				DEVELOPMENT_TEAM = "";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1604,9 +1604,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 2QKGN99NT9;
+				DEVELOPMENT_TEAM = "";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

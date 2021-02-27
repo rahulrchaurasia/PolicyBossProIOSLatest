@@ -778,7 +778,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
         case 1 :
             
-            print("DOC FBA PHOtograph ")
+            print("DOC FBA PHOtograph " + srUrl)
             if(srUrl != ""){
                   let remoteImageURL = URL(string: srUrl)!
                   self.myaccountImgeView.sd_setImage(with: remoteImageURL)
@@ -792,7 +792,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             break;
             
        case 2 :
-            print("DOC FBA PHOtograph ")
+            print("DOC FBA PHOtograph " + srUrl)
             if(srUrl != ""){
                 let remoteImageURL = URL(string: srUrl)!
                 self.myaccountImgeView.sd_setImage(with: remoteImageURL)
@@ -896,6 +896,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
             let url = "/api/get-ifsc-code"
             
+            
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
                 
@@ -955,14 +956,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
             let endUrl = "/api/upload-doc"
             let url =  FinmartRestClient.baseURLString  + endUrl
-         
+            let headers: HTTPHeaders = [
+                   "Content-Type": "application/json",
+                   "token": "1234567890"
+               ]
+               
             Alamofire.upload(multipartFormData: { (multipartFormData) in
                 multipartFormData.append(imageData!, withName: "DocFile", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
                 for (key, value) in parameters {
                     multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                     
                 }
-            }, to: url)
+            }, to: url, method: .post, headers: headers)
             { (result) in
                 switch result {
                 case .success(let upload, _, _):

@@ -998,6 +998,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 
                 let endUrl = "/api/upload-doc"
                 let url =  FinmartRestClient.baseURLString  + endUrl
+                let headers: HTTPHeaders = [
+                    "Content-Type": "application/json",
+                    "token": "1234567890"
+                ]
                 // to:"http://preprodapiqa.mgfm.in/api/upload-doc")
                 Alamofire.upload(multipartFormData: { (multipartFormData) in
                   
@@ -1006,7 +1010,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                         multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
                         
                     }
-                }, to: url)
+                },  to: url, method: .post, headers: headers)
                 { (result) in
                     switch result {
                     case .success(let upload, _, _):
