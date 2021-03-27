@@ -679,6 +679,7 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
+				84BF349121D33DC10030DC2D /* Storyboard */,
 				180470C624DFF76A00BC2188 /* Razorpay.xcframework */,
 				443F8C4924D046D6006BA89F /* Gif */,
 				442E20DD24C8343900FFC075 /* walkthroughPage */,
@@ -1013,7 +1014,6 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				84BF349121D33DC10030DC2D /* Storyboard */,
 				4438085624BAF4B90046CA81 /* pendingCase */,
 				444C6DEB24A259ED003A7528 /* dashboard */,
 				442C140B2497A2B200E3C455 /* pospDoc */,
