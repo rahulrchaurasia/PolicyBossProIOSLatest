@@ -12,9 +12,9 @@ class salesMaterialModel: NSObject {
     
     var productCount: Int
     var productOldCount: Int
-    var product_Id: String
+    var product_Id: Int
     
-    init(productCount: Int,Product_Id : String)
+    init(productCount: Int,Product_Id : Int)
     {
         self.productCount = productCount
         self.productOldCount = 0

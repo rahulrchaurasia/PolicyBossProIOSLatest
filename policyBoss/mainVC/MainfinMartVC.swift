@@ -62,6 +62,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let notificationCenter = NotificationCenter.default
+           notificationCenter.addObserver(self, selector: #selector(appComeToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
         popUpbackgroundView.isHidden = true
         self.mainTV.isHidden = true
         //border
@@ -80,6 +83,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         userconstantAPI()
         getdynamicappAPI()
         
+    
         
         MainScrollView.isScrollEnabled = false
         
@@ -93,26 +97,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         
         
-        if(UserDefaults.exists(key: "iosversion") == true) {
-            
-            if let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-                print("VERSION BUILD",buildVersion)
-                
-                
-                let iosversion = UserDefaults.standard.string(forKey: "iosversion")
-                
-                let ServiceBuildVersion = (iosversion! as NSString).intValue
-                
-                let devicebuildVersion = (buildVersion as NSString).intValue
-                
-                
-                if(devicebuildVersion < ServiceBuildVersion){
-                    
-                    callAppStore()
-                    
-                }
-            }
-        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -141,14 +126,40 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     //////////////////////////
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-//        //for DeSelect the Row After Selection
-//        if let index = mainTV.indexPathForSelectedRow{
-//            self.mainTV.deselectRow(at: index, animated: true)
-//        }
+ 
+    
+    
+   // Mark : Used notificationCenter for method called when apps comes from foreground to background
+    
+    @objc func appComeToForeground() {
+        print("On Resumed")
+        userconstantAPI()
     }
     
+    
+    func verifyVersion(){
+        
+        if(UserDefaults.exists(key: "iosversion") == true) {
+            
+            if let buildVersion = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                print("VERSION Device BUILD",buildVersion)
+                
+                
+                let iosversion = UserDefaults.standard.string(forKey: "iosversion")
+                
+                let ServiceBuildVersion = (iosversion! as NSString).intValue
+                
+                let devicebuildVersion = (buildVersion as NSString).intValue
+                print( "VERSION Service Build",  iosversion! as String )
+                
+                if(devicebuildVersion < ServiceBuildVersion){
+                    
+                    callAppStore()
+                    
+                }
+            }
+        }
+    }
     
     func callAppStore()
     {
@@ -215,11 +226,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     @IBAction func pendingcasesBtnCliked(_ sender: Any)
     {
-        let Pendingcases : PendingcasesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPendingcasesVC") as! PendingcasesVC
-        
-        Pendingcases.modalPresentationStyle = .fullScreen
-        self.add(Pendingcases)
+//        let Pendingcases : PendingcasesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPendingcasesVC") as! PendingcasesVC
+//
+//        Pendingcases.modalPresentationStyle = .fullScreen
+//        self.add(Pendingcases)
   
+        
+        let pendingcasescapsVC : pendingcasescapsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
+        
+        pendingcasescapsVC.modalPresentationStyle = .fullScreen
+        self.add(pendingcasescapsVC)
+        /*
+         
+         let controller1: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
+                   
+         */
 
     }
     @IBAction func knowguruBtnCliked(_ sender: Any)
@@ -1150,6 +1171,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UserDefaults.standard.set(String(describing: iosversion), forKey: "iosversion")
             
             
+            ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////
+            
+            self.verifyVersion()
+            
+            
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
         }, onError: { errorData in
            // alertView.close()
 //            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
@@ -1190,8 +1218,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
         
-        let url = "/api/get-dynamic-app"
-        //let url = "/api/get-dynamic-app-pb"
+       // let url = "/api/get-dynamic-app"
+        let url = "/api/get-dynamic-app-pb"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

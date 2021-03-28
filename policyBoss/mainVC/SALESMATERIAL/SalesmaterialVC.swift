@@ -26,9 +26,9 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     var ProductNameArray = [String]()
     var ProductimageArray = [String]()
     var CountArray = [Int]()
-    var ProductIdArray = [String]()
+    var ProductIdArray = [Int]()
     var countstringArray = [String]()
-    var ProductIdstringArray = [String]()
+    var ProductIdstringArray = [Int]()
     var productID = ""
     var productName = ""
     var productCnt = Int()
@@ -136,7 +136,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         let proCount = String(pCount)
         // 05
         
-        productID = ProductIdstringArray[indexPath.row]
+        productID = String(ProductIdstringArray[indexPath.row])
         
         if(productID == "7"){
             
@@ -214,7 +214,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         cell.salescellView.layer.shadowOpacity = 0.8
         
         //        cell.salescellCountLbl.isHidden = true
-        productID = ProductIdstringArray[indexPath.row]
+        productID = String(ProductIdstringArray[indexPath.row])
         productName = ProductNameArray[indexPath.row]
         let mod = sMaterialModel[indexPath.row]
         productCnt = mod.productCount
@@ -238,7 +238,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             cell.salescellCountLbl.isHidden = true
             let insalesmaterial : insalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbinsalesmaterialVC") as! insalesmaterialVC
             insalesmaterial.modalPresentationStyle = .fullScreen
-            insalesmaterial.productId = ProductIdstringArray[indexPath.row]
+            insalesmaterial.productId = String(ProductIdstringArray[indexPath.row])
             insalesmaterial.passindexlbl = ProductNameArray[indexPath.row]
             self.addChild(insalesmaterial)
             self.view.addSubview(insalesmaterial.view)
@@ -248,7 +248,8 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             /////////////////////////////////
             
             print("Row Selected Count", sMaterialModel[indexPath.row].productCount)
-            var oldCountArray = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+           // var oldCountArray1 = UserDefaults.standard.array(forKey: "SalesProductCount")  as? [Int] ?? [Int]()
+           var oldCountArray = UserDefaults.standard.object(forKey:"SalesProductCount") as? [Int] ?? [Int]()
             oldCountArray[indexPath.row] = sMaterialModel[indexPath.row].productCount
             UserDefaults.standard.set( oldCountArray, forKey: "SalesProductCount")
             
@@ -274,7 +275,8 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             alertView.show()
             let params: [String: AnyObject] = [:]
             
-            let url = "/api/sales-material-product"
+           // let url = "/api/sales-material-product"
+             let url = "/api/sales-material-product-pb"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
@@ -314,7 +316,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
                 
                 
                 let Product_Id = jsonData?.value(forKey: "Product_Id") as AnyObject
-                self.ProductIdArray = Product_Id  as! [String]
+                self.ProductIdArray = Product_Id  as! [Int]
                 
                 self.ProductIdstringArray = self.ProductIdArray
                 
@@ -328,10 +330,14 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
                     self.sMaterialModel = [salesMaterialModel]()
                     for index in 0...(jsonData?.count)!-1 {
                         let aObject = jsonData?[index] as! [String : AnyObject]
-                        let model1 = salesMaterialModel(productCount: aObject["Count"] as! Int ,Product_Id : aObject["Product_Id"] as! String)
+//                        let model1 = salesMaterialModel(productCount: aObject["Count"] as! Int ,Product_Id : aObject["Product_Id"] as! Int)
                         
+                        let model1 = salesMaterialModel(productCount: aObject["Count"] as! Int , Product_Id: aObject["Product_Id"] as! Int )
                         model1.productOldCount = 0
                         
+//                        if(model1.product_Id != 4 ||  model1.product_Id != 4){
+//
+//                        }
                         self.sMaterialModel.append(model1)//+=[model1]
                         
                         
@@ -380,7 +386,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
                                     let oldObject = compLst[index] as! [String : AnyObject]
                                     // print("SALESDATA_2",oldObject["Count"] as! Int)
                                     
-                                    if(currObject.product_Id   == oldObject["Product_Id"] as! String ){
+                                    if(currObject.product_Id   == oldObject["Product_Id"] as! Int ){
                                         
                                         if(oldCountArray[index]  > currObject.productCount){
                                             

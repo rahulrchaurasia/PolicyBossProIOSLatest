@@ -280,8 +280,8 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             alertView.show()
             let params: [String: AnyObject] = ["product_id": productId as AnyObject]
             
-            let url = "/api/sales-material-product-details"
-           // let url = "/api/sales-material-product-details-pb"
+            //let url = "/api/sales-material-product-details"
+            let url = "/api/sales-material-product-details-pb"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()

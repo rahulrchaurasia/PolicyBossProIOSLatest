@@ -13,11 +13,14 @@ import SDWebImage
 import MessageUI
 import Alamofire
 
+
+
+
+
 class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDelegate,MyCellDelegate , MFMessageComposeViewControllerDelegate {
     
     
    
-    
     
     @IBOutlet weak var pendingTV: UITableView!
     
@@ -40,6 +43,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
      var pendingCaseMainObj: PendingCaseMainMasterData? = nil
     
     
+    
     ///////////////////  Added ////////////
     
     
@@ -47,9 +51,28 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ids",ids)
-//        pendingTV.reloadData()
 
+        self.title = "INSURANCE"
+        self.lbl = "INSURANCE"
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            pendingcasesinsurenceandloanAPI(type: "")
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
     }
+    
+    
+
+    @IBAction func backBtnClicked(_ sender: Any) {
+        
+        self.remove()
+    }
+    
     
     //6. Implement Delegate Method
     func btnDeleteTapped(cell: pendingcaseTVCell)
@@ -67,7 +90,11 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
             Quotetype =  (pendingCaseMainObj?.Loan[indexPath!.row].quotetype)!
         }
         
-     pendingcasesDeleteAPI(ID: ID, Quotetype: Quotetype)
+     pendingcasesDeleteAPI(ID: ID, Quotetype: Quotetype)  //05 temp comment
+        
+
+        
+        
         
 //        indexID = ids[indexPath!.row]
 //        quttype = quoteType[indexPath!.row]
@@ -320,7 +347,11 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
             let jsonData = userObject as? NSArray
             self.Message = ((jsonData![0] as AnyObject).value(forKey: "Message") as AnyObject) as! String
             
-            self.pendingTV.reloadData()
+            
+            DispatchQueue.main.async(execute: { () -> Void in
+                // Present Alert Controller
+                 self.pendingTV.reloadData()
+            })
             
         }, onError: { errorData in
             alertView.close()
@@ -381,16 +412,19 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                     
                     alertView.close()
                     
-                   
-              
-                    self.calledParentLoad()
+                 
+                    
+                    self.pendingcasesinsurenceandloanAPI(type: "DEL")  // load again
                     
                     
                 case .failure(let error):
-                  //  print(error)
+                    //  print(error)
                     alertView.close()
                     let snackbar = TTGSnackbar.init(message: "Failure", duration: .long)
                     snackbar.show()
+                    
+                   
+                    
                 }
             })
             
@@ -402,4 +436,92 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         
     }
     
+    
+    
+    func pendingcasesinsurenceandloanAPI(type : String){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+           
+            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+            
+            let params: [String: AnyObject] = ["Type":"0" as AnyObject,
+                                               "count":"0" as AnyObject,
+                                               "FBAID": FBAId as AnyObject]
+            
+            let endUrl = "/api/pending-cases-insurence-and-loan"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            print("parameter= ",params)
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                    
+                case .success(let value):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(PendingCaseMainModel.self, from: data)
+                        print("pending Case Done", obj)
+                        if obj.StatusNo == 0 {
+                            
+                            self.pendingCaseMainObj = obj.MasterData
+                            
+                            if(type == "DEL"){
+                                  self.showToast(controller: self, message: "Data Deleted Successfully...", seconds: 3)
+                            }
+                           
+                            DispatchQueue.main.async(execute: { () -> Void in
+                                // Present Alert Controller
+                                self.pendingTV.reloadData()
+                            })
+                        
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                            snackbar.show()
+                        }
+
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
 }

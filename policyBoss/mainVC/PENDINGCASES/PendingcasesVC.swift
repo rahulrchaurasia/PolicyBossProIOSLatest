@@ -11,7 +11,15 @@ import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
 
+/************************************************************************
+// Note : Here Tab menu is Used using "CAPSPageMenu" class
+      So for current vc we can add multiple VC. ie pendingcasescapsVC  is added  with customizes
+      title and name.
+ 
+**************************************************************************/
 class PendingcasesVC: UIViewController {
+ 
+    
 
     var CAPSMenu : CAPSPageMenu?
     
@@ -46,12 +54,13 @@ class PendingcasesVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        capsMenu()
+       // capsMenu()   //05
+        Menu()
         
         //--<apiCall>--
         if Connectivity.isConnectedToInternet()
         {
-        pendingcasesinsurenceandloanAPI()
+        pendingcasesinsurenceandloanAPI()  //05
             
         }else{
             let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
@@ -61,6 +70,64 @@ class PendingcasesVC: UIViewController {
     }
     
     //-------<capsMenu>--------
+
+    
+      
+  
+    func Menu()
+       {
+           var controllerArray : [UIViewController] = []
+           let storyboardName: String = "Main"
+           let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
+           
+           let controller1: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
+           
+           
+           controller1.title = "INSURANCE"
+           controller1.lbl = "INSURANCE"
+           
+           controller1.pendingCaseMainObj = self.pendingCaseMainObj
+            /////////
+           controller1.customerName = CustomerName
+           controller1.category = Category
+           controller1.qaatype = qatype
+           controller1.ppendingdays = pendingDays
+           controller1.bankImage = BankImage
+           controller1.ids = iID
+           controller1.quoteType = iquotetype
+           controller1.ApplnStatusPercntg = ApplnStatus
+        
+    
+           
+           ////////////
+           
+        controllerArray = [controller1]
+        
+        let parameters : [CAPSPageMenuOption] = [
+            
+            .scrollMenuBackgroundColor(UIColor(red: CGFloat(0.00 / 255.0), green: CGFloat(51.0 / 255.0), blue: CGFloat(91.0 / 255.0), alpha: CGFloat(1))),
+            .viewBackgroundColor(UIColor(red: CGFloat(31.00 / 255.0), green: CGFloat(74.0 / 255.0), blue: CGFloat(132.0 / 255.0), alpha: CGFloat(1))),
+            .selectionIndicatorColor(UIColor.white),
+            
+            .addBottomMenuHairline(true),
+            .centerMenuItems(true),
+            .bottomMenuHairlineColor(UIColor.white),
+            .menuItemFont(UIFont.init(name: "HelveticaNeue", size: 15)!),
+            .menuHeight(50.0),
+            .menuItemWidth(0),
+            .selectedMenuItemLabelColor(UIColor.white),
+            .unselectedMenuItemLabelColor(UIColor.white),
+            .selectionIndicatorHeight(4),
+            .useMenuLikeSegmentedControl(true),
+            .menuItemWidthBasedOnTitleTextWidth(false),
+            .hideTopMenuBar(false)
+        ]
+        
+     self.CAPSMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x: 0.0, y: 0.0, width: self.pendingcasesView.frame.size.width, height: self.pendingcasesView.frame.size.height), pageMenuOptions: parameters)
+          
+          self.pendingcasesView.addSubview((self.CAPSMenu?.view)!)
+           
+       }
     func capsMenu()
     {
         var controllerArray : [UIViewController] = []
@@ -83,7 +150,7 @@ class PendingcasesVC: UIViewController {
         controller1.ids = iID
         controller1.quoteType = iquotetype
         controller1.ApplnStatusPercntg = ApplnStatus
-        
+      
         ////////////
         
         let controller2: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
@@ -101,6 +168,7 @@ class PendingcasesVC: UIViewController {
         controller2.ids = lID
         controller2.quoteType = lquotetype
         controller2.ApplnStatusPercntg = lApplnStatus
+       
         
         controllerArray = [controller1, controller2]
         
@@ -327,7 +395,7 @@ class PendingcasesVC: UIViewController {
                         if obj.StatusNo == 0 {
                             
                             self.pendingCaseMainObj = obj.MasterData
-                            self.capsMenu()               //  Load Page Menu
+                            self.Menu()               //  Load Page Menu
                             
                         }else{
                             
