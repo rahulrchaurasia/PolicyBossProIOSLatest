@@ -482,7 +482,10 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                         print("pending Case Done", obj)
                         if obj.StatusNo == 0 {
                             
+                            
                             self.pendingCaseMainObj = obj.MasterData
+                            
+                            
                             
                             if(type == "DEL"){
                                   self.showToast(controller: self, message: "Data Deleted Successfully...", seconds: 3)
@@ -490,7 +493,16 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                            
                             DispatchQueue.main.async(execute: { () -> Void in
                                 // Present Alert Controller
-                                self.pendingTV.reloadData()
+                                if(self.pendingCaseMainObj?.Insurance.count ?? 0 > 0){
+                                    
+                                      self.pendingTV.reloadData()
+                                }else{
+                                    
+                                    let snackbar = TTGSnackbar.init(message: "No Data Found ...", duration: .long)
+                                    snackbar.show()
+                                    
+                                }
+                              
                             })
                         
                         }else{
