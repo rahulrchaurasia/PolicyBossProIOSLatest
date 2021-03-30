@@ -46,11 +46,6 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
     
     @IBAction func slidemenuBtnCliked(_ sender: Any)
     {
-//        if let drawerController = navigationController?.parent as? KYDrawerController {
-//            drawerController.setDrawerState(.opened, animated: true)
-//        }
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//        present(KYDrawer, animated: true, completion: nil)
 
             dismiss(animated: true)
     }

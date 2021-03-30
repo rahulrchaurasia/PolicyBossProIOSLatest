@@ -84,18 +84,24 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         
         self.delegateData?.selSalesData()
         
-        self.willMove(toParent: nil)
-        self.view.removeFromSuperview()
-        self.removeFromParent()
+        self.dismiss(animated: true, completion: nil)
         
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        self.present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//         KYDrawer.modalPresentationStyle = .fullScreen
+//        self.present(KYDrawer, animated: true, completion: nil)
+        
+
+        
+        self.dismissAll(animated: false)
+     
+             
     }
+    
+    
     
     @IBAction func engnhindiSwitchBtnCliked(_ sender: Any)
     {
@@ -236,8 +242,10 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
                        shareImageVC.modalPresentationStyle = .fullScreen
                         shareImageVC.detailImg =  salesDetailModel[indexPath.row].image_path
                         shareImageVC.productID = productId
-                        self.addChild(shareImageVC)
-                        self.view.addSubview(shareImageVC.view)
+//                        self.addChild(shareImageVC)
+//                        self.view.addSubview(shareImageVC.view)
+            
+              self.present(shareImageVC,animated: true,completion: nil)
         }
         
     }
@@ -280,9 +288,8 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             alertView.show()
             let params: [String: AnyObject] = ["product_id": productId as AnyObject]
             
-            //let url = "/api/sales-material-product-details"
-            let url = "/api/sales-material-product-details-pb"
-            
+            let url = "/api/sales-material-product-details"
+           
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
                 

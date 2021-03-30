@@ -78,6 +78,9 @@ class PaymentCancelController: UIViewController {
         let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
         enrolasPOSPVC.modalPresentationStyle = .fullScreen
         present(enrolasPOSPVC, animated: true, completion: nil)
+        
+      
+     
     }
     
     @IBAction func backBtnCliked(_ sender: Any) {

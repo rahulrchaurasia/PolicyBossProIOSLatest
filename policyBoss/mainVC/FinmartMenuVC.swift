@@ -996,14 +996,21 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             NSLog("OK Pressed")
             
             
-            UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
-         
+        
 
             let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
             Login.resetDefaults()
-          
+            UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
             Login.modalPresentationStyle = .fullScreen
             self.present(Login, animated: true, completion: nil)
+            
+            
+//              self.resetDefaults()
+//             UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+//            
+            
+          //  In Swift 5.3: When we use stack Navigation
+            //self.navigationController?.popToRootViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default) {
             UIAlertAction in
@@ -1016,7 +1023,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
+    func resetDefaults() {
+          let defaults = UserDefaults.standard
+          // let dictionary = defaults.dictionaryRepresentation()
+          defaults.dictionaryRepresentation().keys.forEach(defaults.removeObject(forKey:))
+          Core.shared.setNewUser()
+           
+      }
     
     
         

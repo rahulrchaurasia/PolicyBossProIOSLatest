@@ -183,6 +183,8 @@
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
+		B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE32613721E00B49797 /* Extension+UIViewController.swift */; };
+		B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -400,6 +402,8 @@
 		84F4114E220AF254001407EE /* whatsNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewTVCell.swift; sourceTree = "<group>"; };
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
+		B2622BE32613721E00B49797 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -679,6 +683,7 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
+				B29153D126133D3F0034608F /* Extension */,
 				84BF349121D33DC10030DC2D /* Storyboard */,
 				180470C624DFF76A00BC2188 /* Razorpay.xcframework */,
 				443F8C4924D046D6006BA89F /* Gif */,
@@ -1035,6 +1040,15 @@
 			path = LoansSection;
 			sourceTree = "<group>";
 		};
+		B29153D126133D3F0034608F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B2622BE32613721E00B49797 /* Extension+UIViewController.swift */,
+				B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1360,6 +1374,8 @@
 				8480BBDE2208118900BEEDF4 /* hnfcontactUsVC.swift in Sources */,
 				840562DB21D4D2CF0099DDE8 /* incmPotentialVC.swift in Sources */,
 				840562E321D4D3440099DDE8 /* enrolasPOSPVC.swift in Sources */,
+				B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */,
+				B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */,
 				840562E521D4D3590099DDE8 /* addUsersVC.swift in Sources */,
 				8411808821C5105D00D5638B /* PresentMenuAnimator.swift in Sources */,
 				8411808921C5105D00D5638B /* DismissMenuAnimator.swift in Sources */,
@@ -1577,7 +1593,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 87B8AYVD9N;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

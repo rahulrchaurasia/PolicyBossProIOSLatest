@@ -139,9 +139,7 @@ class ShareImageVC: UIViewController {
     
     @IBAction func backBtnClick(_ sender: Any) {
         
-        self.willMove(toParent: nil)
-                    self.view.removeFromSuperview()
-                    self.removeFromParent()
+        self.dismiss(animated: true, completion: nil)
 
     }
     

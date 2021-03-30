@@ -240,9 +240,10 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             insalesmaterial.modalPresentationStyle = .fullScreen
             insalesmaterial.productId = String(ProductIdstringArray[indexPath.row])
             insalesmaterial.passindexlbl = ProductNameArray[indexPath.row]
-            self.addChild(insalesmaterial)
-            self.view.addSubview(insalesmaterial.view)
+//            self.addChild(insalesmaterial)
+//            self.view.addSubview(insalesmaterial.view)
             
+            self.present(insalesmaterial,animated: true,completion: nil)
             
             
             /////////////////////////////////
@@ -486,8 +487,9 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         insalesmaterial.tIndex = indexR
         
         insalesmaterial.delegateData = self
-        self.addChild(insalesmaterial)
-        self.view.addSubview(insalesmaterial.view)
+//        self.addChild(insalesmaterial)
+//        self.view.addSubview(insalesmaterial.view)
+          self.present(insalesmaterial,animated: true,completion: nil)
         
         
         print("Row Selected Count", self.sMaterialModel[indexR].productCount)

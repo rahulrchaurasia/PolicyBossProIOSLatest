@@ -58,12 +58,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var loansDetailArray = ["Home loan at best intrest rates from over 20+ banks & NBFCs.","Provide instant approval for your customers at attractive intrest rates.","Maximum loan amount at competitive intrest rate against property.","Get instant Credit card approvals with amazing offers and deals.","Transfer existing loans at lower intrest rate.And help customers to save more on existing loans.","Get your credit report with score at no cost.","Enjoy chatting with your BOT freind & provide instant loan sanction to your customer for Personal Loan,Home Loan,Business Loan,Car Loan,LAP,Gold Loan,etc.","Submit leads for products like Car Loan,Business Loan,Working Capital,Term Loan,LRD,etc.","Loan disbursed in just few hours!!!","We Finance your growth","Improve your credit score."]
     
   
-    
+    deinit {
+      // NotificationCenter.default.removeObserver(self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let notificationCenter = NotificationCenter.default
-           notificationCenter.addObserver(self, selector: #selector(appComeToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        let notificationCenter = NotificationCenter.default
+//           notificationCenter.addObserver(self, selector: #selector(appComeToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         popUpbackgroundView.isHidden = true
         self.mainTV.isHidden = true
@@ -81,8 +83,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         //--<api>--
        // getLoanStaticDashboard()
         userconstantAPI()
-        getdynamicappAPI()
-        
+       
+    /**********Loading Dynamic Data**********/
+                           
+        self.getdynamicappAPI()
     
         
         MainScrollView.isScrollEnabled = false
@@ -97,13 +101,38 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         
         
+        ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////
+                          
+             self.verifyVersion()
+                        
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-       
-         //userconstantAPI()
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("TAG" + "WillAppear ")
     }
+    
+    override func viewWillLayoutSubviews() {
+            print("TAG" + "viewWillLayoutSubviews ")
+    
+    }
+    override func viewDidLayoutSubviews() {
+           print("TAG" + "viewDidLayoutSubviews ")
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+          print("TAG" + "viewDidAppear ")
+       
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+       print("TAG" + "viewDidDisappear ")
+    }
+    
+    
     
     
     //////////////////////  Method For Orientation   ////////////////////////////
@@ -131,11 +160,15 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
    // Mark : Used notificationCenter for method called when apps comes from foreground to background
     
-    @objc func appComeToForeground() {
-        print("On Resumed")
-        userconstantAPI()
-    }
-    
+//    @objc func appComeToForeground() {
+//        print("On Resumed")
+//        userconstantAPI()
+//
+//        self.verifyVersion()
+//
+//
+//    }
+//
     
     func verifyVersion(){
         
@@ -152,8 +185,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 let devicebuildVersion = (buildVersion as NSString).intValue
                 print( "VERSION Service Build",  iosversion! as String )
                 
-                if(devicebuildVersion < ServiceBuildVersion){
-                    
+                if(  ServiceBuildVersion > devicebuildVersion){
+                   
                     callAppStore()
                     
                 }
@@ -171,14 +204,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             NSLog("OK Pressed")
             
             
-           // UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
-            
-            
+        
+            /// Start
             let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
-           // Login.resetDefaults()
-            
+            Login.resetDefaults()
+            UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
             Login.modalPresentationStyle = .fullScreen
             self.present(Login, animated: true, completion: nil)
+            
+            //end
+            
+            // Remark : below is for clear root view controller (In our case we used two rootViewController
+            // one main and other payment ie why not used below code
+            
+//            self.resetDefaults()
+//            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
         }
         
         // Add the actions
@@ -188,7 +228,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         self.present(alertController, animated: true, completion: nil)
     }
     
-    
+    func resetDefaults() {
+        let defaults = UserDefaults.standard
+        // let dictionary = defaults.dictionaryRepresentation()
+        defaults.dictionaryRepresentation().keys.forEach(defaults.removeObject(forKey:))
+        Core.shared.setNewUser()
+         
+    }
     func deSelectDashboard(){
         
         if let index = mainTV.indexPathForSelectedRow{
@@ -1008,187 +1054,176 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         if Connectivity.isConnectedToInternet()
         {
             print("internet is available.")
-//        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-//        if let parentView = self.navigationController?.view
-//        {
-//            alertView.parentView = parentView
-//        }
-//        else
-//        {
-//            alertView.parentView = self.view
-//        }
-//        alertView.show()
-        
-        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-        
-        let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
-        
-        let url = "/api/user-constant"
-        //let url = "/api/user-constant-pb"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            
-           // alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let jsonData = userObject as? NSDictionary
-            
-            guard let jsonString = jsonData else { return }
-            
-            let DashboardArray = jsonData?.value(forKey: "dashboardarray") as! NSArray
-              print("USERCONSTANT DATA",DashboardArray)
-            
-            if(DashboardArray.count > 0){
-                for index in 0...(DashboardArray.count)-1 {
-                    let aObject = DashboardArray[index] as! [String : AnyObject]
+
+            if(UserDefaults.exists(key: "FBAId") == true) {
+                
+                let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+                
+                let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
+                
+                let url = "/api/user-constant"
+                //let url = "/api/user-constant-pb"
+                
+                FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                     
-                    let model = UserConstDashboarddModel(
-                        ProdId: aObject["ProdId"] as! String, url: aObject["url"] as! String)
+                    // alertView.close()
                     
-                    self.userDashboardModel.append(model)
-              }
+                    self.view.layoutIfNeeded()
+                    
+                    let jsonData = userObject as? NSDictionary
+                    
+                    guard let jsonString = jsonData else { return }
+                    
+                    let DashboardArray = jsonData?.value(forKey: "dashboardarray") as! NSArray
+                    print("USERCONSTANT DATA",DashboardArray)
+                    
+                    if(DashboardArray.count > 0){
+                        for index in 0...(DashboardArray.count)-1 {
+                            let aObject = DashboardArray[index] as! [String : AnyObject]
+                            
+                            let model = UserConstDashboarddModel(
+                                ProdId: aObject["ProdId"] as! String, url: aObject["url"] as! String)
+                            
+                            self.userDashboardModel.append(model)
+                        }
+                    }
+                    
+                    
+                    
+                    UserDefaults.standard.set(jsonString, forKey: "USERCONSTANT")     // set the data
+                    
+                    //            let dictData  =  UserDefaults.standard.dictionary(forKey: "USERCONSTANT") as? NSDictionary  // retreive the data
+                    //
+                    //            let muUID =  dictData?.value(forKey: "uid") as AnyObject
+                    //            print("Fetchung Data" ,muUID)
+                    
+                    let uid = jsonData?.value(forKey: "uid") as AnyObject
+                    let iosuid = jsonData?.value(forKey: "iosuid") as AnyObject
+                    let emplat = jsonData?.value(forKey: "emplat") as AnyObject
+                    let emplng = jsonData?.value(forKey: "emplng") as AnyObject
+                    let loanselfemail = jsonData?.value(forKey: "loanselfemail") as AnyObject
+                    let loanselfmobile = jsonData?.value(forKey: "loanselfmobile") as AnyObject
+                    let loansendname = jsonData?.value(forKey: "loansendname") as AnyObject
+                    let LoginID = jsonData?.value(forKey: "LoginID") as AnyObject
+                    let ManagName = jsonData?.value(forKey: "ManagName") as AnyObject
+                    self.managerName = ManagName as! String
+                    let POSP_STATUS = jsonData?.value(forKey: "POSP_STATUS") as AnyObject
+                    let MangEmail = jsonData?.value(forKey: "MangEmail") as AnyObject
+                    let MangMobile = jsonData?.value(forKey: "MangMobile") as AnyObject
+                    let SuppEmail = jsonData?.value(forKey: "SuppEmail") as AnyObject
+                    let SuppMobile = jsonData?.value(forKey: "SuppMobile") as AnyObject
+                    let FBAId = jsonData?.value(forKey: "FBAId") as AnyObject
+                    let loanselfid = jsonData?.value(forKey: "loanselfid") as AnyObject
+                    let loansendid = jsonData?.value(forKey: "loansendid") as AnyObject
+                    let POSPNo = jsonData?.value(forKey: "POSPNo") as AnyObject
+                    let ERPID = jsonData?.value(forKey: "ERPID") as AnyObject
+                    let loanselfphoto = jsonData?.value(forKey: "loanselfphoto") as AnyObject
+                    let TwoWheelerUrl = jsonData?.value(forKey: "TwoWheelerUrl") as AnyObject
+                    let FourWheelerUrl = jsonData?.value(forKey: "FourWheelerUrl") as AnyObject
+                    
+                    let healthurl = jsonData?.value(forKey: "healthurl") as AnyObject
+                    let CVUrl = jsonData?.value(forKey: "CVUrl") as AnyObject
+                    let notificationpopupurl = jsonData?.value(forKey: "notificationpopupurl") as AnyObject
+                    
+                    /// posp
+                    let pospsendname = jsonData?.value(forKey: "pospsendname") as AnyObject
+                    let pospsendemail = jsonData?.value(forKey: "pospsendemail") as AnyObject
+                    let pospsendmobile = jsonData?.value(forKey: "pospsendmobile") as AnyObject
+                    let pospsenddesignation = jsonData?.value(forKey: "pospsenddesignation") as AnyObject
+                    let pospsendphoto = jsonData?.value(forKey: "pospsendphoto") as AnyObject
+                    
+                    
+                    /// loan
+                    
+                    let loansendemail = jsonData?.value(forKey: "loansendemail") as AnyObject
+                    let loansendmobile = jsonData?.value(forKey: "loansendmobile") as AnyObject
+                    let loansenddesignation = jsonData?.value(forKey: "loansenddesignation") as AnyObject
+                    let loansendphoto = jsonData?.value(forKey: "loansendphoto") as AnyObject
+                    
+                    
+                    let finperkurl = jsonData?.value(forKey: "finperkurl") as AnyObject
+                    let finboxurl = jsonData?.value(forKey: "finboxurl") as AnyObject
+                    let PBByCrnSearch = jsonData?.value(forKey: "PBByCrnSearch") as AnyObject
+                    let LeadDashUrl = jsonData?.value(forKey: "LeadDashUrl") as AnyObject
+                    let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
+                    let showmyinsurancebusiness = jsonData?.value(forKey: "showmyinsurancebusiness") as AnyObject
+                    
+                    let fba_uid = jsonData?.value(forKey: "fba_uid") as AnyObject
+                    let fba_campaign_id = jsonData?.value(forKey: "fba_campaign_id") as AnyObject
+                    let fba_campaign_name = jsonData?.value(forKey: "fba_campaign_name") as AnyObject
+                    
+                    let iosversion = jsonData?.value(forKey: "iosversion") as AnyObject
+                    
+                    
+                    
+                    UserDefaults.standard.set(String(describing: uid), forKey: "uid")
+                    UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
+                    UserDefaults.standard.set(String(describing: emplat), forKey: "emplat")
+                    UserDefaults.standard.set(String(describing: emplng), forKey: "emplng")
+                    UserDefaults.standard.set(String(describing: loanselfemail), forKey: "loanselfemail")
+                    UserDefaults.standard.set(String(describing: loanselfmobile), forKey: "loanselfmobile")
+                    
+                    UserDefaults.standard.set(String(describing: LoginID), forKey: "LoginID")
+                    UserDefaults.standard.set(String(describing: ManagName), forKey: "ManagName")
+                    UserDefaults.standard.set(String(describing: POSP_STATUS), forKey: "POSP_STATUS")
+                    UserDefaults.standard.set(String(describing: MangEmail), forKey: "MangEmail")
+                    UserDefaults.standard.set(String(describing: MangMobile), forKey: "MangMobile")
+                    UserDefaults.standard.set(String(describing: SuppEmail), forKey: "SuppEmail")
+                    UserDefaults.standard.set(String(describing: SuppMobile), forKey: "SuppMobile")
+                    UserDefaults.standard.set(String(describing: FBAId), forKey: "FBAId")
+                    UserDefaults.standard.set(String(describing: loanselfid), forKey: "loanselfid")
+                    UserDefaults.standard.set(String(describing: loansendid), forKey: "loansendid")
+                    UserDefaults.standard.set(String(describing: POSPNo), forKey: "POSPNo")
+                    UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
+                    UserDefaults.standard.set(String(describing: loanselfphoto), forKey: "loanselfphoto")
+                    UserDefaults.standard.set(String(describing: TwoWheelerUrl), forKey: "TwoWheelerUrl")
+                    UserDefaults.standard.set(String(describing: FourWheelerUrl), forKey: "FourWheelerUrl")
+                    
+                    UserDefaults.standard.set(String(describing: healthurl), forKey: "healthurl")
+                    UserDefaults.standard.set(String(describing: CVUrl), forKey: "CVUrl")
+                    UserDefaults.standard.set(String(describing: notificationpopupurl), forKey: "notificationpopupurl")
+                    
+                    UserDefaults.standard.set(String(describing: pospsendname), forKey: "pospsendname")
+                    UserDefaults.standard.set(String(describing: pospsendemail), forKey: "pospsendemail")
+                    UserDefaults.standard.set(String(describing: pospsendmobile), forKey: "pospsendmobile")
+                    UserDefaults.standard.set(String(describing: pospsenddesignation), forKey: "pospsenddesignation")
+                    UserDefaults.standard.set(String(describing: pospsendphoto), forKey: "pospsendphoto")
+                    
+                    UserDefaults.standard.set(String(describing: loansendname), forKey: "loansendname")
+                    UserDefaults.standard.set(String(describing: loansendemail), forKey: "loansendemail")
+                    UserDefaults.standard.set(String(describing: loansendmobile), forKey: "loansendmobile")
+                    UserDefaults.standard.set(String(describing: loansenddesignation), forKey: "loansenddesignation")
+                    UserDefaults.standard.set(String(describing: loansendphoto), forKey: "loansendphoto")
+                    
+                    UserDefaults.standard.set(String(describing: finperkurl), forKey: "finperkurl")
+                    UserDefaults.standard.set(String(describing: finboxurl), forKey: "finboxurl")
+                    UserDefaults.standard.set(String(describing: PBByCrnSearch), forKey: "PBByCrnSearch")
+                    UserDefaults.standard.set(String(describing: LeadDashUrl), forKey: "LeadDashUrl")
+                    UserDefaults.standard.set(String(describing: enableenrolasposp), forKey: "enableenrolasposp")
+                    UserDefaults.standard.set(String(describing: showmyinsurancebusiness), forKey: "showmyinsurancebusiness")
+                    
+                    UserDefaults.standard.set(String(describing: fba_uid), forKey: "fba_uid")
+                    UserDefaults.standard.set(String(describing: fba_campaign_id), forKey: "fba_campaign_id")
+                    UserDefaults.standard.set(String(describing: fba_campaign_name), forKey: "fba_campaign_name")
+                    
+                    UserDefaults.standard.set(String(describing: iosversion), forKey: "iosversion")
+                    
+                    
+                   
+                  
+                    
+                }, onError: { errorData in
+                    // alertView.close()
+                    //            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                    //            snackbar.show()
+                }, onForceUpgrade: {errorData in})
+                
+            }else{
+                //            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                //            snackbar.show()
             }
             
-                
-                
-            UserDefaults.standard.set(jsonString, forKey: "USERCONSTANT")     // set the data
-            
-//            let dictData  =  UserDefaults.standard.dictionary(forKey: "USERCONSTANT") as? NSDictionary  // retreive the data
-//
-//            let muUID =  dictData?.value(forKey: "uid") as AnyObject
-//            print("Fetchung Data" ,muUID)
-
-            let uid = jsonData?.value(forKey: "uid") as AnyObject
-            let iosuid = jsonData?.value(forKey: "iosuid") as AnyObject
-            let emplat = jsonData?.value(forKey: "emplat") as AnyObject
-            let emplng = jsonData?.value(forKey: "emplng") as AnyObject
-            let loanselfemail = jsonData?.value(forKey: "loanselfemail") as AnyObject
-            let loanselfmobile = jsonData?.value(forKey: "loanselfmobile") as AnyObject
-            let loansendname = jsonData?.value(forKey: "loansendname") as AnyObject
-            let LoginID = jsonData?.value(forKey: "LoginID") as AnyObject
-            let ManagName = jsonData?.value(forKey: "ManagName") as AnyObject
-            self.managerName = ManagName as! String
-            let POSP_STATUS = jsonData?.value(forKey: "POSP_STATUS") as AnyObject
-            let MangEmail = jsonData?.value(forKey: "MangEmail") as AnyObject
-            let MangMobile = jsonData?.value(forKey: "MangMobile") as AnyObject
-            let SuppEmail = jsonData?.value(forKey: "SuppEmail") as AnyObject
-            let SuppMobile = jsonData?.value(forKey: "SuppMobile") as AnyObject
-            let FBAId = jsonData?.value(forKey: "FBAId") as AnyObject
-            let loanselfid = jsonData?.value(forKey: "loanselfid") as AnyObject
-            let loansendid = jsonData?.value(forKey: "loansendid") as AnyObject
-            let POSPNo = jsonData?.value(forKey: "POSPNo") as AnyObject
-            let ERPID = jsonData?.value(forKey: "ERPID") as AnyObject
-            let loanselfphoto = jsonData?.value(forKey: "loanselfphoto") as AnyObject
-            let TwoWheelerUrl = jsonData?.value(forKey: "TwoWheelerUrl") as AnyObject
-            let FourWheelerUrl = jsonData?.value(forKey: "FourWheelerUrl") as AnyObject
-            
-            let healthurl = jsonData?.value(forKey: "healthurl") as AnyObject
-            let CVUrl = jsonData?.value(forKey: "CVUrl") as AnyObject
-            let notificationpopupurl = jsonData?.value(forKey: "notificationpopupurl") as AnyObject
-            
-            /// posp
-              let pospsendname = jsonData?.value(forKey: "pospsendname") as AnyObject
-              let pospsendemail = jsonData?.value(forKey: "pospsendemail") as AnyObject
-              let pospsendmobile = jsonData?.value(forKey: "pospsendmobile") as AnyObject
-              let pospsenddesignation = jsonData?.value(forKey: "pospsenddesignation") as AnyObject
-              let pospsendphoto = jsonData?.value(forKey: "pospsendphoto") as AnyObject
-            
-            
-            /// loan
-          
-            let loansendemail = jsonData?.value(forKey: "loansendemail") as AnyObject
-            let loansendmobile = jsonData?.value(forKey: "loansendmobile") as AnyObject
-            let loansenddesignation = jsonData?.value(forKey: "loansenddesignation") as AnyObject
-            let loansendphoto = jsonData?.value(forKey: "loansendphoto") as AnyObject
-            
-            
-            let finperkurl = jsonData?.value(forKey: "finperkurl") as AnyObject
-            let finboxurl = jsonData?.value(forKey: "finboxurl") as AnyObject
-            let PBByCrnSearch = jsonData?.value(forKey: "PBByCrnSearch") as AnyObject
-            let LeadDashUrl = jsonData?.value(forKey: "LeadDashUrl") as AnyObject
-            let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
-            let showmyinsurancebusiness = jsonData?.value(forKey: "showmyinsurancebusiness") as AnyObject
-            
-            let fba_uid = jsonData?.value(forKey: "fba_uid") as AnyObject
-            let fba_campaign_id = jsonData?.value(forKey: "fba_campaign_id") as AnyObject
-            let fba_campaign_name = jsonData?.value(forKey: "fba_campaign_name") as AnyObject
-            
-            let iosversion = jsonData?.value(forKey: "iosversion") as AnyObject
-           
-           
-            
-            UserDefaults.standard.set(String(describing: uid), forKey: "uid")
-            UserDefaults.standard.set(String(describing: iosuid), forKey: "iosuid")
-            UserDefaults.standard.set(String(describing: emplat), forKey: "emplat")
-            UserDefaults.standard.set(String(describing: emplng), forKey: "emplng")
-            UserDefaults.standard.set(String(describing: loanselfemail), forKey: "loanselfemail")
-            UserDefaults.standard.set(String(describing: loanselfmobile), forKey: "loanselfmobile")
-          
-            UserDefaults.standard.set(String(describing: LoginID), forKey: "LoginID")
-            UserDefaults.standard.set(String(describing: ManagName), forKey: "ManagName")
-            UserDefaults.standard.set(String(describing: POSP_STATUS), forKey: "POSP_STATUS")
-            UserDefaults.standard.set(String(describing: MangEmail), forKey: "MangEmail")
-            UserDefaults.standard.set(String(describing: MangMobile), forKey: "MangMobile")
-            UserDefaults.standard.set(String(describing: SuppEmail), forKey: "SuppEmail")
-            UserDefaults.standard.set(String(describing: SuppMobile), forKey: "SuppMobile")
-            UserDefaults.standard.set(String(describing: FBAId), forKey: "FBAId")
-            UserDefaults.standard.set(String(describing: loanselfid), forKey: "loanselfid")
-            UserDefaults.standard.set(String(describing: loansendid), forKey: "loansendid")
-            UserDefaults.standard.set(String(describing: POSPNo), forKey: "POSPNo")
-            UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
-            UserDefaults.standard.set(String(describing: loanselfphoto), forKey: "loanselfphoto")
-            UserDefaults.standard.set(String(describing: TwoWheelerUrl), forKey: "TwoWheelerUrl")
-            UserDefaults.standard.set(String(describing: FourWheelerUrl), forKey: "FourWheelerUrl")
-            
-            UserDefaults.standard.set(String(describing: healthurl), forKey: "healthurl")
-            UserDefaults.standard.set(String(describing: CVUrl), forKey: "CVUrl")
-            UserDefaults.standard.set(String(describing: notificationpopupurl), forKey: "notificationpopupurl")
-            
-            UserDefaults.standard.set(String(describing: pospsendname), forKey: "pospsendname")
-            UserDefaults.standard.set(String(describing: pospsendemail), forKey: "pospsendemail")
-            UserDefaults.standard.set(String(describing: pospsendmobile), forKey: "pospsendmobile")
-            UserDefaults.standard.set(String(describing: pospsenddesignation), forKey: "pospsenddesignation")
-            UserDefaults.standard.set(String(describing: pospsendphoto), forKey: "pospsendphoto")
-            
-            UserDefaults.standard.set(String(describing: loansendname), forKey: "loansendname")
-            UserDefaults.standard.set(String(describing: loansendemail), forKey: "loansendemail")
-            UserDefaults.standard.set(String(describing: loansendmobile), forKey: "loansendmobile")
-            UserDefaults.standard.set(String(describing: loansenddesignation), forKey: "loansenddesignation")
-            UserDefaults.standard.set(String(describing: loansendphoto), forKey: "loansendphoto")
-            
-            UserDefaults.standard.set(String(describing: finperkurl), forKey: "finperkurl")
-            UserDefaults.standard.set(String(describing: finboxurl), forKey: "finboxurl")
-            UserDefaults.standard.set(String(describing: PBByCrnSearch), forKey: "PBByCrnSearch")
-            UserDefaults.standard.set(String(describing: LeadDashUrl), forKey: "LeadDashUrl")
-            UserDefaults.standard.set(String(describing: enableenrolasposp), forKey: "enableenrolasposp")
-            UserDefaults.standard.set(String(describing: showmyinsurancebusiness), forKey: "showmyinsurancebusiness")
-            
-            UserDefaults.standard.set(String(describing: fba_uid), forKey: "fba_uid")
-            UserDefaults.standard.set(String(describing: fba_campaign_id), forKey: "fba_campaign_id")
-            UserDefaults.standard.set(String(describing: fba_campaign_name), forKey: "fba_campaign_name")
-            
-            UserDefaults.standard.set(String(describing: iosversion), forKey: "iosversion")
-            
-            
-            ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////
-            
-            self.verifyVersion()
-            
-            
-         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
-        }, onError: { errorData in
-           // alertView.close()
-//            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-//            snackbar.show()
-        }, onForceUpgrade: {errorData in})
-            
-        }else{
-//            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-//            snackbar.show()
         }
-        
         
     }
     
@@ -1203,114 +1238,117 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         {
             print("internet is available.")
             
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
-        }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        
-        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-        
-        let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
-        
-       // let url = "/api/get-dynamic-app"
-        let url = "/api/get-dynamic-app-pb"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            
-            self.view.layoutIfNeeded()
-            
-            
-            
-             let jsonData = userObject as? NSDictionary
-            let Dashboard = jsonData?.value(forKey: "Dashboard") as! NSArray
-            
-            
-             print("MY DATA",Dashboard)
-        
-            for index in 0...(Dashboard.count)-1 {
-                let aObject = Dashboard[index] as! [String : AnyObject]
+            if(UserDefaults.exists(key: "FBAId") == true) {
                 
+                let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+                if let parentView = self.navigationController?.view
+                {
+                    alertView.parentView = parentView
+                }
+                else
+                {
+                    alertView.parentView = self.view
+                }
+                alertView.show()
                 
-                if(aObject["ProdId"] as! String != "16" && aObject["ProdId"] as! String != "18"  ){
+                let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+                
+                let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
+                
+                // let url = "/api/get-dynamic-app"
+                
+                let url = "/api/get-dynamic-app-pb"
+                
+                FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                    alertView.close()
                     
                     
-                    if(aObject["dashboard_type"] as! String == "1"){
-                        
-                        let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
-                                                          link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
-                                                          isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
-                                                          modalType: "INSURANCE" , dashboard_type: aObject["dashboard_type"] as! String,
-                                                          
-                                                          ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
-                                                          ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
-                                                          IsExclusive: aObject["IsExclusive"] as! String,
-                                                          IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
-                                                          IsSharable: aObject["IsSharable"] as! String,
-                                                          popupmsg: aObject["popupmsg"] as! String,
-                                                          title: aObject["title"] as! String,
-                                                          info: aObject["info"] as! String)
-                        
-                        self.dynamicDashboardModel.append(model)
-                        
-                    }else if(aObject["dashboard_type"] as! String == "3" ){
-                        
-                        let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
-                                                          link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
-                                                          isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
-                                                          modalType: "MORESERVICE" , dashboard_type: aObject["dashboard_type"] as! String,
-                                                          
-                                                          ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
-                                                          ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
-                                                          IsExclusive: aObject["IsExclusive"] as! String,
-                                                          IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
-                                                          IsSharable: aObject["IsSharable"] as! String,
-                                                          popupmsg: aObject["popupmsg"] as! String,
-                                                          title: aObject["title"] as! String,
-                                                          info: aObject["info"] as! String)
+                    self.view.layoutIfNeeded()
+                    
+                    
+                    
+                    let jsonData = userObject as? NSDictionary
+                    let Dashboard = jsonData?.value(forKey: "Dashboard") as! NSArray
+                    
+                    
+                    print("MY DATA",Dashboard)
+                    
+                    for index in 0...(Dashboard.count)-1 {
+                        let aObject = Dashboard[index] as! [String : AnyObject]
                         
                         
-                        self.moreServiceModel.append(model)
+                        if(aObject["ProdId"] as! String != "16" && aObject["ProdId"] as! String != "18"  ){
+                            
+                            
+                            if(aObject["dashboard_type"] as! String == "1"){
+                                
+                                let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
+                                                                  link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
+                                                                  isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
+                                                                  modalType: "INSURANCE" , dashboard_type: aObject["dashboard_type"] as! String,
+                                                                  
+                                                                  ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
+                                                                  ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
+                                                                  IsExclusive: aObject["IsExclusive"] as! String,
+                                                                  IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
+                                                                  IsSharable: aObject["IsSharable"] as! String,
+                                                                  popupmsg: aObject["popupmsg"] as! String,
+                                                                  title: aObject["title"] as! String,
+                                                                  info: aObject["info"] as! String)
+                                
+                                self.dynamicDashboardModel.append(model)
+                                
+                            }else if(aObject["dashboard_type"] as! String == "3" ){
+                                
+                                let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
+                                                                  link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
+                                                                  isActive: aObject["isActive"] as! Int, dashdescription: aObject["description"] as! String,
+                                                                  modalType: "MORESERVICE" , dashboard_type: aObject["dashboard_type"] as! String,
+                                                                  
+                                                                  ProdId: aObject["ProdId"] as! String, ProductNameFontColor: aObject["ProductNameFontColor"] as! String, ProductDetailsFontColor: aObject["ProductDetailsFontColor"] as! String,
+                                                                  ProductBackgroundColor: aObject["ProductBackgroundColor"] as! String,
+                                                                  IsExclusive: aObject["IsExclusive"] as! String,
+                                                                  IsNewprdClickable: aObject["IsNewprdClickable"] as! String,
+                                                                  IsSharable: aObject["IsSharable"] as! String,
+                                                                  popupmsg: aObject["popupmsg"] as! String,
+                                                                  title: aObject["title"] as! String,
+                                                                  info: aObject["info"] as! String)
+                                
+                                
+                                self.moreServiceModel.append(model)
+                            }
+                            
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        //var menuName = aObject["menuname"] as! String
+                        // print("DATA",menuName)
+                        
+                        DispatchQueue.main.async {
+                            self.mainTV.isHidden = false
+                            self.mainTV.reloadData()
+                        }
+                        
+                        
                     }
-                 
                     
                     
-                    
-                }
-                
-                
-            
-                //var menuName = aObject["menuname"] as! String
-                // print("DATA",menuName)
-                
-                DispatchQueue.main.async {
-                    self.mainTV.isHidden = false
-                    self.mainTV.reloadData()
-                }
-                
+                }, onError: { errorData in
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                    snackbar.show()
+                }, onForceUpgrade: {errorData in})
                 
             }
-
-            
-        }, onError: { errorData in
-            alertView.close()
-            let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-            snackbar.show()
-        }, onForceUpgrade: {errorData in})
             
         }else{
             let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
             snackbar.show()
         }
-            
-        
     }
     
     
