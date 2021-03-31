@@ -12,6 +12,7 @@ import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
 
+
 class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,WKScriptMessageHandler ,UIDocumentInteractionControllerDelegate{
 
     @IBOutlet weak var webView: WKWebView!
@@ -31,7 +32,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     
     var dynamicUrl = ""
     var dynamicName = ""
-   
+    var delegateData : HomeDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -427,13 +428,13 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     {
         
         if(addType == "CHILD"){
-            
+            delegateData?.callbackHomeDelegate()
             self.remove()
      
         }else{
 //            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
 //            present(KYDrawer, animated: true, completion: nil)
-            
+              delegateData?.callbackHomeDelegate()
               dismiss(animated: true)
 
         }
@@ -443,6 +444,8 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     @IBAction func webbackBtnCliked(_ sender: Any)
     {
         if(addType == "CHILD"){
+            
+            delegateData?.callbackHomeDelegate()
              self.remove()
         }
         else{
@@ -459,6 +462,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
 //                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
 //                present(KYDrawer, animated: true, completion: nil)
                 
+                delegateData?.callbackHomeDelegate()
                  dismiss(animated: true)
                 
             }

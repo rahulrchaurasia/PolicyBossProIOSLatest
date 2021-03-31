@@ -14,7 +14,9 @@ import Alamofire
 import SDWebImage
 import MessageUI
 
-class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate {
+class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate ,HomeDelegate{
+   
+    
    
     @IBOutlet weak var mainTV: UITableView!
     @IBOutlet weak var salesmaterialView: UIView!
@@ -294,7 +296,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
        let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
         
-         KnowlgeGuru.modalPresentationStyle = .fullScreen
+        KnowlgeGuru.modalPresentationStyle = .fullScreen
+        KnowlgeGuru.delegateData = self
         present(KnowlgeGuru, animated: true, completion: nil)
     }
     
@@ -592,47 +595,54 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 switch Int(self.dynamicDashboardModel[indexPath.row].ProdId) {
                 case 1  :  // car
                     
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.webfromScreen = "private"
-//                    present(commonWeb, animated: true, completion: nil)
-                    
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "private"
-                    commonWeb.addType = "CHILD"
 
-                    add(commonWeb)    // Adding in Parent View
-                    deSelectDashboard()
+                    
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "private"
+//                    commonWeb.addType = "CHILD"
+//                    commonWeb.delegateData = self
+//                    add(commonWeb)    // Adding in Parent View
+//                    deSelectDashboard()
+                    
+                    
+                    callWebView(webfromScreen: "private", type: "CHILD")
                     
                     break
                 case 2  :  // Health
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "HealthInsurance"
-                    commonWeb.addType = "CHILD"
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "HealthInsurance"
+//                    commonWeb.addType = "CHILD"
+//
+//                    add(commonWeb)    // Adding in Parent View
+//                    deSelectDashboard()
                     
-                    add(commonWeb)    // Adding in Parent View
-                    deSelectDashboard()
+                      callWebView(webfromScreen: "HealthInsurance", type: "CHILD")
                     break
                     
                 case 10 :  // TWO WHEELER
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "twoWheeler"
-                    commonWeb.addType = "CHILD"
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "twoWheeler"
+//                    commonWeb.addType = "CHILD"
+//
+//                    add(commonWeb)
+//                    deSelectDashboard()
                     
-                    add(commonWeb)
-                    deSelectDashboard()
+                    callWebView(webfromScreen: "twoWheeler", type: "CHILD")
                     break
                     
                 case 12  :   //COMMERCIAL VEHICLE
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
-                    commonWeb.addType = "CHILD"
-                   // present(commonWeb, animated: true, completion: nil)
-                    add(commonWeb)
-                    deSelectDashboard()
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
+//                    commonWeb.addType = "CHILD"
+//                   // present(commonWeb, animated: true, completion: nil)
+//                    add(commonWeb)
+//                    deSelectDashboard()
+                    
+                    callWebView(webfromScreen: "COMMERCIALVEHICLE", type: "CHILD")
                     break
                     
                 case 18  :    // TermInsurance
@@ -694,6 +704,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                               
                                 commonWeb.modalPresentationStyle = .fullScreen
                                 commonWeb.addType = "CHILD"
+                                commonWeb.delegateData = self
                                 add(commonWeb)
                                 deSelectDashboard()
                                 
@@ -713,6 +724,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                        // present(commonWeb, animated: true, completion: nil)
                         commonWeb.modalPresentationStyle = .fullScreen
                         commonWeb.addType = "CHILD"
+                         commonWeb.delegateData = self
                         add(commonWeb)
                         deSelectDashboard()
                         
@@ -861,10 +873,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @objc func buttonDisclTapped(_ button:UIButton){
         
-        // 05
-        //showToast(controller: self, message: "Disclosure", seconds: 4)
-//        let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
-//        present(hnfdisclosure, animated: true, completion: nil)
         
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
      
@@ -1583,6 +1591,27 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
     
+    
+    /////////
+    
+    func callWebView(webfromScreen : String ,type :String)  {
+        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+        commonWeb.modalPresentationStyle = .fullScreen
+        commonWeb.webfromScreen = webfromScreen
+        commonWeb.addType = type
+        commonWeb.delegateData = self
+        add(commonWeb)    // Adding in Parent View
+        deSelectDashboard()
+    }
+    
+    func callbackHomeDelegate() {
+     
+        print("TTT  Call back to Parent ")
+        self.userconstantAPI()
+        self.getdynamicappAPI()
+        self.verifyVersion()
+        
+       }
 
 }
 

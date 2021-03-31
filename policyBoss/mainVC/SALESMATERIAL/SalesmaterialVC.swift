@@ -13,6 +13,9 @@ import TTGSnackbar
 
 class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegate ,salesDelegate{
    
+   
+    
+   
     
     
     @IBOutlet weak var salesMTView: UITableView!

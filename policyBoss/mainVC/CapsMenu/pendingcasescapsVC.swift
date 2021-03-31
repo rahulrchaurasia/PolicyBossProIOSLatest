@@ -498,7 +498,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                                       self.pendingTV.reloadData()
                                 }else{
                                     
-                                    let snackbar = TTGSnackbar.init(message: "No Data Found ...", duration: .long)
+                                    let snackbar = TTGSnackbar.init(message: "No Data Found ...", duration:.short)
                                     snackbar.show()
                                     
                                 }

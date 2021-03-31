@@ -835,12 +835,17 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     }
     
     
-    @IBAction func docUpload3btnClick(_ sender: Any) {
-        
-        uploadDoc = "DOC8"
-        callCamera((Any).self)
-    }
+//    @IBAction func docUpload3btnClick(_ sender: Any) {
+//
+//        uploadDoc = "DOC8"
+//        callCamera((Any).self)
+//    }
     
+    @IBAction func docUpload3btnClick(_ sender: Any) {
+         uploadDoc = "DOC8"
+        callCamera((Any).self)
+        
+    }
     
     @IBAction func docUpload4btnClick(_ sender: Any) {
         

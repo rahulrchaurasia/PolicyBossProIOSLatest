@@ -16,6 +16,7 @@ import AlamofireImage
 protocol salesDelegate
 {
     func selSalesData()
+    
 }
 
 class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -96,7 +97,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         
 
         
-        self.dismissAll(animated: false)
+        self.dismissAll(animated: true)
      
              
     }

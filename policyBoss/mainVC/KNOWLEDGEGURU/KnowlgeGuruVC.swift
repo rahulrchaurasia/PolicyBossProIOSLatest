@@ -17,7 +17,7 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var knowtableArray = ["INSURANCE","OTHER PRODUCTS"]
     var knowImgArray = ["knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
     
-    
+    var delegateData : HomeDelegate?
     @IBOutlet var knowldgeTV: UITableView!
     
     override func viewDidLoad() {
@@ -28,12 +28,13 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     @IBAction func knowguruBackBtn(_ sender: Any)
     {
         
+        delegateData?.callbackHomeDelegate()
             self.dismiss(animated: true)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-
+                  delegateData?.callbackHomeDelegate()
              self.dismiss(animated: true)
     }
     
@@ -80,6 +81,7 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
             Loans.wfromScreen = "Insurance"
             Loans.modalPresentationStyle = .fullScreen
+          
             present(Loans, animated: true, completion: nil)
             
         }
@@ -88,6 +90,7 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
             Loans.wfromScreen = "otherProduct"
             Loans.modalPresentationStyle = .fullScreen
+           
             present(Loans, animated: true, completion: nil)
             
         }

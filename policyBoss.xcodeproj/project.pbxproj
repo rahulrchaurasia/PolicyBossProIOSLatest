@@ -183,6 +183,7 @@
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
+		B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */; };
 		B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE32613721E00B49797 /* Extension+UIViewController.swift */; };
 		B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */; };
 /* End PBXBuildFile section */
@@ -402,6 +403,7 @@
 		84F4114E220AF254001407EE /* whatsNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewTVCell.swift; sourceTree = "<group>"; };
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
+		B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callbackToHomeProtocol.swift; sourceTree = "<group>"; };
 		B2622BE32613721E00B49797 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -783,6 +785,7 @@
 				8410404021D789C200C3B7A7 /* ResponseMetadata.swift */,
 				442DEDCA2449967200067A3E /*  Connectivity.swift */,
 				442E20E024C8355200FFC075 /* Core.swift */,
+				B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */,
 			);
 			path = CONFIGURATION;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				44AB6D8123028D6100CE685E /* creditCardVC.swift in Sources */,
 				44BC3A2422EB0636009926FC /* loanleadHistoryTVCell.swift in Sources */,
 				442C140D2497A31700E3C455 /* pospDoc.swift in Sources */,
+				B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */,
 				44C6E48F22E2E41000D3F4B3 /* detailsTVCell.swift in Sources */,
 				8431D1DC21E8B2BB000419E3 /* motorInsurance3capsVC.swift in Sources */,
 				840562DF21D4D30B0099DDE8 /* loans(shareData)VC.swift in Sources */,
