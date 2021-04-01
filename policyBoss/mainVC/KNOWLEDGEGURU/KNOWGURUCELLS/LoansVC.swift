@@ -36,6 +36,8 @@ class LoansVC: UIViewController,WKNavigationDelegate{
         {
            titleLBL.text! = "INSURANCE REPOSITORY"
            loanwebView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/insurance_repository/page.html")!))
+            
+           
         }
         else if(wfromScreen == "otherProduct")
         {

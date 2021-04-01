@@ -994,6 +994,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 case .failure(let encodingError):
                     //self.delegate?.showFailAlert()
                     print(encodingError)
+                    let snackbar = TTGSnackbar.init(message: "Doc Not Uploaded. Please try again", duration: .middle )
+                                          snackbar.show()
                 }
                 
             }

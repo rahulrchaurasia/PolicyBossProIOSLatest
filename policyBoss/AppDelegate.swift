@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        //Note :  Used For Keyboard Handling When its hiding the textfield
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
         //---Statusbar Customization
         //005
 //        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView

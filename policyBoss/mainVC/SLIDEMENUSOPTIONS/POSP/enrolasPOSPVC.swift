@@ -100,13 +100,39 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     let EDU_FILE = "POSPHighestEducationProof"
     
 
-    
+    //let toolbar = UIToolbar()
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //toolbar.sizeToFit()
         self.hideKeyboardWhenTappedAround()
         imagePicker.delegate = self
        
+        enfirstNameTf.delegate = self
+        enlastNameTf.delegate = self
+        endobTf.delegate = self
+        enmob1Tf.delegate = self
+        enmob2Tf.delegate = self
+        enemailTf.delegate = self
+        enpanTf.delegate = self
+        enadhrTf.delegate = self
+        engstTf.delegate = self
+        enchnlpartnrTf.delegate = self
+        enaddress1Tf.delegate = self
+        enaddress2Tf.delegate = self
+        enaddress3Tf.delegate = self
+        enpincodeTf.delegate = self
+        encityTf.delegate = self
+        enstateTf.delegate = self
+        enbankaccnoTf.delegate = self
+        enifscCodeTf.delegate = self
+        enmicrCodeTf.delegate = self
+        enbankNameTf.delegate = self
+        enbankBranchTf.delegate = self
+        enbankCityTf.delegate = self
+          
+          
         
         enpanTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         enifscCodeTf.autocapitalizationType = .allCharacters
@@ -183,6 +209,23 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
             
             
+        }
+        if(textField == enadhrTf)
+        {
+            if((textField.text?.count)! <= 11)
+            {
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            }
+            else{
+                             let startingLength = textField.text?.count ?? 0
+                               let lengthToAdd = string.count
+                               let lengthToReplace = range.length
+                               let newLength = startingLength + lengthToAdd - lengthToReplace
+                               
+                               return newLength <= (textField.text?.count)!
+            }
         }
         if(textField == enmob1Tf  ||  textField == enmob2Tf)
         {
@@ -791,7 +834,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 if(isPaymentDone){
                     
                    
-                     self.showToast(controller: self, message: "POSP Already exist!!", seconds: 4)
+                     self.showToast(controller: self, message: "POSP Already exist!!", seconds: 3)
+                   
                     openValidatePosp(strData: "DOC")
                 }
                 else{
@@ -801,8 +845,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 
                 if(isPaymentDone){
                     
-                    self.showToast(controller: self, message: "Payment Already Done,Please upload Remaining Documents !!", seconds: 4)
-                    
+                    //                    self.showToast(controller: self, message: "Payment Already Done,Please Upload Remaining Documents !!", seconds: 2)
+                    alertCall(message: "Payment Already Done,Please Upload Remaining Documents !!")
                     openValidatePosp(strData: "DOC")
                 }else{
                     
@@ -936,22 +980,27 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             
             uploaddocAPI(documentName: PHOTO_File, documentType: "6")
         }
+            
         else if(uploadDoc == "DOC7"){
           
              uploaddocAPI(documentName: PAN_File, documentType: "7")
         }
+            
         else if(uploadDoc == "DOC8"){
          
-             uploaddocAPI(documentName: CANCEL_CHQ_File, documentType: "8")
+             uploaddocAPI(documentName: AADHAR_FRONT_File, documentType: "8")
         }
+            
         else if(uploadDoc == "DOC9"){
             
-             uploaddocAPI(documentName: AADHAR_FRONT_File, documentType: "9")
+             uploaddocAPI(documentName: AADHAR_BACK_File, documentType: "9")
         }
+            
         else if(uploadDoc == "DOC10"){
            
-             uploaddocAPI(documentName: AADHAR_BACK_File, documentType: "10")
-        } else if(uploadDoc == "DOC11"){
+             uploaddocAPI(documentName: CANCEL_CHQ_File, documentType: "10")
+        }
+        else if(uploadDoc == "DOC11"){
             
           
              uploaddocAPI(documentName: EDU_FILE, documentType: "11")
@@ -1007,7 +1056,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                     "Content-Type": "application/json",
                     "token": "1234567890"
                 ]
-                // to:"http://preprodapiqa.mgfm.in/api/upload-doc")
+              
                 Alamofire.upload(multipartFormData: { (multipartFormData) in
                   
                     multipartFormData.append(imageData!, withName: "DocFile", fileName: "swift_file.jpeg", mimeType: "image/jpeg")
@@ -1048,7 +1097,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                     case .failure(let encodingError):
                         //self.delegate?.showFailAlert()
                         print("Error",encodingError)
-                        
+                        let snackbar = TTGSnackbar.init(message: "Doc Not Uploaded. Please try again", duration: .middle )
+                        snackbar.show()
                     }
                     
                 }
@@ -1281,7 +1331,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSDictionary
-            TTGSnackbar.init(message: "Posp registered successfully.", duration: .long).show()
+            TTGSnackbar.init(message: "Posp registered successfully.", duration: .middle).show()
             // self.showToast(controller: self, message: "Posp registered successfully.", seconds: 4)
             
             
@@ -1585,7 +1635,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             if(isPaymentDone){
                 
             
-                 self.showToast(controller: self, message: "POSP Already exist!!", seconds: 4)
+                 self.showToast(controller: self, message: "POSP Already exist!!", seconds: 2)
                 
                // openValidatePosp(strData: "DOC")  // 05 pending  (Hide the Main View)
             }
@@ -1880,6 +1930,12 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
     }
     
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
 //    func showToast(controller: UIViewController,message : String, seconds : Double){
 //
 //         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)

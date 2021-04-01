@@ -112,30 +112,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        print("TAG" + "WillAppear ")
-    }
-    
-    override func viewWillLayoutSubviews() {
-            print("TAG" + "viewWillLayoutSubviews ")
-    
-    }
-    override func viewDidLayoutSubviews() {
-           print("TAG" + "viewDidLayoutSubviews ")
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-          print("TAG" + "viewDidAppear ")
-       
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-       print("TAG" + "viewDidDisappear ")
-    }
-    
-    
-    
     
     //////////////////////  Method For Orientation   ////////////////////////////
     
