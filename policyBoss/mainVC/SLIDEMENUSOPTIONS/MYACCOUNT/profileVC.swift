@@ -91,9 +91,34 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         aTextField.delegate = self
         
         
-        micrCodeTf.delegate = self
-        bankBranchTf.delegate = self
-        bankNameTf.delegate = self
+//        micrCodeTf.delegate = self
+//        bankBranchTf.delegate = self
+//        bankNameTf.delegate = self
+        
+    
+        designationTf.delegate = self
+        mobilenotoshareTf.delegate = self
+  //      emailtoshareTf.delegate = self
+//        address1Tf.delegate = self
+//        address2Tf.delegate = self
+//        address3Tf.delegate = self
+         // pospemailTf.delegate = self
+        pincodeTf.delegate = self
+        cityTf.delegate = self
+        stateTf.delegate = self
+        
+        accountHolderNameTf.delegate = self
+        panTf.delegate = self
+        addharTf.delegate = self
+        bankaccnoTf.delegate = self
+       // ifscCodeTf.delegate = self
+
+        bankCityTf.delegate = self
+        pospDesignTf.delegate = self
+        pospMobNumTf.delegate = self
+      
+        
+        
         panTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         ifscCodeTf.autocapitalizationType = .allCharacters
         
@@ -172,6 +197,16 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     //---<textFieldRange>---
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
+        
+        if(textField == bankaccnoTf  )
+              {
+                  
+                  let allowedCharacters = CharacterSet.decimalDigits
+                  let characterSet = NSCharacterSet(charactersIn: string)
+                  return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                  
+                  
+              }
         if(textField == mobilenotoshareTf   ||  textField == pospMobNumTf)
         {
             if((textField.text?.count)! <= 9)
@@ -183,6 +218,23 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             else{
                 //            let characterCountLimit = 30
                 // We need to figure out how many characters would be in the string after the change happens
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!
+            }
+        }
+        else if(textField == addharTf)
+        {
+            if((textField.text?.count)! <= 11)
+            {
+                let allowedCharacters = CharacterSet.decimalDigits
+                let characterSet = NSCharacterSet(charactersIn: string)
+                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            }
+            else{
                 let startingLength = textField.text?.count ?? 0
                 let lengthToAdd = string.count
                 let lengthToReplace = range.length

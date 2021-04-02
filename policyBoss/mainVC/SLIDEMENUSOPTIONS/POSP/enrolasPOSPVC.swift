@@ -114,14 +114,16 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         endobTf.delegate = self
         enmob1Tf.delegate = self
         enmob2Tf.delegate = self
-        enemailTf.delegate = self
         enpanTf.delegate = self
-        enadhrTf.delegate = self
-        engstTf.delegate = self
-        enchnlpartnrTf.delegate = self
-        enaddress1Tf.delegate = self
-        enaddress2Tf.delegate = self
-        enaddress3Tf.delegate = self
+       enadhrTf.delegate = self
+        
+    //    enemailTf.delegate = self
+      
+      //  engstTf.delegate = self
+      //  enchnlpartnrTf.delegate = self
+//        enaddress1Tf.delegate = self
+//        enaddress2Tf.delegate = self
+//        enaddress3Tf.delegate = self
         enpincodeTf.delegate = self
         encityTf.delegate = self
         enstateTf.delegate = self
@@ -203,14 +205,14 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
         if(textField == enbankaccnoTf  )
         {
-           
-                let allowedCharacters = CharacterSet.decimalDigits
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+            
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = NSCharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
             
             
         }
-        if(textField == enadhrTf)
+        else if(textField == enadhrTf)
         {
             if((textField.text?.count)! <= 11)
             {
@@ -219,15 +221,15 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
             }
             else{
-                             let startingLength = textField.text?.count ?? 0
-                               let lengthToAdd = string.count
-                               let lengthToReplace = range.length
-                               let newLength = startingLength + lengthToAdd - lengthToReplace
-                               
-                               return newLength <= (textField.text?.count)!
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!
             }
         }
-        if(textField == enmob1Tf  ||  textField == enmob2Tf)
+        else if(textField == enmob1Tf  ||  textField == enmob2Tf)
         {
             if((textField.text?.count)! <= 9)
             {
@@ -289,7 +291,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 return false
             }
             
-
+            
             
         }
         else if(textField == enifscCodeTf)
@@ -333,7 +335,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             
         }
         else{
-            if((textField.text?.count)! <= 60)
+            if((textField.text?.count)! <= 50)
             {
                 var allowedCharacters = CharacterSet.letters
                 allowedCharacters.formUnion(CharacterSet.whitespaces)

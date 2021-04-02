@@ -103,6 +103,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideKeyboardWhenTappedAround()
         //---<hideViews>--
         ViewControllerBckView.isHidden = true
         verifymobOTPView.isHidden = true
@@ -127,6 +128,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
 
         
        
+        
+
+        
+      
         // Editable False City and State
         
         cityTf.isEnabled = false
@@ -135,6 +140,19 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         //--<textField>--
         aTextField.delegate = self
         multiselctionTV.delegateData = self
+        
+        firstNameTf.delegate = self
+        lastNameTf.delegate = self
+        dobTf.delegate = self
+        mob1Tf.delegate = self
+        mob2Tf.delegate = self
+//        emailTf.delegate = self
+//        confEmailTf.delegate = self
+    //   referrCodeTf.delegate = self
+        pincodeTf.delegate = self
+        cityTf.delegate = self
+        stateTf.delegate = self
+   
     
         getregistrationsourceAPI()
         getInsuranceCompany()
@@ -195,8 +213,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
             }
             else{
-                //            let characterCountLimit = 30
-                // We need to figure out how many characters would be in the string after the change happens
+                
                 let startingLength = textField.text?.count ?? 0
                 let lengthToAdd = string.count
                 let lengthToReplace = range.length
@@ -219,6 +236,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 if(updatedText.count == 6)
                 {
                     print("referrCodeTf.text?=",updatedText)
+                   
                     validaterefercodeAPI(refferCode: updatedText)
                 
                 }
@@ -936,7 +954,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject]
+        let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject,
+                                           "email": emailTf.text! as AnyObject]
         
         let url = "/api/generate-otp"
         
@@ -1071,19 +1090,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             }
             alertView.show()
             
-            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-            
-            
-            
-            let parameter  :[String: AnyObject] = [
-                
-                "FBAID": FBAId as AnyObject
-            ]
+           // let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+         let params: [String: AnyObject] = [:]
             let endUrl = "/api/get-insurance-company"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
-            print("parameter= ",parameter)
-            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+            
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
                 switch response.result {
                     
                 case .success(let value):
@@ -1207,6 +1220,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     {
         if Connectivity.isConnectedToInternet()
         {
+        
         let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
         if let parentView = self.navigationController?.view
         {
@@ -1232,8 +1246,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
         }, onError: { errorData in
             alertView.close()
-             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-             snackbar.show()
+           
+//             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+//             snackbar.show()
+            self.alertCall(message: errorData.errorMessage)
             self.referrCodeTf.text = ""
         }, onForceUpgrade: {errorData in})
         
