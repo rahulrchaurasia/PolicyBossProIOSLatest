@@ -21,8 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Note :  Used For Keyboard Handling When its hiding the textfield
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
+        
         //---Statusbar Customization
         //005
 //        let statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView

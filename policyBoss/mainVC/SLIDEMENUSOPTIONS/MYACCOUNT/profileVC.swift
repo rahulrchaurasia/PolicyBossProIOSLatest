@@ -91,18 +91,18 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         aTextField.delegate = self
         
         
-//        micrCodeTf.delegate = self
-//        bankBranchTf.delegate = self
-//        bankNameTf.delegate = self
+        micrCodeTf.delegate = self
+        bankBranchTf.delegate = self
+        bankNameTf.delegate = self
+        bankCityTf.delegate = self
         
-    
         designationTf.delegate = self
         mobilenotoshareTf.delegate = self
-  //      emailtoshareTf.delegate = self
-//        address1Tf.delegate = self
-//        address2Tf.delegate = self
-//        address3Tf.delegate = self
-         // pospemailTf.delegate = self
+        emailtoshareTf.delegate = self
+        address1Tf.delegate = self
+        address2Tf.delegate = self
+        address3Tf.delegate = self
+        pospemailTf.delegate = self
         pincodeTf.delegate = self
         cityTf.delegate = self
         stateTf.delegate = self
@@ -111,12 +111,12 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         panTf.delegate = self
         addharTf.delegate = self
         bankaccnoTf.delegate = self
-       // ifscCodeTf.delegate = self
-
-        bankCityTf.delegate = self
+        ifscCodeTf.delegate = self
+        
+        
         pospDesignTf.delegate = self
         pospMobNumTf.delegate = self
-      
+        
         
         
         panTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -158,6 +158,9 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         notisettingView.isHidden = true
         notisettingViewHeight.constant = 0
         
+        
+        cityTf.isEnabled = false
+        stateTf.isEnabled = false
         //--<apiCall>--
         getmyaccountAPI()
         
@@ -335,12 +338,9 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
         }
         else{
-            if((textField.text?.count)! <= 60)
+            if((textField.text?.count)! <= 50)
             {
-                var allowedCharacters = CharacterSet.letters
-                allowedCharacters.formUnion(CharacterSet.whitespaces)
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                return true
             }
             else{
                 //            let characterCountLimit = 30
@@ -354,6 +354,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             }
         }
         
+      
     }
     
     //---<buttonsClicks>---

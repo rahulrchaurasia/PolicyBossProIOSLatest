@@ -734,6 +734,7 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
+				B2B970192618599F004CC86C /* AppDelegate */,
 				B253B227261652E0000C3A7D /* IQKeyboardManagerSwift */,
 				B29153D126133D3F0034608F /* Extension */,
 				84BF349121D33DC10030DC2D /* Storyboard */,
@@ -743,7 +744,6 @@
 				4438D06324B398D200D68498 /* html */,
 				443D35F72462A30F00C8F763 /* PaymentGateway */,
 				848B5F6B22096BFF00497E4A /* MagicFinmart.entitlements */,
-				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
 				840AC5DB21BE80AC004DCB26 /* Info.plist */,
 				44AB3967243E1C550009BD86 /* AlertDialog */,
 				8403E89921BFE1460009662A /* Textfield */,
@@ -1164,6 +1164,14 @@
 				B253B2252616459C000C3A7D /* Extension+ UITextField.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B2B970192618599F004CC86C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
@@ -1732,10 +1740,10 @@
 			baseConfigurationReference = 1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 87B8AYVD9N;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1748,9 +1756,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart89;
+				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = policyBoss;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1761,10 +1769,10 @@
 			baseConfigurationReference = 483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = "";
+				CURRENT_PROJECT_VERSION = 12;
+				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1777,9 +1785,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.datacomp.finmart;
+				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = policyBoss;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

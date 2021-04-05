@@ -117,13 +117,13 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         enpanTf.delegate = self
        enadhrTf.delegate = self
         
-    //    enemailTf.delegate = self
+        enemailTf.delegate = self
       
-      //  engstTf.delegate = self
-      //  enchnlpartnrTf.delegate = self
-//        enaddress1Tf.delegate = self
-//        enaddress2Tf.delegate = self
-//        enaddress3Tf.delegate = self
+        engstTf.delegate = self
+        enchnlpartnrTf.delegate = self
+        enaddress1Tf.delegate = self
+        enaddress2Tf.delegate = self
+        enaddress3Tf.delegate = self
         enpincodeTf.delegate = self
         encityTf.delegate = self
         enstateTf.delegate = self
@@ -334,16 +334,30 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             }
             
         }
+//        else{
+//            if((textField.text?.count)! <= 50)
+//            {
+//                var allowedCharacters = CharacterSet.letters
+//                allowedCharacters.formUnion(CharacterSet.whitespaces)
+//                let characterSet = NSCharacterSet(charactersIn: string)
+//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+//            }
+//            else{
+//                //            let characterCountLimit = 30
+//                // We need to figure out how many characters would be in the string after the change happens
+//                let startingLength = textField.text?.count ?? 0
+//                let lengthToAdd = string.count
+//                let lengthToReplace = range.length
+//                let newLength = startingLength + lengthToAdd - lengthToReplace
+//
+//                return newLength <= (textField.text?.count)!
+//            }
+//        }
         else{
-            if((textField.text?.count)! <= 50)
-            {
-                var allowedCharacters = CharacterSet.letters
-                allowedCharacters.formUnion(CharacterSet.whitespaces)
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-            }
-            else{
-                //            let characterCountLimit = 30
+            if((textField.text?.count)! <= 50){
+                return true
+            }else{
+                
                 // We need to figure out how many characters would be in the string after the change happens
                 let startingLength = textField.text?.count ?? 0
                 let lengthToAdd = string.count
@@ -353,6 +367,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 return newLength <= (textField.text?.count)!
             }
         }
+        
+       // return true
+       
         
     }
     

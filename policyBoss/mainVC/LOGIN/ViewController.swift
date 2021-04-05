@@ -141,18 +141,21 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         aTextField.delegate = self
         multiselctionTV.delegateData = self
         
+        //// added //////
         firstNameTf.delegate = self
         lastNameTf.delegate = self
         dobTf.delegate = self
         mob1Tf.delegate = self
         mob2Tf.delegate = self
-//        emailTf.delegate = self
-//        confEmailTf.delegate = self
-    //   referrCodeTf.delegate = self
+        emailTf.delegate = self
+        confEmailTf.delegate = self
         pincodeTf.delegate = self
         cityTf.delegate = self
         stateTf.delegate = self
-   
+        referrCodeTf.delegate = self
+        verifyOtpTf.delegate = self
+        
+        ////  ended ////////
     
         getregistrationsourceAPI()
         getInsuranceCompany()
@@ -223,7 +226,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             }
         }
         
-        if(textField == referrCodeTf  )
+       else if(textField == referrCodeTf  )
         {
             
             let currentText = textField.text ?? ""
@@ -248,7 +251,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             }
         }
         
-         if(textField == pincodeTf)
+        else if(textField == pincodeTf)
          {
             ////////////////////
             
@@ -299,10 +302,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         else{
             if((textField.text?.count)! <= 50)
             {
-                var allowedCharacters = CharacterSet.letters
-                allowedCharacters.formUnion(CharacterSet.whitespaces)
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                return true
             }
             else{
                 //            let characterCountLimit = 30
