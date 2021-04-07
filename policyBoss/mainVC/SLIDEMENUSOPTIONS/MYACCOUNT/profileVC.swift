@@ -829,34 +829,35 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
         switch(type) {
             
-        case 1 :
+        case 1,2 :
             
             print("DOC FBA PHOtograph " + srUrl)
             if(srUrl != ""){
                   let remoteImageURL = URL(string: srUrl)!
                   self.myaccountImgeView.sd_setImage(with: remoteImageURL)
+                  imgDoc1.image = UIImage(named: "doc_uploaded")
             }else{
                     myaccountImgeView.image = pickedImage
             }
         
             myaccountImgeView.layer.cornerRadius = 64
-       
+           
             
             break;
             
-       case 2 :
-            print("DOC FBA PHOtograph " + srUrl)
-            if(srUrl != ""){
-                let remoteImageURL = URL(string: srUrl)!
-                self.myaccountImgeView.sd_setImage(with: remoteImageURL)
-            }else{
-                myaccountImgeView.image = pickedImage
-            }
-            
-            myaccountImgeView.layer.cornerRadius = 64
-            imgDoc1.image = UIImage(named: "doc_uploaded")
-
-            break;
+//       case 2 :
+//            print("DOC FBA PHOtograph " + srUrl)
+//            if(srUrl != ""){
+//                let remoteImageURL = URL(string: srUrl)!
+//                self.myaccountImgeView.sd_setImage(with: remoteImageURL)
+//            }else{
+//                myaccountImgeView.image = pickedImage
+//            }
+//
+//            myaccountImgeView.layer.cornerRadius = 64
+//            imgDoc1.image = UIImage(named: "doc_uploaded")
+//
+//            break;
             
        case 3 :
             print("DOC PanCard ")
