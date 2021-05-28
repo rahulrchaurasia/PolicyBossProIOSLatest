@@ -261,7 +261,8 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         
         
         lblCustomerName.text = objModel.Name + "-" + objModel.CustID
-        lblProductName.text  = objModel.productname
+        //lblProductName.text  = objModel.productname
+        lblProductName.text  = "Platform for onboarding for PolicyBoss Pro"
         lblAmount.text       = rupee + " " + objModel.displayamounts
     }
     

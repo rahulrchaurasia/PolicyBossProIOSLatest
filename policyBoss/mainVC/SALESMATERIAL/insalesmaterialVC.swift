@@ -173,10 +173,10 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         
         if let path = URL(string: salesDetailModel[indexPath.row].image_path){
             
-            cell.collImgView.sd_setImage(with: path as URL,placeholderImage: UIImage(named: "finmart_placeholder"))
+            cell.collImgView.sd_setImage(with: path as URL,placeholderImage: UIImage(named: "policyboss_placeholder"))
         }else{
             
-            cell.collImgView.sd_setImage(with: Bundle.main.url(forResource: "finmart_placeholder", withExtension: "png"))
+            cell.collImgView.sd_setImage(with: Bundle.main.url(forResource: "policyboss_placeholder", withExtension: "png"))
         }
         
      

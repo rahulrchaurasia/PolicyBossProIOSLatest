@@ -321,7 +321,7 @@
 		840562EC21D4D3D90099DDE8 /* helpnfeedbackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpnfeedbackVC.swift; sourceTree = "<group>"; };
 		8407145E21C0DFEB00D35C55 /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		8407146021C0EB1100D35C55 /* PickerViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewVC.swift; sourceTree = "<group>"; };
-		840AC5CC21BE80AB004DCB26 /* policyBoss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = policyBoss.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		840AC5CC21BE80AB004DCB26 /* PolicyBoss Pro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PolicyBoss Pro.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		840AC5D121BE80AB004DCB26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		840AC5D421BE80AB004DCB26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -724,7 +724,7 @@
 		840AC5CD21BE80AB004DCB26 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				840AC5CC21BE80AB004DCB26 /* policyBoss.app */,
+				840AC5CC21BE80AB004DCB26 /* PolicyBoss Pro.app */,
 				840AC5E021BE80AC004DCB26 /* policyBossTests.xctest */,
 				840AC5EB21BE80AC004DCB26 /* policyBossUITests.xctest */,
 			);
@@ -1203,7 +1203,7 @@
 			);
 			name = policyBoss;
 			productName = MagicFinmart;
-			productReference = 840AC5CC21BE80AB004DCB26 /* policyBoss.app */;
+			productReference = 840AC5CC21BE80AB004DCB26 /* PolicyBoss Pro.app */;
 			productType = "com.apple.product-type.application";
 		};
 		840AC5DF21BE80AC004DCB26 /* policyBossTests */ = {
@@ -1758,7 +1758,7 @@
 				);
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
-				PRODUCT_NAME = policyBoss;
+				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1788,7 +1788,7 @@
 				);
 				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
-				PRODUCT_NAME = policyBoss;
+				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
