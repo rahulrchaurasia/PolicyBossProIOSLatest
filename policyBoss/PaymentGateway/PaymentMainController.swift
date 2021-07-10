@@ -91,26 +91,28 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         print("cancel")
         
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//         KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
         
+        
+        self.dismissAll(animated: false)
 
     }
     
 
     func onPaymentError(_ code: Int32, description str: String) {
         
-       let paymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
-
-        paymentCancelVC.modalPresentationStyle = .fullScreen
-        paymentCancelVC.custID = paymentDtlObj?.CustID ?? ""
-        self.addChild(paymentCancelVC)
-        self.view.addSubview(paymentCancelVC.view)
+//       let paymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
+//
+//        paymentCancelVC.modalPresentationStyle = .fullScreen
+//        paymentCancelVC.custID = paymentDtlObj?.CustID ?? ""
+//        self.addChild(paymentCancelVC)
+//        self.view.addSubview(paymentCancelVC.view)
         
         //05
-        
+         moveToSuccessVC(paymentID: "0")
       
     }
     
@@ -125,11 +127,9 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     
     @IBAction func backBtnClick(_ sender: Any) {
         
+      self.dismissAll(animated: false)
         
-      let storyboard = UIStoryboard(name: "Main", bundle: nil)
-       let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        self.present(KYDrawer, animated: true, completion: nil)
+        
         
     }
     
@@ -269,6 +269,8 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     
      func moveToSuccessVC(paymentID : String){
         
+        //Note : this one when Razorpay give unique payment ID when transaction is done.
+        // No need to check paymentID if success is done RazorPay give us unique payment ID .
         guard let CustomerID = paymentDtlObj?.CustID else{
             let snackbar = TTGSnackbar.init(message: "Customer ID Not Found", duration: .middle )
             snackbar.show()
@@ -292,11 +294,12 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         let action1 = UIAlertAction(title: "Default", style: .default) { (action:UIAlertAction) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-            KYDrawer.modalPresentationStyle = .fullScreen
-            self.present(KYDrawer, animated: true, completion: nil)
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//            KYDrawer.modalPresentationStyle = .fullScreen
+//            self.present(KYDrawer, animated: true, completion: nil)
             
+           self.dismiss(animated: false, completion: nil)
         }
         
         alert.addAction(action1)

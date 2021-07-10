@@ -73,7 +73,7 @@ class addUsersVC: UIViewController {
 //        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
 //        present(KYDrawer, animated: true, completion: nil)
         
-         dismiss(animated: true)
+         dismiss(animated: false)
     }
     
     @IBAction func moreServCloseBtnCliked(_ sender: Any)
@@ -159,7 +159,8 @@ class addUsersVC: UIViewController {
        
         let offlineQuotes : offlineQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbofflineQuotesVC") as! offlineQuotesVC
         offlineQuotes.modalPresentationStyle = .fullScreen
-        present(offlineQuotes, animated: true, completion: nil)
+        offlineQuotes.modalTransitionStyle = .coverVertical
+        present(offlineQuotes, animated: false, completion: nil)
         
     }
     
@@ -168,7 +169,8 @@ class addUsersVC: UIViewController {
     {
         let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
         mpsV.modalPresentationStyle = .fullScreen
-        present(mpsV, animated: true, completion: nil)
+        mpsV.modalTransitionStyle = .coverVertical
+        present(mpsV, animated: false, completion: nil)
     }
     
     @IBAction func incomeCalBtnCliked(_ sender: Any)
@@ -183,6 +185,7 @@ class addUsersVC: UIViewController {
     {
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
+        commonWeb.modalTransitionStyle = .coverVertical
         commonWeb.webfromScreen = "Training"
         present(commonWeb, animated: true, completion: nil)
     }
@@ -191,6 +194,7 @@ class addUsersVC: UIViewController {
     {
         let helpnfeedback : helpnfeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhelpnfeedbackVC") as! helpnfeedbackVC
         helpnfeedback.modalPresentationStyle = .fullScreen
+        helpnfeedback.modalTransitionStyle = .coverVertical
         present(helpnfeedback, animated: true, completion: nil)
     }
     

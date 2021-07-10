@@ -60,21 +60,17 @@ class PaymentSuccessVC: UIViewController {
     
     @IBAction func btnContinueClick(_ sender: Any) {
         
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-                KYDrawer.modalPresentationStyle = .fullScreen
-                present(KYDrawer, animated: true, completion: nil)
+
+        
+         self.dismissAll(animated: false)
     }
     
     
     
     @IBAction func btnBackClick(_ sender: Any) {
         
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let KYDrawer : KYDrawerController = storyboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
         
-                KYDrawer.modalPresentationStyle = .fullScreen
-                present(KYDrawer, animated: true, completion: nil)
+        self.dismissAll(animated: false)
     }
     
 

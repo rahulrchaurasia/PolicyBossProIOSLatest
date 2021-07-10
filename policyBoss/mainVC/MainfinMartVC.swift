@@ -80,16 +80,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         knowguruView.layer.borderWidth=1.0;
         knowguruView.layer.borderColor=borderColor.cgColor;
         
-       
-        
-        //--<api>--
-       // getLoanStaticDashboard()
-        userconstantAPI()
-       
-    /**********Loading Dynamic Data**********/
-                           
-        self.getdynamicappAPI()
-    
         
         MainScrollView.isScrollEnabled = false
         
@@ -102,14 +92,12 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         // UITableViewCell.appearance().selectionStyle = .none    // for Removing Default Selection
         
         
-        
-        ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////
-                          
-             self.verifyVersion()
-                        
-         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
-        
+        //--<api>--
+       // getLoanStaticDashboard()
+        userconstantAPI()
+        self.getdynamicappAPI()
+   
+     
     }
     
     
@@ -181,22 +169,19 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             UIAlertAction in
             NSLog("OK Pressed")
             
+           
             
-        
-            /// Start
-            let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
-            Login.resetDefaults()
-            UserDefaults.standard.set(String(describing: "0"), forKey: "IsFirstLogin")
-            Login.modalPresentationStyle = .fullScreen
-            self.present(Login, animated: true, completion: nil)
-            
-            //end
-            
-            // Remark : below is for clear root view controller (In our case we used two rootViewController
-            // one main and other payment ie why not used below code
-            
-//            self.resetDefaults()
-//            UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+            self.dismissAll(animated: false)
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                       let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
+                       Login.resetDefaults()
+                       
+                       Login.modalPresentationStyle = .fullScreen
+                       
+                       appDelegate?.window?.rootViewController = Login
+                       self.present(Login, animated: true, completion: nil)
+                       
+    
         }
         
         // Add the actions
@@ -244,21 +229,19 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let Salesmaterial : SalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbSalesmaterialVC") as! SalesmaterialVC
 
           Salesmaterial.modalPresentationStyle = .fullScreen
-          present(Salesmaterial, animated: true, completion: nil)
+          Salesmaterial.modalTransitionStyle = .coverVertical
+          present(Salesmaterial, animated: false, completion: nil)
         
        // self.add(Salesmaterial)
     }
     @IBAction func pendingcasesBtnCliked(_ sender: Any)
     {
-//        let Pendingcases : PendingcasesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbPendingcasesVC") as! PendingcasesVC
-//
-//        Pendingcases.modalPresentationStyle = .fullScreen
-//        self.add(Pendingcases)
-  
+
         
         let pendingcasescapsVC : pendingcasescapsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
         
         pendingcasescapsVC.modalPresentationStyle = .fullScreen
+        pendingcasescapsVC.modalTransitionStyle = .coverVertical
         self.add(pendingcasescapsVC)
         /*
          
@@ -273,6 +256,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
        let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
         
         KnowlgeGuru.modalPresentationStyle = .fullScreen
+        KnowlgeGuru.modalTransitionStyle = .coverVertical
         KnowlgeGuru.delegateData = self
         present(KnowlgeGuru, animated: true, completion: nil)
     }
@@ -1194,6 +1178,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
                     
                    
+                     
+                          ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////
+                                            
+                               self.verifyVersion()
+                                          
+                           ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                          
+                          
                   
                     
                 }, onError: { errorData in

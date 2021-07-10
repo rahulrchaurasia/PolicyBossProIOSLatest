@@ -47,7 +47,7 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
     @IBAction func slidemenuBtnCliked(_ sender: Any)
     {
 
-            dismiss(animated: true)
+            dismiss(animated: false)
     }
     
     @IBAction func submitBtnCliked(_ sender: Any)

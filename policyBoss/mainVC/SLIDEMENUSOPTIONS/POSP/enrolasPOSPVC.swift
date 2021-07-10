@@ -191,11 +191,11 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
         
-       // self.dismiss(animated: true)
+        
+
+        self.dismiss(animated: false, completion: nil)
+             
     }
     
     //---<textFieldRange>---
@@ -1351,17 +1351,16 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             
             let jsonData = userObject as? NSDictionary
             TTGSnackbar.init(message: "Posp registered successfully.", duration: .middle).show()
-            // self.showToast(controller: self, message: "Posp registered successfully.", seconds: 4)
-            
+            // self.showToast(controller: self, message: "Posp registered successfully.", seconds: 3)
             
             let storyboard = UIStoryboard(name: "payment", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "stbPaymentMainController") as UIViewController
-             vc.modalPresentationStyle =  .fullScreen
-            
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            //show window
-            appDelegate.window?.rootViewController = vc
-            
+            vc.modalPresentationStyle =  .fullScreen
+            vc.modalTransitionStyle = .coverVertical
+           
+            self.present(vc, animated: true, completion: nil)
+             
+   
             
         }, onError: { errorData in
             alertView.close()

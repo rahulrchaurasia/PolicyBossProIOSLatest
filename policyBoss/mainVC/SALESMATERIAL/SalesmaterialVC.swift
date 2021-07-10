@@ -58,13 +58,13 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     
     @IBAction func salesMaterialBackBtn(_ sender: Any)
     {
-        dismiss(animated: true)
+        dismiss(animated: false)
         
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        dismiss(animated: true)
+        dismiss(animated: false)
         
     }
     
@@ -241,12 +241,13 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             cell.salescellCountLbl.isHidden = true
             let insalesmaterial : insalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbinsalesmaterialVC") as! insalesmaterialVC
             insalesmaterial.modalPresentationStyle = .fullScreen
+            insalesmaterial.modalTransitionStyle = .coverVertical
             insalesmaterial.productId = String(ProductIdstringArray[indexPath.row])
             insalesmaterial.passindexlbl = ProductNameArray[indexPath.row]
 //            self.addChild(insalesmaterial)
 //            self.view.addSubview(insalesmaterial.view)
             
-            self.present(insalesmaterial,animated: true,completion: nil)
+            self.present(insalesmaterial,animated: false,completion: nil)
             
             
             /////////////////////////////////
@@ -492,7 +493,7 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         insalesmaterial.delegateData = self
 //        self.addChild(insalesmaterial)
 //        self.view.addSubview(insalesmaterial.view)
-          self.present(insalesmaterial,animated: true,completion: nil)
+          self.present(insalesmaterial,animated: false,completion: nil)
         
         
         print("Row Selected Count", self.sMaterialModel[indexR].productCount)

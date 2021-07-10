@@ -48,17 +48,28 @@ extension UIViewController {
         removeFromParent()
     }
     
+    func moveToHome(){
+        
+        
+        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+        KYDrawer.modalPresentationStyle = .fullScreen
+        KYDrawer.modalTransitionStyle = .coverVertical
+        present(KYDrawer, animated: false, completion: nil)
+        
+        
+        
+    }
     func dismissAll(animated: Bool, completion: (() -> Void)? = nil) {
-           if let optionalWindow = UIApplication.shared.delegate?.window, let window = optionalWindow, let rootViewController = window.rootViewController, let presentedViewController = rootViewController.presentedViewController  {
-               if let snapshotView = window.snapshotView(afterScreenUpdates: false) {
-                   presentedViewController.view.addSubview(snapshotView)
-                   presentedViewController.modalTransitionStyle = .coverVertical
-               }
-               if !isBeingDismissed {
-                   rootViewController.dismiss(animated: animated, completion: completion)
-               }
-           }
-       }
+        if let optionalWindow = UIApplication.shared.delegate?.window, let window = optionalWindow, let rootViewController = window.rootViewController, let presentedViewController = rootViewController.presentedViewController  {
+            if let snapshotView = window.snapshotView(afterScreenUpdates: false) {
+                presentedViewController.view.addSubview(snapshotView)
+                presentedViewController.modalTransitionStyle = .coverVertical
+            }
+            if !isBeingDismissed {
+                rootViewController.dismiss(animated: animated, completion: completion)
+            }
+        }
+    }
     
     
     //-------< For Hide Keyboard >--------
@@ -79,10 +90,10 @@ extension UIView
 {
     func removeAllSubViews()
     {
-       for subView :AnyObject in self.subviews
-       {
+        for subView :AnyObject in self.subviews
+        {
             subView.removeFromSuperview()
-       }
+        }
     }
-
+    
 }

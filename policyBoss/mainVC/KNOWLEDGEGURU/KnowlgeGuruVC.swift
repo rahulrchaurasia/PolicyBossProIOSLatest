@@ -29,13 +29,13 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         
         delegateData?.callbackHomeDelegate()
-            self.dismiss(animated: true)
+            self.dismiss(animated: false)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
                   delegateData?.callbackHomeDelegate()
-             self.dismiss(animated: true)
+             self.dismiss(animated: false)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

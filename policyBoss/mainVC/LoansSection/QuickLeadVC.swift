@@ -54,16 +54,23 @@ class QuickLeadVC: UIViewController,WKNavigationDelegate,getPickerDataDelegate,S
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+          self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//         KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+           self.dismiss(animated: false, completion: nil)
+        
+        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool

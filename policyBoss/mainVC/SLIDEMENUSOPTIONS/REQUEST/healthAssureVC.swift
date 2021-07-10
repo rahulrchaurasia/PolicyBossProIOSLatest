@@ -38,6 +38,7 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     var packCode = ""
     var hmobNo = ""
     var hfirstNme = ""
+     let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,16 +54,13 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+       
+        dismissAll(animated: false)
     }
     
     
@@ -70,9 +68,12 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
+        commonWeb.modalTransitionStyle = .coverVertical
         commonWeb.webfromScreen = "healthAssure"
         commonWeb.healthpckCode = "71"
         present(commonWeb, animated: true, completion: nil)
+        
+      
     }
     
     func dwnArrowBtnTapped(cell: healthAssureTVCell) {
@@ -88,12 +89,100 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func shareBtnTapped(cell: healthAssureTVCell) {
-        let indexPath = self.healthAssureTV.indexPath(for: cell)
-        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-        commonWeb.modalPresentationStyle = .fullScreen
-        commonWeb.webfromScreen = "healthAssure"
-        commonWeb.healthpckCode = self.packCode
-        present(commonWeb, animated: true, completion: nil)
+//        let indexPath = self.healthAssureTV.indexPath(for: cell)
+//        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//        commonWeb.modalPresentationStyle = .fullScreen
+//        commonWeb.modalTransitionStyle = .coverVertical
+//        commonWeb.webfromScreen = "healthAssure"
+//        commonWeb.healthpckCode = self.packCode
+//        present(commonWeb, animated: true, completion: nil)
+        
+        let alertVC =  self.alertService.alertShareHealthAssure(title: "SHARE PACKAGE DETAILS",
+                                                                body: "Personalise With Custom Name",
+                                                                buttonTitle: "SHARE WITH WHATSAPP")
+        
+        // When Alert Dialog Share Button Click
+        alertVC.didClickShare = { dict in
+            
+            let strName =  dict["name"] as! String
+            
+            print("share the Data \(strName)")
+            
+            self.fetchShortLink(_name: strName)
+            
+        }
+        
+        // let message =  (alertVC.didClickShare ?? <#default value#>)(String)
+        self.present(alertVC, animated: true)
+        
+    }
+    
+    func   fetchShortLink(_name : String) {
+        
+        
+       // getshortLink
+        if Connectivity.isConnectedToInternet(){
+                   
+                   let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+                   if let parentView = self.navigationController?.view
+                   {
+                       alertView.parentView = parentView
+                   }
+                   else
+                   {
+                       alertView.parentView = self.view
+                   }
+                   alertView.show()
+                   
+                   
+                   //   APILoginManger.shareInstance.loginAPI(login: loginModel) { (result ) in
+                   
+                   
+            APIManger.shareInstance.getshortLink(strName: _name) { (result) in
+                       
+                       alertView.close()
+                       switch result {
+                           
+                       case .success(let objResponse):
+                           
+                           let healthShortLinkResponse = objResponse as! HealthAssureShortLinkResponse
+                           
+                           let healthShortList: [HealthAssureShortLinkData] = healthShortLinkResponse.MasterData!
+                           
+                           var message = "Dear \(_name) " + "\n Hi. I am pleased to bring to you a Health Checkup package best suited for you, at discounted price from the best labs in India. What’s more the sample can be collected from your home and an accurate report delivered on your e-mail. You also get a doctor consultation FREE with every health checkup done Click on the below link to book your test and make payment online \n"  +  healthShortList[0].LongURL
+                           
+                           
+                           debugPrint("SHARE " + message)
+                          
+                           self.shareTextData(strBody: message)
+                           
+                       case .failure(.custom(message: let error)):
+                           let snackbar = TTGSnackbar.init(message: error, duration: .middle )
+                           snackbar.show()
+                       }
+                   }
+               }else{
+                
+                   let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                   snackbar.show()
+               }
+        
+    }
+    
+    func shareTextData(strBody : String){
+        
+        
+        let text = strBody
+        
+        // set up activity view controller
+        let textToShare = [ text ]
+        let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+       
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
         
     }
     

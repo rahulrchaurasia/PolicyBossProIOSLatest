@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let homeController =  mainStoryboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
             appDelegate?.window?.rootViewController = homeController
+            window?.makeKeyAndVisible()
         }
         
         

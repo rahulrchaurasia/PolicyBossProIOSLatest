@@ -129,9 +129,11 @@ class InsuranceBussWebVC: UIViewController ,WKNavigationDelegate {
         UIDevice.current.setValue(value, forKey: "orientation")
           UIViewController.attemptRotationToDeviceOrientation()
         
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+           self.dismiss(animated: false, completion: nil)
     }
     
     
@@ -141,9 +143,12 @@ class InsuranceBussWebVC: UIViewController ,WKNavigationDelegate {
         UIDevice.current.setValue(value, forKey: "orientation")
         UIViewController.attemptRotationToDeviceOrientation()
         
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+          self.dismiss(animated: false, completion: nil)
+        
     }
     
     

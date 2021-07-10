@@ -54,7 +54,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
 
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: .main)
             
-            let WelComePage = storyboard.instantiateViewController(withIdentifier: "TutorialViewController") as!                       TutorialViewController
+            let WelComePage = storyboard.instantiateViewController(withIdentifier: "TutorialViewController") as!  TutorialViewController
             WelComePage.modalPresentationStyle = .fullScreen
             self.present(WelComePage, animated: false)
             
@@ -237,7 +237,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             UserDefaults.standard.set(String(describing: MobiNumb1), forKey: "MobiNumb1")
             UserDefaults.standard.set(String(describing: EmailID), forKey: "EmailID")
             UserDefaults.standard.set(String(describing: LoanId), forKey: "LoanId")
-        
+            UserDefaults.standard.set(String(describing: FullName), forKey: "FullName")
            
 //            let IsFirstLogin = jsonData?.value(forKey: "IsFirstLogin") as AnyObject
             UserDefaults.standard.set(String(describing: "1"), forKey: "IsFirstLogin")
@@ -258,10 +258,18 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                 ******************************************************/
              //--DemoUsingCoBrowserIO--
             
-                let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-                KYDrawer.modalPresentationStyle = .fullScreen
-                self.present(KYDrawer, animated: true, completion: nil)
-                TTGSnackbar.init(message: "Login successfully.", duration: .long).show()
+
+            
+      //      self.dismiss(animated: false, completion: nil)
+
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+            KYDrawer.modalPresentationStyle = .fullScreen
+            KYDrawer.modalTransitionStyle = .coverVertical
+            appDelegate?.window?.rootViewController = KYDrawer
+           self.present(KYDrawer, animated: false, completion: nil)
+            
+            TTGSnackbar.init(message: "Login successfully.", duration: .long).show()
            
             
         }, onError: { errorData in

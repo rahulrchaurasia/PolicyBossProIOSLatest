@@ -35,7 +35,7 @@ class incmCalculatrVC: UIViewController {
     {
 
         
-         dismiss(animated: true)
+         dismiss(animated: false)
     }
     
     @IBAction func sendviaEmailBtnCliked(_ sender: Any)

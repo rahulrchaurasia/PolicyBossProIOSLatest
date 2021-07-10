@@ -46,15 +46,19 @@ class mpsVC: UIViewController {
     {
         let getmpsNow : getmpsNowVC = self.storyboard?.instantiateViewController(withIdentifier: "stbgetmpsNowVC") as! getmpsNowVC
         getmpsNow.modalPresentationStyle = .fullScreen
+        getmpsNow.modalTransitionStyle = .coverVertical
         getmpsNow.fromScreen = "getMPS"
         present(getmpsNow, animated: true, completion: nil)
     }
     
     @IBAction func maybeLaterBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+          self.dismiss(animated: false, completion: nil)
+      
     }
     
     

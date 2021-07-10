@@ -73,12 +73,7 @@ class PaymentCancelController: UIViewController {
 
     @IBAction func btnBackPospClick(_ sender: Any) {
         
-       
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
-        enrolasPOSPVC.modalPresentationStyle = .fullScreen
-        present(enrolasPOSPVC, animated: true, completion: nil)
-        
+       getToPospPage()
       
      
     }
@@ -86,10 +81,13 @@ class PaymentCancelController: UIViewController {
     @IBAction func backBtnCliked(_ sender: Any) {
         
        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let enrolasPOSPVC : enrolasPOSPVC = storyboard.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
-        enrolasPOSPVC.modalPresentationStyle = .fullScreen
-        present(enrolasPOSPVC, animated: true, completion: nil)
-        
+       getToPospPage()
     }
+    
+    func getToPospPage(){
+           
+
+         self.dismiss(animated: false, completion: nil)
+
+       }
 }

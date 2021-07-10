@@ -57,20 +57,18 @@ class LoansVC: UIViewController,WKNavigationDelegate{
     
     @IBAction func loanBackBtnCliked(_ sender: Any)
     {
-//        let KnowlgeGuru : KnowlgeGuruVC = self.storyboard?.instantiateViewController(withIdentifier: "stbKnowlgeGuruVC") as! KnowlgeGuruVC
-//        KnowlgeGuru.modalPresentationStyle = .fullScreen
-//        present(KnowlgeGuru, animated: true, completion: nil)
-        self.dismiss(animated: true)
+
+        self.dismiss(animated: false)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        self.dismissAll(animated: true)
+        self.dismissAll(animated: false)
     }
     
     @IBAction func backtoMainBtnCliked(_ sender: Any)
     {
-        self.dismiss(animated: true)
+        self.dismiss(animated: false)
     }
     
     

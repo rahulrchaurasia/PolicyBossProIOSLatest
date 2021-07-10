@@ -33,9 +33,12 @@ class transctionHistoryVC: UIViewController,UITableViewDataSource,UITableViewDel
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+       
+          self.dismiss(animated: false, completion: nil)
     }
     
     //--<tableView Datasource+Delegate Method>--

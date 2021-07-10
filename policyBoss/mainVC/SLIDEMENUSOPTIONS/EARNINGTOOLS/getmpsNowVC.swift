@@ -95,15 +95,19 @@ class getmpsNowVC: UIViewController {
    
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+
+       //  self.moveToHome()
+          self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+        // self.moveToHome()
+        self.dismissAll(animated: false)
     }
     
     
@@ -117,9 +121,13 @@ class getmpsNowVC: UIViewController {
     
     @IBAction func maybeLtrBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        KYDrawer.modalPresentationStyle = .fullScreen
+//        present(KYDrawer, animated: true, completion: nil)
+        
+       //  self.moveToHome()
+          self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func hvpromocodeBtnCliked(_ sender: Any)

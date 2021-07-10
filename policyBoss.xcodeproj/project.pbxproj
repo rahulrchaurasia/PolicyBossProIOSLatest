@@ -183,6 +183,8 @@
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
+		B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF16269336F70090A877 /* HealthAssureConfigure.swift */; };
+		B218FF19269339DA0090A877 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF18269339DA0090A877 /* APIManger.swift */; };
 		B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */; };
 		B253B2262616459C000C3A7D /* Extension+ UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2252616459C000C3A7D /* Extension+ UITextField.swift */; };
 		B253B244261652E0000C3A7D /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B229261652E0000C3A7D /* IQTextView.swift */; };
@@ -210,6 +212,8 @@
 		B253B25A261652E0000C3A7D /* IQKeyboardManager+UITextFieldViewNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B243261652E0000C3A7D /* IQKeyboardManager+UITextFieldViewNotification.swift */; };
 		B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE32613721E00B49797 /* Extension+UIViewController.swift */; };
 		B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */; };
+		B26D7E262696EE1B00FCECAA /* AlertHealthAssureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */; };
+		B26D7E2926972B9B00FCECAA /* HealthAssureShortUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -427,6 +431,8 @@
 		84F4114E220AF254001407EE /* whatsNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewTVCell.swift; sourceTree = "<group>"; };
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
+		B218FF16269336F70090A877 /* HealthAssureConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureConfigure.swift; sourceTree = "<group>"; };
+		B218FF18269339DA0090A877 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
 		B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callbackToHomeProtocol.swift; sourceTree = "<group>"; };
 		B253B2252616459C000C3A7D /* Extension+ UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+ UITextField.swift"; sourceTree = "<group>"; };
 		B253B229261652E0000C3A7D /* IQTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQTextView.swift; sourceTree = "<group>"; };
@@ -455,6 +461,8 @@
 		B253B243261652E0000C3A7D /* IQKeyboardManager+UITextFieldViewNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQKeyboardManager+UITextFieldViewNotification.swift"; sourceTree = "<group>"; };
 		B2622BE32613721E00B49797 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
+		B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHealthAssureVC.swift; sourceTree = "<group>"; };
+		B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureShortUrlResponse.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -606,6 +614,7 @@
 				44AB396A243E1F940009BD86 /* AlertService.swift */,
 				44AB396C243E201A0009BD86 /* AlertWebViewController.swift */,
 				44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */,
+				B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */,
 			);
 			path = AlertDialog;
 			sourceTree = "<group>";
@@ -822,6 +831,7 @@
 				8410403D21D786E500C3B7A7 /* FinmartRestClient.swift */,
 				84D2E0C621EDB85500991D47 /* LoginAPI.swift */,
 				8410404821D78A1400C3B7A7 /* FinmartUserDefault.swift */,
+				B218FF18269339DA0090A877 /* APIManger.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1072,6 +1082,8 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B26D7E2726972B6400FCECAA /* HealthAssure */,
+				B218FF15269335280090A877 /* offlineQuote */,
 				4438085624BAF4B90046CA81 /* pendingCase */,
 				444C6DEB24A259ED003A7528 /* dashboard */,
 				442C140B2497A2B200E3C455 /* pospDoc */,
@@ -1091,6 +1103,14 @@
 				84E1A9312204594F00A94A29 /* QuickLeadVC.swift */,
 			);
 			path = LoansSection;
+			sourceTree = "<group>";
+		};
+		B218FF15269335280090A877 /* offlineQuote */ = {
+			isa = PBXGroup;
+			children = (
+				B218FF16269336F70090A877 /* HealthAssureConfigure.swift */,
+			);
+			path = offlineQuote;
 			sourceTree = "<group>";
 		};
 		B253B227261652E0000C3A7D /* IQKeyboardManagerSwift */ = {
@@ -1154,6 +1174,14 @@
 				B253B242261652E0000C3A7D /* IQNSArray+Sort.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		B26D7E2726972B6400FCECAA /* HealthAssure */ = {
+			isa = PBXGroup;
+			children = (
+				B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */,
+			);
+			path = HealthAssure;
 			sourceTree = "<group>";
 		};
 		B29153D126133D3F0034608F /* Extension */ = {
@@ -1445,11 +1473,13 @@
 				84BD5C1221EC6E1800982C15 /* healthInsQuoteVC.swift in Sources */,
 				84855BD92251E6F200DBB626 /* lyfinshdfcinputModel.swift in Sources */,
 				840562D721D4D29F0099DDE8 /* mpsVC.swift in Sources */,
+				B26D7E262696EE1B00FCECAA /* AlertHealthAssureVC.swift in Sources */,
 				8407145F21C0DFEB00D35C55 /* DatePickerVC.swift in Sources */,
 				B253B244261652E0000C3A7D /* IQTextView.swift in Sources */,
 				8411808A21C5105D00D5638B /* MenuHelper.swift in Sources */,
 				840562D321D4D2640099DDE8 /* transctionHistoryVC.swift in Sources */,
 				B253B24F261652E0000C3A7D /* IQKeyboardManager+Position.swift in Sources */,
+				B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */,
 				841BEADC2256372800855EB0 /* lyfinsQuotesPage2TVCell.swift in Sources */,
 				8410403B21D784EB00C3B7A7 /* FinmartStyler.swift in Sources */,
 				840562DD21D4D2E50099DDE8 /* motorInsuranceVC.swift in Sources */,
@@ -1458,6 +1488,7 @@
 				442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */,
 				8410404521D789C300C3B7A7 /* CommonSettings.swift in Sources */,
 				8413349621C8FD350084AFC2 /* KYEmbedMainControllerSegue.swift in Sources */,
+				B218FF19269339DA0090A877 /* APIManger.swift in Sources */,
 				84C4D09A21C2736100A677B7 /* MainfinmartTVCell.swift in Sources */,
 				840562ED21D4D3D90099DDE8 /* helpnfeedbackVC.swift in Sources */,
 				84C4D08F21C23DD700A677B7 /* multiselctionTVCell.swift in Sources */,
@@ -1558,6 +1589,7 @@
 				84DB47772227E66E00EBDA3C /* commonQuotesTVCell.swift in Sources */,
 				84D2E0CA21EDB91A00991D47 /* AttendanceModel.swift in Sources */,
 				443D35FC24632FAA00C8F763 /* PaymentDetailModel.swift in Sources */,
+				B26D7E2926972B9B00FCECAA /* HealthAssureShortUrlResponse.swift in Sources */,
 				8403E89421BFC21A0009662A /* LoginVC.swift in Sources */,
 				4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */,
 				846F65382281994300F9A92F /* healthTestsVC.swift in Sources */,
@@ -1742,7 +1774,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1772,7 +1804,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (

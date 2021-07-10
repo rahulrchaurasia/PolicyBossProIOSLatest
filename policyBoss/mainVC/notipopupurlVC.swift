@@ -21,8 +21,11 @@ class notipopupurlVC: UIViewController {
     
     @IBAction func webcloseBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-        present(KYDrawer, animated: true, completion: nil)
+        
+//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//        present(KYDrawer, animated: true, completion: nil)
+        
+         self.dismissAll(animated: false)
     }
     
    

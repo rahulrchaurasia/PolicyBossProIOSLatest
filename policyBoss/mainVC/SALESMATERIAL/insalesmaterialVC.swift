@@ -57,9 +57,9 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         }
         
     }
- 
     
-  
+    
+    
     //////////////////////  Method For Orientation   ////////////////////////////
     
     
@@ -85,21 +85,17 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         
         self.delegateData?.selSalesData()
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
         
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//         KYDrawer.modalPresentationStyle = .fullScreen
-//        self.present(KYDrawer, animated: true, completion: nil)
         
-
         
-        self.dismissAll(animated: true)
-     
-             
+        self.dismissAll(animated: false)
+        
+        
     }
     
     
@@ -109,23 +105,23 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         if switchBtn.isOn {
             engLbl.textColor = UIColor.gray
             hindiLbl.textColor = UIColor(red: 0/255, green: 125/255, blue: 213/255, alpha: 1.0)
-           // insalesCView.isHidden = true
+            // insalesCView.isHidden = true
             
-             filterSalesData(strLang: "Hindi")
+            filterSalesData(strLang: "Hindi")
             
             
         } else {
             engLbl.textColor = UIColor(red: 0/255, green: 125/255, blue: 213/255, alpha: 1.0)
             hindiLbl.textColor = UIColor.gray
-           // insalesCView.isHidden = false
+            // insalesCView.isHidden = false
             
             
-             filterSalesData(strLang: "English")
+            filterSalesData(strLang: "English")
             
         }
         
     }
-   
+    
     
     func filterSalesData (strLang : String)  {
         
@@ -154,7 +150,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-       
+        
         return salesDetailModel.count
         
     }
@@ -168,7 +164,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
         
         //***************************************************************************************/
         
-
+        
         
         
         if let path = URL(string: salesDetailModel[indexPath.row].image_path){
@@ -179,97 +175,98 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             cell.collImgView.sd_setImage(with: Bundle.main.url(forResource: "policyboss_placeholder", withExtension: "png"))
         }
         
-     
+        
         //        cell.collImgView.image = UIImage()      // nil
         //
         //        cell.collImgView.tag = indexPath.row    // VIP 05
-//        if (cell.collImgView.tag == indexPath.row){
-//
-//
-//            Alamofire.request(salesDetailModel[indexPath.row].image_path).responseImage { response in
-//                debugPrint(response)
-//
-//                if case .success(let image) = response.result {
-//                    print("image downloaded: \(image)")
-//                    cell.collImgView.image = image
-//                    self.salesDetailModel[indexPath.row].isLoaded = "Y"
-//
-//                }else{
-//                    print("SALES IMAGE Not PRINTED")
-//
-//                    cell.collImgView.image = UIImage(named: "finmart_placeholder.png")
-//                    self.salesDetailModel[indexPath.row].isLoaded = "N"
-//                    //cell.collImgView.tag = 1
-//                }
-//            }
-//        }
+        //        if (cell.collImgView.tag == indexPath.row){
+        //
+        //
+        //            Alamofire.request(salesDetailModel[indexPath.row].image_path).responseImage { response in
+        //                debugPrint(response)
+        //
+        //                if case .success(let image) = response.result {
+        //                    print("image downloaded: \(image)")
+        //                    cell.collImgView.image = image
+        //                    self.salesDetailModel[indexPath.row].isLoaded = "Y"
+        //
+        //                }else{
+        //                    print("SALES IMAGE Not PRINTED")
+        //
+        //                    cell.collImgView.image = UIImage(named: "finmart_placeholder.png")
+        //                    self.salesDetailModel[indexPath.row].isLoaded = "N"
+        //                    //cell.collImgView.tag = 1
+        //                }
+        //            }
+        //        }
         
         
-    
+        
         
         return cell
     }
     
     
-   
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         
-//
-//        let imgsalesmaterialNew : imgsalesmaterialNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialNewVC") as! imgsalesmaterialNewVC
-//        imgsalesmaterialNew.detailImg =  salesDetailModel[indexPath.row].image_path
-//        imgsalesmaterialNew.productID = productId
-//        self.addChild(imgsalesmaterialNew)
-//        self.view.addSubview(imgsalesmaterialNew.view)
+        //
+        //        let imgsalesmaterialNew : imgsalesmaterialNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialNewVC") as! imgsalesmaterialNewVC
+        //        imgsalesmaterialNew.detailImg =  salesDetailModel[indexPath.row].image_path
+        //        imgsalesmaterialNew.productID = productId
+        //        self.addChild(imgsalesmaterialNew)
+        //        self.view.addSubview(imgsalesmaterialNew.view)
         
         
         let cell = collectionView.cellForItem(at: indexPath)  as! insalesmaterialCVCell
         
         if(  cell.collImgView == nil  ){
-
+            
             showToast(controller: self, message: "Product Not Found", seconds: 1)
         }else{
-
-//            let imgsalesmaterialNew : imgsalesmaterialNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialNewVC") as! imgsalesmaterialNewVC
-//            imgsalesmaterialNew.modalPresentationStyle = .fullScreen
-//            imgsalesmaterialNew.detailImg =  salesDetailModel[indexPath.row].image_path
-//            imgsalesmaterialNew.productID = productId
-//            self.addChild(imgsalesmaterialNew)
-//            self.view.addSubview(imgsalesmaterialNew.view)
+            
+            //            let imgsalesmaterialNew : imgsalesmaterialNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbimgsalesmaterialNewVC") as! imgsalesmaterialNewVC
+            //            imgsalesmaterialNew.modalPresentationStyle = .fullScreen
+            //            imgsalesmaterialNew.detailImg =  salesDetailModel[indexPath.row].image_path
+            //            imgsalesmaterialNew.productID = productId
+            //            self.addChild(imgsalesmaterialNew)
+            //            self.view.addSubview(imgsalesmaterialNew.view)
             
             
             
             let shareImageVC : ShareImageVC = self.storyboard?.instantiateViewController(withIdentifier: "stbShareImageVC") as! ShareImageVC
-                       shareImageVC.modalPresentationStyle = .fullScreen
-                        shareImageVC.detailImg =  salesDetailModel[indexPath.row].image_path
-                        shareImageVC.productID = productId
-//                        self.addChild(shareImageVC)
-//                        self.view.addSubview(shareImageVC.view)
+            shareImageVC.modalPresentationStyle = .fullScreen
+            shareImageVC.modalTransitionStyle = .coverVertical
+            shareImageVC.detailImg =  salesDetailModel[indexPath.row].image_path
+            shareImageVC.productID = productId
+            //                        self.addChild(shareImageVC)
+            //                        self.view.addSubview(shareImageVC.view)
             
-              self.present(shareImageVC,animated: true,completion: nil)
+            self.present(shareImageVC,animated: false,completion: nil)
         }
         
     }
     
-   
+    
     
     
     
     //////////////////////////   Collection FlowLayout  /////////
-
-            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-                let collectioWidth = collectionView.bounds.width
-                return CGSize(width: collectioWidth/2 - 4 , height: collectioWidth/2 - 10)
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let collectioWidth = collectionView.bounds.width
+        return CGSize(width: collectioWidth/2 - 4 , height: collectioWidth/2 - 10)
+    }
     
-            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-               return 4
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4
+    }
     
-            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-               return 10
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
     
     //********************************************************************************************//
     //---<APICALL>---
@@ -290,7 +287,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             let params: [String: AnyObject] = ["product_id": productId as AnyObject]
             
             let url = "/api/sales-material-product-details"
-           
+            
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
                 
@@ -311,7 +308,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
                                                      image_path: aObject["image_path"] as! String,
                                                      imagelink: "",title: "",shorturl: "",url: "", baseurl: "")
                         
-
+                        
                         if(aObject["language"] as! String  == "English"){
                             
                             self.salesDetailModel.append(model)

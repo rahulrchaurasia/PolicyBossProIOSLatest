@@ -33,4 +33,17 @@ class AlertService {
         alertWebVC.strURL = webURL
         return alertWebVC
     }
+    
+    func alertShareHealthAssure(title: String , body: String, buttonTitle: String) -> AlertHealthAssureVC {
+           
+           let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+           let alertVC =  storyboard.instantiateViewController(withIdentifier: "AlertHealthAssureVC") as! AlertHealthAssureVC
+           
+           alertVC.alertTitle = title
+           alertVC.alertBody = body
+           alertVC.alertButtonTitle = buttonTitle
+          
+           
+           return alertVC
+       }
 }

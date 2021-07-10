@@ -127,19 +127,16 @@ class ShareImageVC: UIViewController {
     
     @IBAction func homeBtnClick(_ sender: Any) {
         
+
         
-//           let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//                   KYDrawer.modalPresentationStyle = .fullScreen
-//                 self.present(KYDrawer, animated: true, completion: nil)
-        
-        self.dismissAll(animated: true)
+        self.dismissAll(animated: false)
     }
     
     
     
     @IBAction func backBtnClick(_ sender: Any) {
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
 
     }
     
