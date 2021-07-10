@@ -214,6 +214,7 @@
 		B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */; };
 		B26D7E262696EE1B00FCECAA /* AlertHealthAssureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */; };
 		B26D7E2926972B9B00FCECAA /* HealthAssureShortUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */; };
+		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -463,6 +464,7 @@
 		B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHealthAssureVC.swift; sourceTree = "<group>"; };
 		B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureShortUrlResponse.swift; sourceTree = "<group>"; };
+		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -743,6 +745,7 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
+				B2915B4126998FB500DECE41 /* Reachability */,
 				B2B970192618599F004CC86C /* AppDelegate */,
 				B253B227261652E0000C3A7D /* IQKeyboardManagerSwift */,
 				B29153D126133D3F0034608F /* Extension */,
@@ -1194,6 +1197,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B2915B4126998FB500DECE41 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B2915B4226998FEB00DECE41 /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		B2B970192618599F004CC86C /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1474,6 +1485,7 @@
 				84855BD92251E6F200DBB626 /* lyfinshdfcinputModel.swift in Sources */,
 				840562D721D4D29F0099DDE8 /* mpsVC.swift in Sources */,
 				B26D7E262696EE1B00FCECAA /* AlertHealthAssureVC.swift in Sources */,
+				B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */,
 				8407145F21C0DFEB00D35C55 /* DatePickerVC.swift in Sources */,
 				B253B244261652E0000C3A7D /* IQTextView.swift in Sources */,
 				8411808A21C5105D00D5638B /* MenuHelper.swift in Sources */,

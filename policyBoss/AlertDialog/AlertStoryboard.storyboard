@@ -120,7 +120,7 @@
         <!--Alert Health AssureVC-->
         <scene sceneID="AJE-bz-wGa">
             <objects>
-                <viewController storyboardIdentifier="AlertHealthAssureVC" id="mDm-ZS-Lb1" customClass="AlertHealthAssureVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertHealthAssureVC" modalPresentationStyle="overFullScreen" id="mDm-ZS-Lb1" customClass="AlertHealthAssureVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nJJ-56-o8t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,6 +233,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ztB-l4-7Fl"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="btnShare" destination="OsY-3K-C0r" id="R2i-DO-k7v"/>
                         <outlet property="lblBody" destination="Jcd-o9-g7E" id="cVo-qe-j0R"/>
