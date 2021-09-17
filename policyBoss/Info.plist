@@ -32,9 +32,9 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app will use camera</string>
+	<string>This app requires to access your camera to upload the profile and documents.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>You can select photo</string>
+	<string>This app requires to access your photo library to upload  the profile and documents image.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

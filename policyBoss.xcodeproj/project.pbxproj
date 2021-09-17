@@ -746,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				B2915B4126998FB500DECE41 /* Reachability */,
+				840AC5D621BE80AC004DCB26 /* Assets.xcassets */,
 				B2B970192618599F004CC86C /* AppDelegate */,
 				B253B227261652E0000C3A7D /* IQKeyboardManagerSwift */,
 				B29153D126133D3F0034608F /* Extension */,
@@ -885,7 +886,6 @@
 				840562F621D4D4760099DDE8 /* POSP */,
 				840562F721D4D4800099DDE8 /* REQUEST */,
 				840562F821D4D48A0099DDE8 /* OTHERUTILITIES */,
-				84BD5C1921ECB85900982C15 /* ATTENDANCE */,
 			);
 			path = SLIDEMENUSOPTIONS;
 			sourceTree = "<group>";
@@ -1000,18 +1000,10 @@
 			path = KNOWGURUCELLS;
 			sourceTree = "<group>";
 		};
-		84BD5C1921ECB85900982C15 /* ATTENDANCE */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ATTENDANCE;
-			sourceTree = "<group>";
-		};
 		84BF349121D33DC10030DC2D /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				840AC5D321BE80AB004DCB26 /* Main.storyboard */,
-				840AC5D621BE80AC004DCB26 /* Assets.xcassets */,
 				840AC5D821BE80AC004DCB26 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;

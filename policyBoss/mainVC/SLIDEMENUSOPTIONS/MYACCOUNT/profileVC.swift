@@ -11,6 +11,7 @@ import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
 import SDWebImage
+import AVFoundation
 
 class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
@@ -596,7 +597,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     {
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
+           // self.openCamera()
+            self.checkCameraPermission()
         }))
         
         alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
@@ -620,20 +622,62 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         self.present(alert, animated: true, completion: nil)
     }
     
+    func checkCameraPermission(){
+        
+        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch authStatus {
+        case .denied:
+            print("Deny status called")
+            CheckPermissionAlert( _title: "Camera access is need to capture the image",_message: "Please Allow Camera Access")
+            break
+            
+            
+        case .restricted:
+            print("User Don't Allow")
+            break
+            
+        case .authorized:
+            print("Success")
+            self.openCamera()
+           
+            break
+        
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { (success) in
+                
+                if success {
+                    print("Permission Granted")
+                    self.openCamera()
+                }else{
+                    print("Permission Not Granted")
+                }
+            }
+        break
+        default:
+            print("Statuds : Unknown")
+        }
+    }
+    
     func openCamera()
     {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
-        {
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.allowsEditing = true
-            self.present(imagePicker, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            
+            if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+            {
+                self.imagePicker.sourceType = UIImagePickerController.SourceType.camera
+                self.imagePicker.allowsEditing = true
+                self.present(self.imagePicker, animated: true, completion: nil)
+            }
+            else
+            {
+                let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        else
-        {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
+        
+       
     }
     
     func openGallary()
@@ -836,11 +880,13 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
             print("DOC FBA PHOtograph " + srUrl)
             if(srUrl != ""){
-                  let remoteImageURL = URL(string: srUrl)!
-                  self.myaccountImgeView.sd_setImage(with: remoteImageURL)
+
+                
+                let MainUrl =  srUrl + "?\( Int.random(in: 1...100))"
+                let remoteImageURL = URL(string: MainUrl )!
+                    self.myaccountImgeView.sd_setImage(with: remoteImageURL )
+              
                   imgDoc1.image = UIImage(named: "doc_uploaded")
-            }else{
-                    myaccountImgeView.image = pickedImage
             }
         
             myaccountImgeView.layer.cornerRadius = 64
@@ -853,9 +899,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
 //            if(srUrl != ""){
 //                let remoteImageURL = URL(string: srUrl)!
 //                self.myaccountImgeView.sd_setImage(with: remoteImageURL)
-//            }else{
-//                myaccountImgeView.image = pickedImage
 //            }
+//
 //
 //            myaccountImgeView.layer.cornerRadius = 64
 //            imgDoc1.image = UIImage(named: "doc_uploaded")
@@ -998,6 +1043,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         if Connectivity.isConnectedToInternet()
         {
         
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+           
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
         
 //        if UIImageJPEGRepresentation(self.pickedImage,1) != nil {
@@ -1029,8 +1076,19 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 switch result {
                 case .success(let upload, _, _):
                     
+                   
                     upload.uploadProgress(closure: { (Progress) in
                         print("Upload Progress: \(Progress.fractionCompleted)")
+                        
+                        if let parentView = self.navigationController?.view
+                        {
+                            alertView.parentView = parentView
+                        }
+                        else
+                        {
+                            alertView.parentView = self.view
+                        }
+                        alertView.show()
                     })
                     
                     upload.responseJSON { response in
@@ -1039,17 +1097,43 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                         print(response.response!) // URL response
                         print(response.data!)     // server data
                         print(response.result)   // result of response serialization
-                        //                        self.showSuccesAlert()
-                        //self.removeImage("frame", fileExtension: "txt")
-                        if let JSON = response.result.value {
-                            print("JSON: \(JSON)")
+                      
+                        alertView.close()
+                       // self.view.layoutIfNeeded()
+                        
+                        if let jsonData = response.result.value as? NSDictionary {
                             
-                            self.setupUploadDoc(type: Int(documentType)!, srUrl: "")
+                           let Status = (jsonData as AnyObject).value(forKey: "StatusNo") as? Int ?? 1
+                           let Message = (jsonData as AnyObject).value(forKey: "Message") as? String ?? ""
+                            
+                            if (Status  ==  0){
+                                
+                                let jsonMasterData = (jsonData as AnyObject).value(forKey: "MasterData") as! NSArray
+                                
+                                print("URL: \(jsonMasterData)")
+                                
+                               let prv_file = (jsonMasterData[0] as AnyObject).value(forKey: "prv_file") as! String
+                                let resultMssg = (jsonMasterData[0] as AnyObject).value(forKey: "Message") as! String
+                                
+                                print("URL: prv_file \(prv_file)")
+                                self.setupUploadDoc(type: Int(documentType)!, srUrl: prv_file)
+
+                                let snackbar = TTGSnackbar.init(message: resultMssg, duration: .middle )
+                                snackbar.show()
+                            }else{
+                                
+                                let snackbar = TTGSnackbar.init(message: Message , duration: .middle )
+                                snackbar.show()
+                                
+                            }
+                            
                         }
+                        
+                        
                     }
                     
                 case .failure(let encodingError):
-                    //self.delegate?.showFailAlert()
+                   
                     print(encodingError)
                     let snackbar = TTGSnackbar.init(message: "Doc Not Uploaded. Please try again", duration: .middle )
                                           snackbar.show()

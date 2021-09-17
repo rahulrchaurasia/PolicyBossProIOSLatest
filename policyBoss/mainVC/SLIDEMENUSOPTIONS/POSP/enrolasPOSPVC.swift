@@ -10,6 +10,7 @@ import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
+import AVFoundation
 
 class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -183,17 +184,12 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             self.enmob1Tf.text! = mob
         }
         
-        
-        
-       
-        
+ 
     }
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
         
-        
-
         self.dismiss(animated: false, completion: nil)
              
     }
@@ -963,6 +959,43 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         self.present(alert, animated: true, completion: nil)
     }
     
+    func checkCameraPermission(){
+        
+        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        
+        switch authStatus {
+        case .denied:
+            print("Deny status called")
+            CheckPermissionAlert( _title: "Camera access is need to capture the image",_message: "Please Allow Camera Access")
+            break
+            
+            
+        case .restricted:
+            print("User Don't Allow")
+            break
+            
+        case .authorized:
+            print("Success")
+            self.openCamera()
+           
+            break
+        
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { (success) in
+                
+                if success {
+                    print("Permission Granted")
+                    self.openCamera()
+                }else{
+                    print("Permission Not Granted")
+                }
+            }
+        break
+        default:
+            print("Statuds : Unknown")
+        }
+    }
+    
     func openCamera()
     {
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
@@ -1037,8 +1070,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     
 
+    //---<APICALL>--
     
-    
+    //MARK :-->
     func uploaddocAPI(documentName:String, documentType:String)
     {
         
@@ -1047,16 +1081,6 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         if Connectivity.isConnectedToInternet()
         {
             let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-            if let parentView = self.navigationController?.view
-            {
-                alertView.parentView = parentView
-            }
-            else
-            {
-                alertView.parentView = self.view
-            }
-            alertView.show()
-            
             let FBAId = UserDefaults.standard.string(forKey: "FBAId")
             let imageData = pickedImage.jpegData(compressionQuality: 1)
             //  let imageData = imgDoc1.image!.pngData()
@@ -1090,6 +1114,16 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                         
                         upload.uploadProgress(closure: { (Progress) in
                             print("Upload Progress: \(Progress.fractionCompleted)")
+                            
+                            if let parentView = self.navigationController?.view
+                            {
+                                alertView.parentView = parentView
+                            }
+                            else
+                            {
+                                alertView.parentView = self.view
+                            }
+                            alertView.show()
                         })
                         
                         upload.responseJSON { response in
@@ -1102,16 +1136,47 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                             print(response.response!) // URL response
                             print(response.data!)     // server data
                             print(response.result)   // result of response serialization
-                            //                        self.showSuccesAlert()
-                          
-                            if let JSON = response.result.value {
-                                print("JSON: \(JSON)")
-                                
-                                self.setupUploadDoc(type: Int(documentType)!)
+//
+//                            if let JSON = response.result.value {
+//                                print("JSON: \(JSON)")
+//
+//                                self.setupUploadDoc(type: Int(documentType)!)
+//
+//
+//                            }
                             
-    
+                            if let jsonData = response.result.value as? NSDictionary {
+                                
+                               let Status = (jsonData as AnyObject).value(forKey: "StatusNo") as? Int ?? 1
+                               let Message = (jsonData as AnyObject).value(forKey: "Message") as? String ?? ""
+                                
+                                if (Status  ==  0){
+                                    
+                                    let jsonMasterData = (jsonData as AnyObject).value(forKey: "MasterData") as! NSArray
+                                    
+                                    print("URL: \(jsonMasterData)")
+                                    
+                                   let prv_file = (jsonMasterData[0] as AnyObject).value(forKey: "prv_file") as! String
+                                    let resultMssg = (jsonMasterData[0] as AnyObject).value(forKey: "Message") as! String
+                                    
+                                    print("URL: prv_file \(prv_file)")
+                                   // self.setupUploadDoc(type: Int(documentType)!, srUrl: prv_file)
+                                    self.setupUploadDoc(type: Int(documentType)!)
+                                    
+                                    let snackbar = TTGSnackbar.init(message: resultMssg, duration: .middle )
+                                    snackbar.show()
+                                }else{
+                                    
+                                    let snackbar = TTGSnackbar.init(message: Message , duration: .middle )
+                                    snackbar.show()
+                                    
+                                }
+                                
                             }
+                            
+                            
                         }
+                    
                         
                     case .failure(let encodingError):
                         //self.delegate?.showFailAlert()
