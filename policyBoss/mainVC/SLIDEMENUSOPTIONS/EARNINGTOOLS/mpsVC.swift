@@ -34,6 +34,12 @@ class mpsVC: UIViewController {
         
     }
     
+    
+    @IBAction func btnCloseClick(_ sender: Any) {
+        
+        self.dismiss(animated: false, completion: nil)
+    }
+    
     @IBAction func knowmoreMPSBtnCliked(_ sender: Any)
     {
         let getmpsNow : getmpsNowVC = self.storyboard?.instantiateViewController(withIdentifier: "stbgetmpsNowVC") as! getmpsNowVC

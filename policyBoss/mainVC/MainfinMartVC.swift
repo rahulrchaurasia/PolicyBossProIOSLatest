@@ -20,7 +20,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
    
     @IBOutlet weak var mainTV: UITableView!
     @IBOutlet weak var salesmaterialView: UIView!
-    @IBOutlet weak var pendingcasesView: UIView!
+    //@IBOutlet weak var pendingcasesView: UIView!
     @IBOutlet weak var knowguruView: UIView!
     
     @IBOutlet weak var NewImage: UIImageView!
@@ -45,6 +45,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var DesignationArray = [String]()
     var managerName = ""
     var mobNo = ""
+    
+    //******************** Below Array Not in Used **********************
     var insuranceArray = ["PRIVATE CAR","TWO WHEELER","COMMERCIAL VEHICLE","HEALTH INSURANCE","LIFE INSURANCE","REQUEST OFFLINE QUOTES"]
     var loansArray = ["CREDIT CARD","PERSONAL LOAN","BUSINESS LOAN","HOME LOAN","LOAN AGAINST PROPERTY"]
     var moreservicesArray = ["OTHER INVESTMENT PRODUCT-P2P"]
@@ -75,8 +77,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let borderColor = UIColor.black
         salesmaterialView.layer.borderWidth=1.0;
         salesmaterialView.layer.borderColor=borderColor.cgColor;
-        pendingcasesView.layer.borderWidth=1.0;
-        pendingcasesView.layer.borderColor=borderColor.cgColor;
+       // pendingcasesView.layer.borderWidth=1.0;
+       // pendingcasesView.layer.borderColor=borderColor.cgColor;
         knowguruView.layer.borderWidth=1.0;
         knowguruView.layer.borderColor=borderColor.cgColor;
         
@@ -234,22 +236,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
        // self.add(Salesmaterial)
     }
-    @IBAction func pendingcasesBtnCliked(_ sender: Any)
-    {
 
-        
-        let pendingcasescapsVC : pendingcasescapsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
-        
-        pendingcasescapsVC.modalPresentationStyle = .fullScreen
-        pendingcasescapsVC.modalTransitionStyle = .coverVertical
-        self.add(pendingcasescapsVC)
-        /*
-         
-         let controller1: pendingcasescapsVC = storyboard.instantiateViewController(withIdentifier: "stbpendingcasescapsVC") as! pendingcasescapsVC
-                   
-         */
-
-    }
     @IBAction func knowguruBtnCliked(_ sender: Any)
     {
     
@@ -258,7 +245,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         KnowlgeGuru.modalPresentationStyle = .fullScreen
         KnowlgeGuru.modalTransitionStyle = .coverVertical
         KnowlgeGuru.delegateData = self
-        present(KnowlgeGuru, animated: true, completion: nil)
+        present(KnowlgeGuru, animated: false, completion: nil)
     }
     
     //tableView Datasource+Delegates
@@ -269,7 +256,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             return 1
         }
         else{
-            return 3
+            return 2
         }
     }
     
@@ -291,10 +278,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //            {
 //                return loanModel.count
 //            }
-            else if(section == 2)
-            {
-                return moreServiceModel.count
-            }
+//            else if(section == 2)
+//            {
+//               // return moreServiceModel.count
+//                 return 0
+//            }
             else if(section == 1)
             {
                 return 0
@@ -498,42 +486,35 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //
 //            }
             
-        else if(indexPath.section == 2)
-            {
-                cell.cellbtnInfoProduct.isHidden = true
-                cell.cellbtnShareProduct.isHidden = true
-                
-                cell.cellImageInfoProduct.isHidden = true
-                cell.cellImageShareProduct.isHidden = true
-                cell.cellNewImage.isHidden = true
-                
-                
-
-                
-                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname.uppercased()
-                cell.celldetailTextLbl.text! = moreServiceModel[indexPath.row].dashdescription
-               // cell.cellImage.image = UIImage(named: moreServiceModel[indexPath.row].iconimage)
-                
-                let remoteImageURL = URL(string: moreServiceModel[indexPath.row].iconimage)!
-                cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
-                
-                
-                
-                
-            }
             
-//            else if(indexPath.section == 1)
+            //***********************************************//
+            // *******  More Service Module is Commented *******///
+            //***********************************************//
+//        else if(indexPath.section == 2)
 //            {
 //                cell.cellbtnInfoProduct.isHidden = true
 //                cell.cellbtnShareProduct.isHidden = true
 //
 //                cell.cellImageInfoProduct.isHidden = true
 //                cell.cellImageShareProduct.isHidden = true
+//                cell.cellNewImage.isHidden = true
 //
-//                cell.cellTitleLbl.text! = ""
-//                cell.cellImage.image = UIImage(named: othrImgArray[indexPath.row])
+//
+//
+//
+//                cell.cellTitleLbl.text! = moreServiceModel[indexPath.row].menuname.uppercased()
+//                cell.celldetailTextLbl.text! = moreServiceModel[indexPath.row].dashdescription
+//               // cell.cellImage.image = UIImage(named: moreServiceModel[indexPath.row].iconimage)
+//
+//                let remoteImageURL = URL(string: moreServiceModel[indexPath.row].iconimage)!
+//                cell.cellImage.sd_setImage(with: remoteImageURL)        //SDWebImage
+//
+//
+//
 //
 //            }
+            
+
            
             
             return cell
@@ -791,18 +772,19 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             
             
-            if(indexPath.section == 2)
-            {
-                if(indexPath.row == 0)
-                {
-                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                    commonWeb.modalPresentationStyle = .fullScreen
-                    commonWeb.webfromScreen = "otherInvestmentproductp2p"
-                    present(commonWeb, animated: true, completion: nil)
-                    deSelectDashboard()
-                }
-                
-            }
+//            if(indexPath.section == 2)
+//            {
+//                if(indexPath.row == 0)
+//                {
+//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                    commonWeb.modalPresentationStyle = .fullScreen
+//                    commonWeb.webfromScreen = "otherInvestmentproductp2p"
+//                    present(commonWeb, animated: true, completion: nil)
+//                    deSelectDashboard()
+//                }
+//
+//            }
+            
         }
         
     }
@@ -894,10 +876,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 headerView.addSubview(button)   // add the button to the view
             }
 
-            else if(section == 2)
-            {
-                label.text = "MORE SERVICES"
-            }
+//            else if(section == 2)
+//            {
+//                label.text = "MORE SERVICES"
+//            }
             
             
             //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
@@ -1274,7 +1256,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 
                                 self.dynamicDashboardModel.append(model)
                                 
-                            }else if(aObject["dashboard_type"] as! String == "3" ){
+                            }
+                            /*   More Service Commented ...
+                            else if(aObject["dashboard_type"] as! String == "3" ){
                                 
                                 let model = DynamicDashboardModel(menuid: aObject["menuid"] as! Int, menuname: aObject["menuname"] as! String,
                                                                   link: aObject["link"] as! String, iconimage:  aObject["iconimage"] as! String,
@@ -1293,6 +1277,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 
                                 self.moreServiceModel.append(model)
                             }
+                            */
                             
                             
                             
@@ -1300,9 +1285,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         }
                         
                         
-                        
-                        //var menuName = aObject["menuname"] as! String
-                        // print("DATA",menuName)
+                
                         
                         DispatchQueue.main.async {
                             self.mainTV.isHidden = false

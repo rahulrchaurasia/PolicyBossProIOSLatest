@@ -59,13 +59,16 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var loansItems = ["Referral Agreement","Free Credit Report"]
     var loansImges = ["agreemnet.png","agreemnet.png"]
     
-    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","LOG-OUT"]
-    var otherImges = ["ic_business_name.png","posp_training.png","logout.png"]
+    var otherutilitiesItems = ["MY UTILITIES","LOG-OUT"]
+    var otherImges = ["posp_training.png","logout.png"]
     
     //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
     
     
     var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
+    
+   // var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","LOG-OUT"]
+   // var otherImges = ["ic_business_name.png","posp_training.png","logout.png"]
     //"Loan Agreement",
     // var transactionsItems = ["My Insurance Business","My Transactions","My Messages","Get Policy by CRN"]
     //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
@@ -774,24 +777,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             /*****************************  OTHER SECTION ******************************/
         else  if(indexPath.section == 5)
         {
-            //                if(indexPath.row == 0)
-            //                {
-            //                    let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
-            //                    addUsersV.fromScreen = "otherloanProduct"
-            //                    present(addUsersV, animated: true, completion: nil)
-            //
-            //                }
-            if(indexPath.row == 0)
-            {
-                //                let helpnfeedback : helpnfeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhelpnfeedbackVC") as! helpnfeedbackVC
-                //                present(helpnfeedback, animated: true, completion: nil)
-                let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
-                addUsersV.modalPresentationStyle = .fullScreen
-                addUsersV.modalTransitionStyle = .coverVertical
-                addUsersV.fromScreen = "moreServices"
-                present(addUsersV, animated: false, completion: nil)
-            }
-            else if(indexPath.row == 1)
+            
+             if(indexPath.row == 0)
             {
                 
                 let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
@@ -808,7 +795,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //                    let whatsNew : whatsNewVC = self.storyboard?.instantiateViewController(withIdentifier: "stbwhatsNewVC") as! whatsNewVC
             //                    present(whatsNew, animated: true, completion: nil)
             //                }
-            if(indexPath.row == 2)
+            if(indexPath.row == 1)
             {
                 callAlertView()
             }

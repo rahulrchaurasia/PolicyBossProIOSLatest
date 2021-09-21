@@ -21,7 +21,7 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
     {
         let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
          KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        present(KYDrawer, animated: false, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,7 +45,9 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         if(indexPath.row == 0)
         {
             let hnfcontactUs : hnfcontactUsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfcontactUsVC") as! hnfcontactUsVC
-            present(hnfcontactUs, animated: true, completion: nil)
+            hnfcontactUs.modalPresentationStyle = .fullScreen
+            hnfcontactUs.modalTransitionStyle = .coverVertical
+            present(hnfcontactUs, animated: false, completion: nil)
         }
        
         else if(indexPath.row == 1)
@@ -56,6 +58,7 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             
             let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
             commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.modalTransitionStyle = .coverVertical
             commonWeb.webfromScreen = "DISCLOSURE"
             commonWeb.addType = "CHILD"
             add(commonWeb)

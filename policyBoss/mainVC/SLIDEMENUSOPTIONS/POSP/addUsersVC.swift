@@ -101,25 +101,28 @@ class addUsersVC: UIViewController {
     
     @IBAction func freeCreditBtnCliked(_ sender: Any)
     {
+       
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.webfromScreen = "freeCreditCard"
-        present(commonWeb, animated: true, completion: nil)
+        present(commonWeb, animated: false, completion: nil)
     }
     
     @IBAction func loanMessBtnCliked(_ sender: Any)
     {
+      
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.webfromScreen = "loanonMessanger"
-        present(commonWeb, animated: true, completion: nil)
+        present(commonWeb, animated: false, completion: nil)
     }
     
     @IBAction func leadSubmiBtnCliked(_ sender: Any)
     {
+       
         let QuickLead : QuickLeadVC = self.storyboard?.instantiateViewController(withIdentifier: "stbQuickLeadVC") as! QuickLeadVC
         QuickLead.modalPresentationStyle = .fullScreen
-        present(QuickLead, animated: true, completion: nil)
+        present(QuickLead, animated: false, completion: nil)
     }
     
     @IBAction func cashLoanBtnCliked(_ sender: Any)
@@ -137,10 +140,11 @@ class addUsersVC: UIViewController {
     
     @IBAction func rectifyCreditBtnCliked(_ sender: Any)
     {
+        
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.webfromScreen = "rectifyCredit"
-        present(commonWeb, animated: true, completion: nil)
+        present(commonWeb, animated: false, completion: nil)
     }
     
     //<moreServicesMenus>
@@ -156,7 +160,7 @@ class addUsersVC: UIViewController {
     
     @IBAction func healthAssureBtnCliked(_ sender: Any)
     {
-       
+        
         let offlineQuotes : offlineQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbofflineQuotesVC") as! offlineQuotesVC
         offlineQuotes.modalPresentationStyle = .fullScreen
         offlineQuotes.modalTransitionStyle = .coverVertical
@@ -167,6 +171,7 @@ class addUsersVC: UIViewController {
     //<myUtilitiesMenus>
     @IBAction func mpsBtnCliked(_ sender: Any)
     {
+        
         let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
         mpsV.modalPresentationStyle = .fullScreen
         mpsV.modalTransitionStyle = .coverVertical
@@ -183,19 +188,22 @@ class addUsersVC: UIViewController {
     
     @IBAction func myTrainingBtnCliked(_ sender: Any)
     {
+       
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.modalTransitionStyle = .coverVertical
         commonWeb.webfromScreen = "Training"
-        present(commonWeb, animated: true, completion: nil)
+        present(commonWeb, animated: false, completion: nil)
     }
     
     @IBAction func helpnFeedbckBtnCliked(_ sender: Any)
     {
+      
         let helpnfeedback : helpnfeedbackVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhelpnfeedbackVC") as! helpnfeedbackVC
         helpnfeedback.modalPresentationStyle = .fullScreen
         helpnfeedback.modalTransitionStyle = .coverVertical
-        present(helpnfeedback, animated: true, completion: nil)
+        present(helpnfeedback, animated: false, completion: nil)
+       
     }
     
     

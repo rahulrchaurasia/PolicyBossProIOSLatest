@@ -935,7 +935,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     {
         let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.openCamera()
+            //self.openCamera()
+            self.checkCameraPermission()
         }))
         
         alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
@@ -1128,23 +1129,14 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                         
                         upload.responseJSON { response in
                             
-                            DispatchQueue.main.async {
-                                                            alertView.close()
-                                                        }
+                    
                             //self.delegate?.showSuccessAlert()
                             print(response.request!)  // original URL request
                             print(response.response!) // URL response
                             print(response.data!)     // server data
-                            print(response.result)   // result of response serialization
-//
-//                            if let JSON = response.result.value {
-//                                print("JSON: \(JSON)")
-//
-//                                self.setupUploadDoc(type: Int(documentType)!)
-//
-//
-//                            }
+                            print(response.result)   // result of
                             
+                            alertView.close()
                             if let jsonData = response.result.value as? NSDictionary {
                                 
                                let Status = (jsonData as AnyObject).value(forKey: "StatusNo") as? Int ?? 1
