@@ -23,9 +23,14 @@ class AlertDocVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //strURL  =  strURL + "?\( Int.random(in: 1...100))"
+        
+        
         lblTitle.text = alertTitle
+       
+        print("URL \(strURL) ")
         let url = URL(string: strURL)
-       // imgDoc.sd_setImage(with: url)
+    
         imgDoc.sd_setImage(with: url, placeholderImage: UIImage(named: "policyboss_placeholder"), options: .continueInBackground , completed: nil)
     }
     

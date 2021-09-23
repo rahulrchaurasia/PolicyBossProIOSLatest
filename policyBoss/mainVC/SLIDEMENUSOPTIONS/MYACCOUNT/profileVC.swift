@@ -71,6 +71,20 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     @IBOutlet weak var imgDoc2: UIImageView!
     @IBOutlet weak var imgDoc3: UIImageView!
     @IBOutlet weak var imgDoc4: UIImageView!
+    
+    
+    @IBOutlet weak var docView1Btn: UIButton!
+    @IBOutlet weak var docView2Btn: UIButton!
+    @IBOutlet weak var docView3Btn: UIButton!
+    @IBOutlet weak var docView4Btn: UIButton!
+   
+    
+    @IBOutlet weak var docView1Img: UIImageView!
+    @IBOutlet weak var docView2Img: UIImageView!
+    @IBOutlet weak var docView3Img: UIImageView!
+    @IBOutlet weak var docView4Img: UIImageView!
+   
+    
     let aTextField = ACFloatingTextfield()
     var imagePicker = UIImagePickerController()
     var pickedImage = UIImage()
@@ -81,6 +95,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     var stateid = String()
     var stateName = String()
     var profileDocModel = [pospDoc]()
+    // For AlertDialog
+    let alertService = AlertService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,6 +178,20 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
         cityTf.isEnabled = false
         stateTf.isEnabled = false
+            
+        docView1Img.isHidden = true
+        docView1Btn.isHidden = true
+        
+        docView2Img.isHidden = true
+        docView2Btn.isHidden = true
+        
+        docView3Img.isHidden = true
+        docView3Btn.isHidden = true
+        
+        docView4Img.isHidden = true
+        docView4Btn.isHidden = true
+        
+      
         //--<apiCall>--
         getmyaccountAPI()
         
@@ -548,6 +578,34 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
      
     }
     
+    func viewDoc(strImage : String , strtitle : String){
+        
+        let alertDocVC = self.alertService.alertDocView(strURL: strImage, strTitle: strtitle)
+        self.present(alertDocVC, animated: true)
+    }
+    
+      @IBAction func docView1btnClick(_ sender: Any) {
+            
+            
+            viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "FBA PHOTOGRAPH")
+        }
+
+    
+      @IBAction func docView2btnClick(_ sender: Any) {
+           
+            viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "FBA PAN CARD")
+        }
+        
+        
+        @IBAction func docView3btnClick(_ sender: Any) {
+            viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "CANCELLED CHQ")
+        }
+        
+        @IBAction func docView4btnClick(_ sender: Any) {
+            
+            viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "FBA AADHAR CARD")
+        }
+    
     @IBAction func savingBtnCliked(_ sender: Any)
     {
         btnColorChangeGray(Btn: currentBtn)
@@ -874,36 +932,42 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     
     func setupUploadDoc(type : Int, srUrl : String){
         
+        let srUrl =  srUrl + "?\( Int.random(in: 1...100))"
         switch(type) {
             
         case 1,2 :
             
             print("DOC FBA PHOtograph " + srUrl)
-            if(srUrl != ""){
-
-                
-                let MainUrl =  srUrl + "?\( Int.random(in: 1...100))"
-                let remoteImageURL = URL(string: MainUrl )!
-                    self.myaccountImgeView.sd_setImage(with: remoteImageURL )
-              
-                  imgDoc1.image = UIImage(named: "doc_uploaded")
-            }
-        
-            myaccountImgeView.layer.cornerRadius = 64
-           
             
+            
+            let remoteImageURL = URL(string: srUrl )!
+            self.myaccountImgeView.sd_setImage(with: remoteImageURL )
+            
+            imgDoc1.image = UIImage(named: "doc_uploaded")
+
+            myaccountImgeView.layer.cornerRadius = 64
+            
+            docView1Btn.layer.name = srUrl
+            docView1Img.isHidden = false
+            docView1Btn.isHidden = false
             break;
 
        case 3 :
             print("DOC PanCard ")
             imgDoc2.image = UIImage(named: "doc_uploaded")
-
+           
+            docView2Btn.layer.name = srUrl
+            docView2Img.isHidden = false
+            docView2Btn.isHidden = false
             break;
             
        case 4 :
             print("DOC Cancel Cheque")
             imgDoc3.image = UIImage(named: "doc_uploaded")
-
+           
+            docView3Btn.layer.name = srUrl
+            docView3Img.isHidden = false
+            docView3Btn.isHidden = false
             break;
             
             
@@ -911,6 +975,9 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             print("DOC Aadhar")
             imgDoc4.image = UIImage(named: "doc_uploaded")
 
+            docView4Btn.layer.name = srUrl
+            docView4Img.isHidden = false
+            docView4Btn.isHidden = false
             break;
             
      
