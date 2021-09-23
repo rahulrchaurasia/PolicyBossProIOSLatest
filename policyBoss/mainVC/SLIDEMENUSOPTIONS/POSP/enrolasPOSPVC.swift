@@ -54,18 +54,28 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     @IBOutlet weak var enbankBranchTf: ACFloatingTextfield!
     @IBOutlet weak var enbankCityTf: ACFloatingTextfield!
     
-    
     @IBOutlet weak var imgDoc1: UIImageView!
-    
     @IBOutlet weak var imgDoc2: UIImageView!
-    
     @IBOutlet weak var imgDoc3: UIImageView!
-    
     @IBOutlet weak var imgDoc4: UIImageView!
-    
     @IBOutlet weak var imgDoc5: UIImageView!
-    
     @IBOutlet weak var imgDoc6: UIImageView!
+    
+    @IBOutlet weak var docView1Btn: UIButton!
+    @IBOutlet weak var docView2Btn: UIButton!
+    @IBOutlet weak var docView3Btn: UIButton!
+    @IBOutlet weak var docView4Btn: UIButton!
+    @IBOutlet weak var docView5Btn: UIButton!
+    @IBOutlet weak var docView6Btn: UIButton!
+    
+    @IBOutlet weak var docView1Img: UIImageView!
+    @IBOutlet weak var docView2Img: UIImageView!
+    @IBOutlet weak var docView3Img: UIImageView!
+    @IBOutlet weak var docView4Img: UIImageView!
+    @IBOutlet weak var docView5Img: UIImageView!
+    @IBOutlet weak var docView6Img: UIImageView!
+    
+    
     
     var imagePicker = UIImagePickerController()
     var pickedImage = UIImage()
@@ -100,7 +110,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     let AADHAR_BACK_File = "POSPAadharCardBack"
     let EDU_FILE = "POSPHighestEducationProof"
     
-
+    // For AlertDialog
+    let alertService = AlertService()
     //let toolbar = UIToolbar()
      
     override func viewDidLoad() {
@@ -166,6 +177,26 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         bankdetailsViewHeight.constant = 0
         docuploadView.isHidden = true
         docuploadViewHeight.constant = 0
+        
+        
+        docView1Img.isHidden = true
+        docView1Btn.isHidden = true
+        
+        docView2Img.isHidden = true
+        docView2Btn.isHidden = true
+        
+        docView3Img.isHidden = true
+        docView3Btn.isHidden = true
+        
+        docView4Img.isHidden = true
+        docView4Btn.isHidden = true
+        
+        docView5Img.isHidden = true
+        docView5Btn.isHidden = true
+        
+        docView6Img.isHidden = true
+        docView6Btn.isHidden = true
+        
         
         //--<apiCall>--
         getpospdetailAPI()
@@ -877,6 +908,46 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     }
     
+    func viewDoc(strImage : String , strtitle : String){
+        
+        let alertDocVC = self.alertService.alertDocView(strURL: strImage, strTitle: strtitle)
+        self.present(alertDocVC, animated: true)
+    }
+    
+    @IBAction func docView1btnClick(_ sender: Any) {
+        
+        
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT PHOTOGRAPH")
+    }
+    
+    
+    @IBAction func docView2btnClick(_ sender: Any) {
+       
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT PAN CARD")
+    }
+    
+    
+    @IBAction func docView3btnClick(_ sender: Any) {
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT AADHAR CARD FRONT")
+    }
+    
+    @IBAction func docView4btnClick(_ sender: Any) {
+        
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT AADHAR CARD BACK")
+    }
+    
+    
+    @IBAction func docView5btnClick(_ sender: Any) {
+        
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT CANCELLED CHQ")
+    }
+    
+    
+    
+    @IBAction func docView6btnClick(_ sender: Any) {
+        
+        viewDoc(strImage: (sender as AnyObject).layer.name!, strtitle: "RECENT HIGHEST EDU. PROOF")
+    }
     
     
     
@@ -1152,9 +1223,8 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                                     let resultMssg = (jsonMasterData[0] as AnyObject).value(forKey: "Message") as! String
                                     
                                     print("URL: prv_file \(prv_file)")
-                                   // self.setupUploadDoc(type: Int(documentType)!, srUrl: prv_file)
-                                    self.setupUploadDoc(type: Int(documentType)!)
-                                    
+                                   
+                                    self.setupUploadDoc(type: Int(documentType)!, srUrl: prv_file)
                                     let snackbar = TTGSnackbar.init(message: resultMssg, duration: .middle )
                                     snackbar.show()
                                 }else{
@@ -1652,7 +1722,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                         
                     }
                     
-                    self.setupUploadDoc(type : DocType)   // Set the Doc URL
+                    let FileName = (doc![index] as AnyObject).value(forKey: "FileName") as! String
+                    
+                    self.setupUploadDoc(type : DocType, srUrl: FileName)   // Set the Doc URL
+                    
                     
                     let model = pospDoc(DocType:  aObject["DocType"] as! Int ,            // Bind the all doc
                                         FileName: aObject["FileName"] as! String,
@@ -1726,7 +1799,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     }
    
-    func setupUploadDoc(type : Int){
+    func setupUploadDoc(type : Int , srUrl : String){
+        
+        let srUrl =  srUrl + "?\( Int.random(in: 1...100))"
         
         switch(type) {
             
@@ -1735,24 +1810,41 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             print("DOC Image 1 ")
             imgDoc1.image = UIImage(named: "doc_uploaded")
             imgDoc1.tag = 1
+            
+            
+            docView1Btn.layer.name = srUrl
+            docView1Img.isHidden = false
+            docView1Btn.isHidden = false
             break;
             
         case 7  :
             print("DOC Image 2 ")
             imgDoc2.image = UIImage(named: "doc_uploaded")
             imgDoc2.tag = 1
+            
+            docView2Btn.layer.name = srUrl
+            docView2Img.isHidden = false
+            docView2Btn.isHidden = false
             break;
             
         case 8 :
             print("DOC Image 3 ")
             imgDoc3.image = UIImage(named: "doc_uploaded")
             imgDoc3.tag = 1
+            
+            docView3Btn.layer.name = srUrl
+            docView3Img.isHidden = false
+            docView3Btn.isHidden = false
             break;
             
         case 9 :
             print("DOC Image 4 ")
             imgDoc4.image = UIImage(named: "doc_uploaded")
             imgDoc4.tag = 1
+            
+            docView4Btn.layer.name = srUrl
+            docView4Img.isHidden = false
+            docView4Btn.isHidden = false
             break;
             
             
@@ -1760,12 +1852,20 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             print("DOC Image 5 ")
             imgDoc5.image = UIImage(named: "doc_uploaded")
             imgDoc5.tag = 1
+            
+            docView5Btn.layer.name = srUrl
+            docView5Img.isHidden = false
+            docView5Btn.isHidden = false
             break;
             
         case 11  :
             print("DOC Image 5 ")
             imgDoc6.image = UIImage(named: "doc_uploaded")
             imgDoc6.tag = 1
+            
+            docView6Btn.layer.name = srUrl
+            docView6Img.isHidden = false
+            docView6Btn.isHidden = false
             break;
             
         default:

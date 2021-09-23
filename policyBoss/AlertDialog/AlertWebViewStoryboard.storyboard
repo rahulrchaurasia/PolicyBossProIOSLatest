@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +11,7 @@
         <!--Alert Web View Controller-->
         <scene sceneID="MKi-RA-7fd">
             <objects>
-                <viewController storyboardIdentifier="AlertWebVC" modalPresentationStyle="overFullScreen" id="lpN-Xl-VKG" customClass="AlertWebViewController" customModule="MagicFinmart" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlertWebVC" modalPresentationStyle="overFullScreen" id="lpN-Xl-VKG" customClass="AlertWebViewController" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uMg-vv-mYV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +27,7 @@
                                             <wkPreferences key="preferences"/>
                                         </wkWebViewConfiguration>
                                     </wkWebView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3e-NZ-inj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A3e-NZ-inj">
                                         <rect key="frame" x="324" y="0.0" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="fsQ-oN-Z11"/>
@@ -62,6 +60,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="uh2-YF-OLl"/>
                         <color key="backgroundColor" red="0.75035691624365486" green="0.75035691624365486" blue="0.75035691624365486" alpha="0.62831763698630139" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uh2-YF-OLl" firstAttribute="bottom" secondItem="65h-bo-9Bi" secondAttribute="bottom" constant="75" id="FJq-Nd-PdP"/>
@@ -69,7 +68,6 @@
                             <constraint firstItem="65h-bo-9Bi" firstAttribute="top" secondItem="uh2-YF-OLl" secondAttribute="top" constant="50" id="afD-2C-9Vs"/>
                             <constraint firstItem="uh2-YF-OLl" firstAttribute="trailing" secondItem="65h-bo-9Bi" secondAttribute="trailing" constant="30" id="eLl-I1-MIp"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uh2-YF-OLl"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>

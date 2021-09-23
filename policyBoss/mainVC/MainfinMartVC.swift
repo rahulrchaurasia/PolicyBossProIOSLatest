@@ -1426,7 +1426,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         switch response.result {
                     
         
-            case .success(let value):
+           case .success(_):
                 
                 alertView.close()
             

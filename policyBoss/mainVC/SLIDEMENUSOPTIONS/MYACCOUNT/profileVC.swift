@@ -893,20 +893,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
            
             
             break;
-            
-//       case 2 :
-//            print("DOC FBA PHOtograph " + srUrl)
-//            if(srUrl != ""){
-//                let remoteImageURL = URL(string: srUrl)!
-//                self.myaccountImgeView.sd_setImage(with: remoteImageURL)
-//            }
-//
-//
-//            myaccountImgeView.layer.cornerRadius = 64
-//            imgDoc1.image = UIImage(named: "doc_uploaded")
-//
-//            break;
-            
+
        case 3 :
             print("DOC PanCard ")
             imgDoc2.image = UIImage(named: "doc_uploaded")

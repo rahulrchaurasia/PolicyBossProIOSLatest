@@ -46,4 +46,17 @@ class AlertService {
            
            return alertVC
        }
+    
+    
+    
+    func alertDocView(strURL: String,strTitle: String) -> AlertDocVC {
+        
+        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+        
+        let alertDocVC = storyboard.instantiateViewController(withIdentifier: "AlertDocVC") as! AlertDocVC
+        
+        alertDocVC.strURL = strURL
+        alertDocVC.alertTitle = strTitle
+        return alertDocVC
+    }
 }

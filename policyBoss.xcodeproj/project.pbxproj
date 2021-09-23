@@ -215,6 +215,7 @@
 		B26D7E262696EE1B00FCECAA /* AlertHealthAssureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */; };
 		B26D7E2926972B9B00FCECAA /* HealthAssureShortUrlResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */; };
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
+		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -465,6 +466,7 @@
 		B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHealthAssureVC.swift; sourceTree = "<group>"; };
 		B26D7E2826972B9B00FCECAA /* HealthAssureShortUrlResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureShortUrlResponse.swift; sourceTree = "<group>"; };
 		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -617,6 +619,7 @@
 				44AB396C243E201A0009BD86 /* AlertWebViewController.swift */,
 				44BB07B6243EFC9A00F14FEE /* AlertViewController.swift */,
 				B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */,
+				B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */,
 			);
 			path = AlertDialog;
 			sourceTree = "<group>";
@@ -1546,6 +1549,7 @@
 				44AB6D8D2302B9AC00CE685E /* creditcardListTVCell.swift in Sources */,
 				8434742B222D4372004A418A /* cmnApplictnLifeinsTVCell.swift in Sources */,
 				443B4D0A24CC868C00D1FDF7 /* IFSCCodeModel.swift in Sources */,
+				B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */,
 				B253B254261652E0000C3A7D /* IQKeyboardManager+Toolbar.swift in Sources */,
 				84EF6E9F2296B2730002E73B /* smsTempTVCell.swift in Sources */,
 				44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */,
