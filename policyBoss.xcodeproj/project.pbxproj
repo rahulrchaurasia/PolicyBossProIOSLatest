@@ -183,6 +183,7 @@
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
+		B208357A26FDAE40006F5890 /* DynamicLabelSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208357926FDAE40006F5890 /* DynamicLabelSize.swift */; };
 		B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF16269336F70090A877 /* HealthAssureConfigure.swift */; };
 		B218FF19269339DA0090A877 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF18269339DA0090A877 /* APIManger.swift */; };
 		B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */; };
@@ -433,6 +434,7 @@
 		84F4114E220AF254001407EE /* whatsNewTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = whatsNewTVCell.swift; sourceTree = "<group>"; };
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
+		B208357926FDAE40006F5890 /* DynamicLabelSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabelSize.swift; sourceTree = "<group>"; };
 		B218FF16269336F70090A877 /* HealthAssureConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureConfigure.swift; sourceTree = "<group>"; };
 		B218FF18269339DA0090A877 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
 		B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callbackToHomeProtocol.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				442DEDCA2449967200067A3E /*  Connectivity.swift */,
 				442E20E024C8355200FFC075 /* Core.swift */,
 				B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */,
+				B208357926FDAE40006F5890 /* DynamicLabelSize.swift */,
 			);
 			path = CONFIGURATION;
 			sourceTree = "<group>";
@@ -881,7 +884,6 @@
 		84288B2121CCF33700BC50BC /* SLIDEMENUSOPTIONS */ = {
 			isa = PBXGroup;
 			children = (
-				849B082B22017B650055BB80 /* WebVC */,
 				840562F221D4D4150099DDE8 /* MYACCOUNT */,
 				840562F321D4D4360099DDE8 /* TRANSACTION */,
 				840562F421D4D4500099DDE8 /* EARNINGTOOLS */,
@@ -1057,6 +1059,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				849B082B22017B650055BB80 /* WebVC */,
 				84C4D09521C2666B00A677B7 /* LOGIN */,
 				84C4D09721C268B500A677B7 /* MainfinMartVC.swift */,
 				84C4D09921C2736100A677B7 /* MainfinmartTVCell.swift */,
@@ -1576,6 +1579,7 @@
 				443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
 				8431D1D821E86271000419E3 /* motorInsurancecapsVC.swift in Sources */,
+				B208357A26FDAE40006F5890 /* DynamicLabelSize.swift in Sources */,
 				8434741B222D26E2004A418A /* LifeInsuranceVC.swift in Sources */,
 				84347427222D4327004A418A /* cmnApplictnLifeinsVC.swift in Sources */,
 				84D611C02264898400F5D5CC /* loansshareDataTVCell.swift in Sources */,

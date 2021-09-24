@@ -13,7 +13,9 @@ import WebKit
 //import CobrowseIO
 import SafariServices
 
-class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate {
+class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate,HomeDelegate {
+   
+    
     
     //UIScrollViewDelegate
     
@@ -1038,7 +1040,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
     
-    
+    func callbackHomeDelegate() {
+        
+        print("TTT  Call back to Parent ")
+        self.userconstantAPI()
+       // self.getdynamicappAPI()
+        
+    }
 }
 
 

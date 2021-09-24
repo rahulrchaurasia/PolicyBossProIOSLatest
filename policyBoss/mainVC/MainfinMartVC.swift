@@ -14,6 +14,8 @@ import Alamofire
 import SDWebImage
 import MessageUI
 
+let reachability = try! Reachability()
+
 class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate ,HomeDelegate{
    
     
@@ -64,7 +66,62 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
   
     deinit {
       // NotificationCenter.default.removeObserver(self)
+        
+        reachability.stopNotifier()
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("TAG" + "WillAppear ")
+        
+        
+       
+
+        //  DispatchQueue.main.async {
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+                
+            } else {
+                print("Reachable via Cellular")
+            }
+           // self.showAlert(message: "WiFi reachable")
+            
+           
+            if let viewControllers = self.navigationController?.viewControllers {
+                  for vc in viewControllers {
+                       if vc.isKind(of: AlertDocVC.classForCoder()) {
+                            print("PPP It is in stack")
+                            //Your Process
+                        self.navigationController?.popViewController(animated: true)
+                       }
+                  }
+            }
+            
+          
+        }
+        reachability.whenUnreachable = { [self] _ in
+            print("Not reachable")
+            
+            let alertDocView = self.alertService.alertDocView(strURL: "http://bo.magicfinmart.com/uploads/sales_material/24705.jpg", strTitle: "Connection")
+  
+            self.navigationController?.pushViewController(alertDocView, animated: false)
+            
+            
+            
+        }
+        
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+            
+        }
+        // }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -244,7 +301,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         KnowlgeGuru.modalPresentationStyle = .fullScreen
         KnowlgeGuru.modalTransitionStyle = .coverVertical
-        KnowlgeGuru.delegateData = self
         present(KnowlgeGuru, animated: false, completion: nil)
     }
     
@@ -827,7 +883,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         
     }
+    /////**************************************************//
+   
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         
         if(popUpbackgroundView.isHidden == false)
         {
@@ -843,15 +902,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             headerView.backgroundColor = UIColor.gray
             
             let label = UILabel()
-            label.frame = CGRect.init(x: 5, y: 10, width: 200, height: 30)
+            label.numberOfLines = 0;
+            label.frame = CGRect.init(x: 5, y: 0,  width: view.frame.width, height: 50)
+            
+            
+
 //            let label2 = UILabel()
 //            label2.frame = CGRect.init(x: view.frame.maxY, y: 10, width: 200, height: 30)
 //
           
             if(section == 0)
             {
-                label.text = "INSURANCE"
-              //  label2.text = "POWERED BY"
+                label.text = "LANDMARK INSURANCE BROKERS PVT. LTD.\n(IRDAI COR#216)"
+
+                label.font = UIFont.boldSystemFont(ofSize: 16)
+                label.textColor = UIColor.white
+                headerView.addSubview(label)
+         
             }
             else if(section == 1)  //05  Disclosure
             {
@@ -859,14 +926,15 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 headerView.backgroundColor = UIColor.init(red: 0.83, green: 0.83, blue: 0.83, alpha: 1.00)
                 
-                let button = UIButton(frame: CGRect(x: 50, y: 2, width: 300, height: 44))
-                
+                let button = UIButton(frame: CGRect(x: 0, y: 2, width: 300, height: 44))
+                button.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin]
+               // button.contentVerticalAlignment = .center
                 button.setTitle("INSURANCE DISCLOSURE", for: .normal)
                 button.backgroundColor = UIColor.init(red: 0/225.0, green: 125/225.0, blue: 213/225.0, alpha: 1)
                 button.setTitleColor(UIColor.white, for: .normal)
                 button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
                 //button.contentHorizontalAlignment = .center
-                
+               
                 button.tag = section  // important
                 button.addTarget(self, action: #selector(self.buttonDisclTapped), for: .touchUpInside)
                 
@@ -882,26 +950,22 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //            }
             
             
-            //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
-            label.font = UIFont.boldSystemFont(ofSize: 16)
-            //        label.textColor = UIColor.charcolBlackColour() // my custom colour
-            label.textColor = UIColor.white
-            headerView.addSubview(label)
+          
             
-//            labelDisclose.font = UIFont.boldSystemFont(ofSize: 16)
-//            labelDisclose.textColor = UIColor.white
-//            headerView.addSubview(labelDisclose)
             
-           
-//            label2.font = UIFont.italicSystemFont(ofSize: 16)
-//            //        label.textColor = UIColor.charcolBlackColour() // my custom colour
-//            label2.textColor = UIColor.white
-//            headerView.addSubview(label2)
+            
+
             
             return headerView
         }
         
+        
+        
+        
     }
+    
+
+    /////**************************************************//
     
     // endtableView Datasource+Delegates
     
@@ -1224,6 +1288,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     self.view.layoutIfNeeded()
                     
                     
+                    self.dynamicDashboardModel = [DynamicDashboardModel]()
                     
                     let jsonData = userObject as? NSDictionary
                     let Dashboard = jsonData?.value(forKey: "Dashboard") as! NSArray
@@ -1254,6 +1319,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                                                   title: aObject["title"] as! String,
                                                                   info: aObject["info"] as! String)
                                 
+                                
+                               
                                 self.dynamicDashboardModel.append(model)
                                 
                             }
