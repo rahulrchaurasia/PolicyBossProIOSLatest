@@ -14,7 +14,6 @@ import Alamofire
 import SDWebImage
 import MessageUI
 
-let reachability = try! Reachability()
 
 class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate ,HomeDelegate{
    
@@ -67,7 +66,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     deinit {
       // NotificationCenter.default.removeObserver(self)
         
-        reachability.stopNotifier()
+        
     }
     
     
@@ -76,49 +75,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         print("TAG" + "WillAppear ")
         
         
-       
-
-        //  DispatchQueue.main.async {
-        reachability.whenReachable = { reachability in
-            if reachability.connection == .wifi {
-                print("Reachable via WiFi")
-                
-            } else {
-                print("Reachable via Cellular")
-            }
-           // self.showAlert(message: "WiFi reachable")
-            
-           
-            if let viewControllers = self.navigationController?.viewControllers {
-                  for vc in viewControllers {
-                       if vc.isKind(of: AlertDocVC.classForCoder()) {
-                            print("PPP It is in stack")
-                            //Your Process
-                        self.navigationController?.popViewController(animated: true)
-                       }
-                  }
-            }
-            
-          
-        }
-        reachability.whenUnreachable = { [self] _ in
-            print("Not reachable")
-            
-            let alertDocView = self.alertService.alertDocView(strURL: "http://bo.magicfinmart.com/uploads/sales_material/24705.jpg", strTitle: "Connection")
-  
-            self.navigationController?.pushViewController(alertDocView, animated: false)
-            
-            
-            
-        }
-        
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-            
-        }
-        // }
         
     }
     
@@ -153,12 +109,22 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         //--<api>--
        // getLoanStaticDashboard()
-        userconstantAPI()
+        self.userconstantAPI()
         self.getdynamicappAPI()
-   
+        
+    
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(NotifyData(notification:)),
+                                               name: .NotifyMyAccountProfile, object: nil)
      
     }
     
+    
+    @objc func NotifyData(notification : Notification){
+        
+        self.userconstantAPI()
+        self.getdynamicappAPI()
+    }
     
     //////////////////////  Method For Orientation   ////////////////////////////
     

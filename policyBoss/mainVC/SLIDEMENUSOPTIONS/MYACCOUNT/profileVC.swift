@@ -582,6 +582,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
         let alertDocVC = self.alertService.alertDocView(strURL: strImage, strTitle: strtitle)
         self.present(alertDocVC, animated: true)
+        
     }
     
       @IBAction func docView1btnClick(_ sender: Any) {
@@ -950,6 +951,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             docView1Btn.layer.name = srUrl
             docView1Img.isHidden = false
             docView1Btn.isHidden = false
+            
+          
             break;
 
        case 3 :

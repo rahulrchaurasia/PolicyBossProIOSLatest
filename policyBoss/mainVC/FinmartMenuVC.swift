@@ -34,8 +34,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     // @IBOutlet weak var MainScrollView: UIScrollView!
     @IBOutlet weak var versionLbl: UILabel!
     // var myFinItems = ["SHARE SCREEN","HOME","MY FINBOX","FINPERKS"]
-    var myFinItems = ["HOME","MY FINBOX","FINPERKS"]
-    var myFinImages = ["home.png","mps.png","ic_business_name.png"]
+    var myFinItems = ["HOME"]
+    var myFinImages = ["home.png"]
     
     var myaccountItems = ["My Profile","Enrol as POSP","Change Password"]    // 1
     var myaccountImages = ["vector_person.png","posp_enrollment.png","change_password.png"]
@@ -68,6 +68,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     
     var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
+    
+//    var myFinItems = ["HOME","MY FINBOX","FINPERKS"]
+//    var myFinImages = ["home.png","mps.png","ic_business_name.png"]
     
    // var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","LOG-OUT"]
    // var otherImges = ["ic_business_name.png","posp_training.png","logout.png"]
@@ -110,6 +113,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     // For AlertDialog
     let alertService = AlertService()
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+       
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,11 +127,19 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         
         //--<api>--
-        userconstantAPI()
+        
+        bindMenuData()
+        //userconstantAPI()
         //CheckAppAccessAPI()
         
         
+        
+        
     }
+    
+   
+    
+    
     
     
     func deSelectDashboard(){
@@ -442,6 +458,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    
         // close the drawer
         if let drawerController = navigationController?.parent as? KYDrawerController {
             drawerController.setDrawerState(.closed, animated: false)
@@ -463,33 +480,38 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 //self.moveToHome()
                 
+               
+                
+                NotificationCenter.default.post(name: .NotifyMyAccountProfile, object: nil)
+                
+                print("NNN : Notification start")
+                
                 self.dismissAll(animated: false)
                 
-                
             }
-            else if(indexPath.row == 1)     // FINBOX
-            {
-                
-                // 05
-                
-                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                commonWeb.modalPresentationStyle = .fullScreen
-                commonWeb.modalTransitionStyle = .coverVertical
-                commonWeb.webfromScreen = "myFinbox"
-                
-                present(commonWeb, animated: false, completion: nil)
-                
-                
-                
-            }
-            else if(indexPath.row == 2)
-            {
-                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                commonWeb.modalPresentationStyle = .fullScreen
-                commonWeb.modalTransitionStyle = .coverVertical
-                commonWeb.webfromScreen = "Finperks"
-                present(commonWeb, animated: false, completion: nil)
-            }
+//            else if(indexPath.row == 1)     // FINBOX
+//            {
+//
+//                // 05
+//
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.modalPresentationStyle = .fullScreen
+//                commonWeb.modalTransitionStyle = .coverVertical
+//                commonWeb.webfromScreen = "myFinbox"
+//
+//                present(commonWeb, animated: false, completion: nil)
+//
+//
+//
+//            }
+//            else if(indexPath.row == 2)
+//            {
+//                let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//                commonWeb.modalPresentationStyle = .fullScreen
+//                commonWeb.modalTransitionStyle = .coverVertical
+//                commonWeb.webfromScreen = "Finperks"
+//                present(commonWeb, animated: false, completion: nil)
+//            }
             
         }
         //myaccount
@@ -877,41 +899,54 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             print("User Constant Called")
         }else{
             
-            let FBAId = UserDefaults.standard.string(forKey: "FBAId")
-            let loansendname = UserDefaults.standard.string(forKey: "loansendname")
-            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo")
-            let ERPID = UserDefaults.standard.string(forKey: "ERPID")
-            
-            let loanselfphoto = UserDefaults.standard.string(forKey: "loanselfphoto")
-            let enableenrolasposp = UserDefaults.standard.string(forKey: "enableenrolasposp")
-            let showmyinsurancebusiness = UserDefaults.standard.string(forKey: "showmyinsurancebusiness")
-            let referer_code = UserDefaults.standard.string(forKey: "referer_code")
-            
-            self.fullNameLbl.text! = loansendname?.uppercased() ?? ""
-            self.fbaIdLbl.text! = FBAId!
-            self.pospNoLbl.text! = POSPNo!
-            self.erpIdLbl.text! = ERPID ?? "0"
-            self.refcodeLbl.text! = referer_code ?? ""
-            
-            self.enableenrolasPOSP = enableenrolasposp!
-            self.showmyinsurancebusiness = showmyinsurancebusiness!
-            
-            if(loanselfphoto != ""){
-                //loadimages
-                let imgURL = NSURL(string: loanselfphoto! )
-                if imgURL != nil {
-                    let data = NSData(contentsOf: (imgURL as URL?)!)
-                    
-                    self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
-                    // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
-                }
-            }
-            
-            self.menuTV.reloadData()
+            getUserData()
         }
         
     }
     
+  
+    
+    func getUserData(){
+        
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId") as AnyObject
+        
+            
+        let loansendname = UserDefaults.standard.string(forKey: "loansendname") as AnyObject
+        
+        let POSPNo = UserDefaults.standard.string(forKey: "POSPNo") as AnyObject
+        let ERPID = UserDefaults.standard.string(forKey: "ERPID") as AnyObject
+        let loanselfphoto = UserDefaults.standard.string(forKey: "loanselfphoto") as AnyObject
+        let referer_code = UserDefaults.standard.string(forKey: "referer_code") as AnyObject
+        
+        let enableenrolasposp = UserDefaults.standard.string(forKey: "enableenrolasposp") as AnyObject
+        let showmyinsurancebusiness = UserDefaults.standard.string(forKey: "showmyinsurancebusiness") as AnyObject
+        
+        self.enableenrolasPOSP = enableenrolasposp as! String
+        self.showmyinsurancebusiness = showmyinsurancebusiness as! String
+        
+        UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
+        
+        self.fullNameLbl.text! = loansendname.uppercased
+        self.fbaIdLbl.text! = FBAId as! String
+        self.pospNoLbl.text! = POSPNo as! String
+        self.erpIdLbl.text! = ERPID as! String
+        self.refcodeLbl.text! = referer_code as! String
+        
+        if(loanselfphoto as! String != ""){
+            //loadimages
+            let imgURL = NSURL(string: loanselfphoto as! String)
+            if imgURL != nil {
+                let data = NSData(contentsOf: (imgURL as URL?)!)
+                
+                self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
+                // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
+            }
+        }
+        
+        self.menuTV.reloadData()
+        
+        
+    }
     func userconstantAPI()
     {
         

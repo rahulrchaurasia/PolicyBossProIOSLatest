@@ -29,6 +29,17 @@ extension UIViewController {
         }
     }
     
+    func showAlert(message:String)
+    {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+      
+        // Move to the UI thread
+        DispatchQueue.main.async(execute: { () -> Void in
+            // Present Alert Controller
+              self.present(alert, animated: true, completion: nil)
+        })
+    }
     
     func add(_ child: UIViewController) {
         addChild(child)

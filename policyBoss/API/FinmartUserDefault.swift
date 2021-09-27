@@ -10,16 +10,15 @@ import UIKit
 
 class FinmartUserDefault: NSObject {
     
-    static let USER_CODE = "com.rupeeboss.OutdoorAttendance.userdefaults.userCode"
-    static let USER_LOGGEDIN = "com.rupeeboss.OutdoorAttendance.userdefaults.loggedIn"
-    static let USER_PASSWORD = "com.rupeeboss.OutdoorAttendance.userdefaults.Password"
+    static let USER_CODE = "policyBossPro.userdefaults.userCode"
+    static let USER_LOGGEDIN = "policyBossPro.userdefaults.loggedIn"
+    static let USER_PASSWORD = "policyBossPro.userdefaults.Password"
     static let USER_DEFAULT_LAT = "19.0176147"
     static let USER_DEFAULT_LNG = "72.8561644"
-    static let USER_ID = "12456"
-    static let USER_HRMSID = "com.rupeeboss.OutdoorAttendance.userdefaults.hrmsid"
+    static let USER_ID = "USERID"
+    static let USER_HRMSID = "policyBossPro.userdefaults.hrmsid"
     
-    static let SELLER_ID = "com.techwind.beldara.sellerid"
-    static let SELLER_KEY = "com.techwind.beldara.sellerkey"
+    
     
     static func getlat() -> String {
         //let defaults = UserDefaults.standard

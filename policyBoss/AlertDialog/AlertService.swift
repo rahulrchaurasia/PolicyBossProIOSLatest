@@ -59,4 +59,17 @@ class AlertService {
         alertDocVC.alertTitle = strTitle
         return alertDocVC
     }
+    
+    
+    //AlertConnectionVC
+    
+    func alertConnection() -> AlertConnectionVC {
+        
+        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+        
+        let alertConnVC = storyboard.instantiateViewController(withIdentifier: "AlertConnectionVC") as! AlertConnectionVC
+        
+       
+        return alertConnVC
+    }
 }

@@ -323,9 +323,60 @@
             </objects>
             <point key="canvasLocation" x="-2104.3478260869565" y="-2016.8478260869567"/>
         </scene>
+        <!--Alert ConnectionVC-->
+        <scene sceneID="F6J-0D-DWf">
+            <objects>
+                <viewController storyboardIdentifier="AlertConnectionVC" modalPresentationStyle="overFullScreen" id="dit-Dn-NDe" customClass="AlertConnectionVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vto-tx-7JM">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tn-Xa-fYM">
+                                <rect key="frame" x="10" y="218" width="394" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your mobile data or Wi-FI connection is weak. Please click on retry to reload the App or try again later" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBv-Vp-bhZ">
+                                        <rect key="frame" x="8" y="195" width="378" height="57.333333333333343"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noConnection" translatesAutoresizingMaskIntoConstraints="NO" id="HlF-zM-fXV">
+                                        <rect key="frame" x="8" y="8" width="378" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please check your internet connection. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXV-6i-fVk">
+                                        <rect key="frame" x="8" y="166" width="378" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="9Gh-FF-HVk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lbz-Sa-10G"/>
+                        <color key="backgroundColor" red="0.83137254901960778" green="0.83137254901960778" blue="0.83137254901960778" alpha="0.5346324724733289" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4tn-Xa-fYM" firstAttribute="leading" secondItem="Lbz-Sa-10G" secondAttribute="leading" constant="10" id="5Su-zK-huz"/>
+                            <constraint firstItem="4tn-Xa-fYM" firstAttribute="centerX" secondItem="vto-tx-7JM" secondAttribute="centerX" id="Yj8-pM-0bc"/>
+                            <constraint firstItem="Lbz-Sa-10G" firstAttribute="trailing" secondItem="4tn-Xa-fYM" secondAttribute="trailing" constant="10" id="bHz-01-n2W"/>
+                            <constraint firstItem="4tn-Xa-fYM" firstAttribute="centerY" secondItem="vto-tx-7JM" secondAttribute="centerY" id="i2p-0A-zMR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DcT-Qf-wlM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1414.4927536231885" y="-2017.663043478261"/>
+        </scene>
     </scenes>
     <resources>
         <image name="close" width="24" height="24"/>
+        <image name="noConnection" width="1300" height="1300"/>
         <image name="policyboss_placeholder" width="699" height="1176"/>
         <image name="redclose" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
