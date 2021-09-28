@@ -1134,6 +1134,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
                     let iosversion = jsonData?.value(forKey: "iosversion") as AnyObject
                     
+                    let referer_code = UserDefaults.standard.string(forKey: "referer_code") as AnyObject
+                    
                     
                     
                     UserDefaults.standard.set(String(describing: uid), forKey: "uid")
@@ -1188,7 +1190,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
                     UserDefaults.standard.set(String(describing: iosversion), forKey: "iosversion")
                     
-                    
+                    UserDefaults.standard.set(String(describing: referer_code), forKey: "referer_code")
                    
                      
                           ///////////////////////////      Verify  Build Version to  Server    /////////////////////////////////////////////////////////

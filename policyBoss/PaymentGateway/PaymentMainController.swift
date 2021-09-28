@@ -48,8 +48,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 05
-       // razorpay = Razorpay.initWithKey(razorpaykeyLive, andDelegate: self)
+        
        razorpay = RazorpayCheckout.initWithKey(razorpaykeyLive, andDelegate: self)
          initialize()
         
@@ -82,7 +81,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
     @IBAction func btnPayment(_ sender: Any) {
         
        
-        showPaymentForm()   //05
+        showPaymentForm()
     }
     
     
@@ -104,15 +103,13 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
 
     func onPaymentError(_ code: Int32, description str: String) {
         
-//       let paymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
-//
-//        paymentCancelVC.modalPresentationStyle = .fullScreen
-//        paymentCancelVC.custID = paymentDtlObj?.CustID ?? ""
-//        self.addChild(paymentCancelVC)
-//        self.view.addSubview(paymentCancelVC.view)
+       let paymentCancelVC : PaymentCancelController = self.storyboard?.instantiateViewController(withIdentifier: "stbPaymentCancelController") as! PaymentCancelController
+
+        paymentCancelVC.modalPresentationStyle = .fullScreen
+        paymentCancelVC.custID = paymentDtlObj?.CustID ?? ""
+        self.addChild(paymentCancelVC)
+        self.view.addSubview(paymentCancelVC.view)
         
-        //05
-         moveToSuccessVC(paymentID: "0")
       
     }
     

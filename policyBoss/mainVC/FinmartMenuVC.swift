@@ -893,7 +893,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     func bindMenuData(){
         
         
-        if(UserDefaults.exists(key: "FBAId") == false) {
+        if(UserDefaults.exists(key: "enableenrolasposp") == false) {
             
             userconstantAPI()
             print("User Constant Called")

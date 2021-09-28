@@ -1048,7 +1048,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
             
         case .authorized:
             print("Success")
-            self.openCamera()
+            DispatchQueue.main.async {
+              self.openCamera()
+            }
            
             break
         
@@ -1057,7 +1059,10 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 
                 if success {
                     print("Permission Granted")
-                    self.openCamera()
+                    DispatchQueue.main.async {
+                      self.openCamera()
+                    }
+                   
                 }else{
                     print("Permission Not Granted")
                 }
@@ -1068,12 +1073,16 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         }
     }
     
+    
+    
     func openCamera()
     {
+        
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
         {
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
             imagePicker.allowsEditing = true
+            imagePicker.delegate = self
             self.present(imagePicker, animated: true, completion: nil)
         }
         else
@@ -1369,7 +1378,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                                             "LIC_Comp": "" as AnyObject,
                                             "LIC_Comp_ID": "" as AnyObject,
                                             "LastName": enlastNameTf.text! as AnyObject,
-                                            "Link": self.LINK as AnyObject,           // logic 05
+                                            "Link": self.LINK as AnyObject,           // logic 
                                             "Loan_Aadhaar": "" as AnyObject,
                                             "Loan_Account_Type": "" as AnyObject,
                                             "Loan_BankAcNo": "" as AnyObject,
@@ -1398,7 +1407,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                                             "Other_LastName": "" as AnyObject,
                                             "Other_MICR": "" as AnyObject,
                                             "Other_PAN": "" as AnyObject,
-                                            "POSPID": self.POSPNo as AnyObject,         // logic 05
+                                            "POSPID": self.POSPNo as AnyObject,         // logic
                                             "ParentId": "0" as AnyObject,
                                          
                                           
