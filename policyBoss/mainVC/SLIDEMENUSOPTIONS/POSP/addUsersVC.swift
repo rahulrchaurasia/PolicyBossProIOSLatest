@@ -169,22 +169,22 @@ class addUsersVC: UIViewController {
     }
     
     //<myUtilitiesMenus>
-    @IBAction func mpsBtnCliked(_ sender: Any)
-    {
-        
-        let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
-        mpsV.modalPresentationStyle = .fullScreen
-        mpsV.modalTransitionStyle = .coverVertical
-        present(mpsV, animated: false, completion: nil)
-    }
-    
-    @IBAction func incomeCalBtnCliked(_ sender: Any)
-    {
-       //05      Snackbar
-        
-        let snackbar = TTGSnackbar.init(message: "Comming  soon", duration: .middle )
-        snackbar.show()
-    }
+//    @IBAction func mpsBtnCliked(_ sender: Any)
+//    {
+//
+//        let mpsV : mpsVC = self.storyboard?.instantiateViewController(withIdentifier: "stbmpsVC") as! mpsVC
+//        mpsV.modalPresentationStyle = .fullScreen
+//        mpsV.modalTransitionStyle = .coverVertical
+//        present(mpsV, animated: false, completion: nil)
+//    }
+//
+//    @IBAction func incomeCalBtnCliked(_ sender: Any)
+//    {
+//       //05      Snackbar
+//
+//        let snackbar = TTGSnackbar.init(message: "Comming  soon", duration: .middle )
+//        snackbar.show()
+//    }
     
     @IBAction func myTrainingBtnCliked(_ sender: Any)
     {

@@ -61,8 +61,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var loansItems = ["Referral Agreement","Free Credit Report"]
     var loansImges = ["agreemnet.png","agreemnet.png"]
     
-    var otherutilitiesItems = ["MY UTILITIES","LOG-OUT"]
-    var otherImges = ["posp_training.png","logout.png"]
+    var otherutilitiesItems = ["MY UTILITIES"]
+    var otherImges = ["posp_training.png"]
+    
+    var legalItems = ["Disclosure","Privacy Policy","LOG-OUT"]
+    var legalImges = ["posp_training.png","agreemnet.png","logout.png"]
     
     //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
     
@@ -223,7 +226,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         //            return 6
         //        }
         
-        return 6
+        return 7
         
     }
     
@@ -259,8 +262,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //        else if(section == 5){
             //            return loansItems.count
             //        }
+        
         else if(section == 5){
             return otherutilitiesItems.count
+        }
+        else if(section == 6){
+           
+            return legalItems.count
         }
         return 0
         
@@ -335,9 +343,16 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //            cell.cellLbl?.text = loansItems[indexPath.row]
             //            cell.cellImgs.image = UIImage(named: loansImges[indexPath.row])
             //        }
+        
         else if(indexPath.section == 5){
+           
             cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
             cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
+        }
+        else if(indexPath.section == 6){
+           
+            cell.cellLbl?.text = legalItems[indexPath.row]
+            cell.cellImgs.image = UIImage(named: legalImges[indexPath.row])
         }
         
         //        else if(self.appaccessStatus == "Active")
@@ -418,11 +433,16 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //                label.text = "OTHER UTILITIES"
             //            }
             //        }
+        else if(section == 5)
+        {
+            label.text = "OTHER UTILITIES"
+          
+        }
         else
         {
-            if(section == 5)
+            if(section == 6)
             {
-                label.text = "OTHER UTILITIES"
+                label.text = "LEGAL"
             }
         }
         
