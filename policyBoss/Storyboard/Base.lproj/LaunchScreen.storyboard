@@ -28,21 +28,10 @@
                                             <constraint firstAttribute="height" constant="160" id="eH4-Ze-AYy"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ONE STOP FINANCIAL SOLUTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUU-fZ-iUf">
-                                        <rect key="frame" x="0.0" y="290" width="414" height="41"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="ZYh-Vr-hca"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="15"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="wiu-j7-Jv6" secondAttribute="trailing" id="2ej-to-gYu"/>
-                                    <constraint firstAttribute="trailing" secondItem="kUU-fZ-iUf" secondAttribute="trailing" id="5eA-vE-Dpz"/>
-                                    <constraint firstItem="kUU-fZ-iUf" firstAttribute="top" secondItem="R31-RL-4Me" secondAttribute="bottom" constant="5" id="Ajz-Gz-DK0"/>
-                                    <constraint firstItem="kUU-fZ-iUf" firstAttribute="leading" secondItem="t8J-h0-ZiZ" secondAttribute="leading" id="Aw8-sp-6J2"/>
                                     <constraint firstItem="wiu-j7-Jv6" firstAttribute="top" secondItem="t8J-h0-ZiZ" secondAttribute="top" id="GO0-PE-KWS"/>
                                     <constraint firstItem="R31-RL-4Me" firstAttribute="leading" secondItem="t8J-h0-ZiZ" secondAttribute="leading" id="KB0-uc-Nwy"/>
                                     <constraint firstItem="wiu-j7-Jv6" firstAttribute="leading" secondItem="t8J-h0-ZiZ" secondAttribute="leading" id="cS2-wa-YXb"/>
