@@ -107,6 +107,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var pospImges = ["posp_enrollment.png","posp_enrollment.png"]
     var requestImges = ["insurance_policy_ic.png","insurance_policy_ic.png"]
     //  var otherImges = ["income_potential_ic.png","ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var fromScreen = ""
     var appaccessStatus = ""
     var isfirstLogin = Int()
@@ -116,6 +118,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     // For AlertDialog
     let alertService = AlertService()
     
+    lazy var menuSectionList =  [MenuSection]()
+    
     override func viewWillAppear(_ animated: Bool) {
         
        
@@ -123,12 +127,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         versionLbl.text = "Ver." + Configuration.appVersion
         
         // MainScrollView.isScrollEnabled = false
         
-        
+       
         //--<api>--
         
         bindMenuData()
@@ -226,74 +229,55 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         //            return 6
         //        }
         
-        return 7
+        return menuSectionList.count
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if(section == 0){
-            return myFinItems.count
-        }else if(section == 1){
-            if(self.enableenrolasPOSP == "1"){
-                return myaccountItems.count
-            }
-            else if(self.enableenrolasPOSP == "0"){
-                return myaccountItems2.count
-            }
-            return myaccountItems2.count
-        }
-        else if(section == 2){
-            return mydocumentItems.count
-        }
-        else if(section == 3){
-            
-            if(self.showmyinsurancebusiness == "1"){
-                return transactionsItems.count
-            }
-            else if(self.showmyinsurancebusiness == "0"){
-                return transactionsItems2.count
-            }
-            return transactionsItems2.count
-        }
-        else if(section == 4){
-            return leadsItems.count
-        }
-            //        else if(section == 5){
-            //            return loansItems.count
-            //        }
+        //region commented
+//        if(section == 0){
+//            return myFinItems.count
+//        }else if(section == 1){
+//            if(self.enableenrolasPOSP == "1"){
+//                return myaccountItems.count
+//            }
+//            else if(self.enableenrolasPOSP == "0"){
+//                return myaccountItems2.count
+//            }
+//            return myaccountItems2.count
+//        }
+//        else if(section == 2){
+//            return mydocumentItems.count
+//        }
+//        else if(section == 3){
+//
+//            if(self.showmyinsurancebusiness == "1"){
+//                return transactionsItems.count
+//            }
+//            else if(self.showmyinsurancebusiness == "0"){
+//                return transactionsItems2.count
+//            }
+//            return transactionsItems2.count
+//        }
+//        else if(section == 4){
+//            return leadsItems.count
+//        }
+//
+//        else if(section == 5){
+//            return otherutilitiesItems.count
+//        }
+//        else if(section == 6){
+//
+//            return legalItems.count
+//        }
+//        return 0
         
-        else if(section == 5){
-            return otherutilitiesItems.count
-        }
-        else if(section == 6){
-           
-            return legalItems.count
-        }
-        return 0
+        //endregion
         
-        
-        //  loansItems
-        //        if(self.appaccessStatus == "Active")
-        //        {
-        //            if(section == 5){
-        //                return attendanceItems.count
-        //            }
-        //            else if(section == 6){
-        //                return otherutilitiesItems.count
-        //            }
-        //            else {
-        //                return 0
-        //            }
-        //        }
-        //        else{
-        //            if(section == 5){
-        //                return otherutilitiesItems.count
-        //            }
-        //            else{
-        //                return 0
-        //            }
-        //        }
+        print("MENU COUNT \(menuSectionList.count) ")
+        return menuSectionList[section].menuModel.count
+
         
         
         
@@ -303,75 +287,61 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")! as! finmartMenuCell
         cell.textLabel?.textColor = UIColor.gray
         
-        if(indexPath.section == 0){
-            cell.cellLbl?.text = myFinItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: myFinImages[indexPath.row])
-        }
-        else if(indexPath.section == 1){
-            if(self.enableenrolasPOSP == "1"){
-                cell.cellLbl?.text = myaccountItems[indexPath.row]
-                cell.cellImgs.image = UIImage(named: myaccountImages[indexPath.row])
-            }
-            else if(self.enableenrolasPOSP == "0"){
-                cell.cellLbl?.text = myaccountItems2[indexPath.row]
-                cell.cellImgs.image = UIImage(named: myaccountImages2[indexPath.row])
-            }
-        }
-        else if(indexPath.section == 2){
-            cell.cellLbl?.text = mydocumentItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: mydocumentImges[indexPath.row])
-        }
-        else if(indexPath.section == 3){
-            
-            
-            if(self.showmyinsurancebusiness == "1"){
-                cell.cellLbl?.text = transactionsItems[indexPath.row]
-                cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
-                
-            }
-            else if(self.showmyinsurancebusiness == "0"){
-                cell.cellLbl?.text = transactionsItems2[indexPath.row]
-                cell.cellImgs.image = UIImage(named: transactionImges2[indexPath.row])
-                
-            }
-        }
-        else if(indexPath.section == 4){
-            cell.cellLbl?.text = leadsItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
-        }
-            //        else if(indexPath.section == 5){
-            //            cell.cellLbl?.text = loansItems[indexPath.row]
-            //            cell.cellImgs.image = UIImage(named: loansImges[indexPath.row])
-            //        }
+        cell.configureCell(menu: menuSectionList[indexPath.section].menuModel[indexPath.row])
+       
+       // cell.cellLbl?.text = menuSectionList[indexPath.section].menuModel[indexPath.row].mName
+       // cell.cellImgs.image = UIImage(named:menuSectionList[indexPath.section].menuModel[indexPath.row].mImg)
+        //region commented
+//        if(indexPath.section == 0){
+//            cell.cellLbl?.text = myFinItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: myFinImages[indexPath.row])
+//        }
+//        else if(indexPath.section == 1){
+//            if(self.enableenrolasPOSP == "1"){
+//                cell.cellLbl?.text = myaccountItems[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: myaccountImages[indexPath.row])
+//            }
+//            else if(self.enableenrolasPOSP == "0"){
+//                cell.cellLbl?.text = myaccountItems2[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: myaccountImages2[indexPath.row])
+//            }
+//        }
+//        else if(indexPath.section == 2){
+//            cell.cellLbl?.text = mydocumentItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: mydocumentImges[indexPath.row])
+//        }
+//        else if(indexPath.section == 3){
+//
+//
+//            if(self.showmyinsurancebusiness == "1"){
+//                cell.cellLbl?.text = transactionsItems[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
+//
+//            }
+//            else if(self.showmyinsurancebusiness == "0"){
+//                cell.cellLbl?.text = transactionsItems2[indexPath.row]
+//                cell.cellImgs.image = UIImage(named: transactionImges2[indexPath.row])
+//
+//            }
+//        }
+//        else if(indexPath.section == 4){
+//            cell.cellLbl?.text = leadsItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
+//        }
+//
+//        else if(indexPath.section == 5){
+//
+//            cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
+//        }
+//        else if(indexPath.section == 6){
+//
+//            cell.cellLbl?.text = legalItems[indexPath.row]
+//            cell.cellImgs.image = UIImage(named: legalImges[indexPath.row])
+//        }
         
-        else if(indexPath.section == 5){
-           
-            cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-        }
-        else if(indexPath.section == 6){
-           
-            cell.cellLbl?.text = legalItems[indexPath.row]
-            cell.cellImgs.image = UIImage(named: legalImges[indexPath.row])
-        }
+        //endregion
         
-        //        else if(self.appaccessStatus == "Active")
-        //        {
-        //            if(indexPath.section == 5){
-        //                cell.cellLbl?.text = attendanceItems[indexPath.row]
-        //                cell.cellImgs.image = UIImage(named: earningToolImges[indexPath.row])
-        //            }
-        //            else if(indexPath.section == 6){
-        //                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-        //                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-        //            }
-        //        }
-        //        else{
-        //            if(indexPath.section == 6){
-        //                cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-        //                cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-        //            }
-        //        }
         
         return cell
     }
@@ -397,54 +367,41 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         let label = UILabel()
         label.frame = CGRect.init(x: 15, y: 10, width: 200, height: 30)
         
-        if(section == 0)
-        {
-            label.text = ""
-        }
-        else if(section == 1)
-        {
-            label.text = "MY ACCOUNT"
-        }
-        else if(section == 2)
-        {
-            label.text = "MY DOCUMENTS"
-        }
-        else if(section == 3)
-        {
-            label.text = "MY TRANSACTIONS"
-        }
-        else if(section == 4)
-        {
-            label.text = "MY LEADS"
-        }
-            //        else if(section == 5)
-            //        {
-            //            label.text = "LOANS"
-            //        }
-            
-            //        else if(self.appaccessStatus == "Active")
-            //        {
-            //           if(section == 5)
-            //            {
-            //                label.text = "ATTENDANCE"
-            //            }
-            //            else if(section == 6)
-            //            {
-            //                label.text = "OTHER UTILITIES"
-            //            }
-            //        }
-        else if(section == 5)
-        {
-            label.text = "OTHER UTILITIES"
-          
-        }
-        else
-        {
-            if(section == 6)
-            {
-                label.text = "LEGAL"
-            }
-        }
+        label.text = menuSectionList[section].section
+       
+//        if(section == 0)
+//        {
+//            label.text = ""
+//        }
+//        else if(section == 1)
+//        {
+//            label.text = "MY ACCOUNT"
+//        }
+//        else if(section == 2)
+//        {
+//            label.text = "MY DOCUMENTS"
+//        }
+//        else if(section == 3)
+//        {
+//            label.text = "MY TRANSACTIONS"
+//        }
+//        else if(section == 4)
+//        {
+//            label.text = "MY LEADS"
+//        }
+//
+//        else if(section == 5)
+//        {
+//            label.text = "OTHER UTILITIES"
+//
+//        }
+//        else
+//        {
+//            if(section == 6)
+//            {
+//                label.text = "LEGAL"
+//            }
+//        }
         
         //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -478,11 +435,103 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-    
         // close the drawer
         if let drawerController = navigationController?.parent as? KYDrawerController {
             drawerController.setDrawerState(.closed, animated: false)
         }
+        
+        switch menuSectionList[indexPath.section].menuModel[indexPath.row].mId
+        {
+        
+        /***************************** Home SECTION ******************************/
+        case "nav_home" :
+            
+                           NotificationCenter.default.post(name: .NotifyMyAccountProfile, object: nil)
+                          
+                          print("NNN : Notification start")
+                          
+                          self.dismissAll(animated: false)
+         
+        /*****************************  MY ACCOUNT SECTION ******************************/
+        case "nav_MyProfile" :
+            
+            let profile : profileVC = self.storyboard?.instantiateViewController(withIdentifier: "stbprofileVC") as! profileVC
+                           profile.modalPresentationStyle = .fullScreen
+                           profile.modalTransitionStyle = .coverVertical
+                           present(profile, animated: false, completion: nil)
+        
+      
+        case "nav_EnrolPosp" :
+            
+            let enrolasPOSP : enrolasPOSPVC = self.storyboard?.instantiateViewController(withIdentifier: "stbenrolasPOSPVC") as! enrolasPOSPVC
+                               enrolasPOSP.modalPresentationStyle = .fullScreen
+                               enrolasPOSP.modalTransitionStyle = .coverVertical
+                               present(enrolasPOSP, animated: false, completion: nil)
+            
+        case "nav_ChangePwd" :
+            
+            let changePasswrd : changePasswrdVC = self.storyboard?.instantiateViewController(withIdentifier: "stbchangePasswrdVC") as! changePasswrdVC
+                               changePasswrd.modalPresentationStyle = .fullScreen
+                               changePasswrd.modalTransitionStyle = .coverVertical
+                               present(changePasswrd, animated: false, completion: nil)
+         
+        /*****************************  MY DOCUMENT SECTION ******************************/
+        case "nav_PospAppointmentLetter" :
+            print("nav_PospAppointmentLetter")
+            showAlert(message: "nav_PospAppointmentLetter")
+            
+        case "nav_PospAppointmentForm" :
+            
+            print("nav_PospAppointmentForm")
+            showAlert(message: "nav_PospAppointmentForm")
+            
+         
+        /*****************************  MY TRANSACTION SECTION ******************************/
+        case "nav_MyInsuranceBusiness" :
+            
+            let commonWeb : InsuranceBussWebVC = self.storyboard?.instantiateViewController(withIdentifier: "InsuranceBussWebVC") as! InsuranceBussWebVC
+                               commonWeb.modalPresentationStyle = .fullScreen
+                               commonWeb.modalTransitionStyle = .coverVertical
+                               commonWeb.webfromScreen = "InsuranceBusiness"
+                               present(commonWeb, animated: false, completion: nil)
+            
+        case "nav_MyTransaction" :
+             print("nav_MyTransaction")
+            showAlert(message: "nav_MyTransaction")
+            
+        case "nav_LeadDashboard" :
+            
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.modalTransitionStyle = .coverVertical
+            commonWeb.webfromScreen = "leadDashboard"
+            present(commonWeb, animated: false, completion: nil)
+            
+        case "nav_MyUtilities" :
+            
+            let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
+            addUsersV.modalPresentationStyle = .fullScreen
+            addUsersV.modalTransitionStyle = .coverVertical
+            addUsersV.fromScreen = "myUtilities"
+            present(addUsersV, animated: false, completion: nil)
+            
+        case "nav_Disclosure" :
+            showAlert(message: "Disclosure")
+            
+        case "nav_PrivacyPolicy" :
+            
+            showAlert(message: "PrivacyPolicy")
+            
+        case "nav_Logout" :
+            
+            callAlertView()
+            
+        default:
+            print("Default")
+        }
+        
+        /*
+    
         
         /***************************** Home SECTION ******************************/
         if(indexPath.section == 0)
@@ -845,7 +894,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
         }
         
-        
+        */
         
     }
     //-----<end tableView Datasource+Deleagtes>-----
@@ -963,6 +1012,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             }
         }
         
+        
+        menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness )
+        
         self.menuTV.reloadData()
         
         
@@ -1045,7 +1097,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
-    
+   
     //--<callAlert>--
     func callAlertView()
     {

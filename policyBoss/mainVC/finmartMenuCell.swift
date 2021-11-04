@@ -24,4 +24,11 @@ class finmartMenuCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func configureCell(menu : MenuModel){
+        
+        cellLbl?.text = menu.mName
+        cellImgs.image = UIImage(named: menu.mImg)
+            
+              
+    }
 }

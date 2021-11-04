@@ -184,6 +184,8 @@
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
 		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
 		B208357A26FDAE40006F5890 /* DynamicLabelSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208357926FDAE40006F5890 /* DynamicLabelSize.swift */; };
+		B20B223C27319278009A522E /* MenuDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B223B27319278009A522E /* MenuDb.swift */; };
+		B20B223E273193AD009A522E /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B223D273193AD009A522E /* MenuModel.swift */; };
 		B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF16269336F70090A877 /* HealthAssureConfigure.swift */; };
 		B218FF19269339DA0090A877 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF18269339DA0090A877 /* APIManger.swift */; };
 		B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */; };
@@ -437,6 +439,8 @@
 		84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = salesMaterialModel.swift; sourceTree = "<group>"; };
 		84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = verifyMobNoVC.swift; sourceTree = "<group>"; };
 		B208357926FDAE40006F5890 /* DynamicLabelSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabelSize.swift; sourceTree = "<group>"; };
+		B20B223B27319278009A522E /* MenuDb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDb.swift; sourceTree = "<group>"; };
+		B20B223D273193AD009A522E /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		B218FF16269336F70090A877 /* HealthAssureConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureConfigure.swift; sourceTree = "<group>"; };
 		B218FF18269339DA0090A877 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
 		B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callbackToHomeProtocol.swift; sourceTree = "<group>"; };
@@ -1064,6 +1068,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				B20B223A2731924F009A522E /* MenuDB */,
 				849B082B22017B650055BB80 /* WebVC */,
 				84C4D09521C2666B00A677B7 /* LOGIN */,
 				84C4D09721C268B500A677B7 /* MainfinMartVC.swift */,
@@ -1109,6 +1114,15 @@
 				84E1A9312204594F00A94A29 /* QuickLeadVC.swift */,
 			);
 			path = LoansSection;
+			sourceTree = "<group>";
+		};
+		B20B223A2731924F009A522E /* MenuDB */ = {
+			isa = PBXGroup;
+			children = (
+				B20B223B27319278009A522E /* MenuDb.swift */,
+				B20B223D273193AD009A522E /* MenuModel.swift */,
+			);
+			path = MenuDB;
 			sourceTree = "<group>";
 		};
 		B218FF15269335280090A877 /* offlineQuote */ = {
@@ -1426,6 +1440,7 @@
 				8410F8D821F84F9C00DFC974 /* imgsalesmaterialVC.swift in Sources */,
 				8410F8D621F835DF00DFC974 /* insalesmaterialCVCell.swift in Sources */,
 				44394A33248A26980095ADF5 /* InsuranceCompModel.swift in Sources */,
+				B20B223C27319278009A522E /* MenuDb.swift in Sources */,
 				8480BBE2220811D300BEEDF4 /* hnfdisclosureVC.swift in Sources */,
 				840AC5D221BE80AB004DCB26 /* ViewController.swift in Sources */,
 				1835672B255482AD00799E63 /* ShareImageVC.swift in Sources */,
@@ -1463,6 +1478,7 @@
 				B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */,
 				44C6E48F22E2E41000D3F4B3 /* detailsTVCell.swift in Sources */,
 				8431D1DC21E8B2BB000419E3 /* motorInsurance3capsVC.swift in Sources */,
+				B20B223E273193AD009A522E /* MenuModel.swift in Sources */,
 				840562DF21D4D30B0099DDE8 /* loans(shareData)VC.swift in Sources */,
 				84C4D09821C268B500A677B7 /* MainfinMartVC.swift in Sources */,
 				84EDEDB7221D6A07006EA4BA /* homeLinputPageVC.swift in Sources */,
