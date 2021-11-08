@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +37,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ss-ND-NxT">
-                                        <rect key="frame" x="57.000000000000007" y="12.666666666666664" width="70.666666666666686" height="25"/>
+                                        <rect key="frame" x="56.999999999999993" y="12.666666666666664" width="70.333333333333314" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="lm0-ec-Psk"/>
                                         </constraints>
@@ -88,7 +88,7 @@
                                                         <rect key="frame" x="138" y="0.0" width="256" height="386"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAYMENT DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDq-Ab-CpC">
-                                                                <rect key="frame" x="0.0" y="40" width="164" height="21"/>
+                                                                <rect key="frame" x="0.0" y="40" width="163" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="sfa-AQ-7Z3"/>
                                                                 </constraints>
@@ -240,6 +240,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="2di-cZ-0kA"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2di-cZ-0kA" firstAttribute="trailing" secondItem="Ebg-8g-gXa" secondAttribute="trailing" constant="10" id="AM7-Li-fnP"/>
@@ -253,7 +254,6 @@
                             <constraint firstAttribute="bottom" secondItem="aCm-YC-c2n" secondAttribute="bottom" id="beO-Qc-deI"/>
                             <constraint firstItem="5Wl-qm-UNS" firstAttribute="trailing" secondItem="2di-cZ-0kA" secondAttribute="trailing" id="y1p-fg-kdd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2di-cZ-0kA"/>
                     </view>
                     <connections>
                         <outlet property="btnCancel" destination="bJk-Nq-YlH" id="zRD-vJ-f0y"/>
@@ -373,7 +373,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Status :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X75-8t-B8O">
-                                                        <rect key="frame" x="14" y="73" width="129.66666666666666" height="21"/>
+                                                        <rect key="frame" x="14" y="73" width="128.66666666666666" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="g0K-en-cB7"/>
                                                         </constraints>
@@ -382,7 +382,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAILED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVI-Ns-aoM">
-                                                        <rect key="frame" x="157.66666666666666" y="73" width="55" height="21"/>
+                                                        <rect key="frame" x="156.66666666666666" y="73" width="55" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="YFp-CC-c9q"/>
                                                         </constraints>
@@ -477,6 +477,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="TJz-Vd-IwS"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="lOG-Ak-m2r" firstAttribute="top" secondItem="44o-xR-tcq" secondAttribute="bottom" constant="70" id="1hf-O4-hYw"/>
@@ -490,7 +491,6 @@
                             <constraint firstItem="lOG-Ak-m2r" firstAttribute="leading" secondItem="TJz-Vd-IwS" secondAttribute="leading" constant="10" id="hPh-Sa-J6d"/>
                             <constraint firstAttribute="bottom" secondItem="OmA-of-YVN" secondAttribute="bottom" id="vjm-6M-cMs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="TJz-Vd-IwS"/>
                     </view>
                     <connections>
                         <outlet property="cardView" destination="c0n-Zk-SUQ" id="UWY-6e-hHE"/>
@@ -640,6 +640,7 @@
                                 </constraints>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="QlQ-To-ktB"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="F6N-N3-89m" firstAttribute="trailing" secondItem="QlQ-To-ktB" secondAttribute="trailing" id="7Zo-F1-PjZ"/>
@@ -653,7 +654,6 @@
                             <constraint firstItem="F6N-N3-89m" firstAttribute="top" secondItem="SQp-F8-VBo" secondAttribute="bottom" id="sdQ-Di-aDt"/>
                             <constraint firstItem="QlQ-To-ktB" firstAttribute="trailing" secondItem="8Ri-7Z-ODC" secondAttribute="trailing" constant="15" id="yTx-gd-8Yr"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="QlQ-To-ktB"/>
                     </view>
                     <connections>
                         <outlet property="cardView" destination="8Ri-7Z-ODC" id="Ip9-An-mdi"/>
@@ -671,6 +671,6 @@
         <image name="checky" width="512" height="341"/>
         <image name="close_red" width="153" height="154"/>
         <image name="left-arrow.png" width="16" height="16"/>
-        <image name="pb_bg" width="256" height="256"/>
+        <image name="pb_bg" width="1285" height="671"/>
     </resources>
 </document>

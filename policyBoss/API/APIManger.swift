@@ -156,4 +156,66 @@ class APIManger {
         
     }
     
+    /*************************************************************************/
+    
+    //Mark : Transaction History Module
+    
+    func getTransactionHistory( completionHandler : @escaping Handler) {
+        
+       
+        let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+        let pageno = "1"
+
+        let params: [String: AnyObject] = [ "fbaid": FBAId as AnyObject,
+                                            "pageno" : pageno as AnyObject
+                                            ]
+         
+       
+       // let endUrl = "/api/get-transaction-history"
+     //   let url =  FinmartRestClient.baseURLString  + endUrl
+        let url = "https://horizon.policyboss.com:5443/quote/Postfm/get-transaction-history"
+        print("urlRequest= ",url)
+        print("parameter= ",params)
+        Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+            
+            debugPrint(response)
+            switch response.result {
+                
+                
+            case .success(let value):
+                
+                guard let data = response.data else { return }
+                
+                debugPrint(data)
+                
+                do {
+                    
+                    
+                    let respData = try JSONDecoder().decode(TransationHistoryResponse.self, from: data)
+                    
+                    
+                    if respData.StatusNo == 0 {
+                        
+                        completionHandler(.success(respData))
+                    }else{
+                        
+                        completionHandler(.failure(.custom(message: respData.Message)))
+                    }
+                    
+                    
+                } catch let error {
+                    completionHandler(.failure(.custom(message: error.localizedDescription)))
+                    
+                }
+                
+                
+            case .failure(let error):
+               completionHandler(.failure(.custom(message: error.localizedDescription)))
+             
+            }
+        })
+                 
+        
+    }
+    
 }

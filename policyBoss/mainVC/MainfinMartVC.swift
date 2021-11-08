@@ -879,7 +879,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
           
             if(section == 0)
             {
-                label.text = "LANDMARK INSURANCE BROKERS PVT. LTD.\n(IRDAI COR#216)"
+                label.text = "LANDMARK INSURANCE BROKERS PVT. LTD.\n(IRDAI CoR#216)"
 
                 label.font = UIFont.boldSystemFont(ofSize: 16)
                 label.textColor = UIColor.white

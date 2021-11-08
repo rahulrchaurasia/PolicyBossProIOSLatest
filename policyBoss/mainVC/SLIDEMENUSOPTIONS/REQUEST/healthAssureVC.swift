@@ -112,7 +112,7 @@ class healthAssureVC: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         }
         
-        // let message =  (alertVC.didClickShare ?? <#default value#>)(String)
+       
         self.present(alertVC, animated: true)
         
     }

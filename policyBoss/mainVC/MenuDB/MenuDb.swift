@@ -88,7 +88,7 @@ class MenuDb {
                                       modelId:"nav_MyInsuranceBusiness"))
         }
         
-        Menulist.append(MenuModel(name: "My Transcation",img: "ic_business_name.png" ,modelId: "nav_MyTransaction"))
+        Menulist.append(MenuModel(name: "My Transcation",img: "vector_date.png" ,modelId: "nav_MyTransaction"))
         
         return Menulist
     }
@@ -106,7 +106,7 @@ class MenuDb {
     {
         
         Menulist =  [MenuModel]()
-        Menulist.append(MenuModel(name: "My Utilities" ,img: "posp_training.png" ,modelId: "nav_MyUtilities"))
+        Menulist.append(MenuModel(name: "My Utilities" ,img: "training_ic.png" ,modelId: "nav_MyUtilities"))
         
         return Menulist
     }
@@ -115,7 +115,7 @@ class MenuDb {
     {
         
         Menulist =  [MenuModel]()
-        Menulist.append(MenuModel(name: "Disclosure" ,img: "posp_training.png" ,modelId: "nav_Disclosure"))
+        Menulist.append(MenuModel(name: "Disclosure" ,img: "insurance_policy_ic.png" ,modelId: "nav_Disclosure"))
         Menulist.append(MenuModel(name: "Privacy Policy" ,img: "agreemnet.png" ,modelId: "nav_PrivacyPolicy"))
         
         Menulist.append(MenuModel(name: "Log-Out" ,img: "logout.png" ,modelId: "nav_Logout"))

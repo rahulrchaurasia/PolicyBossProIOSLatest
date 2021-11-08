@@ -188,6 +188,9 @@
 		B20B223E273193AD009A522E /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B223D273193AD009A522E /* MenuModel.swift */; };
 		B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF16269336F70090A877 /* HealthAssureConfigure.swift */; };
 		B218FF19269339DA0090A877 /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218FF18269339DA0090A877 /* APIManger.swift */; };
+		B21FAC932737C11500AC9AA4 /* TransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21FAC922737C11500AC9AA4 /* TransactionVC.swift */; };
+		B21FAC952737C26900AC9AA4 /* TranscationHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21FAC942737C26900AC9AA4 /* TranscationHistoryCell.swift */; };
+		B22BFE53273833ED002EC580 /* TransactionHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22BFE52273833ED002EC580 /* TransactionHistoryResponse.swift */; };
 		B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */; };
 		B253B2262616459C000C3A7D /* Extension+ UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B2252616459C000C3A7D /* Extension+ UITextField.swift */; };
 		B253B244261652E0000C3A7D /* IQTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B253B229261652E0000C3A7D /* IQTextView.swift */; };
@@ -443,6 +446,9 @@
 		B20B223D273193AD009A522E /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		B218FF16269336F70090A877 /* HealthAssureConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAssureConfigure.swift; sourceTree = "<group>"; };
 		B218FF18269339DA0090A877 /* APIManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
+		B21FAC922737C11500AC9AA4 /* TransactionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionVC.swift; sourceTree = "<group>"; };
+		B21FAC942737C26900AC9AA4 /* TranscationHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscationHistoryCell.swift; sourceTree = "<group>"; };
+		B22BFE52273833ED002EC580 /* TransactionHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryResponse.swift; sourceTree = "<group>"; };
 		B245113D261464C0003EB5A9 /* callbackToHomeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = callbackToHomeProtocol.swift; sourceTree = "<group>"; };
 		B253B2252616459C000C3A7D /* Extension+ UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+ UITextField.swift"; sourceTree = "<group>"; };
 		B253B229261652E0000C3A7D /* IQTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQTextView.swift; sourceTree = "<group>"; };
@@ -540,6 +546,7 @@
 			children = (
 				442C140C2497A31700E3C455 /* pospDoc.swift */,
 				443B4D0924CC868C00D1FDF7 /* IFSCCodeModel.swift */,
+				44394A31248A26310095ADF5 /* register */,
 			);
 			path = pospDoc;
 			sourceTree = "<group>";
@@ -1068,6 +1075,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				B21FAC912737C0D200AC9AA4 /* Transaction */,
 				B20B223A2731924F009A522E /* MenuDB */,
 				849B082B22017B650055BB80 /* WebVC */,
 				84C4D09521C2666B00A677B7 /* LOGIN */,
@@ -1093,12 +1101,12 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B22BFE512738333C002EC580 /* TransactionHistory */,
 				B26D7E2726972B6400FCECAA /* HealthAssure */,
 				B218FF15269335280090A877 /* offlineQuote */,
 				4438085624BAF4B90046CA81 /* pendingCase */,
 				444C6DEB24A259ED003A7528 /* dashboard */,
 				442C140B2497A2B200E3C455 /* pospDoc */,
-				44394A31248A26310095ADF5 /* register */,
 				443D35FA24632F2000C8F763 /* Payment */,
 				4415A863244DFAAE00314D26 /* SalesMaterial */,
 				84D2E0C921EDB91A00991D47 /* AttendanceModel.swift */,
@@ -1131,6 +1139,23 @@
 				B218FF16269336F70090A877 /* HealthAssureConfigure.swift */,
 			);
 			path = offlineQuote;
+			sourceTree = "<group>";
+		};
+		B21FAC912737C0D200AC9AA4 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				B21FAC922737C11500AC9AA4 /* TransactionVC.swift */,
+				B21FAC942737C26900AC9AA4 /* TranscationHistoryCell.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		B22BFE512738333C002EC580 /* TransactionHistory */ = {
+			isa = PBXGroup;
+			children = (
+				B22BFE52273833ED002EC580 /* TransactionHistoryResponse.swift */,
+			);
+			path = TransactionHistory;
 			sourceTree = "<group>";
 		};
 		B253B227261652E0000C3A7D /* IQKeyboardManagerSwift */ = {
@@ -1567,6 +1592,7 @@
 				446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */,
 				8411808121C50F1300D5638B /* FinmartMenuVC.swift in Sources */,
 				444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */,
+				B21FAC932737C11500AC9AA4 /* TransactionVC.swift in Sources */,
 				B253B252261652E0000C3A7D /* IQKeyboardManager+Debug.swift in Sources */,
 				B253B251261652E0000C3A7D /* IQKeyboardManager.swift in Sources */,
 				840562E721D4D3770099DDE8 /* offlineQuotesVC.swift in Sources */,
@@ -1585,6 +1611,7 @@
 				442E20E124C8355200FFC075 /* Core.swift in Sources */,
 				44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */,
 				44BC3A2222EAD98B009926FC /* loanleadHistoryVC.swift in Sources */,
+				B22BFE53273833ED002EC580 /* TransactionHistoryResponse.swift in Sources */,
 				8480BBDE2208118900BEEDF4 /* hnfcontactUsVC.swift in Sources */,
 				840562DB21D4D2CF0099DDE8 /* incmPotentialVC.swift in Sources */,
 				B253B258261652E0000C3A7D /* IQUIView+Hierarchy.swift in Sources */,
@@ -1616,6 +1643,7 @@
 				84B76C39226AF71900501033 /* healthAssure2TVCell.swift in Sources */,
 				84DB47752227E62C00EBDA3C /* commonApplicatnVC.swift in Sources */,
 				8410404721D789C300C3B7A7 /* PBLogs.swift in Sources */,
+				B21FAC952737C26900AC9AA4 /* TranscationHistoryCell.swift in Sources */,
 				446B0F6022E1F06C0083C76B /* cmnloancityDetailsVC.swift in Sources */,
 				84F4114F220AF254001407EE /* whatsNewTVCell.swift in Sources */,
 				44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */,

@@ -185,7 +185,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
      /**********************************************End   OF Loan ***********************************************************/
             
             
-    /****************************** HTML ****************************************/
+    /****************************** HTML    ( Disclosure & Privacy Policy)  ****************************************/
         else if(webfromScreen == "DISCLOSURE")
         {
             
@@ -193,7 +193,12 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         }
             
             
-           
+        else if(webfromScreen == "PrivacyPolicy")
+        {
+            titleLbl.text! = "Privacy Policy"
+            webView.load(URLRequest(url: URL(string: "https://policyboss.com/privacy-policy")!))
+            print("URL","http://"+fromcontctWebsite)
+        }
             
             
        

@@ -133,7 +133,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
        
         //--<api>--
-        
+        showAlert(message: "Menu Called")
         bindMenuData()
         //userconstantAPI()
         //CheckAppAccessAPI()
@@ -477,13 +477,21 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
          
         /*****************************  MY DOCUMENT SECTION ******************************/
         case "nav_PospAppointmentLetter" :
-            print("nav_PospAppointmentLetter")
-            showAlert(message: "nav_PospAppointmentLetter")
+           
+            let incmCalculatr : incmCalculatrVC = self.storyboard?.instantiateViewController(withIdentifier: "stbincmCalculatrVC") as! incmCalculatrVC
+            incmCalculatr.modalPresentationStyle = .fullScreen
+            incmCalculatr.modalTransitionStyle = .coverVertical
+            incmCalculatr.fromScreen = "appoinLetter"
+            present(incmCalculatr, animated: false, completion: nil)
+            
             
         case "nav_PospAppointmentForm" :
-            
-            print("nav_PospAppointmentForm")
-            showAlert(message: "nav_PospAppointmentForm")
+           
+            let incmCalculatr : incmCalculatrVC = self.storyboard?.instantiateViewController(withIdentifier: "stbincmCalculatrVC") as! incmCalculatrVC
+            incmCalculatr.modalPresentationStyle = .fullScreen
+            incmCalculatr.modalTransitionStyle = .coverVertical
+            incmCalculatr.fromScreen = "ApplictnForm"
+            present(incmCalculatr, animated: false, completion: nil)
             
          
         /*****************************  MY TRANSACTION SECTION ******************************/
@@ -497,8 +505,11 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
         case "nav_MyTransaction" :
              print("nav_MyTransaction")
-            showAlert(message: "nav_MyTransaction")
-            
+          
+            let transactionVC : TransactionVC = storyboard?.instantiateViewController(withIdentifier: "TransactionVC") as! TransactionVC
+            transactionVC.modalPresentationStyle = .fullScreen
+            transactionVC.modalTransitionStyle = .coverVertical
+            present(transactionVC, animated: false, completion: nil)
         case "nav_LeadDashboard" :
             
             let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
@@ -516,11 +527,23 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             present(addUsersV, animated: false, completion: nil)
             
         case "nav_Disclosure" :
-            showAlert(message: "Disclosure")
+           
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.modalTransitionStyle = .coverVertical
+            commonWeb.webfromScreen = "DISCLOSURE"
+            present(commonWeb, animated: false, completion: nil)
+
             
         case "nav_PrivacyPolicy" :
             
-            showAlert(message: "PrivacyPolicy")
+         
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.modalTransitionStyle = .coverVertical
+            commonWeb.webfromScreen = "PrivacyPolicy"
+            present(commonWeb, animated: false, completion: nil)
+
             
         case "nav_Logout" :
             
