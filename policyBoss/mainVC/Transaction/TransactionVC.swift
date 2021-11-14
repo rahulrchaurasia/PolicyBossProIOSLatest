@@ -27,6 +27,8 @@ class TransactionVC: UIViewController  ,UITableViewDelegate,UITableViewDataSourc
     
     
     @IBAction func backButtonClick(_ sender: Any) {
+        
+        self.dismiss(animated: false, completion: nil)
     }
     
     func   fetchTransactionHistory() {

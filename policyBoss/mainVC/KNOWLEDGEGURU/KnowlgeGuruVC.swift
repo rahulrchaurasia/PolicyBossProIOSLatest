@@ -14,8 +14,8 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     var knowImgArray1 = ["knowledge_loan_icon.png","knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
     
     
-    var knowtableArray = ["INSURANCE","OTHER PRODUCTS"]
-    var knowImgArray = ["knowledge_insurace_icon.png","knowledge_guru_other_product.png"]
+    var knowtableArray = ["INSURANCE"]
+    var knowImgArray = ["knowledge_insurace_icon.png"]
     
   
     @IBOutlet var knowldgeTV: UITableView!
@@ -76,6 +76,18 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
 //            Loans.modalPresentationStyle = .fullScreen
 //            present(Loans, animated: true, completion: nil)
 //        }
+        
+        //        else if(indexPath.row == 1)
+        //        {
+        //            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
+        //            Loans.wfromScreen = "otherProduct"
+        //            Loans.modalPresentationStyle = .fullScreen
+        //
+        //            present(Loans, animated: true, completion: nil)
+        //
+        //        }
+        
+        
          if(indexPath.row == 0)
         {
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
@@ -85,16 +97,7 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
             present(Loans, animated: true, completion: nil)
             
         }
-        else if(indexPath.row == 1)
-        {
-            let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
-            Loans.wfromScreen = "otherProduct"
-            Loans.modalPresentationStyle = .fullScreen
-           
-            present(Loans, animated: true, completion: nil)
-            
-        }
-        
+
         deSelectROW()
     }
     

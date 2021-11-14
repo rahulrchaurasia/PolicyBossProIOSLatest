@@ -10,7 +10,7 @@ import UIKit
 
 class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-    var tableArr = ["CONTACT US","DISCLOSURE"]
+    var tableArr = ["CONTACT US"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,19 +50,16 @@ class helpnfeedbackVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             present(hnfcontactUs, animated: false, completion: nil)
         }
        
-        else if(indexPath.row == 1)
-        {
-//            let hnfdisclosure : hnfdisclosureVC = self.storyboard?.instantiateViewController(withIdentifier: "stbhnfdisclosureVC") as! hnfdisclosureVC
-//            present(hnfdisclosure, animated: true, completion: nil)
-            
-            
-            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-            commonWeb.modalPresentationStyle = .fullScreen
-            commonWeb.modalTransitionStyle = .coverVertical
-            commonWeb.webfromScreen = "DISCLOSURE"
-            commonWeb.addType = "CHILD"
-            add(commonWeb)
-        }
+//        else if(indexPath.row == 1)
+//        {
+//
+//            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+//            commonWeb.modalPresentationStyle = .fullScreen
+//            commonWeb.modalTransitionStyle = .coverVertical
+//            commonWeb.webfromScreen = "DISCLOSURE"
+//            commonWeb.addType = "CHILD"
+//            add(commonWeb)
+//        }
         
     }
     

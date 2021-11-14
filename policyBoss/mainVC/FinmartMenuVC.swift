@@ -133,12 +133,9 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
        
         //--<api>--
-        showAlert(message: "Menu Called")
+       
         bindMenuData()
-        //userconstantAPI()
-        //CheckAppAccessAPI()
-        
-        
+       
         
         
     }
@@ -1028,14 +1025,14 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             //loadimages
             let imgURL = NSURL(string: loanselfphoto as! String)
             if imgURL != nil {
-                let data = NSData(contentsOf: (imgURL as URL?)!)
+                //let data = NSData(contentsOf: (imgURL as URL?)!)
                 
                 self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
-                // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
+             
             }
         }
         
-        
+        // 005
         menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness )
         
         self.menuTV.reloadData()
@@ -1104,6 +1101,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
                     }
                 }
+                
+                self.menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness )
                 
                 self.menuTV.reloadData()
                 
