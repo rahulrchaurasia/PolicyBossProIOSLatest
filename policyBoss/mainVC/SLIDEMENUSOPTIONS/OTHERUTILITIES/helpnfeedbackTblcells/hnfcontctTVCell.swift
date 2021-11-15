@@ -43,11 +43,14 @@ class hnfcontctTVCell: UITableViewCell {
     @IBAction func phoneNoCliked(_ sender: Any)
     {
         
+        //check delegate is not nil with `?`
+        delegate?.btnPhonenoTapped(cell: self)
     }
     
     @IBAction func emailCliked(_ sender: Any)
     {
-        
+        //check delegate is not nil with `?`
+        delegate?.btnEmailTapped(cell: self)
     }
     
     @IBAction func websiteCliked(_ sender: Any)

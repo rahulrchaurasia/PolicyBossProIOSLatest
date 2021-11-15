@@ -11,18 +11,19 @@ import UIKit
 class Configuration: NSObject {
 
   // static let baseURLString = "http://qa.mgfm.in"               //testing
-
-   static let baseURLString = "http://api.magicfinmart.com"     //live
-    static let baseServiceURLString = "http://49.50.95.141:191"     // for attendance  (Not in used)
-    static let baseEncryptedErpIdURL = "http://202.131.96.101:3333"
+    //http://api.magicfinmart.com
+   static let baseURLString = "https://horizon.policyboss.com:5443/quote/Postfm/"     //live
+    
+    static let baseFileUploadURLString = "https://horizon.policyboss.com:5443/quote/Postfm_fileupload/"
+    //http://49.50.95.141:19
+    //http://202.131.96.101:3333
+    static let baseServiceURLString = ""     // for attendance  (Not in used)
+    static let baseEncryptedErpIdURL = ""
   
-    static let basegenerateloanLeadURL = "http://services.rupeeboss.com"   //ERP URL {Android}  for loan (currently used in pending case only)
-    static let basehealthassureURL = "http://www.healthassure.in"
+    static let basegenerateloanLeadURL = ""   //ERP URL {Android}  for loan (currently used in pending case only)
+    static let basehealthassureURL = ""
     
-   // static let appVersion = "2.0"
-     // static let baseEncryptedErpIdURL = "http://49.50.95.141:2001"
-    //    static let baseURLString = "http://preprodapiqa.mgfm.in"
-    
+   
     static let appVersion =  Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
     
     static let buildVersion =  Bundle.main.infoDictionary?["CFBundleVersion"] as! String

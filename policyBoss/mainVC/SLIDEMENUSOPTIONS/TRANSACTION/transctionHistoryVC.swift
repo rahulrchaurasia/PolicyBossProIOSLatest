@@ -85,7 +85,7 @@ class transctionHistoryVC: UIViewController,UITableViewDataSource,UITableViewDel
         let params: [String: AnyObject] = ["pageno":"1" as AnyObject,
                                            "fbaid":FBAId as AnyObject]
         
-        let url = "/api/get-transaction-history"
+        let url = "get-transaction-history"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

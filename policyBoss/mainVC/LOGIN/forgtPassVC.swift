@@ -76,7 +76,7 @@ class forgtPassVC: UIViewController {
         alertView.show()
         let params: [String: AnyObject] = ["EmailID":emailIDTf.text! as AnyObject]
         
-        let url = "/api/forgotPassword"
+        let url = "forgotPassword"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

@@ -52,7 +52,7 @@ class verifyMobNoVC: UIViewController {
         let params: [String: AnyObject] = ["MobileNo": mobNo as AnyObject,
                                            "MobileOTP": verifyOtpTf.text! as AnyObject]
         
-        let url = "/api/retrive-otp"
+        let url = "retrive-otp"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

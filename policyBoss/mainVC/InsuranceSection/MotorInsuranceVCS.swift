@@ -638,7 +638,7 @@ class MotorInsuranceVCS: UIViewController,CAPSPageMenuDelegate {
                                            "product_id":"1" as AnyObject,
                                            "type":"0" as AnyObject]
         
-        let url = "/api/get-vehicle-request"
+        let url = "get-vehicle-request"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -723,7 +723,7 @@ class MotorInsuranceVCS: UIViewController,CAPSPageMenuDelegate {
                                            "product_id":"10" as AnyObject,
                                            "type":"0" as AnyObject]
         
-        let url = "/api/get-vehicle-request"
+        let url = "get-vehicle-request"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -805,7 +805,7 @@ class MotorInsuranceVCS: UIViewController,CAPSPageMenuDelegate {
                                            "type":"0" as AnyObject,
                                            "InsurerId": InsurerID as AnyObject]
         
-        let url = "/api/get-smart-term-life"
+        let url = "get-smart-term-life"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

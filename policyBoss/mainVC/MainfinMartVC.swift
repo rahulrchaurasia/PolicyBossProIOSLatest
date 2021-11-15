@@ -560,51 +560,21 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
 
                     
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.modalPresentationStyle = .fullScreen
-//                    commonWeb.webfromScreen = "private"
-//                    commonWeb.addType = "CHILD"
-//                    commonWeb.delegateData = self
-//                    add(commonWeb)    // Adding in Parent View
-//                    deSelectDashboard()
-                    
-                    
                     callWebView(webfromScreen: "private", type: "CHILD")
                     
                     break
                 case 2  :  // Health
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.modalPresentationStyle = .fullScreen
-//                    commonWeb.webfromScreen = "HealthInsurance"
-//                    commonWeb.addType = "CHILD"
-//
-//                    add(commonWeb)    // Adding in Parent View
-//                    deSelectDashboard()
-                    
+                   
                       callWebView(webfromScreen: "HealthInsurance", type: "CHILD")
                     break
                     
                 case 10 :  // TWO WHEELER
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.modalPresentationStyle = .fullScreen
-//                    commonWeb.webfromScreen = "twoWheeler"
-//                    commonWeb.addType = "CHILD"
-//
-//                    add(commonWeb)
-//                    deSelectDashboard()
-                    
+                 
                     callWebView(webfromScreen: "twoWheeler", type: "CHILD")
                     break
                     
                 case 12  :   //COMMERCIAL VEHICLE
-//                    let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-//                    commonWeb.modalPresentationStyle = .fullScreen
-//                    commonWeb.webfromScreen = "COMMERCIALVEHICLE"
-//                    commonWeb.addType = "CHILD"
-//                   // present(commonWeb, animated: true, completion: nil)
-//                    add(commonWeb)
-//                    deSelectDashboard()
-                    
+                   
                     callWebView(webfromScreen: "COMMERCIALVEHICLE", type: "CHILD")
                     break
                     
@@ -1017,7 +987,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([strReceipt])
-            mail.setSubject("Finmart")
+            mail.setSubject("PolicyBoss")
             mail.setMessageBody("<p>Dear Sir/Madam,</p>", isHTML: true)
             
             present(mail, animated: true)
@@ -1041,8 +1011,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
                 
-                let url = "/api/user-constant"
-                //let url = "/api/user-constant-pb"
+                //let url = "/api/user-constant"
+                let url = "user-constant-pb"
                 
                 FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                     
@@ -1247,7 +1217,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 // let url = "/api/get-dynamic-app"
                 
-                let url = "/api/get-dynamic-app-pb"
+                let url = "get-dynamic-app-pb"
                 
                 FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                     alertView.close()
@@ -1372,7 +1342,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
         
-        let url = "/api/user-calling"
+        let url = "user-calling"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1455,7 +1425,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             "product_id": prdID as AnyObject,
             "sub_fba_id":"0" as AnyObject
         ]
-         let endUrl = "/api/GetShareUrl"
+         let endUrl = "GetShareUrl"
         let url =  FinmartRestClient.baseURLString  + endUrl
      Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
         switch response.result {

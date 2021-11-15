@@ -81,14 +81,14 @@ class addUsersVC: UIViewController {
 //        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
 //        present(KYDrawer, animated: true, completion: nil)
         
-         dismiss(animated: true)
+         dismiss(animated: false)
     }
     
     @IBAction func myUtiliCloseBtnCliked(_ sender: Any)
     {
 //        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
 //        present(KYDrawer, animated: true, completion: nil)
-         dismiss(animated: true)
+         dismiss(animated: false)
     }
     
     

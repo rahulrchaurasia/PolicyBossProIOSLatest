@@ -86,7 +86,7 @@ class changePasswrdVC: UIViewController,UITextFieldDelegate {
                                            "FBAID":FBAId as AnyObject,
                                            "New_Password":newpassTf.text! as AnyObject]
         
-        let url = "/api/change-password"
+        let url = "change-password"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

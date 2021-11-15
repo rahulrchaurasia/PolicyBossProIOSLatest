@@ -70,7 +70,7 @@ class incmCalculatrVC: UIViewController {
                                            "url":"" as AnyObject,
                                            "type":type as AnyObject]
         
-        let url = "/api/posp-appointment-email"
+        let url = "posp-appointment-email"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -114,7 +114,7 @@ class incmCalculatrVC: UIViewController {
         let params: [String: AnyObject] = ["SS_ID": SSID as AnyObject,
                                            "Type":type as AnyObject]
         
-        let url = "/api/GetPospAppointmentLetter"
+        let url = "GetPospAppointmentLetter"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

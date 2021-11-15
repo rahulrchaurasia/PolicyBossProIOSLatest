@@ -72,17 +72,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
             bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
             
             
-//            let myUrl = "http://qa.mgfm.in/images/rbasalesmaterial/testpagenew.html"
-//            titleLbl.text! = "PRIVATE CAR"                                           // for testing
-//            webView.load(URLRequest(url: URL(string: myUrl)!))
-//            print("URL",myUrl)
-            //////
-            
-            
-            
-//            webView.load(URLRequest(url: URL(string: FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1&device_id=594ad17c0ec7fd1e&login_ssid=")!))
-//
-//            print("URL", FourWheelerUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=1&device_id=594ad17c0ec7fd1e&login_ssid=")
+           // http://elite.interstellar.co.in/iostest.html // for testing purpose
             
         }
         else if(webfromScreen == "twoWheeler")  //  PrdID =10

@@ -280,8 +280,8 @@ class SalesmaterialVC: UIViewController,UITableViewDataSource,UITableViewDelegat
             alertView.show()
             let params: [String: AnyObject] = [:]
             
-           // let url = "/api/sales-material-product"
-             let url = "/api/sales-material-product-pb"
+          
+             let url = "sales-material-product-pb"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()

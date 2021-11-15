@@ -1009,7 +1009,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             alertView.show()
             let params: [String: AnyObject] = ["PinCode": pincode as AnyObject]
             
-            let url = "/api/get-city-and-state"
+            let url = "get-city-and-state"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
@@ -1115,8 +1115,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 "DocFile":"swift_file.jpeg"
             ]
             
-            let endUrl = "/api/upload-doc"
-            let url =  FinmartRestClient.baseURLString  + endUrl
+            let endUrl = "upload-doc"
+            let url =  FinmartRestClient.baseFileUploadURLString  + endUrl
             let headers: HTTPHeaders = [
                    "Content-Type": "application/json",
                    "token": "1234567890"
@@ -1299,7 +1299,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
         let params: [String: AnyObject] = [ "FBAID":FBAId as AnyObject]
         
-        let url = "/api/get-my-account"
+        let url = "get-my-account"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1578,7 +1578,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             
                                  ]
         
-        let url = "/api/my-account"
+        let url = "my-account"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

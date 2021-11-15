@@ -184,7 +184,7 @@ class PaymentMainController: UIViewController ,RazorpayPaymentCompletionProtocol
                 
                 "FBAID": FBAId as AnyObject
             ]
-            let endUrl = "/api/getfbadataforrpay"
+            let endUrl = "getfbadataforrpay"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",parameter)

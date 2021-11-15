@@ -106,7 +106,7 @@ class PaymentSuccessVC: UIViewController {
                 "CustId": CustId as AnyObject,
                 "PayId": paymentID as AnyObject
             ]
-            let endUrl = "/api/Addtorazorpaydata"
+            let endUrl = "Addtorazorpaydata"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",parameter)

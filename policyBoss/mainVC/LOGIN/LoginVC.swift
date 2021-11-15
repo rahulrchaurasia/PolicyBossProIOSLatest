@@ -208,7 +208,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                                              "UserType": "" as AnyObject,
                                              "VersionNo": "" as AnyObject]
         
-        let url = "/api/login"
+        let url = "login"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

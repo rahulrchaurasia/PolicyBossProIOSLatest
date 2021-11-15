@@ -957,7 +957,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject,
                                            "email": emailTf.text! as AnyObject]
         
-        let url = "/api/generate-otp"
+        let url = "generate-otp"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1037,7 +1037,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 let params: [String: AnyObject] = ["MobileNo": mob1Tf.text! as AnyObject,
                                                    "MobileOTP": verifyOtpTf.text! as AnyObject]
                 
-                let url = "/api/retrive-otp"
+                let url = "retrive-otp"
                 
                 FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                     alertView.close()
@@ -1092,7 +1092,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
            // let FBAId = UserDefaults.standard.string(forKey: "FBAId")
          let params: [String: AnyObject] = [:]
-            let endUrl = "/api/get-insurance-company"
+            let endUrl = "get-insurance-company"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             
@@ -1183,7 +1183,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         alertView.show()
         let params: [String: AnyObject] = ["PinCode":pinCode as AnyObject]
         
-        let url = "/api/get-city-and-state"
+        let url = "get-city-and-state"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1234,7 +1234,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         let params: [String: AnyObject] = ["ref_code": refferCode as AnyObject,
                                            "ref_type":"0" as AnyObject]
         
-        let url = "/api/validate-refer-code"
+        let url = "validate-refer-code"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1276,7 +1276,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         alertView.show()
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-registration-source"
+        let url = "get-registration-source"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1331,7 +1331,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
 //            print("selected id",selectedValue)
             let params: [String: AnyObject] = ["campaignid": campaignid as AnyObject]
             
-            let url = "/api/getempbyregsource"
+            let url = "getempbyregsource"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
@@ -1492,7 +1492,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                                            "password": Password as AnyObject,
                                            "referedby_code": referrCodeTf.text! as AnyObject]
         
-        let url = "/api/insert-fba-registration"
+        let url = "insert-fba-registration"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

@@ -1852,7 +1852,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
@@ -1882,7 +1882,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;

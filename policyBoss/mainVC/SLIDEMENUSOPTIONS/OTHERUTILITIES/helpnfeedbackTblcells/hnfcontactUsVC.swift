@@ -9,8 +9,9 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import MessageUI
 
-class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,mycelDelegate  {
+class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource,mycelDelegate ,MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var conctusTblView: UITableView!
     
@@ -22,6 +23,8 @@ class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var indexS = Int()
     var webSite = ""
+    var phoneNo = ""
+    var emailID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,14 +84,44 @@ class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func btnEmailTapped(cell: hnfcontctTVCell) {
-        
+     
+        let indexPath = self.conctusTblView.indexPath(for: cell)
+        emailID = emailArray[indexPath!.row]
+        sendEmail(strReceipt: emailID)
     }
     
     func btnPhonenoTapped(cell: hnfcontctTVCell) {
-        
+        let indexPath = self.conctusTblView.indexPath(for: cell)
+        phoneNo = phoneNoArray[indexPath!.row]
+        callNumber(phoneNumber: phoneNo)
     }
     
     
+    func sendEmail(strReceipt : String ) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([strReceipt])
+            mail.setSubject("v")
+            mail.setMessageBody("<p>Dear Sir/Madam,</p>", isHTML: true)
+
+            present(mail, animated: true)
+        } else {
+            // show failure alert
+        }
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    private func callNumber(phoneNumber: String) {
+        guard let url = URL(string: "telprompt://\(phoneNumber)"),
+            UIApplication.shared.canOpenURL(url) else {
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
     
     //--<APICALL>--
     func contactusAPI()
@@ -109,7 +142,7 @@ class hnfcontactUsVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/contact-us"
+        let url = "contact-us-PB"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

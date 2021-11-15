@@ -286,7 +286,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
             alertView.show()
             let params: [String: AnyObject] = ["product_id": productId as AnyObject]
             
-            let url = "/api/sales-material-product-details"
+            let url = "sales-material-product-details-pb"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()
@@ -364,7 +364,7 @@ class insalesmaterialVC: UIViewController,UICollectionViewDataSource,UICollectio
                   "FBAID": FBAId as AnyObject,
                   "Source": "Finmart" as AnyObject,]
             
-            let url = "/api/getfincampaign"
+            let url = "getfincampaign"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()

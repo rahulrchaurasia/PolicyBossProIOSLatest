@@ -15,6 +15,8 @@ class FinmartRestClient {
     //MARK:- Nykaa Base URL
     
     static let baseURLString = Configuration.baseURLString
+    
+    static let baseFileUploadURLString = Configuration.baseFileUploadURLString
     static let baseServiceURLString = Configuration.baseServiceURLString
     static let baseEncryptedErpIdURLString = Configuration.baseEncryptedErpIdURL
     static let basegenerateloanLeadURLString = Configuration.basegenerateloanLeadURL

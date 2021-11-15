@@ -1060,8 +1060,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
             
-            let url = "/api/user-constant"
-            //  let url = "/api/user-constant-pb"
+              let url = "user-constant-pb"
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
                 alertView.close()

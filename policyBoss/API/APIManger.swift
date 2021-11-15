@@ -47,7 +47,7 @@ class APIManger {
         
 
        
-        let endUrl = "/api/health-assure-configure"
+        let endUrl = "health-assure-configure"
         let url =  FinmartRestClient.baseURLString  + endUrl
         print("urlRequest= ",url)
         print("parameter= ",params)
@@ -110,7 +110,7 @@ class APIManger {
                                              "name" : strName as AnyObject]
          
        
-        let endUrl = "/api/short-url"
+        let endUrl = "short-url"
         let url =  FinmartRestClient.baseURLString  + endUrl
         print("urlRequest= ",url)
         print("parameter= ",params)
@@ -171,9 +171,9 @@ class APIManger {
                                             ]
          
        
-       // let endUrl = "/api/get-transaction-history"
-     //   let url =  FinmartRestClient.baseURLString  + endUrl
-        let url = "https://horizon.policyboss.com:5443/quote/Postfm/get-transaction-history"
+        let endUrl = "get-transaction-history"
+        let url =  FinmartRestClient.baseURLString  + endUrl
+   
         print("urlRequest= ",url)
         print("parameter= ",params)
         Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in

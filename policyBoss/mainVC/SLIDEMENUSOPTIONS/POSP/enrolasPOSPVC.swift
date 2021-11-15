@@ -1174,8 +1174,9 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                     "DocFile": "swift_file.jpeg"
                 ]
                 
-                let endUrl = "/api/upload-doc"
-                let url =  FinmartRestClient.baseURLString  + endUrl
+                let endUrl = "upload-doc"
+               
+                let url =  FinmartRestClient.baseFileUploadURLString  + endUrl
                 let headers: HTTPHeaders = [
                     "Content-Type": "application/json",
                     "token": "1234567890"
@@ -1476,7 +1477,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                                             
                                             "referedby_code": "" as AnyObject]
         
-        let url = "/api/posp-registration"
+        let url = "posp-registration"
             
            // print("GGGGGGGG",params)
         
@@ -1532,7 +1533,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         
         let params: [String: AnyObject] = ["FBAID":FBAId as AnyObject]
         
-        let url = "/api/get-posp-detail"
+        let url = "get-posp-detail"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1900,7 +1901,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         alertView.show()
         let params: [String: AnyObject] = ["PinCode": pincode as AnyObject]
         
-        let url = "/api/get-city-and-state"
+        let url = "get-city-and-state"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -1944,7 +1945,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
         alertView.show()
         let params: [String: AnyObject] = ["IFSCCode": enifscCodeTf.text! as AnyObject]
         
-        let url = "/api/get-ifsc-code"
+        let url = "get-ifsc-code"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -2009,7 +2010,7 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
                 "IFSCCode": enifscCodeTf.text! as AnyObject
               
             ]
-            let endUrl = "/api/get-ifsc-code"
+            let endUrl = "get-ifsc-code"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",parameter)

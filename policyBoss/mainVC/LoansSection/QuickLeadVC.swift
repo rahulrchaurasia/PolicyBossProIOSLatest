@@ -220,7 +220,7 @@ class QuickLeadVC: UIViewController,WKNavigationDelegate,getPickerDataDelegate,S
                                             "brokerId": loanselfid as AnyObject,
                                             "followupDate": followDateTf.text! as AnyObject]
         
-        let url = "/api/quick-lead"
+        let url = "quick-lead"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
