@@ -337,7 +337,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         let params: [String: AnyObject] = ["id":indexID as AnyObject,
                                            "quotetype":quttype as AnyObject]
         
-        let url = "/api/delete-pending-cases"
+        let url = "delete-pending-cases"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -399,7 +399,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                                                "quotetype": Quotetype as AnyObject
                                               ]
             
-            let endUrl = "/api/delete-pending-cases"
+            let endUrl = "delete-pending-cases"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",params)
@@ -462,7 +462,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
                                                "count":"0" as AnyObject,
                                                "FBAID": FBAId as AnyObject]
             
-            let endUrl = "/api/pending-cases-insurence-and-loan"
+            let endUrl = "pending-cases-insurence-and-loan"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",params)

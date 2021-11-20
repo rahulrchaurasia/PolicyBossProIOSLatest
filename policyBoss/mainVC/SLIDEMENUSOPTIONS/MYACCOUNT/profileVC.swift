@@ -1053,7 +1053,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
             alertView.show()
             let params: [String: AnyObject] = ["IFSCCode": ifscCodeTf.text! as AnyObject]
             
-            let url = "/api/get-ifsc-code"
+            let url = "get-ifsc-code"
             
             
             FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in

@@ -667,7 +667,7 @@ class lyfinshdfcInputPageVC: UIViewController,SelectedDateDelegate,getPickerData
                                        "pincode": hdfcPincodeTf.text!]
         
         
-        let url = "/api/smart-term-life"
+        let url = "smart-term-life"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params as [String : AnyObject], onSuccess: { (userObject, metadata) in
             alertView.close()

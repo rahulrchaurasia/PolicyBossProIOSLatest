@@ -11,9 +11,9 @@ import WebKit
 import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
+import Foundation.NSURL
 
-
-class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,WKScriptMessageHandler ,UIDocumentInteractionControllerDelegate{
+class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,UIDocumentInteractionControllerDelegate{
 
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var titleLbl: UILabel!
@@ -46,6 +46,8 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         self.activityIndicator.startAnimating()
         self.webView.navigationDelegate = self
         self.activityIndicator.hidesWhenStopped = true
+        self.webView.configuration.preferences.javaScriptEnabled = true
+       
         
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
 //        let SSID = UserDefaults.standard.string(forKey: "POSPNo")
@@ -63,16 +65,22 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         let appVersion = Configuration.appVersion
         
         // self.setupWKWebview()
-        webView.configuration.userContentController.add(self, name: "finmartios")
+       // webView.configuration.userContentController.add(self, name: "finmartios")
+        
+        
+       
+        
       
         if(webfromScreen == "private")      //  PrdID =1
         {
 
             titleLbl.text! = "PRIVATE CAR"
-            bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
+          // bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")  // 005
             
-            
-           // http://elite.interstellar.co.in/iostest.html // for testing purpose
+         let insURL = "http://elite.interstellar.co.in/iostestnew.html"
+
+          webView.load(URLRequest(url: URL(string: insURL)!))
+
             
         }
         else if(webfromScreen == "twoWheeler")  //  PrdID =10
@@ -489,6 +497,46 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     
     //  Event
     
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        print("\(#function)")
+
+        // Check whether WebView Native is linked
+        if let url = navigationAction.request.url,
+            let urlScheme = url.scheme,
+            let urlHost = url.host,
+
+
+            urlScheme.uppercased() == Constants.schemeKey.uppercased() {
+            print("url:\(url)")
+            print("urlScheme:\(urlScheme)")
+            print("urlHost:\(urlHost)")
+
+            decisionHandler(.cancel)
+
+            print("JAVASCRIPT CALLED")
+            print("Message",  url)
+            
+           
+            var pdfData = url.absoluteString.replacingOccurrences(of: "iosscheme://", with: "")
+            
+            pdfData = pdfData.replacingOccurrences(of: "http", with: "http:")
+           
+            print(pdfData)
+  
+           
+             generatePdf(strUrl: pdfData)
+            
+           
+           return
+        }
+        decisionHandler(.allow)
+        
+        
+      
+
+    }
+    
     // Method is used For Preview
     
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
@@ -499,36 +547,37 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
     
     
     // Handler for JavaScript Communication
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        
-       print("JAVASCRIPT CALLED")
-       print("Message",  message.body)
-        generatePdf(strUrl: message.body as! String)
-    }
+//    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+//
+//       print("JAVASCRIPT CALLED")
+//       print("Message",  message.body)
+//        generatePdf(strUrl: message.body as! String)
+//    }
     
     // Configuratyion for Script
     
-    private func setupWKWebview() {
-        
-        let wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20) , configuration: self.getWKWebViewConfiguration())
-        // wkWebView.translatesAutoresizingMaskIntoConstraints = false
-        
-        //        self.webView = WKWebView(frame: self.view.frame, configuration: self.getWKWebViewConfiguration())
-        
-        
-        // self.view.addSubview(self.webView)
-        
-        self.view.addSubview(wkWebView)
-        
-        
-    }
-    private func getWKWebViewConfiguration() -> WKWebViewConfiguration {
-        let userController = WKUserContentController()
-        userController.add(self, name: "finmartios")
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = userController
-        return configuration
-    }
+//    private func setupWKWebview() {
+//
+//        let wkWebView = WKWebView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20) , configuration: self.getWKWebViewConfiguration())
+//        // wkWebView.translatesAutoresizingMaskIntoConstraints = false
+//
+//        //        self.webView = WKWebView(frame: self.view.frame, configuration: self.getWKWebViewConfiguration())
+//
+//
+//        // self.view.addSubview(self.webView)
+//
+//        self.view.addSubview(wkWebView)
+//
+//
+//    }
+    
+//    private func getWKWebViewConfiguration() -> WKWebViewConfiguration {
+//        let userController = WKUserContentController()
+//        userController.add(self, name: "finmartios")
+//        let configuration = WKWebViewConfiguration()
+//        configuration.userContentController = userController
+//        return configuration
+//    }
     
     // PDF generation
     
@@ -546,7 +595,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
         }
         alertView.show()
         
-        var filename = "policyBoss"
+        let filename = "Quote"
         
         let request = URLRequest(url:  URL(string: strUrl )!)
         let config = URLSessionConfiguration.default
@@ -670,4 +719,8 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,W
 
 }
 
-
+private struct Constants {
+   
+   static let schemeKey = "iosscheme"
+  
+}

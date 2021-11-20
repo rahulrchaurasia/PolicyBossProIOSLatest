@@ -213,7 +213,7 @@ class getmpsNowVC: UIViewController {
         
         let params: [String: AnyObject] = ["FBAID":FBAId as AnyObject]
         
-        let url = "/api/get-mps-data"
+        let url = "get-mps-data"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -272,7 +272,7 @@ class getmpsNowVC: UIViewController {
         let params: [String: AnyObject] = ["FBAID":FBAId as AnyObject,
                                            "PromoCode": promoCodeTf.text! as AnyObject]
         
-        let url = "/api/validated-cupon-code"
+        let url = "validated-cupon-code"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

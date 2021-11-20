@@ -99,7 +99,7 @@ class creditCardVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         let params: [String: AnyObject] = ["fba_id":FBAId as AnyObject,
                                            "CardType":"0" as AnyObject,]
         
-        let url = "/api/get-saved-creditcard-info"
+        let url = "get-saved-creditcard-info"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

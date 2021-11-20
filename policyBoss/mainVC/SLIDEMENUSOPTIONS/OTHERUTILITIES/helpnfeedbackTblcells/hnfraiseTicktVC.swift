@@ -128,7 +128,7 @@ class hnfraiseTicktVC: UIViewController,UITableViewDataSource,UITableViewDelegat
 
         let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
         
-        let url = "/api/get-ticket-request"
+        let url = "get-ticket-request"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -186,7 +186,7 @@ class hnfraiseTicktVC: UIViewController,UITableViewDataSource,UITableViewDelegat
         
         let params: [String: AnyObject] = ["ticket_req_id": reqTicktidIndex as AnyObject]
         
-        let url = "/api/get-ticket-comments"
+        let url = "get-ticket-comments"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

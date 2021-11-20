@@ -332,7 +332,7 @@ class motorInsurancecapsVC: UIViewController,SelectedDateDelegate,getPickerDataD
         
         let params: [String: AnyObject] = ["ProductId":"1" as AnyObject]
         
-        let url = "/api/vehicle-details"
+        let url = "vehicle-details"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -374,7 +374,7 @@ class motorInsurancecapsVC: UIViewController,SelectedDateDelegate,getPickerDataD
         
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-city-vehicle"
+        let url = "get-city-vehicle"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

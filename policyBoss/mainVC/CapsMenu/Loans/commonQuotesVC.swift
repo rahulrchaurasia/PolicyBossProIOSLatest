@@ -154,7 +154,7 @@ class commonQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 //                                           "FBAID":"35862" as AnyObject,
                                            "Count":"0" as AnyObject]
         
-        let url = "/api/getloanrequest"
+        let url = "getloanrequest"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

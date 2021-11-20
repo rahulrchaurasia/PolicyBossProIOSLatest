@@ -355,7 +355,7 @@ class rblCreditCardVC: UIViewController,getPickerDataDelegate,SelectedDateDelega
         
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-rbl-city"
+        let url = "get-rbl-city"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -427,7 +427,7 @@ class rblCreditCardVC: UIViewController,getPickerDataDelegate,SelectedDateDelega
                                            "fba_id": FBAId as AnyObject,
                                            "source": "finmart" as AnyObject]
         
-        let url = "/api/credit-card-rbl"
+        let url = "credit-card-rbl"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

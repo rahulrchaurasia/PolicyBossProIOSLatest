@@ -596,7 +596,7 @@ class iciciCreditCardVC: UIViewController,SelectedDateDelegate,getPickerDataDele
         
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-rbl-city"
+        let url = "get-rbl-city"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -703,7 +703,7 @@ class iciciCreditCardVC: UIViewController,SelectedDateDelegate,getPickerDataDele
                                            "work_email": workMailTf.text! as AnyObject,
                                            "work_number": phnnumbrTf.text! as AnyObject]
         
-        let url = "/api/credit-card-icici"
+        let url = "credit-card-icici"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

@@ -381,7 +381,7 @@ class addraiseticktVC: UIViewController,getPickerDataDelegate,UIDocumentMenuDele
                 
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-ticket-categories"
+        let url = "get-ticket-categories"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

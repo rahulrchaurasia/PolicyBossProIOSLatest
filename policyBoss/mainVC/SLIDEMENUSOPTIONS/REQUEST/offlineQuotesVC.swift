@@ -159,7 +159,7 @@ class offlineQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         let params: [String: AnyObject] = ["FBAID":FBAId as AnyObject]
         
-        let url = "/api/health-assure-configure"
+        let url = "health-assure-configure"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

@@ -374,7 +374,7 @@ class PendingcasesVC: UIViewController {
                                                "count":"0" as AnyObject,
                                                "FBAID": FBAId as AnyObject]
             
-            let endUrl = "/api/pending-cases-insurence-and-loan"
+            let endUrl = "pending-cases-insurence-and-loan"
             let url =  FinmartRestClient.baseURLString  + endUrl
             print("urlRequest= ",url)
             print("parameter= ",params)

@@ -96,7 +96,7 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         let params: [String: AnyObject] = ["FBAID": FBAId as AnyObject]
         
-        let url = "/api/get-child-fba"
+        let url = "get-child-fba"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

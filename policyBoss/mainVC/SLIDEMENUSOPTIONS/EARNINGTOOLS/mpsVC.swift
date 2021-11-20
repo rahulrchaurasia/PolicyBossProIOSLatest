@@ -88,7 +88,7 @@ class mpsVC: UIViewController {
         
         let params: [String: AnyObject] = ["FBAID":FBAId as AnyObject]
         
-        let url = "/api/get-mps-data"
+        let url = "get-mps-data"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

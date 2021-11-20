@@ -323,7 +323,7 @@ class motorInsuranceVC: UIViewController,SelectedDateDelegate,UITableViewDelegat
         
         let params: [String: AnyObject] = ["RegistrationNumber": goTf.text! as AnyObject]
         
-        let url = "/api/vehicle-info"
+        let url = "vehicle-info"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -417,7 +417,7 @@ class motorInsuranceVC: UIViewController,SelectedDateDelegate,UITableViewDelegat
                                            "model":"" as AnyObject]
              
         
-        let url = "/api/save-moter-lead-details"
+        let url = "save-moter-lead-details"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

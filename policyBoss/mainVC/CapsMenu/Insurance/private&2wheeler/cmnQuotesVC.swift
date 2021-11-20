@@ -176,7 +176,7 @@ class cmnQuotesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,ce
         
         let params: [String: AnyObject] = ["VehicleRequestID":vehicleRequestID as AnyObject]
         
-        let url = "/api/delete-vehicle-request"
+        let url = "delete-vehicle-request"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

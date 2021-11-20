@@ -244,7 +244,7 @@ class viewCommentnAddVC: UIViewController,UITableViewDataSource,UITableViewDeleg
                                            "docpath":"" as AnyObject,
                                            "ticket_status_id": statusId as AnyObject]
         
-        let url = "/api/create-ticket-comments"
+        let url = "create-ticket-comments"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

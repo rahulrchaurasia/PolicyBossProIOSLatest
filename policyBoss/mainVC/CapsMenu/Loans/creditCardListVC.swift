@@ -148,7 +148,7 @@ class creditCardListVC: UIViewController,UITableViewDataSource,UITableViewDelega
         
         let params: [String: AnyObject] = [:]
         
-        let url = "/api/get-credit-card-data"
+        let url = "get-credit-card-data"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

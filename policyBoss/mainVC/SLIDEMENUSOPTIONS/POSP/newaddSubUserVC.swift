@@ -262,7 +262,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         alertView.show()
         let params: [String: AnyObject] = ["PinCode": upincodeTf.text! as AnyObject]
         
-        let url = "/api/get-city-and-state"
+        let url = "get-city-and-state"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -409,7 +409,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "AppSource": "2" as AnyObject,
                                             "ParentId": FBAId as AnyObject]
         
-        let url = "/api/AddChildPosp"
+        let url = "AddChildPosp"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

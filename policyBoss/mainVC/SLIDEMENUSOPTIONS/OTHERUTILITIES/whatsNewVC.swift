@@ -66,7 +66,7 @@ class whatsNewVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         
         let params: [String: AnyObject] = ["app_version":"1.0" as AnyObject]
         
-        let url = "/api/whats-new-ios"
+        let url = "whats-new-ios"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

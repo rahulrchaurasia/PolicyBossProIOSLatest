@@ -1011,7 +1011,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
                 
-                //let url = "/api/user-constant"
                 let url = "user-constant-pb"
                 
                 FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
@@ -1215,8 +1214,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 let params: [String: AnyObject] = ["fbaid":FBAId as AnyObject]
                 
-                // let url = "/api/get-dynamic-app"
-                
+              
                 let url = "get-dynamic-app-pb"
                 
                 FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
@@ -1562,7 +1560,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     func callbackHomeDelegate() {
      
-        print("TTT  Call back to Parent ")
+       // print("TTT  Call back to Parent ")
         self.userconstantAPI()
         self.getdynamicappAPI()
         self.verifyVersion()
