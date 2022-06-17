@@ -11,8 +11,17 @@ import CustomIOSAlertView
 import TTGSnackbar
 import Alamofire
 
-class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,getPickerDataDelegate,selectedDataDelegate {
+class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,getPickerDataDelegate,selectedDataDelegate , UITableViewDelegate,UITableViewDataSource  {
     
+    
+    var Menulist =  [pospAmntModel]()
+    
+    var pospAmntArray = ["POSP AMNT 99","POSP AMNT 999","POSP AMNT 299"]
+    
+   
+    
+    
+
     
   
     let aTextField = ACFloatingTextfield()
@@ -159,6 +168,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
         getregistrationsourceAPI()
         getInsuranceCompany()
+        
+        
+        Menulist = getpospData()
+       
       
     }
     
@@ -362,7 +375,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
+               // persnlTfViewHeight.constant = 660  //temp 05
+                
+                persnlTfViewHeight.constant = 850
             }
             profTfView.isHidden = true
             profTfViewHeight.constant = 0
@@ -483,7 +498,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
+               // persnlTfViewHeight.constant = 660   // temp 05
+                persnlTfViewHeight.constant = 850
                 
                 if(self.sourceLbl.text != "Select"){
                     
@@ -705,7 +721,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 660
+               // persnlTfViewHeight.constant = 660    // temp 05
+                persnlTfViewHeight.constant = 850
             }
             profTfView.isHidden = true
             self.profViewOpen = "No"
@@ -1538,6 +1555,37 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         self.present(alert, animated: true, completion: nil)
     }
    
+    
+    
+    func  getpospData() ->  [pospAmntModel]
+    {
+        Menulist =  [pospAmntModel]()
+        Menulist.append(pospAmntModel(name: "POSP AMNT 99" ,img: "home1", modelId: 1))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "home1", modelId: 2))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "home1", modelId: 3))
+        Menulist.append(pospAmntModel(name: "WebView - URL",img: "home1", modelId: 4))
+       
+        return Menulist
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        let cell : pospAmntTableViewCell =
+        tableView.dequeueReusableCell(withIdentifier: "cell") as! pospAmntTableViewCell
+        
+        cell.configureCell(obj: Menulist[indexPath.row])
+        
+        return cell
+        
+    }
+    
     
     
 }

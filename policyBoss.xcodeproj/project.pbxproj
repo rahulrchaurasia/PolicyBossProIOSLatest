@@ -224,6 +224,8 @@
 		B28BDBB52701DF8500C5DE95 /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28BDBB42701DF8500C5DE95 /* Extension+Notification.swift */; };
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
+		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
+		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -484,6 +486,8 @@
 		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
+		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1075,6 +1079,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				CD753849285CA3EA004B2D4D /* registeration */,
 				B21FAC912737C0D200AC9AA4 /* Transaction */,
 				B20B223A2731924F009A522E /* MenuDB */,
 				849B082B22017B650055BB80 /* WebVC */,
@@ -1254,6 +1259,23 @@
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		CD753849285CA3EA004B2D4D /* registeration */ = {
+			isa = PBXGroup;
+			children = (
+				CD75384C285CA914004B2D4D /* Model */,
+				CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */,
+			);
+			path = registeration;
+			sourceTree = "<group>";
+		};
+		CD75384C285CA914004B2D4D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD75384D285CA963004B2D4D /* pospAmntModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
@@ -1471,6 +1493,7 @@
 				1835672B255482AD00799E63 /* ShareImageVC.swift in Sources */,
 				44BA70E92313BC75003EFE95 /* appliedSuccessfulyVC.swift in Sources */,
 				442E20E524C8448F00FFC075 /* TutorialPageViewController.swift in Sources */,
+				CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */,
 				B253B255261652E0000C3A7D /* IQUIScrollView+Additions.swift in Sources */,
 				84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */,
 				B253B24E261652E0000C3A7D /* IQKeyboardManagerConstants.swift in Sources */,
@@ -1591,6 +1614,7 @@
 				840DE85E220DA34E0060003E /* cmnQuotesVC.swift in Sources */,
 				446B0F4C22E1A5DF0083C76B /* cmnloanselectCityVC.swift in Sources */,
 				8411808121C50F1300D5638B /* FinmartMenuVC.swift in Sources */,
+				CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */,
 				444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */,
 				B21FAC932737C11500AC9AA4 /* TransactionVC.swift in Sources */,
 				B253B252261652E0000C3A7D /* IQKeyboardManager+Debug.swift in Sources */,
