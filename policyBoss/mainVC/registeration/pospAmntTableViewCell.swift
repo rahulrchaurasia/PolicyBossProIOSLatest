@@ -28,9 +28,9 @@ class pospAmntTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(obj : pospAmntModel){
+    func configureCell(obj : MasterDataPospAmnt){
         
-        lblPospAmnt.text = obj.mName
+        lblPospAmnt.text = obj.posp_desc
             
     }
     

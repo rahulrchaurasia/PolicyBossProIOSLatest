@@ -168,6 +168,7 @@
 		B28BDBB52701DF8500C5DE95 /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28BDBB42701DF8500C5DE95 /* Extension+Notification.swift */; };
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
+		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
 /* End PBXBuildFile section */
@@ -374,6 +375,7 @@
 		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -879,8 +881,6 @@
 			children = (
 				8403E89321BFC21A0009662A /* LoginVC.swift */,
 				84C4D08A21C230C500A677B7 /* forgtPassVC.swift */,
-				840AC5D121BE80AB004DCB26 /* ViewController.swift */,
-				84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */,
 			);
 			path = LOGIN;
 			sourceTree = "<group>";
@@ -1072,8 +1072,10 @@
 		CD753849285CA3EA004B2D4D /* registeration */ = {
 			isa = PBXGroup;
 			children = (
-				CD75384C285CA914004B2D4D /* Model */,
+				84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */,
 				CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */,
+				840AC5D121BE80AB004DCB26 /* ViewController.swift */,
+				CD75384C285CA914004B2D4D /* Model */,
 			);
 			path = registeration;
 			sourceTree = "<group>";
@@ -1082,6 +1084,7 @@
 			isa = PBXGroup;
 			children = (
 				CD75384D285CA963004B2D4D /* pospAmntModel.swift */,
+				CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1304,6 +1307,7 @@
 				84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */,
 				B253B24E261652E0000C3A7D /* IQKeyboardManagerConstants.swift in Sources */,
 				B253B245261652E0000C3A7D /* IQKeyboardManager+Internal.swift in Sources */,
+				CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */,
 				84D2E0C721EDB85500991D47 /* LoginAPI.swift in Sources */,
 				840C4BDF21C3838D000B8D49 /* PendingcasesVC.swift in Sources */,
 				44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */,

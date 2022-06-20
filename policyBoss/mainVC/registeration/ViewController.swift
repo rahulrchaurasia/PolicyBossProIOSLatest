@@ -23,7 +23,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
 
     
-  
+    @IBOutlet weak var pospAmntTableView: UITableView!
+    
     let aTextField = ACFloatingTextfield()
 
     @IBOutlet var ViewControllerBckView: UIView!
@@ -108,6 +109,10 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
     var insuranceCompObj: InsuranceCompModel? = nil
      var insuranceLifeData = [InsuranceData]()
+    
+    var pospAmntObj: PospAmountModel? = nil
+    
+    var pospAmntList =  [MasterDataPospAmnt]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,11 +173,12 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
         getregistrationsourceAPI()
         getInsuranceCompany()
-        
+        getPospAmount()
         
         Menulist = getpospData()
        
-      
+        pospAmntTableView.delegate = self
+        pospAmntTableView.dataSource = self
     }
     
    
@@ -370,14 +376,15 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = true
                 fieldSaleViewHeight.constant = 0
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
+              //  persnlTfViewHeight.constant = 600
+                persnlTfViewHeight.constant = 800
             }else{
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
                // persnlTfViewHeight.constant = 660  //temp 05
                 
-                persnlTfViewHeight.constant = 850
+                persnlTfViewHeight.constant = 860
             }
             profTfView.isHidden = true
             profTfViewHeight.constant = 0
@@ -493,13 +500,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = true
                 fieldSaleViewHeight.constant = 0
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
+                persnlTfViewHeight.constant = 800
             }else{
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
                // persnlTfViewHeight.constant = 660   // temp 05
-                persnlTfViewHeight.constant = 850
+                persnlTfViewHeight.constant = 860
                 
                 if(self.sourceLbl.text != "Select"){
                     
@@ -716,13 +723,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 fieldSaleView.isHidden = true
                 fieldSaleViewHeight.constant = 0
                 persnlTfView.isHidden = false
-                persnlTfViewHeight.constant = 600
+                persnlTfViewHeight.constant = 800
             }else{
                 fieldSaleView.isHidden = false
                 fieldSaleViewHeight.constant = 60
                 persnlTfView.isHidden = false
                // persnlTfViewHeight.constant = 660    // temp 05
-                persnlTfViewHeight.constant = 850
+                persnlTfViewHeight.constant = 860
             }
             profTfView.isHidden = true
             self.profViewOpen = "No"
@@ -1182,7 +1189,97 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
     
     
-
+    
+    /////////////////
+  
+    
+    
+    func getPospAmount(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+           // let FBAId = UserDefaults.standard.string(forKey: "FBAId")
+         let params: [String: AnyObject] = [:]
+            let endUrl = "get-registration-pospamount"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(_):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(PospAmountModel.self, from: data)
+                        
+                        
+                        
+                        print("response= ",obj)
+                        
+                        if obj.StatusNo == 0 {
+                            
+                            print("response= Suucess Posp Amount")
+                            
+                            self.pospAmntObj = obj
+                            self.pospAmntList = obj.MasterData
+                    
+                            DispatchQueue.main.async {
+                                self.pospAmntTableView.reloadData()
+                                
+                            }
+                            
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                            snackbar.show()
+                        }
+                        
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
+    
+    
+///////////////////
     func getCityStateAPI(pinCode : String)
     {
         if Connectivity.isConnectedToInternet()
@@ -1547,6 +1644,9 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
     }
     
+    
+     
+   
     //--<showalertView>--
     func alertCall(message:String)
     {
@@ -1560,10 +1660,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     func  getpospData() ->  [pospAmntModel]
     {
         Menulist =  [pospAmntModel]()
-        Menulist.append(pospAmntModel(name: "POSP AMNT 99" ,img: "home1", modelId: 1))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "home1", modelId: 2))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "home1", modelId: 3))
-        Menulist.append(pospAmntModel(name: "WebView - URL",img: "home1", modelId: 4))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 99" ,img: "cons8-round-24", modelId: 1))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "cons8-round-24", modelId: 2))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "cons8-round-24", modelId: 3))
+        Menulist.append(pospAmntModel(name: "WebView - URL",img: "cons8-round-24", modelId: 4))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "cons8-round-24", modelId: 2))
+        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "cons8-round-24", modelId: 3))
+        Menulist.append(pospAmntModel(name: "WebView - URL",img: "cons8-round-24", modelId: 4))
        
         return Menulist
     }
@@ -1571,7 +1674,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        return 0
+        return pospAmntList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -1580,11 +1683,16 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         let cell : pospAmntTableViewCell =
         tableView.dequeueReusableCell(withIdentifier: "cell") as! pospAmntTableViewCell
         
-        cell.configureCell(obj: Menulist[indexPath.row])
+        cell.configureCell(obj: (pospAmntList[indexPath.row]))
         
         return cell
         
     }
+    
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 100
+//    }
+    
     
     
     
