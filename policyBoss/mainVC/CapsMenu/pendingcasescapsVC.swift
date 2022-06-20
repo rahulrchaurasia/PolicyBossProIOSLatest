@@ -115,6 +115,10 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
  
       //---callleadHistoryView--
     func leadHistoryTapped(cell: pendingcaseTVCell) {
+        
+        // commented
+        
+        /*
           //Get the indexpath of cell where button was tapped
         let indexPath = self.pendingTV.indexPath(for: cell)
         var leadID = "0"
@@ -143,7 +147,7 @@ class pendingcasescapsVC: UIViewController,UITableViewDataSource,UITableViewDele
         loanleadHistory.modalTransitionStyle = .crossDissolve
         self.present(loanleadHistory, animated: true)
         
-        
+        */
     }
 
  

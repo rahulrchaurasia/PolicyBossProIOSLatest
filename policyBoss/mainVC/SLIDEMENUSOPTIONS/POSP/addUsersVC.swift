@@ -120,9 +120,9 @@ class addUsersVC: UIViewController {
     @IBAction func leadSubmiBtnCliked(_ sender: Any)
     {
        
-        let QuickLead : QuickLeadVC = self.storyboard?.instantiateViewController(withIdentifier: "stbQuickLeadVC") as! QuickLeadVC
-        QuickLead.modalPresentationStyle = .fullScreen
-        present(QuickLead, animated: false, completion: nil)
+//        let QuickLead : QuickLeadVC = self.storyboard?.instantiateViewController(withIdentifier: "stbQuickLeadVC") as! QuickLeadVC
+//        QuickLead.modalPresentationStyle = .fullScreen
+//        present(QuickLead, animated: false, completion: nil)
     }
     
     @IBAction func cashLoanBtnCliked(_ sender: Any)
@@ -161,10 +161,10 @@ class addUsersVC: UIViewController {
     @IBAction func healthAssureBtnCliked(_ sender: Any)
     {
         
-        let offlineQuotes : offlineQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbofflineQuotesVC") as! offlineQuotesVC
-        offlineQuotes.modalPresentationStyle = .fullScreen
-        offlineQuotes.modalTransitionStyle = .coverVertical
-        present(offlineQuotes, animated: false, completion: nil)
+//        let offlineQuotes : offlineQuotesVC = self.storyboard?.instantiateViewController(withIdentifier: "stbofflineQuotesVC") as! offlineQuotesVC
+//        offlineQuotes.modalPresentationStyle = .fullScreen
+//        offlineQuotes.modalTransitionStyle = .coverVertical
+//        present(offlineQuotes, animated: false, completion: nil)
         
     }
     

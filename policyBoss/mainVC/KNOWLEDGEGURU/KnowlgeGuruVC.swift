@@ -88,6 +88,8 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         //        }
         
         
+        // 05 temp commented
+        /*
          if(indexPath.row == 0)
         {
             let Loans : LoansVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoansVC") as! LoansVC
@@ -99,6 +101,8 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         }
 
         deSelectROW()
+         
+         */
     }
     
 

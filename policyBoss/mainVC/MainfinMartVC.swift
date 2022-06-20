@@ -579,15 +579,18 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     break
                     
                 case 18  :    // TermInsurance
+                    
+                    /*
                     let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
-                    //                LifeInsurance.fromScreen = "LifeInsurance"
-                   // present(LifeInsurance, animated:true, completion: nil)
+               
                     
                      LifeInsurance.modalPresentationStyle = .fullScreen
                     LifeInsurance.addType = "CHILD"
                     
                     add(LifeInsurance)
                     deSelectDashboard()
+                     */
+                    
                     break
                     
                 case 16 :    // Offline
