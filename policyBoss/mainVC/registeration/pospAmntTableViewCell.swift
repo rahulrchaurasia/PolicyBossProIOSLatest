@@ -30,11 +30,20 @@ class pospAmntTableViewCell: UITableViewCell {
     
     func configureCell(obj : MasterDataPospAmnt){
         
-        lblPospAmnt.text = obj.posp_desc
+        lblPospAmnt.text = obj.posp_name
             
     }
     
     @IBAction func btnInfoClick(_ sender: Any) {
+        
+        print("info click")
+    }
+    
+    
+    @IBAction func btnCheck(_ sender: Any) {
+       
+        print("Check click")
+        
     }
     
 }
