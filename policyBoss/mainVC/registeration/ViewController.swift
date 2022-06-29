@@ -14,15 +14,6 @@ import Alamofire
 class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,getPickerDataDelegate,selectedDataDelegate , UITableViewDelegate,UITableViewDataSource  {
     
     
-    var Menulist =  [pospAmntModel]()
-    
-    var pospAmntArray = ["POSP AMNT 99","POSP AMNT 999","POSP AMNT 299"]
-    
-   
-    
-    
-
-    
     @IBOutlet weak var pospAmntTableView: UITableView!
     
     let aTextField = ACFloatingTextfield()
@@ -113,6 +104,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var pospAmntObj: PospAmountModel? = nil
     
     var pospAmntList =  [MasterDataPospAmnt]()
+    
+    let alertService = AlertService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,7 +168,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         getInsuranceCompany()
         getPospAmount()
         
-        Menulist = getpospData()
        
         pospAmntTableView.delegate = self
         pospAmntTableView.dataSource = self
@@ -1657,18 +1649,14 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
    
     
     
-    func  getpospData() ->  [pospAmntModel]
-    {
-        Menulist =  [pospAmntModel]()
-        Menulist.append(pospAmntModel(name: "POSP AMNT 99" ,img: "cons8-round-24", modelId: 1))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "cons8-round-24", modelId: 2))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "cons8-round-24", modelId: 3))
-        Menulist.append(pospAmntModel(name: "WebView - URL",img: "cons8-round-24", modelId: 4))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 999",img: "cons8-round-24", modelId: 2))
-        Menulist.append(pospAmntModel(name: "POSP AMNT 299",img: "cons8-round-24", modelId: 3))
-        Menulist.append(pospAmntModel(name: "WebView - URL",img: "cons8-round-24", modelId: 4))
-       
-        return Menulist
+    
+    func showPospAmntAlert( strtitle : String,strbody: String ,strsubTitle : String ){
+        
+        let alertDocVC = self.alertService.alertPospAmntVC(title: strtitle,
+                                                           body: strbody,
+                                                           subTitle: strsubTitle)
+        self.present(alertDocVC, animated: true)
+        
     }
     
     
@@ -1684,6 +1672,15 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         tableView.dequeueReusableCell(withIdentifier: "cell") as! pospAmntTableViewCell
         
         cell.configureCell(obj: (pospAmntList[indexPath.row]))
+        
+        cell.tapProductAmnt = {
+            
+          // print("Data  \(indexPath)")
+            
+            self.showPospAmntAlert(strtitle: self.pospAmntList[indexPath.row].posp_header_desc,
+                                   strbody: self.pospAmntList[indexPath.row].posp_desc,
+                                   strsubTitle: self.pospAmntList[indexPath.row].posp_sub_header_desc)
+        }
         
         return cell
         

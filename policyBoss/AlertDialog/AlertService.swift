@@ -72,4 +72,18 @@ class AlertService {
        
         return alertConnVC
     }
+    
+    func alertPospAmntVC(title: String , body: String, subTitle: String) -> AlertPospAmntVC {
+           
+           let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+           let alertVC =  storyboard.instantiateViewController(withIdentifier: "AlertPospAmntVC") as! AlertPospAmntVC
+           
+           alertVC.alertTitle = title
+           alertVC.pospAmntData = body
+           alertVC.alertSubTitle = subTitle
+          
+           
+           return alertVC
+       }
+    
 }

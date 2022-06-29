@@ -171,6 +171,8 @@
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
+		CDAA0FA2286CAAD2009B69A9 /* AlertPospAmntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */; };
+		CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +380,8 @@
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
+		CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPospAmntVC.swift; sourceTree = "<group>"; };
+		CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntAlertTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +528,7 @@
 		44AB3967243E1C550009BD86 /* AlertDialog */ = {
 			isa = PBXGroup;
 			children = (
+				CDAA0FA3286CAAF4009B69A9 /* pospAmntDialog */,
 				44BB07B4243EFB5200F14FEE /* AlertStoryboard.storyboard */,
 				44AB3968243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard */,
 				44AB396A243E1F940009BD86 /* AlertService.swift */,
@@ -1089,6 +1094,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CDAA0FA3286CAAF4009B69A9 /* pospAmntDialog */ = {
+			isa = PBXGroup;
+			children = (
+				CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */,
+				CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */,
+			);
+			path = pospAmntDialog;
+			sourceTree = "<group>";
+		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1315,6 +1329,7 @@
 				840562EB21D4D3B40099DDE8 /* whatsNewVC.swift in Sources */,
 				84C368BD21C76D9300BB2E9B /* CAPSPageMenu.swift in Sources */,
 				84C4D08B21C230C500A677B7 /* forgtPassVC.swift in Sources */,
+				CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */,
 				84C4D08D21C23B0700A677B7 /* multiselctionTVC.swift in Sources */,
 				B253B24B261652E0000C3A7D /* IQInvocation.swift in Sources */,
 				84C368BF21C7706E00BB2E9B /* pendingcasescapsVC.swift in Sources */,
@@ -1339,6 +1354,7 @@
 				840C4BDD21C38377000B8D49 /* SalesmaterialVC.swift in Sources */,
 				B253B248261652E0000C3A7D /* IQBarButtonItem.swift in Sources */,
 				8480BBE622083C1B00BEEDF4 /* hnfraiseticktTVCell.swift in Sources */,
+				CDAA0FA2286CAAD2009B69A9 /* AlertPospAmntVC.swift in Sources */,
 				8480BBE422081C2900BEEDF4 /* hnfcontctTVCell.swift in Sources */,
 				849B082A22017B530055BB80 /* commonWebVC.swift in Sources */,
 				B253B25A261652E0000C3A7D /* IQKeyboardManager+UITextFieldViewNotification.swift in Sources */,

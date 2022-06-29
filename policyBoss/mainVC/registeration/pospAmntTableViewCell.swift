@@ -15,8 +15,10 @@ class pospAmntTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblPospAmnt: UILabel!
     
-    
     @IBOutlet weak var imgInfo: UIImageView!
+    
+    var tapProductAmnt: ( () -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,14 +38,17 @@ class pospAmntTableViewCell: UITableViewCell {
     
     @IBAction func btnInfoClick(_ sender: Any) {
         
-        print("info click")
+        tapProductAmnt?()
     }
     
     
     @IBAction func btnCheck(_ sender: Any) {
        
-        print("Check click")
+        tapProductAmnt?()
         
     }
+    
+    
+    
     
 }
