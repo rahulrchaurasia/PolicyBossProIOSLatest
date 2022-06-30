@@ -133,9 +133,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="372.66666666666669" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXC-Fa-0yf">
-                                                <rect key="frame" x="336.66666666666663" y="11" width="28" height="28"/>
+                                                <rect key="frame" x="336.66666666666663" y="0.0" width="28" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="28" id="Ttl-Ej-t3s"/>
                                                     <constraint firstAttribute="width" constant="28" id="Z9q-Z5-7wE"/>
                                                 </constraints>
                                                 <state key="normal" image="close"/>
@@ -158,6 +157,7 @@
                                             <constraint firstItem="MXC-Fa-0yf" firstAttribute="leading" secondItem="Zao-mn-RQi" secondAttribute="trailing" constant="5" id="Chy-Bb-O7D"/>
                                             <constraint firstItem="MXC-Fa-0yf" firstAttribute="centerY" secondItem="Qf8-Rb-jOb" secondAttribute="centerY" id="HSn-OA-P1z"/>
                                             <constraint firstAttribute="height" constant="50" id="J5V-aa-FE8"/>
+                                            <constraint firstItem="MXC-Fa-0yf" firstAttribute="height" secondItem="Qf8-Rb-jOb" secondAttribute="height" id="SAa-yK-Jyn"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="Zao-mn-RQi" secondAttribute="bottom" id="ZH9-rp-tcO"/>
                                             <constraint firstItem="Zao-mn-RQi" firstAttribute="leading" secondItem="Qf8-Rb-jOb" secondAttribute="leadingMargin" id="bIQ-Kg-NuR"/>
                                         </constraints>
@@ -205,14 +205,14 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circular-shape-silhouette" translatesAutoresizingMaskIntoConstraints="NO" id="MCU-xM-nQn">
-                                                            <rect key="frame" x="8" y="9" width="15" height="15"/>
+                                                            <rect key="frame" x="8" y="11" width="12" height="12"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="15" id="Ijk-zf-eOU"/>
-                                                                <constraint firstAttribute="width" constant="15" id="rmG-Zd-LlG"/>
+                                                                <constraint firstAttribute="height" constant="12" id="Ijk-zf-eOU"/>
+                                                                <constraint firstAttribute="width" constant="12" id="rmG-Zd-LlG"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 Amount" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-m8-Ql6">
-                                                            <rect key="frame" x="31" y="6" width="333.66666666666669" height="21"/>
+                                                            <rect key="frame" x="28" y="6" width="336.66666666666669" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="G2K-bZ-I4w"/>
                                                             </constraints>
@@ -222,7 +222,7 @@
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="MCU-xM-nQn" firstAttribute="top" secondItem="3qr-fY-h0N" secondAttribute="top" constant="9" id="BBp-3f-pdm"/>
+                                                        <constraint firstItem="MCU-xM-nQn" firstAttribute="top" secondItem="3qr-fY-h0N" secondAttribute="top" constant="11" id="BBp-3f-pdm"/>
                                                         <constraint firstAttribute="bottom" secondItem="Xrr-m8-Ql6" secondAttribute="bottom" constant="12" id="BbY-59-1Qv"/>
                                                         <constraint firstItem="Xrr-m8-Ql6" firstAttribute="leading" secondItem="MCU-xM-nQn" secondAttribute="trailing" constant="8" id="FDc-AU-BTS"/>
                                                         <constraint firstItem="MCU-xM-nQn" firstAttribute="leading" secondItem="3qr-fY-h0N" secondAttribute="leading" constant="8" id="MGb-q4-DtD"/>

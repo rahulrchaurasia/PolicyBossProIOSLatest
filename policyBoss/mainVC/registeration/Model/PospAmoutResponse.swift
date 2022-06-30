@@ -23,6 +23,10 @@ struct MasterDataPospAmnt: Codable {
     let id: Int
     let posp_name, posp_amount, posp_header_desc, posp_sub_header_desc: String
     let posp_desc: String
+    var isCheck : Bool?
 
    
+
+    
+    
 }

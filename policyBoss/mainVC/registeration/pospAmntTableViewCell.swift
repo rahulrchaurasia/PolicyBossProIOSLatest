@@ -17,7 +17,9 @@ class pospAmntTableViewCell: UITableViewCell {
     
     @IBOutlet weak var imgInfo: UIImageView!
     
-    var tapProductAmnt: ( () -> Void)? = nil
+    var tapPospAmntInfo: ( () -> Void)? = nil
+    
+    var tapPospAmntCheck: ( () -> Void)? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,18 +35,20 @@ class pospAmntTableViewCell: UITableViewCell {
     func configureCell(obj : MasterDataPospAmnt){
         
         lblPospAmnt.text = obj.posp_name
-            
+        
+       
+           
     }
     
     @IBAction func btnInfoClick(_ sender: Any) {
         
-        tapProductAmnt?()
+        tapPospAmntInfo?()
     }
     
     
     @IBAction func btnCheck(_ sender: Any) {
        
-        tapProductAmnt?()
+        tapPospAmntCheck?()
         
     }
     

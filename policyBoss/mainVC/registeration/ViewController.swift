@@ -1249,7 +1249,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                         print(error)
                         alertView.close()
                         
-                        let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                        let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
                         snackbar.show()
                     }
                     
@@ -1257,7 +1257,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                 case .failure(let error):
                     print(error)
                     alertView.close()
-                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
+                    let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
                     snackbar.show()
                 }
             })
@@ -1326,43 +1326,47 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     {
         if Connectivity.isConnectedToInternet()
         {
-        
-        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-        if let parentView = self.navigationController?.view
-        {
-            alertView.parentView = parentView
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            let params: [String: AnyObject] = ["ref_code": refferCode as AnyObject,
+                                               "ref_type":"0" as AnyObject]
+            
+            let url = "validate-refer-code"
+            
+            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
+                alertView.close()
+                
+                self.view.layoutIfNeeded()
+                
+                // let jsonData = userObject as? NSString
+                
+    
+                let snackbar = TTGSnackbar.init(message: "Refer Code Verified Successfully..", duration: .middle )
+                snackbar.show()
+                
+                
+            }, onError: { errorData in
+                alertView.close()
+                
+                //             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+                //             snackbar.show()
+                self.alertCall(message: errorData.errorMessage)
+                self.referrCodeTf.text = ""
+            }, onForceUpgrade: {errorData in})
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
         }
-        else
-        {
-            alertView.parentView = self.view
-        }
-        alertView.show()
-        let params: [String: AnyObject] = ["ref_code": refferCode as AnyObject,
-                                           "ref_type":"0" as AnyObject]
-        
-        let url = "validate-refer-code"
-        
-        FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-            alertView.close()
-            
-            self.view.layoutIfNeeded()
-            
-            let jsonData = userObject as? NSString
-            
-            
-        }, onError: { errorData in
-            alertView.close()
-           
-//             let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
-//             snackbar.show()
-            self.alertCall(message: errorData.errorMessage)
-            self.referrCodeTf.text = ""
-        }, onForceUpgrade: {errorData in})
-        
-    }else{
-    let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-    snackbar.show()
-    }
         
     }
     
@@ -1660,6 +1664,32 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
     
     
+    func updatePospAmntCell(obj : MasterDataPospAmnt){
+        
+      
+        for i in 0..<self.pospAmntList.count {
+            
+          //  self.obj.isCheck = false
+          
+            // if(!(self.pospAmntList[indexPath.row].isCheck ?? false)){
+            if(self.pospAmntList[i].id == obj.id){
+                
+                if(!(self.pospAmntList[i].isCheck ?? false)){
+                    self.pospAmntList[i].isCheck = true
+                }else{
+                    self.pospAmntList[i].isCheck = false
+                }
+            }else{
+                
+                self.pospAmntList[i].isCheck = false
+            }
+        }
+                
+        DispatchQueue.main.async {
+            self.pospAmntTableView.reloadData()
+            
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         return pospAmntList.count
@@ -1671,21 +1701,82 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         let cell : pospAmntTableViewCell =
         tableView.dequeueReusableCell(withIdentifier: "cell") as! pospAmntTableViewCell
         
+        
+        if((self.pospAmntList[indexPath.row].isCheck ?? false)){
+            
+            cell.imgCheck.image = UIImage(named: "checked_round_icon")
+        }else{
+            cell.imgCheck.image = UIImage(named: "uncheck_round_icon")
+           
+            
+        }
+        
         cell.configureCell(obj: (pospAmntList[indexPath.row]))
         
-        cell.tapProductAmnt = {
+        cell.tapPospAmntInfo = {
             
-          // print("Data  \(indexPath)")
             
             self.showPospAmntAlert(strtitle: self.pospAmntList[indexPath.row].posp_header_desc,
                                    strbody: self.pospAmntList[indexPath.row].posp_desc,
                                    strsubTitle: self.pospAmntList[indexPath.row].posp_sub_header_desc)
         }
         
+        cell.tapPospAmntCheck = {
+            
+            
+            
+            
+            
+            if(!(self.pospAmntList[indexPath.row].isCheck ?? false)){
+                
+                //cell.imgCheck.image = UIImage(named: "checked_round_icon")
+                
+                //self.pospAmntList[indexPath.row].isCheck = true
+                
+                self.showPospAmntAlert(strtitle: self.pospAmntList[indexPath.row].posp_header_desc,
+                                       strbody: self.pospAmntList[indexPath.row].posp_desc,
+                                       strsubTitle: self.pospAmntList[indexPath.row].posp_sub_header_desc)
+                
+                
+                self.updatePospAmntCell(obj: self.pospAmntList[indexPath.row])
+                
+            }
+            
+            
+            else{
+               // cell.imgCheck.image = UIImage(named: "uncheck_round_icon")
+              //  self.pospAmntList[indexPath.row].isCheck = false
+                
+                self.updatePospAmntCell(obj: self.pospAmntList[indexPath.row])
+            }
+            
+            
+            
+            
+        }
+        
         return cell
         
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let cell =  pospAmntTableView.cellForRow(at: indexPath) as! pospAmntTableViewCell
+
+        cell.imgCheck.image = UIImage(named: "checked_round_icon")
+
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+       
+        let cell =  pospAmntTableView.cellForRow(at: indexPath) as! pospAmntTableViewCell
+        
+        cell.imgCheck.image = UIImage(named: "uncheck_round_icon")
+        
+        
+        
+    }
 //    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //        return 100
 //    }
