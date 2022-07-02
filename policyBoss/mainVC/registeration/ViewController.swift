@@ -67,6 +67,13 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     @IBOutlet weak var fieldSaleViewHeight: NSLayoutConstraint!//60
     @IBOutlet weak var fieldSaleLbl: UILabel!
     
+    
+   
+    @IBOutlet weak var btnVerify: UIButton!
+    
+    @IBOutlet weak var btnResend: UIButton!
+    
+    
     var lifeinsuranceSelected = "0"
     var gernalinsuranceSelected = "0"
     var healthinsuranceSelected = "0"
@@ -96,6 +103,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     var ReferrerCode = ""
     var Password = ""
     var StateID = ""
+    var POSP_AMOUNT = ""
     var isVerifyMobileOTP = false
     
     var insuranceCompObj: InsuranceCompModel? = nil
@@ -112,6 +120,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         
         self.hideKeyboardWhenTappedAround()
         //---<hideViews>--
+        
         ViewControllerBckView.isHidden = true
         verifymobOTPView.isHidden = true
         verifymobOTPViewHeight.constant = 0
@@ -658,6 +667,23 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     }
     
     
+    func  isValidatePospAmount() -> Bool {
+        
+        var blnCheck : Bool = false
+        for pospAmntObj in self.pospAmntList {
+            
+                if((pospAmntObj.isCheck ?? false)){
+                    
+                    blnCheck = true
+                    POSP_AMOUNT = pospAmntObj.posp_amount
+                    break
+                }
+            
+        }
+        
+        return blnCheck
+    }
+    
     func pospInfoValidate()  -> Bool {
         
         if( firstNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
@@ -704,9 +730,15 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             return false
         }
         
-        
+        if(!isValidatePospAmount()){
+            
+            alertCall(message: "Please Select Posp Amount")
+            return false
+        }
         return true
     }
+    
+    
 
     func openValidateInfo(strData : String){
         
@@ -848,26 +880,26 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     {
         
         if( pospInfoValidate() == false){
-            
+
             openValidateInfo(strData: "PERS")
         }else{
-            
+
             if( pospInfoValidate() ){
-                
+
                 if(!self.isVerifyMobileOTP){
-                    
+
                     generateOTPAPI()      // OTP generation
-                    
+
                 }else{
-                    
+
                     registrationSubmitAPI()
                 }
-                
+
             }
         }
       
-       
-       
+   
+     
    
         /*
         
@@ -933,25 +965,27 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
     
     @IBAction func verifyMobBtnCliked(_ sender: Any)
     {
-        if(verifyOtpTf.text! != "")
-        {
-            retriveOTPAPI()
+        
+        if( verifyOtpTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+       
+            
+            alertCall(message: "Please Enter OTP")
+           
         }
         else{
-            alertCall(message: "Please Enter OTP")
-//            let alert = UIAlertController(title: "Alert", message: "Please Enter OTP", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
+            retriveOTPAPI()
+
         }
         
     }
     
     @IBAction func verifyViewCloseBtnCliked(_ sender: Any)
     {
-        ViewControllerBckView.isHidden = true
-        verifymobOTPView.isHidden = true
-        verifymobOTPViewHeight.constant = 0
+//        ViewControllerBckView.isHidden = true
+//        verifymobOTPView.isHidden = true
+//        verifymobOTPViewHeight.constant = 0
     }
+    
     
     //---<APICALL>---
     func generateOTPAPI()
@@ -988,8 +1022,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
             self.verifymobTextView.text! = "Enter OTP sent on Mobile no " +  self.mob1Tf.text!
             
-            
-            
             let xPosition = self.verifymobOTPView.frame.origin.x
             let yPosition = self.verifymobOTPView.frame.origin.y - 50 // Slide Up - 20px
             
@@ -1002,6 +1034,8 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             })
             
             
+            
+      
          
             
         }, onError: { errorData in
@@ -1031,7 +1065,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                self.isVerifyMobileOTP = true
                self.openValidateInfo(strData: "PROF")
             
-               self.ViewControllerBckView.isHidden = true
+              self.ViewControllerBckView.isHidden = true
               self.verifymobOTPView.isHidden = true
               self.verifymobOTPViewHeight.constant = 0
                TTGSnackbar.init(message: "OTP verified successfully", duration: .long).show()
@@ -1600,6 +1634,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
                                            "VersionCode": Configuration.appVersion as AnyObject,
                                            "field_sales_uid": EmployeeId as AnyObject,
                                            "password": Password as AnyObject,
+                                           "posp_amount": POSP_AMOUNT as AnyObject,
                                            "referedby_code": referrCodeTf.text! as AnyObject]
         
         let url = "insert-fba-registration"
@@ -1729,9 +1764,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
             if(!(self.pospAmntList[indexPath.row].isCheck ?? false)){
                 
-                //cell.imgCheck.image = UIImage(named: "checked_round_icon")
-                
-                //self.pospAmntList[indexPath.row].isCheck = true
                 
                 self.showPospAmntAlert(strtitle: self.pospAmntList[indexPath.row].posp_header_desc,
                                        strbody: self.pospAmntList[indexPath.row].posp_desc,
@@ -1744,8 +1776,7 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
             
             
             else{
-               // cell.imgCheck.image = UIImage(named: "uncheck_round_icon")
-              //  self.pospAmntList[indexPath.row].isCheck = false
+              
                 
                 self.updatePospAmntCell(obj: self.pospAmntList[indexPath.row])
             }
@@ -1758,28 +1789,6 @@ class ViewController: UIViewController,UITextFieldDelegate,SelectedDateDelegate,
         return cell
         
     }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let cell =  pospAmntTableView.cellForRow(at: indexPath) as! pospAmntTableViewCell
-
-        cell.imgCheck.image = UIImage(named: "checked_round_icon")
-
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-       
-        let cell =  pospAmntTableView.cellForRow(at: indexPath) as! pospAmntTableViewCell
-        
-        cell.imgCheck.image = UIImage(named: "uncheck_round_icon")
-        
-        
-        
-    }
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 100
-//    }
     
     
     

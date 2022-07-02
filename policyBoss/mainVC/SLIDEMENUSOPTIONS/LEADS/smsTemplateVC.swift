@@ -87,7 +87,7 @@ class smsTemplateVC: UIViewController,UITableViewDelegate,UITableViewDataSource,
         
         let params: [String: AnyObject] = [:]
         
-        let url = "get-customers-sms-template"
+        let url = "get-customers-sms-template_pb"
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()

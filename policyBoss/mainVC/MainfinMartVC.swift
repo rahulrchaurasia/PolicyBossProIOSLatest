@@ -420,7 +420,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
                
                 cell.cellTitleLbl.text! = dynamicDashboardModel[indexPath.row].menuname.uppercased()
-                cell.celldetailTextLbl.text! = dynamicDashboardModel[indexPath.row].dashdescription
+                cell.celldetailTextLbl.text! = "\(dynamicDashboardModel[indexPath.row].dashdescription) \n"
             
                  let remoteImageURL = URL(string: dynamicDashboardModel[indexPath.row].iconimage)!
     

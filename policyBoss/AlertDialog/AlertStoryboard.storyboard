@@ -250,7 +250,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Qf8-Rb-jOb" secondAttribute="trailing" id="UQ9-V5-Pv7"/>
                                     <constraint firstItem="Qf8-Rb-jOb" firstAttribute="leading" secondItem="HKw-cF-FC9" secondAttribute="leading" id="XGK-lh-MEp"/>
                                     <constraint firstAttribute="bottom" secondItem="VOZ-ct-rhy" secondAttribute="bottom" constant="15" id="dX0-qA-LXD"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="gBz-G7-cXM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="gBz-G7-cXM"/>
                                     <constraint firstItem="Qf8-Rb-jOb" firstAttribute="top" secondItem="HKw-cF-FC9" secondAttribute="top" id="h8g-Hw-ISl"/>
                                     <constraint firstItem="1sb-sk-UZ5" firstAttribute="leading" secondItem="HKw-cF-FC9" secondAttribute="leading" constant="8" id="k5h-hd-aJo"/>
                                     <constraint firstItem="KGI-1C-CPj" firstAttribute="top" secondItem="uDe-QE-Sn8" secondAttribute="bottom" constant="8" id="mni-nF-xBC"/>

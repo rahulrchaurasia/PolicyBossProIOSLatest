@@ -28,6 +28,10 @@ class MenuDb {
         
         menuSectionlist.append(MenuSection(section: "My Transactions",menuModel: getMyTransactionMenuData(_isshowmyinsurancebusiness: isshowmyinsurancebusiness)))
         
+        menuSectionlist.append(MenuSection(section: "My Leads",menuModel: getMyLeadsMenuData()))
+        
+        
+        
         menuSectionlist.append(MenuSection(section: "My Utilities",menuModel: getMyUtilitiesMenuData()))
         
         menuSectionlist.append(MenuSection(section: "Legal",menuModel: getLegalMenuData()))
@@ -98,6 +102,7 @@ class MenuDb {
         
         Menulist =  [MenuModel]()
         Menulist.append(MenuModel(name: "Lead Dashboard" ,img: "insurance_policy_ic.png" ,modelId: "nav_LeadDashboard"))
+        Menulist.append(MenuModel(name: "Sms Templates" ,img: "mps.png" ,modelId: "nav_SmsTemp"))
         
         return Menulist
     }

@@ -514,7 +514,16 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             commonWeb.modalTransitionStyle = .coverVertical
             commonWeb.webfromScreen = "leadDashboard"
             present(commonWeb, animated: false, completion: nil)
+          
+        case "nav_SmsTemp" :
             
+            print("nav_MyTransaction")
+         
+           let smsTemplateVC : smsTemplateVC = storyboard?.instantiateViewController(withIdentifier: "stbsmsTemplateVC") as! smsTemplateVC
+            smsTemplateVC.modalPresentationStyle = .fullScreen
+            smsTemplateVC.modalTransitionStyle = .coverVertical
+            present(smsTemplateVC, animated: false, completion: nil)
+         
         case "nav_MyUtilities" :
             
             let addUsersV : addUsersVC = storyboard?.instantiateViewController(withIdentifier: "stbaddUsersVC") as! addUsersVC
