@@ -27,21 +27,14 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//           KYDrawer.modalPresentationStyle = .fullScreen
-//        present(KYDrawer, animated: true, completion: nil)
-        
-        //self.moveToHome()
+
+
           self.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-//        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-//           KYDrawer.modalPresentationStyle = .fullScreen
-//        present(KYDrawer, animated: true, completion: nil)
-        
-        // self.moveToHome()
+
           self.dismiss(animated: false, completion: nil)
     }
     
@@ -71,8 +64,10 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     {
         let newaddSubUser : newaddSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnewaddSubUserVC") as! newaddSubUserVC
         newaddSubUser.modalPresentationStyle = .fullScreen
-
+        newaddSubUser.modalTransitionStyle = .coverVertical
         present(newaddSubUser, animated: true, completion: nil)
+        
+      
     }
     
     

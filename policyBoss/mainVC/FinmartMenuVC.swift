@@ -464,6 +464,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                enrolasPOSP.modalPresentationStyle = .fullScreen
                                enrolasPOSP.modalTransitionStyle = .coverVertical
                                present(enrolasPOSP, animated: false, completion: nil)
+       
+        case "nav_AddSubUser" :
+            
+            let addSubUser : addSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbaddSubUserVC") as! addSubUserVC
+            addSubUser.modalPresentationStyle = .fullScreen
+            addSubUser.modalTransitionStyle = .coverVertical
+            present(addSubUser, animated: false, completion: nil)
             
         case "nav_ChangePwd" :
             

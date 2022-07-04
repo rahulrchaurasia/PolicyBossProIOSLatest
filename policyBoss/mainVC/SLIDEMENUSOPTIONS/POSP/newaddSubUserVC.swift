@@ -26,7 +26,8 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     @IBOutlet weak var ustateTf: ACFloatingTextfield!
     
     var Gender = ""
-    
+    var Password = ""
+    var StateID = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,17 +56,13 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
         
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-         KYDrawer.modalPresentationStyle = .fullScreen
-        present(KYDrawer, animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
         
     }
     
@@ -80,6 +77,8 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     
     func getDateData(currDate: String, fromScreen: String) {
         print(currDate)
+        Password = currDate.replacingOccurrences(of: "-", with: "")
+        print("password",Password)
         udobTf.text = currDate
         udobTf.textColor = UIColor.black
     }
@@ -272,6 +271,8 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
             let jsonData = userObject as? NSDictionary
             let state_name = jsonData?.value(forKey: "state_name") as? String
             let cityname = jsonData?.value(forKey: "cityname") as? String
+            
+            self.StateID = jsonData?.value(forKey: "stateid") as? String ?? ""
             self.ustateTf.text! = state_name!
             self.ucityTf.text! = cityname!
             
@@ -324,20 +325,22 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "FBAStat": "" as AnyObject,
                                             "FBA_Designation": "" as AnyObject,
                                             "FirstName": ufirstNameTf.text! as AnyObject,
-                                            "GIC_Comp": "16" as AnyObject,
+                                            "GIC_Comp": "" as AnyObject,
                                             "GIC_Comp_ID": "" as AnyObject,
                                             "GSTNumb": "" as AnyObject,
+                                           
                                             "Gender": Gender as AnyObject,
-                                            "Health_Comp": "16" as AnyObject,
+                                            "Health_Comp": "" as AnyObject,
                                             "Health_Comp_ID": "" as AnyObject,
                                             "IsFOC": "" as AnyObject,
-                                            "IsGic": "1" as AnyObject,
-                                            "IsHealth": "1" as AnyObject,
-                                            "IsLic": "1" as AnyObject,
-                                            "LIC_Comp": "20" as AnyObject,
+                                            "IsGic": "" as AnyObject,
+                                            "IsHealth": "" as AnyObject,
+                                            "IsLic": "" as AnyObject,
+                                            "LIC_Comp": "" as AnyObject,
                                             "LIC_Comp_ID": "" as AnyObject,
+                                           
                                             "LastName": ulastNameTf.text! as AnyObject,
-                                            "Link": "null" as AnyObject,
+                                            "Link": "" as AnyObject,
                                             "Loan_Aadhaar": "" as AnyObject,
                                             "Loan_Account_Type": "" as AnyObject,
                                             "Loan_BankAcNo": "" as AnyObject,
@@ -345,12 +348,13 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Loan_BankCity": "" as AnyObject,
                                             "Loan_BankID": 0 as AnyObject,
                                             "Loan_BankName": "" as AnyObject,
+                                           
                                             "Loan_FirstName": "" as AnyObject,
                                             "Loan_IFSC": "" as AnyObject,
                                             "Loan_LastName": "" as AnyObject,
                                             "Loan_MICR": "" as AnyObject,
                                             "Loan_PAN": "" as AnyObject,
-                                            "MF": "0" as AnyObject,
+                                            "MF": "" as AnyObject,
                                             "MF_Comp": "" as AnyObject,
                                             "Mobile_1": umobNoTf.text! as AnyObject,
                                             "Mobile_2": umobNo2Tf.text! as AnyObject,
@@ -366,6 +370,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Other_LastName": "" as AnyObject,
                                             "Other_MICR": "" as AnyObject,
                                             "Other_PAN": "" as AnyObject,
+                                           
                                             "POSPID": 0 as AnyObject,
                                             "PinCode": upincodeTf.text! as AnyObject,
                                             "Posp_Aadhaar": "" as AnyObject,
@@ -378,6 +383,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Posp_BankCity": "" as AnyObject,
                                             "Posp_BankID": 0 as AnyObject,
                                             "Posp_BankName": "" as AnyObject,
+                                           
                                             "Posp_ChanPartCode": "" as AnyObject,
                                             "Posp_City": "" as AnyObject,
                                             "Posp_DOB": "" as AnyObject,
@@ -393,20 +399,21 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Posp_PinCode": "" as AnyObject,
                                             "Posp_ServiceTaxNo": "" as AnyObject,
                                             "Posp_StatID": "" as AnyObject,
+                                           
                                             "Postal": "0" as AnyObject,
                                             "Postal_Comp": "" as AnyObject,
                                             "SMID": 0 as AnyObject,
                                             "SM_Name": "" as AnyObject,
                                             "StatActi": "" as AnyObject,
                                             "State": ustateTf.text! as AnyObject,
-                                            "StateID": "2" as AnyObject,
+                                            "StateID": StateID as AnyObject,
                                             "Stock": "0" as AnyObject,
                                             "Stock_Comp": "" as AnyObject,
                                             "Type": "" as AnyObject,
-                                            "password": "01011980" as AnyObject,
+                                            "password": Password as AnyObject,   
                                             "referedby_code": "" as AnyObject,
                                             "VersionCode": Configuration.appVersion as AnyObject,
-                                            "AppSource": "2" as AnyObject,
+                                            "AppSource": "" as AnyObject,
                                             "ParentId": FBAId as AnyObject]
         
         let url = "AddChildPosp"
@@ -417,8 +424,8 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSDictionary
-            let Message = jsonData?.value(forKey: "Message") as? String
-            if(Message == "FBA registered successfully."){
+            let StatusNo = jsonData?.value(forKey: "StatusNo") as? Int
+            if(StatusNo == 0){
                 TTGSnackbar.init(message: "FBA registered successfully.", duration: .long).show()
                 let addSubUser : addSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbaddSubUserVC") as! addSubUserVC
                 addSubUser.modalPresentationStyle = .fullScreen
