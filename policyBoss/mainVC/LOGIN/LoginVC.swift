@@ -9,6 +9,7 @@
 import UIKit
 import CustomIOSAlertView
 import TTGSnackbar
+import Alamofire
 //import CobrowseIO
 
 class LoginVC: UIViewController,UITextFieldDelegate {
@@ -226,6 +227,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
             let FullName = jsonData?.value(forKey: "FullName") as AnyObject
             let LoanId   = jsonData?.value(forKey: "LoanId") as AnyObject
             
+            
             print ("MobiNumb1",MobiNumb1)
              print ("EmailID",EmailID)
             
@@ -261,16 +263,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
 
             
       //      self.dismiss(animated: false, completion: nil)
-
-            let appDelegate = UIApplication.shared.delegate as? AppDelegate
-            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
-            KYDrawer.modalPresentationStyle = .fullScreen
-            KYDrawer.modalTransitionStyle = .coverVertical
-            appDelegate?.window?.rootViewController = KYDrawer
-           self.present(KYDrawer, animated: false, completion: nil)
             
-            TTGSnackbar.init(message: "Login successfully.", duration: .long).show()
-           
+            self.getFOSUserInfo()
+
             
         }, onError: { errorData in
             alertView.close()
@@ -288,6 +283,107 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
  }
     
+    
+    
+    func getFOSUserInfo(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+            print("internet is available.")
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+          
+            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo")
+            let params  :[String: AnyObject] = [
+                
+                "PospId": POSPNo as AnyObject
+            ]
+            
+            
+        
+            let endUrl = "GetFosInfo"
+            let url =  FinmartRestClient.baseURLString  + endUrl
+            print("urlRequest= ",url)
+            
+            Alamofire.request(url, method: .post, parameters: params,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(_):
+                    
+                    alertView.close()
+                    
+                    self.view.layoutIfNeeded()
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(FOSUserResponse.self, from: data)
+                        
+                        
+                        
+                        print("response= ",obj)
+                        
+                        if obj.StatusNo == 0 {
+                            
+                            print("response= Suucess Posp Amount")
+                            
+                            
+                            
+                            let FOS_STATUS = obj.MasterData.hidesubuser
+                            print("FOS_USER_AUTHENTICATIONN" , FOS_STATUS)
+                            UserDefaults.standard.set(String(describing: FOS_STATUS), forKey: "FOS_USER_AUTHENTICATIONN")
+                            
+                            
+                            
+                            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+                            KYDrawer.modalPresentationStyle = .fullScreen
+                            KYDrawer.modalTransitionStyle = .coverVertical
+                            appDelegate?.window?.rootViewController = KYDrawer
+                            self.present(KYDrawer, animated: false, completion: nil)
+                            
+                            TTGSnackbar.init(message: "Login successfully.", duration: .long).show()
+                            
+                        }else{
+                            
+                            let snackbar = TTGSnackbar.init(message: "Your FOS Information Not Exsist, Please Contact Admin" , duration: .long)
+                            snackbar.show()
+                        }
+                        
+                        
+                    } catch let error {
+                        print(error)
+                        alertView.close()
+                        
+                        let snackbar = TTGSnackbar.init(message: "Your FOS Information Not Exsist, Please Contact Admin" , duration: .long)
+                        snackbar.show()
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    alertView.close()
+                    let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
+                    snackbar.show()
+                }
+            })
+            
+        }else{
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+        
+        
+    }
     
     func alertCall(message:String)
     {

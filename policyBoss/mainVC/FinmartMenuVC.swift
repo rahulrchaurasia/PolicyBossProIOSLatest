@@ -114,6 +114,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var isfirstLogin = Int()
     var enableenrolasPOSP = ""
     var showmyinsurancebusiness = ""
+    var FOSStatus = ""
+    var AddPospVisible = ""
+    var Menu_addPospVisible = ""
+    var MenufosUser = ""
     
     // For AlertDialog
     let alertService = AlertService()
@@ -122,6 +126,10 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     override func viewWillAppear(_ animated: Bool) {
         
+        super.viewDidAppear(animated)
+           let indexPath = IndexPath(row: 0, section: 0)
+        menuTV.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+        //menuTV.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
        
     }
     
@@ -430,6 +438,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         return 1
     }
     
+    
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // close the drawer
@@ -1025,10 +1035,15 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let enableenrolasposp = UserDefaults.standard.string(forKey: "enableenrolasposp") as AnyObject
         let showmyinsurancebusiness = UserDefaults.standard.string(forKey: "showmyinsurancebusiness") as AnyObject
+        self.AddPospVisible = UserDefaults.standard.string(forKey: "AddPospVisible")  ?? ""
+        
         
         self.enableenrolasPOSP = enableenrolasposp as! String
         self.showmyinsurancebusiness = showmyinsurancebusiness as! String
-        
+       
+
+        self.FOSStatus = UserDefaults.standard.string(forKey: "FOS_USER_AUTHENTICATIONN") ?? ""
+       
         UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
         
         self.fullNameLbl.text! = loansendname.uppercased
@@ -1049,7 +1064,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
         
         // 005
-        menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness )
+        menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness ,addPospVisible: self.AddPospVisible, fosUser: self.FOSStatus)
         
         self.menuTV.reloadData()
         
@@ -1094,12 +1109,14 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 
                 let enableenrolasposp = jsonData?.value(forKey: "enableenrolasposp") as AnyObject
                 let showmyinsurancebusiness = jsonData?.value(forKey: "showmyinsurancebusiness") as AnyObject
+                let addPospVisible  = jsonData?.value(forKey: "AddPospVisible") as AnyObject
                 
                 self.enableenrolasPOSP = enableenrolasposp as! String
                 self.showmyinsurancebusiness = showmyinsurancebusiness as! String
+                self.AddPospVisible = addPospVisible as! String
                 
                 UserDefaults.standard.set(String(describing: ERPID), forKey: "ERPID")
-                
+    
                 self.fullNameLbl.text! = loansendname.uppercased
                 self.fbaIdLbl.text! = FBAId as! String
                 self.pospNoLbl.text! = POSPNo as! String
@@ -1117,7 +1134,12 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     }
                 }
                 
-                self.menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness )
+                self.FOSStatus = UserDefaults.standard.string(forKey: "FOS_USER_AUTHENTICATIONN") ?? ""
+                
+                self.menuSectionList =  MenuDb.shareInstance.getMenuSection(isenableenrolasPOSP: self.enableenrolasPOSP , isshowmyinsurancebusiness: self.showmyinsurancebusiness, addPospVisible: self.AddPospVisible  ,fosUser: self.FOSStatus)
+                
+                
+               
                 
                 self.menuTV.reloadData()
                 

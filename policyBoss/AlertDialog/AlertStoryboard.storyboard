@@ -179,10 +179,10 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGI-1C-CPj">
-                                        <rect key="frame" x="0.0" y="233" width="372.66666666666669" height="2"/>
+                                        <rect key="frame" x="0.0" y="234" width="372.66666666666669" height="1"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="8Ny-dK-run"/>
+                                            <constraint firstAttribute="height" constant="1" id="8Ny-dK-run"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Under this plan,  you get :-" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sb-sk-UZ5">
@@ -195,7 +195,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="uDe-QE-Sn8">
-                                        <rect key="frame" x="0.0" y="87" width="372.66666666666669" height="138"/>
+                                        <rect key="frame" x="0.0" y="87" width="372.66666666666669" height="139"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="39" id="Fgu-PN-YqA" customClass="pospAmntAlertTVCell" customModule="PolicyBoss_Pro">
                                                 <rect key="frame" x="0.0" y="44.666666030883789" width="372.66666666666669" height="39"/>
@@ -212,7 +212,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 Amount" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrr-m8-Ql6">
-                                                            <rect key="frame" x="28" y="6" width="336.66666666666669" height="21"/>
+                                                            <rect key="frame" x="28" y="6" width="336.66666666666669" height="29"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="G2K-bZ-I4w"/>
                                                             </constraints>
@@ -223,7 +223,7 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="MCU-xM-nQn" firstAttribute="top" secondItem="3qr-fY-h0N" secondAttribute="top" constant="11" id="BBp-3f-pdm"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Xrr-m8-Ql6" secondAttribute="bottom" constant="12" id="BbY-59-1Qv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Xrr-m8-Ql6" secondAttribute="bottom" constant="4" id="BbY-59-1Qv"/>
                                                         <constraint firstItem="Xrr-m8-Ql6" firstAttribute="leading" secondItem="MCU-xM-nQn" secondAttribute="trailing" constant="8" id="FDc-AU-BTS"/>
                                                         <constraint firstItem="MCU-xM-nQn" firstAttribute="leading" secondItem="3qr-fY-h0N" secondAttribute="leading" constant="8" id="MGb-q4-DtD"/>
                                                         <constraint firstAttribute="trailing" secondItem="Xrr-m8-Ql6" secondAttribute="trailing" constant="8" id="hGG-nx-8Ek"/>

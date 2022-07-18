@@ -11,6 +11,7 @@ import CustomIOSAlertView
 import TTGSnackbar
 
 class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate {
+  
 
     @IBOutlet weak var addsubUserView: UIView!
     @IBOutlet weak var ufirstNameTf: ACFloatingTextfield!
@@ -25,9 +26,11 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     @IBOutlet weak var ucityTf: ACFloatingTextfield!
     @IBOutlet weak var ustateTf: ACFloatingTextfield!
     
-    var Gender = ""
+    var Gender = "M"
     var Password = ""
     var StateID = ""
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +46,17 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         btnColorChangeBlue(Btn: umaleBtn)
         btnColorChangeGray(Btn: ufemaleBtn)
         
+        //--<textField>--
+         ufirstNameTf.delegate = self
+         ulastNameTf.delegate = self
+         udobTf.delegate = self
+         umobNoTf.delegate = self
+         umobNo2Tf.delegate = self
+         uemailTf.delegate = self
+         upincodeTf.delegate = self
+         ucityTf.delegate = self
+         ustateTf.delegate = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +67,10 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         textField.resignFirstResponder()
         return true
     }
+    func getintData(indata: Int) {
+        
+    }
+    
     
     @IBAction func backBtnCliked(_ sender: Any)
     {
@@ -62,7 +80,8 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
-        self.dismiss(animated: false, completion: nil)
+        
+        self.dismissAll(animated: false)
         
     }
     
@@ -81,12 +100,11 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         print("password",Password)
         udobTf.text = currDate
         udobTf.textColor = UIColor.black
-    }
-    
-    func getintData(indata: Int) {
         
+
     }
     
+   
     //---<textFieldRange>---
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
@@ -111,49 +129,62 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         }
         else if(textField == upincodeTf)
         {
-            if((textField.text?.count)! < 6)
+
+            
+            var blnStatus : Bool = false
+            
+            // get the current text, or use an empty string if that failed
+            let currentText = textField.text ?? ""
+            
+            // attempt to read the range they are trying to change, or exit if we can't
+            guard let stringRange = Range(range, in: currentText) else { return false }
+            
+        
+            // add their new text to the existing text
+            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+            
+            ////////////////////////////
+        
+            
+            if(updatedText.count <= 6 && textField == upincodeTf)
             {
                 
-                let allowedCharacters = CharacterSet.decimalDigits
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                 let allowedCharacters = CharacterSet.decimalDigits
+                 let characterSet = NSCharacterSet(charactersIn: string)
                 
-            }
-                //            else if(pincodeTf.text!.count == 6)
-                //            {
-                //                print("pincodeTf.text?=",pincodeTf.text!)
-                ////                pincodeTf.text? = textField.text!
-                //                getCityStateAPI()
-                //
-                //                return false
-                //            }
-                //            else if(referrCodeTf.text!.count == 6)
-                //            {
-                //                print("referrCodeTf.text?=",referrCodeTf.text!)
-                //                //                pincodeTf.text? = textField.text!
-                //                validaterefercodeAPI()
-                //
-                //                return false
-                //            }
-            else{
-                //            let characterCountLimit = 30
-                // We need to figure out how many characters would be in the string after the change happens
-                let startingLength = textField.text?.count ?? 0
-                let lengthToAdd = string.count
-                let lengthToReplace = range.length
-                let newLength = startingLength + lengthToAdd - lengthToReplace
+                 blnStatus = allowedCharacters.isSuperset(of: characterSet as CharacterSet)
                 
-                return newLength <= (textField.text?.count)!
+                if(updatedText.count == 6)
+                {
+                    if(blnStatus){
+                        print("pincodeTf.text?=",updatedText)
+                        getCityStateAPI(pinCode:  updatedText)
+                        
+                        
+                    }
+                   
+                }else{
+                    ucityTf.text = ""
+                    ustateTf.text = ""
+                }
+                
+                return blnStatus
+                
+
+            }else{
+                 return false
             }
-            
+                
         }
         else{
-            if((textField.text?.count)! <= 30)
+            if((textField.text?.count)! <= 50)
             {
-                var allowedCharacters = CharacterSet.letters
-                allowedCharacters.formUnion(CharacterSet.whitespaces)
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+//                var allowedCharacters = CharacterSet.letters
+//                allowedCharacters.formUnion(CharacterSet.whitespaces)
+//                let characterSet = NSCharacterSet(charactersIn: string)
+//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+                
+                return true
             }
             else{
                 //            let characterCountLimit = 30
@@ -172,10 +203,10 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
-        if (textField == self.ucityTf || textField == self.ustateTf)
-        {
-            getCityStateAPI()
-        }
+//        if (textField == self.ucityTf || textField == self.ustateTf)
+//        {
+//            getCityStateAPI()
+//        }
         
     }
     
@@ -196,43 +227,97 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
         self.Gender = "F"
     }
     
+    func addUserValidate()  -> Bool {
+        
+        if( ufirstNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            TTGSnackbar.init(message: "Enter First Name", duration: .long).show()
+            return false
+        }
+        if( ulastNameTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            TTGSnackbar.init(message: "Enter Last Name", duration: .long).show()
+            return false
+        }
+        if( udobTf.text!.isEmpty){
+            TTGSnackbar.init(message: "Enter Dob", duration: .long).show()
+            return false
+        }
+        if( umobNoTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            TTGSnackbar.init(message: "Enter Mobile No", duration: .long).show()
+            return false
+        }
+        
+        if(!isValidEmail(testStr: uemailTf.text!))
+        {
+            TTGSnackbar.init(message: "Invalid Email Id", duration: .long).show()
+            return false
+        }
+        
+        
+        if( upincodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+            TTGSnackbar.init(message: "Enter Pincode", duration: .long).show()
+            return false
+        }
+        if( upincodeTf.text?.count != 6){
+            
+            TTGSnackbar.init(message: "Enter Valid Pincode", duration: .long).show()
+            return false
+        }
+        
+        else if(ucityTf.text! == ""){
+            TTGSnackbar.init(message: "Enter City", duration: .long).show()
+            return false
+        }
+        else if(ustateTf.text! == ""){
+            TTGSnackbar.init(message: "Enter State", duration: .long).show()
+            return false
+        }
+        
+        return true
+    }
     
     @IBAction func useraddBtnCliked(_ sender: Any)
     {
-        if(ufirstNameTf.text! != "" && ulastNameTf.text! != "" && udobTf.text! != "" && umobNoTf.text! != "" && uemailTf.text! != "" && upincodeTf.text! != "" && ucityTf.text! != "" && ustateTf.text! != "")
-        {
-            if(isValidEmail(testStr: uemailTf.text!))
-            {
-                addChildPospAPI()
-            }
-            else{
-               TTGSnackbar.init(message: "Please enter valid Email ID", duration: .long).show()
-            }
+        
+        
+        if(addUserValidate()){
+            
+            addChildPospAPI()
         }
-        else if(ufirstNameTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter First Name", duration: .long).show()
-        }
-        else if(ulastNameTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter Last Name", duration: .long).show()
-        }
-        else if(udobTf.text! == ""){
-            TTGSnackbar.init(message: "Please select date of birth", duration: .long).show()
-        }
-        else if(umobNoTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter Mobile No", duration: .long).show()
-        }
-        else if(uemailTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter Email ID", duration: .long).show()
-        }
-        else if(upincodeTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter Pincode", duration: .long).show()
-        }
-        else if(ucityTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter City", duration: .long).show()
-        }
-        else if(ustateTf.text! == ""){
-            TTGSnackbar.init(message: "Please enter State", duration: .long).show()
-        }
+        
+//        if(ufirstNameTf.text! != "" && ulastNameTf.text! != "" && udobTf.text! != "" && umobNoTf.text! != "" && uemailTf.text! != "" && upincodeTf.text! != "" && ucityTf.text! != "" && ustateTf.text! != "")
+//        {
+//            if(isValidEmail(testStr: uemailTf.text!))
+//            {
+//                addChildPospAPI()
+//            }
+//            else{
+//               TTGSnackbar.init(message: "Please enter valid Email ID", duration: .long).show()
+//            }
+//        }
+//        else if(ufirstNameTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter First Name", duration: .long).show()
+//        }
+//        else if(ulastNameTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter Last Name", duration: .long).show()
+//        }
+//        else if(udobTf.text! == ""){
+//            TTGSnackbar.init(message: "Please select date of birth", duration: .long).show()
+//        }
+//        else if(umobNoTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter Mobile No", duration: .long).show()
+//        }
+//        else if(uemailTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter Email ID", duration: .long).show()
+//        }
+//        else if(upincodeTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter Pincode", duration: .long).show()
+//        }
+//        else if(ucityTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter City", duration: .long).show()
+//        }
+//        else if(ustateTf.text! == ""){
+//            TTGSnackbar.init(message: "Please enter State", duration: .long).show()
+//        }
         
     }
     
@@ -245,7 +330,7 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
     }
     
     //---<APICALL>---
-    func getCityStateAPI()
+    func getCityStateAPI(pinCode : String)
     {
         if Connectivity.isConnectedToInternet()
         {
@@ -259,9 +344,10 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
             alertView.parentView = self.view
         }
         alertView.show()
-        let params: [String: AnyObject] = ["PinCode": upincodeTf.text! as AnyObject]
-        
-        let url = "get-city-and-state"
+            let params: [String: AnyObject] = ["PinCode":pinCode as AnyObject]
+            
+            let url = "get-city-and-state"
+            
         
         FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
             alertView.close()
@@ -400,14 +486,14 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
                                             "Posp_ServiceTaxNo": "" as AnyObject,
                                             "Posp_StatID": "" as AnyObject,
                                            
-                                            "Postal": "0" as AnyObject,
+                                            "Postal": "" as AnyObject,
                                             "Postal_Comp": "" as AnyObject,
                                             "SMID": 0 as AnyObject,
                                             "SM_Name": "" as AnyObject,
                                             "StatActi": "" as AnyObject,
                                             "State": ustateTf.text! as AnyObject,
                                             "StateID": StateID as AnyObject,
-                                            "Stock": "0" as AnyObject,
+                                            "Stock": "" as AnyObject,
                                             "Stock_Comp": "" as AnyObject,
                                             "Type": "" as AnyObject,
                                             "password": Password as AnyObject,   
@@ -424,12 +510,16 @@ class newaddSubUserVC: UIViewController,UITextFieldDelegate,SelectedDateDelegate
             self.view.layoutIfNeeded()
             
             let jsonData = userObject as? NSDictionary
-            let StatusNo = jsonData?.value(forKey: "StatusNo") as? Int
+            let StatusNo = jsonData?.value(forKey: "SavedStatus") as? Int
+            
+            let Message = jsonData?.value(forKey: "Message") as? Int
             if(StatusNo == 0){
                 TTGSnackbar.init(message: "FBA registered successfully.", duration: .long).show()
                 let addSubUser : addSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbaddSubUserVC") as! addSubUserVC
                 addSubUser.modalPresentationStyle = .fullScreen
-                self.present(addSubUser, animated:true, completion: nil)
+                self.present(addSubUser, animated:false, completion: nil)
+                
+              //  self.showToast(controller: addSubUser.self, message: Message!, seconds: 4)
             }
             else{
                 TTGSnackbar.init(message: "Error", duration: .long).show()

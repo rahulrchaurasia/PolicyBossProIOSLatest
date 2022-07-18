@@ -168,6 +168,7 @@
 		B28BDBB52701DF8500C5DE95 /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28BDBB42701DF8500C5DE95 /* Extension+Notification.swift */; };
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
+		CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD290470288042FB00C75C74 /* FOSUserResponse.swift */; };
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
@@ -377,6 +378,7 @@
 		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD290470288042FB00C75C74 /* FOSUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOSUserResponse.swift; sourceTree = "<group>"; };
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
@@ -920,6 +922,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD29046F2880427A00C75C74 /* FosInfo */,
 				B22BFE512738333C002EC580 /* TransactionHistory */,
 				B26D7E2726972B6400FCECAA /* HealthAssure */,
 				B218FF15269335280090A877 /* offlineQuote */,
@@ -1072,6 +1075,14 @@
 				840AC5CF21BE80AB004DCB26 /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		CD29046F2880427A00C75C74 /* FosInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CD290470288042FB00C75C74 /* FOSUserResponse.swift */,
+			);
+			path = FosInfo;
 			sourceTree = "<group>";
 		};
 		CD753849285CA3EA004B2D4D /* registeration */ = {
@@ -1408,6 +1419,7 @@
 				444DBF92246A97E4009F08F6 /* PaymentSuccessVC.swift in Sources */,
 				B21FAC932737C11500AC9AA4 /* TransactionVC.swift in Sources */,
 				B253B252261652E0000C3A7D /* IQKeyboardManager+Debug.swift in Sources */,
+				CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */,
 				B253B251261652E0000C3A7D /* IQKeyboardManager.swift in Sources */,
 				840562E921D4D39D0099DDE8 /* reqpolicyVC.swift in Sources */,
 				B253B249261652E0000C3A7D /* IQToolbar.swift in Sources */,
@@ -1632,9 +1644,9 @@
 			baseConfigurationReference = 1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1649,10 +1661,10 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = "PolicyBoss Pro";
-				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1663,9 +1675,9 @@
 			baseConfigurationReference = 483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1680,10 +1692,10 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
 				PRODUCT_NAME = "PolicyBoss Pro";
-				PROVISIONING_PROFILE_SPECIFIER = PolicyBossProvisionProfile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

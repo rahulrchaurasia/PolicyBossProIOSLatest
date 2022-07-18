@@ -18,12 +18,13 @@ class MenuDb {
     
     
     
-    func getMenuSection(isenableenrolasPOSP :String, isshowmyinsurancebusiness : String) ->  [MenuSection]{
+    func getMenuSection(isenableenrolasPOSP :String, isshowmyinsurancebusiness : String ,
+                        addPospVisible :String, fosUser : String) ->  [MenuSection]{
         
         // Here Section is 3 ie "MenuSection" And Row count of each Section represent by "menuModel"
         menuSectionlist.removeAll()
         menuSectionlist.append(MenuSection(section: "Home",menuModel: getHomeMenuData()))
-        menuSectionlist.append(MenuSection(section: "My Account",menuModel: getMyAccountMenuData(_isenableenrolasPOSP: isenableenrolasPOSP)))
+        menuSectionlist.append(MenuSection(section: "My Account",menuModel: getMyAccountMenuData(_isenableenrolasPOSP: isenableenrolasPOSP, _isaddPospVisible: addPospVisible,_isfosUser: fosUser)))
         menuSectionlist.append(MenuSection(section: "My Documents",menuModel: getMyDocumentMenuData()))
         
         menuSectionlist.append(MenuSection(section: "My Transactions",menuModel: getMyTransactionMenuData(_isshowmyinsurancebusiness: isshowmyinsurancebusiness)))
@@ -51,7 +52,7 @@ class MenuDb {
     
     
     
-    func  getMyAccountMenuData(_isenableenrolasPOSP : String) ->  [MenuModel]
+    func  getMyAccountMenuData(_isenableenrolasPOSP : String, _isaddPospVisible : String,_isfosUser : String) ->  [MenuModel]
     {
         // Enrol as POSP : hide and show
         Menulist =  [MenuModel]()
@@ -61,9 +62,32 @@ class MenuDb {
             Menulist.append(MenuModel(name: "Enrol as POSP",img: "posp_enrollment.png" ,modelId: "nav_EnrolPosp"))
         }
         
-        Menulist.append(MenuModel(name: "Add Sub User",img: "posp_enrollment.png" ,modelId: "nav_AddSubUser"))
+        if(_isaddPospVisible == "1" &&  _isfosUser  != "Y") {
+
+                
+            Menulist.append(MenuModel(name: "Add Sub User",img: "posp_enrollment.png" ,modelId: "nav_AddSubUser"))
+           
+
+        }
+        
         
         Menulist.append(MenuModel(name: "Change Password",img: "change_password.png" ,modelId: "nav_ChangePwd"))
+        
+        
+
+       
+        //////
+       
+        //todo : check key from userconstant to hide add posp
+        /*
+                if((userConstantEntity?.addPospVisible ?: "0").toInt() == 1 && (  prefManager?.fosUser?:"" != "Y")) {
+
+                           menuChild.add(MenuChild("nav_addposp", "Add Sub User", R.drawable.enrol_as_posp))            // 05 changeable
+
+
+                   }
+         */
+        /////
         
         return Menulist
     }

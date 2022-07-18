@@ -20,8 +20,11 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+     
         getchildfbaAPI()
+        
+
+        
         
     }
     
@@ -65,7 +68,7 @@ class addSubUserVC: UIViewController,UITableViewDataSource,UITableViewDelegate {
         let newaddSubUser : newaddSubUserVC = self.storyboard?.instantiateViewController(withIdentifier: "stbnewaddSubUserVC") as! newaddSubUserVC
         newaddSubUser.modalPresentationStyle = .fullScreen
         newaddSubUser.modalTransitionStyle = .coverVertical
-        present(newaddSubUser, animated: true, completion: nil)
+        present(newaddSubUser, animated: false, completion: nil)
         
       
     }

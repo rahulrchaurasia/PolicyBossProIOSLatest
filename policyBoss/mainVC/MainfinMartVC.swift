@@ -13,9 +13,9 @@ import SwiftyJSON
 import Alamofire
 import SDWebImage
 import MessageUI
+import StoreKit
 
-
-class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate ,HomeDelegate{
+class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,callingrevampDelegate,MFMailComposeViewControllerDelegate ,HomeDelegate, SKStoreProductViewControllerDelegate{
    
     
    
@@ -195,14 +195,15 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             NSLog("OK Pressed")
             
            
+            self.openAppstore()
             
             self.dismissAll(animated: false)
             let appDelegate = UIApplication.shared.delegate as? AppDelegate
                        let Login : LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLoginVC") as! LoginVC
                        Login.resetDefaults()
-                       
+
                        Login.modalPresentationStyle = .fullScreen
-                       
+
                        appDelegate?.window?.rootViewController = Login
                        self.present(Login, animated: true, completion: nil)
                        
@@ -214,6 +215,23 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         // Present the controller
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    func openAppstore(){
+
+        if let url = URL(string: "https://itunes.apple.com/in/app/policyboss-pro/id1596870566?mt=8")
+        {
+                   if #available(iOS 10.0, *) {
+                      UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                   }
+                   else {
+                         if UIApplication.shared.canOpenURL(url as URL) {
+                            UIApplication.shared.openURL(url as URL)
+                        }
+                   }
+        }
     }
     
     func resetDefaults() {
@@ -1190,7 +1208,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
    
-  
+    
+   
     
     func getdynamicappAPI()
     {

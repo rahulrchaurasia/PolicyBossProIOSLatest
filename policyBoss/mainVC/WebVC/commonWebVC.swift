@@ -75,11 +75,10 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
         {
 
             titleLbl.text! = "PRIVATE CAR"
-          // bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")  // 005
+            bindInsuranceUrl(strURL: FourWheelerUrl!,prdID: "1")
             
-         let insURL = "http://elite.interstellar.co.in/iostestnew.html"
-
-          webView.load(URLRequest(url: URL(string: insURL)!))
+       //  let insURL = "http://elite.interstellar.co.in/iostestnew.html"   // 005  For testing
+        //  webView.load(URLRequest(url: URL(string: insURL)!))
 
             
         }
