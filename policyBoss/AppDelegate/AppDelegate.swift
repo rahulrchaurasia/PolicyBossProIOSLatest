@@ -43,9 +43,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let homeController =  mainStoryboard.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
             appDelegate?.window?.rootViewController = homeController
             window?.makeKeyAndVisible()
+            
+            
+            
+            
+//            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+//            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "HomeTabBar") as! UITabBarController
+//            mainTabBarController.modalTransitionStyle = .coverVertical
+//            mainTabBarController.modalPresentationStyle = .fullScreen
+//
+//
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appDelegate.window?.rootViewController = mainTabBarController
+//            appDelegate.window?.makeKeyAndVisible()
         }
         
         
+      
   
         return true
         

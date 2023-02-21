@@ -15,6 +15,60 @@ import UIKit
 extension UIViewController {
     
     
+    
+    func getDevice(){
+        
+      
+
+        let device = UIDevice.current
+
+        // Get the device name (e.g. "iPhone")
+        let deviceName = device.name
+
+        // Get the device model (e.g. "iPhone" or "iPad")
+        let deviceModel = device.model
+
+        // Get the system name (e.g. "iOS")
+        let systemName = device.systemName
+
+        // Get the system version (e.g. "14.3")
+        let systemVersion = device.systemVersion
+
+        // Get the device UUID
+        let deviceUUID = device.identifierForVendor?.uuidString
+
+        // Get the device type (e.g. .phone or .pad)
+        let deviceType = device.userInterfaceIdiom
+
+    }
+    
+    func getDeviceID() -> String{
+        
+
+        // Get the device UUID
+        return UIDevice.current.identifierForVendor?.uuidString ?? ""
+
+       
+    }
+    
+    func getDeviceName() -> String{
+        
+
+        // Get the device name
+        return UIDevice.current.name
+
+       
+    }
+    
+    func getDeviceOS() -> String{
+        
+
+        // Get the device name
+        return UIDevice.current.systemName + "" + UIDevice.current.systemVersion
+
+       
+    }
+
     func showToast(controller: UIViewController,message : String, seconds : Double){
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -120,6 +174,21 @@ extension UIViewController {
         
         
     }
+    
+    class func initiateFromStoryboard(name : String) -> Self
+    {
+        return initiateFromStoryboardHelper(name)
+    }
+    
+    fileprivate class func initiateFromStoryboardHelper<T>(_ name : String) -> T {
+        
+        let storyboard = UIStoryboard(name: name, bundle: nil)
+        
+        let controller = storyboard.instantiateViewController(withIdentifier: "\(Self.self)") as!  T
+        
+        return controller
+    }
+    
 }
 
 

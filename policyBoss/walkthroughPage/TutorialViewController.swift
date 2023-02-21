@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import TTGSnackbar
+import Alamofire
 
 class TutorialViewController: UIViewController {
 
@@ -22,7 +24,15 @@ class TutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
+        if(Core.shared.isVerifyInstall()){
+            self.getDeviceDetails()
+            
+            Core.shared.setVerifyInstall()
+        }
+     
+        
         setData()
 
         pageControl.addTarget(self, action: Selector("didChangePageControlValue"), for: .valueChanged)
@@ -122,6 +132,61 @@ extension TutorialViewController: TutorialPageViewControllerDelegate {
         
     }
     
+    
+    func getDeviceDetails(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+           
+            
+            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo") as AnyObject
+            
+            let parameter  :[String: AnyObject] = [
+                
+                "ss_id": POSPNo as AnyObject,
+                "device_id": getDeviceID() as AnyObject,
+                "device_name": getDeviceName() as AnyObject,
+                "os_detail": getDeviceOS() as AnyObject,
+                "action_type": "install" as AnyObject,
+                "device_info" : "" as AnyObject
+                
+            ]
+            let endUrl = "/app_visitor/save_device_details"
+            let url =  FinmartRestClient.baseURLROOT  + endUrl
+    
+            print("urlRequest= ",url)
+            print("parameter= ",parameter)
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(let value):
+                    
+                
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(DeviceDetailModel.self, from: data)
+                        
+                        print("response= ",obj)
+                        
+                        
+                    } catch let error {
+                        print(error)
+                       
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                   
+                    
+                }
+            })
+            
+        }
+        
+    }
+  
     
 }
 

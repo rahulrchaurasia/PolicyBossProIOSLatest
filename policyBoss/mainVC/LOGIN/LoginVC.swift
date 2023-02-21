@@ -53,6 +53,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         
         if(Core.shared.isNewUser()){
 
+        
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: .main)
             
             let WelComePage = storyboard.instantiateViewController(withIdentifier: "TutorialViewController") as!  TutorialViewController
@@ -351,6 +352,28 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                             appDelegate?.window?.rootViewController = KYDrawer
                             self.present(KYDrawer, animated: false, completion: nil)
                             
+                                // from here  toolbar old logic
+//                            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+//                            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "HomeTabBar") as! UITabBarController
+//                            mainTabBarController.modalTransitionStyle = .coverVertical
+//                            mainTabBarController.modalPresentationStyle = .fullScreen
+//
+//
+//                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                            appDelegate.window?.rootViewController = mainTabBarController
+//                            appDelegate.window?.makeKeyAndVisible()
+
+                            // till here
+                            
+                            
+                            // below not in used
+//                            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+//                            let KYDrawer : KYDrawerController = self.storyboard?.instantiateViewController(withIdentifier: "stbKYDrawerController") as! KYDrawerController
+//                            KYDrawer.modalPresentationStyle = .fullScreen
+//                            KYDrawer.modalTransitionStyle = .coverVertical
+//                            appDelegate?.window?.rootViewController = KYDrawer
+//                            self.present(KYDrawer, animated: false, completion: nil)
+                            
                             TTGSnackbar.init(message: "Login successfully.", duration: .long).show()
                             
                         }else{
@@ -391,6 +414,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+  
+  
     
     
 }

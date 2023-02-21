@@ -24,6 +24,19 @@ class Core {
     }
     
     
+    //////////////////
+    ///
+    
+    func isVerifyInstall() -> Bool {
+        return !UserDefaults.standard.bool(forKey: "isVerify")
+    }
+    
+    func setVerifyInstall()  {
+        UserDefaults.standard.set(true, forKey: "isVerify")
+    }
+    
+    
+    
     func setNewUserFalse()  {
         UserDefaults.standard.set(false, forKey: "isNewUser")
     }

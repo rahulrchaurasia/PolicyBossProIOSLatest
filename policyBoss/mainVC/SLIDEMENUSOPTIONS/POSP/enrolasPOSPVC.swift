@@ -1987,96 +1987,115 @@ class enrolasPOSPVC: UIViewController,SelectedDateDelegate,UITextFieldDelegate, 
     
     func getifsccodeAPI(){
         
+//        self.enmicrCodeTf.text! = obj.MasterData[0].MICRCode
+//        self.enbankBranchTf.text! = obj.MasterData[0].BankBran
+//        self.enbankCityTf.text! = obj.MasterData[0].CityName
+//        self.enbankNameTf.text! = obj.MasterData[0].BankName
+        
         
         
         if Connectivity.isConnectedToInternet()
-        {
-            print("internet is available.")
-            
-            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-            if let parentView = self.navigationController?.view
             {
-                alertView.parentView = parentView
-            }
-            else
-            {
-                alertView.parentView = self.view
-            }
-            alertView.show()
-            
-            
-            let parameter  :[String: AnyObject] = [
+                print("internet is available.")
                 
-                "IFSCCode": enifscCodeTf.text! as AnyObject
-              
-            ]
-            let endUrl = "get-ifsc-code"
-            let url =  FinmartRestClient.baseURLString  + endUrl
-            print("urlRequest= ",url)
-            print("parameter= ",parameter)
-            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
-                switch response.result {
+                let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+                if let parentView = self.navigationController?.view
+                {
+                    alertView.parentView = parentView
+                }
+                else
+                {
+                    alertView.parentView = self.view
+                }
+                alertView.show()
+                
+                
+                let parameter  :[String: AnyObject] = [
                     
-                case .success(let value):
-                    
-                    alertView.close()
-                    
-                    self.view.layoutIfNeeded()
-                    guard let data = response.data else { return }
-                    do {
-                        let decoder = JSONDecoder()
-                        let obj = try decoder.decode(IFSCCodeModel.self, from: data)
-
-                        print("response= ",obj)
+                    "IFSCCode": enifscCodeTf.text as AnyObject
+                  
+                ]
+                let endUrl = "get-ifsc-code"
+                let url =  FinmartRestClient.baseURLString  + endUrl
+                print("urlRequest= ",url)
+                print("parameter= ",parameter)
+                Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                    switch response.result {
                         
-                        if obj.StatusNo == 0 {
+                    case .success(let value):
+                        
+                        alertView.close()
+                        
+                        self.view.layoutIfNeeded()
+                        guard let data = response.data else { return }
+                        do {
+                            let decoder = JSONDecoder()
+                            let obj = try decoder.decode(IFSCModel.self, from: data)
+                            
                             
                           
-                            print("IFSC RESPONSE= ",obj.MasterData[0].BankName)
+                            print("response= ",obj)
                             
-                            self.enmicrCodeTf.text! = obj.MasterData[0].MICRCode
-                            self.enbankBranchTf.text! = obj.MasterData[0].BankBran
-                            self.enbankCityTf.text! = obj.MasterData[0].CityName
-                            self.enbankNameTf.text! = obj.MasterData[0].BankName
+                         
                             
-                        }else{
+                            if obj.StatusNo == 0 {
                             
-                            let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                                
+                                var  micrCode = obj.MasterData[0]?.micrCode ?? ""
+                                self.enmicrCodeTf.text! = micrCode
+                                
+                                self.enbankBranchTf.text! = obj.MasterData[0]?.bankBran ?? ""
+                                self.enbankCityTf.text! = obj.MasterData[0]?.bankCity ?? ""
+                                self.enbankNameTf.text! = obj.MasterData[0]?.bankName ?? ""
+                                
+                                if( micrCode.isEmpty){
+                                    
+                                  // For Focus
+                                    //self.ifscCodeTf.becomeFirstResponder()
+                                   
+                                    // for Hiding
+                                    self.enifscCodeTf.endEditing(true)
+                                    let snackbar = TTGSnackbar.init(message: "No Data Found" , duration: .long)
+                                    snackbar.show()
+                                    
+                                }
+                                
+                               
+                                
+                                
+                               
+                                
+                            }else{
+                                
+                                let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                                snackbar.show()
+                            }
+                           
+                         
+                            
+                        } catch let error {
+                            print(error)
+                            alertView.close()
+                            
+                            let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
                             snackbar.show()
-                            
-                            self.enmicrCodeTf.text! = ""
-                            self.enbankBranchTf.text! = ""
-                            self.enbankCityTf.text! = ""
-                            self.enbankNameTf.text! = ""
                         }
                         
                         
-                    } catch let error {
+                    case .failure(let error):
                         print(error)
                         alertView.close()
-                        
-                        self.enmicrCodeTf.text! = ""
-                        self.enbankBranchTf.text! = ""
-                        self.enbankCityTf.text! = ""
-                        self.enbankNameTf.text! = ""
-                        
-                        let snackbar = TTGSnackbar.init(message: "No Data Found", duration: .long)
+                        let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
                         snackbar.show()
                     }
-                    
-                    
-                case .failure(let error):
-                    print(error)
-                    alertView.close()
-                    let snackbar = TTGSnackbar.init(message: error as! String, duration: .long)
-                    snackbar.show()
-                }
-            })
+                })
+                
+            }else{
+                let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+                snackbar.show()
+            }
             
-        }else{
-            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-            snackbar.show()
-        }
+            
         
         
     }

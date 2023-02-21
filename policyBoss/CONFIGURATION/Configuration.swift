@@ -14,6 +14,8 @@ class Configuration: NSObject {
     //http://api.magicfinmart.com
    static let baseURLString = "https://horizon.policyboss.com:5443/quote/Postfm/"     //live
     
+    static let baseROOTURL = "https://horizon.policyboss.com:5443"
+    
     static let baseFileUploadURLString = "https://horizon.policyboss.com:5443/quote/Postfm_fileupload/"
     //http://49.50.95.141:19
     //http://202.131.96.101:3333

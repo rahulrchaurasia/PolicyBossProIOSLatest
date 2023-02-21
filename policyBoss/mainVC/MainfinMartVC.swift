@@ -111,6 +111,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
        // getLoanStaticDashboard()
         self.userconstantAPI()
         self.getdynamicappAPI()
+        self.getDeviceDetails()
         
     
         
@@ -124,6 +125,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         self.userconstantAPI()
         self.getdynamicappAPI()
+        
+       
     }
     
     //////////////////////  Method For Orientation   ////////////////////////////
@@ -1335,6 +1338,59 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
     }
     
+    func getDeviceDetails(){
+        
+        if Connectivity.isConnectedToInternet()
+        {
+           
+            
+            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo") as AnyObject
+            
+            let parameter  :[String: AnyObject] = [
+                
+                "ss_id": POSPNo as AnyObject,
+                "device_id": getDeviceID() as AnyObject,
+                "device_name": getDeviceName() as AnyObject,
+                "os_detail": getDeviceOS() as AnyObject,
+                "action_type": "active" as AnyObject,
+                "device_info" : "" as AnyObject
+                
+            ]
+            let endUrl = "/app_visitor/save_device_details"
+            let url =  FinmartRestClient.baseURLROOT  + endUrl
+    
+            print("urlRequest= ",url)
+            print("parameter= ",parameter)
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(let value):
+                    
+                
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj = try decoder.decode(DeviceDetailModel.self, from: data)
+                        
+                        print("response= ",obj)
+                        
+                        
+                    } catch let error {
+                        print(error)
+                       
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                   
+                    
+                }
+            })
+            
+        }
+        
+    }
     
     
     //////////////

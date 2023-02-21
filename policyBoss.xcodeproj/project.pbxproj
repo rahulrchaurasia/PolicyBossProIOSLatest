@@ -169,11 +169,20 @@
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
 		CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD290470288042FB00C75C74 /* FOSUserResponse.swift */; };
+		CD2D676329125ED000DF42D9 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D676229125ED000DF42D9 /* Extension+UIView.swift */; };
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
+		CD41B28B290FD4D8004ACDD8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD41B28A290FD4D8004ACDD8 /* Home.storyboard */; };
+		CD41B28E290FD538004ACDD8 /* HomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41B28D290FD538004ACDD8 /* HomeTabBar.swift */; };
+		CD475D042910DEBA00BAE252 /* MenuBottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D032910DEBA00BAE252 /* MenuBottomSheetVC.swift */; };
+		CD475D062910EAFA00BAE252 /* MenuTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D052910EAFA00BAE252 /* MenuTabVC.swift */; };
+		CD475D092910F19B00BAE252 /* DashBoardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D082910F19B00BAE252 /* DashBoardVC.swift */; };
+		CD475D0C2910F1CC00BAE252 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D0B2910F1CC00BAE252 /* NotificationVC.swift */; };
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
 		CDAA0FA2286CAAD2009B69A9 /* AlertPospAmntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */; };
 		CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */; };
+		CDC7B7F329A4C5BB00DC2012 /* IFSCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */; };
+		CDC7B7F629A4F2EB00DC2012 /* DeviceDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,11 +388,20 @@
 		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD290470288042FB00C75C74 /* FOSUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOSUserResponse.swift; sourceTree = "<group>"; };
+		CD2D676229125ED000DF42D9 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
+		CD41B28A290FD4D8004ACDD8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		CD41B28D290FD538004ACDD8 /* HomeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBar.swift; sourceTree = "<group>"; };
+		CD475D032910DEBA00BAE252 /* MenuBottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBottomSheetVC.swift; sourceTree = "<group>"; };
+		CD475D052910EAFA00BAE252 /* MenuTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabVC.swift; sourceTree = "<group>"; };
+		CD475D082910F19B00BAE252 /* DashBoardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVC.swift; sourceTree = "<group>"; };
+		CD475D0B2910F1CC00BAE252 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
 		CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPospAmntVC.swift; sourceTree = "<group>"; };
 		CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntAlertTVCell.swift; sourceTree = "<group>"; };
+		CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCModel.swift; sourceTree = "<group>"; };
+		CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -656,6 +674,7 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
+				CD41B28C290FD4FE004ACDD8 /* HomeMain */,
 				B2915B4126998FB500DECE41 /* Reachability */,
 				840AC5D621BE80AC004DCB26 /* Assets.xcassets */,
 				B2B970192618599F004CC86C /* AppDelegate */,
@@ -851,6 +870,7 @@
 			children = (
 				840AC5D321BE80AB004DCB26 /* Main.storyboard */,
 				840AC5D821BE80AC004DCB26 /* LaunchScreen.storyboard */,
+				CD41B28A290FD4D8004ACDD8 /* Home.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -922,6 +942,8 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CDC7B7F429A4F2BA00DC2012 /* deviceDetail */,
+				CDC7B7EF29A4B68900DC2012 /* profile */,
 				CD29046F2880427A00C75C74 /* FosInfo */,
 				B22BFE512738333C002EC580 /* TransactionHistory */,
 				B26D7E2726972B6400FCECAA /* HealthAssure */,
@@ -1057,6 +1079,7 @@
 				B2622BE6261372AF00B49797 /* Extension+UserDefaults.swift */,
 				B253B2252616459C000C3A7D /* Extension+ UITextField.swift */,
 				B28BDBB42701DF8500C5DE95 /* Extension+Notification.swift */,
+				CD2D676229125ED000DF42D9 /* Extension+UIView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1083,6 +1106,42 @@
 				CD290470288042FB00C75C74 /* FOSUserResponse.swift */,
 			);
 			path = FosInfo;
+			sourceTree = "<group>";
+		};
+		CD41B28C290FD4FE004ACDD8 /* HomeMain */ = {
+			isa = PBXGroup;
+			children = (
+				CD475D0A2910F1AE00BAE252 /* Notification */,
+				CD475D072910F17300BAE252 /* DashBoard */,
+				CD475D022910DE7200BAE252 /* MenuBottomSheet */,
+				CD41B28D290FD538004ACDD8 /* HomeTabBar.swift */,
+			);
+			path = HomeMain;
+			sourceTree = "<group>";
+		};
+		CD475D022910DE7200BAE252 /* MenuBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				CD475D032910DEBA00BAE252 /* MenuBottomSheetVC.swift */,
+				CD475D052910EAFA00BAE252 /* MenuTabVC.swift */,
+			);
+			path = MenuBottomSheet;
+			sourceTree = "<group>";
+		};
+		CD475D072910F17300BAE252 /* DashBoard */ = {
+			isa = PBXGroup;
+			children = (
+				CD475D082910F19B00BAE252 /* DashBoardVC.swift */,
+			);
+			path = DashBoard;
+			sourceTree = "<group>";
+		};
+		CD475D0A2910F1AE00BAE252 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CD475D0B2910F1CC00BAE252 /* NotificationVC.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		CD753849285CA3EA004B2D4D /* registeration */ = {
@@ -1112,6 +1171,22 @@
 				CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */,
 			);
 			path = pospAmntDialog;
+			sourceTree = "<group>";
+		};
+		CDC7B7EF29A4B68900DC2012 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */,
+			);
+			path = profile;
+			sourceTree = "<group>";
+		};
+		CDC7B7F429A4F2BA00DC2012 /* deviceDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */,
+			);
+			path = deviceDetail;
 			sourceTree = "<group>";
 		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
@@ -1242,6 +1317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
+				CD41B28B290FD4D8004ACDD8 /* Home.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
 				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
 				442E20DF24C8347A00FFC075 /* Walkthrough.storyboard in Resources */,
@@ -1377,6 +1453,7 @@
 				B253B244261652E0000C3A7D /* IQTextView.swift in Sources */,
 				8411808A21C5105D00D5638B /* MenuHelper.swift in Sources */,
 				840562D321D4D2640099DDE8 /* transctionHistoryVC.swift in Sources */,
+				CD475D042910DEBA00BAE252 /* MenuBottomSheetVC.swift in Sources */,
 				B253B24F261652E0000C3A7D /* IQKeyboardManager+Position.swift in Sources */,
 				B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */,
 				8410403B21D784EB00C3B7A7 /* FinmartStyler.swift in Sources */,
@@ -1388,6 +1465,8 @@
 				84C4D09A21C2736100A677B7 /* MainfinmartTVCell.swift in Sources */,
 				840562ED21D4D3D90099DDE8 /* helpnfeedbackVC.swift in Sources */,
 				84C4D08F21C23DD700A677B7 /* multiselctionTVCell.swift in Sources */,
+				CD475D0C2910F1CC00BAE252 /* NotificationVC.swift in Sources */,
+				CD41B28E290FD538004ACDD8 /* HomeTabBar.swift in Sources */,
 				8483DC9A226756250095AA24 /* getmpsNowVC.swift in Sources */,
 				44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */,
 				8413349521C8FD350084AFC2 /* KYDrawerController.swift in Sources */,
@@ -1403,6 +1482,7 @@
 				8410404921D78A1400C3B7A7 /* FinmartUserDefault.swift in Sources */,
 				840C4C1F21C3BE24000B8D49 /* salesmaterialTVCell.swift in Sources */,
 				8410F8D421F835C000DFC974 /* insalesmaterialVC.swift in Sources */,
+				CDC7B7F629A4F2EB00DC2012 /* DeviceDetailModel.swift in Sources */,
 				840562E121D4D3270099DDE8 /* syncContactsVC.swift in Sources */,
 				447DF6342466DF3E00D0F545 /* PaymentMainController.swift in Sources */,
 				8411808721C5105D00D5638B /* Interactor.swift in Sources */,
@@ -1422,11 +1502,13 @@
 				CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */,
 				B253B251261652E0000C3A7D /* IQKeyboardManager.swift in Sources */,
 				840562E921D4D39D0099DDE8 /* reqpolicyVC.swift in Sources */,
+				CD475D062910EAFA00BAE252 /* MenuTabVC.swift in Sources */,
 				B253B249261652E0000C3A7D /* IQToolbar.swift in Sources */,
 				84C368C121C778BC00BB2E9B /* knowGuruTVCell.swift in Sources */,
 				443B4D0A24CC868C00D1FDF7 /* IFSCCodeModel.swift in Sources */,
 				B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */,
 				B253B254261652E0000C3A7D /* IQKeyboardManager+Toolbar.swift in Sources */,
+				CD475D092910F19B00BAE252 /* DashBoardVC.swift in Sources */,
 				84EF6E9F2296B2730002E73B /* smsTempTVCell.swift in Sources */,
 				44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */,
 				B253B257261652E0000C3A7D /* IQUITextFieldView+Additions.swift in Sources */,
@@ -1439,6 +1521,7 @@
 				840562E321D4D3440099DDE8 /* enrolasPOSPVC.swift in Sources */,
 				B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */,
 				B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */,
+				CDC7B7F329A4C5BB00DC2012 /* IFSCModel.swift in Sources */,
 				840562E521D4D3590099DDE8 /* addUsersVC.swift in Sources */,
 				8411808821C5105D00D5638B /* PresentMenuAnimator.swift in Sources */,
 				8411808921C5105D00D5638B /* DismissMenuAnimator.swift in Sources */,
@@ -1458,6 +1541,7 @@
 				8410404721D789C300C3B7A7 /* PBLogs.swift in Sources */,
 				B21FAC952737C26900AC9AA4 /* TranscationHistoryCell.swift in Sources */,
 				84F4114F220AF254001407EE /* whatsNewTVCell.swift in Sources */,
+				CD2D676329125ED000DF42D9 /* Extension+UIView.swift in Sources */,
 				44A685CF22DDA77C001295F0 /* newaddSubUserVC.swift in Sources */,
 				840562D921D4D2B90099DDE8 /* incmCalculatrVC.swift in Sources */,
 				4415A865244DFAFA00314D26 /* SalesDetailModel.swift in Sources */,
@@ -1574,7 +1658,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1629,7 +1713,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1644,6 +1728,7 @@
 			baseConfigurationReference = 1CBAF1345DD434B01E84B678 /* Pods-policyBoss.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1662,7 +1747,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1675,6 +1760,7 @@
 			baseConfigurationReference = 483BB0A4FA0E65B7A02CD35A /* Pods-policyBoss.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
@@ -1693,7 +1779,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0.3;
-				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.pro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

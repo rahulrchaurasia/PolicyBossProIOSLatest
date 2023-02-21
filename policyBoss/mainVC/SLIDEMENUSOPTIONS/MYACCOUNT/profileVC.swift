@@ -95,6 +95,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     var stateid = String()
     var stateName = String()
     var profileDocModel = [pospDoc]()
+    
+
     // For AlertDialog
     let alertService = AlertService()
     
@@ -106,7 +108,6 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         imagePicker.delegate = self
         //--<textField>--
         aTextField.delegate = self
-        
         
         micrCodeTf.delegate = self
         bankBranchTf.delegate = self
@@ -134,7 +135,8 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         pospDesignTf.delegate = self
         pospMobNumTf.delegate = self
         
-        
+        // FOr Hiding Navigation Bar
+        self.navigationController?.isNavigationBarHidden = true;
         
         panTf.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         ifscCodeTf.autocapitalizationType = .allCharacters
@@ -263,6 +265,7 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 return newLength <= (textField.text?.count)!
             }
         }
+        
         else if(textField == addharTf)
         {
             if((textField.text?.count)! <= 11)
@@ -276,30 +279,14 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
                 let lengthToAdd = string.count
                 let lengthToReplace = range.length
                 let newLength = startingLength + lengthToAdd - lengthToReplace
-                
+
                 return newLength <= (textField.text?.count)!
             }
-        }
+       }
+        
         else if(textField == pincodeTf)
         {
-//            if((textField.text?.count)! < 6)
-//            {
-//                let allowedCharacters = CharacterSet.decimalDigits
-//                let characterSet = NSCharacterSet(charactersIn: string)
-//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-//
-//            }
-//            else{
-//                //            let characterCountLimit = 30
-//                // We need to figure out how many characters would be in the string after the change happens
-//                let startingLength = textField.text?.count ?? 0
-//                let lengthToAdd = string.count
-//                let lengthToReplace = range.length
-//                let newLength = startingLength + lengthToAdd - lengthToReplace
-//
-//                return newLength <= (textField.text?.count)!
-//            }
-            
+
             
             
             var blnStatus : Bool = false
@@ -345,32 +332,33 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
 
         }
             
-        else if(textField == ifscCodeTf)
-        {
-            if((textField.text?.count)! <= 10)
-            {
-                let allowedCharacters = CharacterSet.alphanumerics
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-            }
-            else{
-               return false
-            }
-            
-        }
-        else if(textField == panTf)
-        {
-            if((textField.text?.count)! <= 9)
-            {
-                let allowedCharacters = CharacterSet.alphanumerics
-                let characterSet = NSCharacterSet(charactersIn: string)
-                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-            }
-            else{
-               return false
-            }
-            
-        }
+//        else if(textField == ifscCodeTf)
+//        {
+//            if((textField.text?.count)! <= 10)
+//            {
+//                let allowedCharacters = CharacterSet.alphanumerics
+//                let characterSet = NSCharacterSet(charactersIn: string)
+//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+//            }
+//            else{
+//               return false
+//            }
+//
+//        }
+//        else if(textField == panTf)
+//        {
+//            if((textField.text?.count)! <= 9)
+//            {
+//                let allowedCharacters = CharacterSet.alphanumerics
+//                let characterSet = NSCharacterSet(charactersIn: string)
+//                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
+//            }
+//            else{
+//               return false
+//            }
+//
+//        }
+        
         else{
             if((textField.text?.count)! <= 50)
             {
@@ -919,10 +907,11 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
     func textFieldDidBeginEditing(_ textField: UITextField)
     {
     
-        if(ifscCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
-            
-            return
-        }
+//        if(ifscCodeTf.text!.trimmingCharacters(in: .whitespaces).isEmpty){
+//
+//            return
+//        }
+        
         if(textField == self.micrCodeTf || textField == self.bankBranchTf || textField == self.bankCityTf || textField == self.bankNameTf)
         {
             getifsccodeAPI()
@@ -1037,59 +1026,115 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
         
     }
     
-    func getifsccodeAPI()
-    {
+  
+    
+    
+    func getifsccodeAPI(){
+     
         if Connectivity.isConnectedToInternet()
-        {
-            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-            if let parentView = self.navigationController?.view
             {
-                alertView.parentView = parentView
-            }
-            else
-            {
-                alertView.parentView = self.view
-            }
-            alertView.show()
-            let params: [String: AnyObject] = ["IFSCCode": ifscCodeTf.text! as AnyObject]
-            
-            let url = "get-ifsc-code"
-            
-            
-            FinmartRestClient.sharedInstance.authorisedPost(url, parameters: params, onSuccess: { (userObject, metadata) in
-                alertView.close()
+                print("internet is available.")
                 
-                self.view.layoutIfNeeded()
-                
-                let jsonData = userObject as? NSArray
+                let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+                if let parentView = self.navigationController?.view
+                {
+                    alertView.parentView = parentView
+                }
+                else
+                {
+                    alertView.parentView = self.view
+                }
+                alertView.show()
                 
                 
-                let MICRCode = (jsonData![0] as AnyObject).value(forKey: "MICRCode") as AnyObject
-                let BankBran = (jsonData![0] as AnyObject).value(forKey: "BankBran") as AnyObject
-                let CityName = (jsonData![0] as AnyObject).value(forKey: "CityName") as AnyObject
-                let BankName = (jsonData![0] as AnyObject).value(forKey: "BankName") as AnyObject
-                self.micrCodeTf.text! = MICRCode as! String
-                self.bankBranchTf.text! = BankBran as! String
-                self.bankCityTf.text! = CityName as! String
-                self.bankNameTf.text! = BankName as! String
+                let parameter  :[String: AnyObject] = [
+                    
+                    "IFSCCode": ifscCodeTf.text as AnyObject
+                  
+                ]
+                let endUrl = "get-ifsc-code"
+                let url =  FinmartRestClient.baseURLString  + endUrl
+                print("urlRequest= ",url)
+                print("parameter= ",parameter)
+                Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                    switch response.result {
+                        
+                    case .success(let value):
+                        
+                        alertView.close()
+                        
+                        self.view.layoutIfNeeded()
+                        guard let data = response.data else { return }
+                        do {
+                            let decoder = JSONDecoder()
+                            let obj = try decoder.decode(IFSCModel.self, from: data)
+                            
+                            
+                          
+                            print("response= ",obj)
+                            
+                         
+                            
+                            if obj.StatusNo == 0 {
+                            
+                                
+                                var  micrCode = obj.MasterData[0]?.micrCode ?? ""
+                                self.micrCodeTf.text! = micrCode
+                                
+                                self.bankBranchTf.text! = obj.MasterData[0]?.bankBran ?? ""
+                                self.bankCityTf.text! = obj.MasterData[0]?.bankCity ?? ""
+                                self.bankNameTf.text! = obj.MasterData[0]?.bankName ?? ""
+                                
+                                if( micrCode.isEmpty){
+                                    
+                                  // For Focus
+                                    //self.ifscCodeTf.becomeFirstResponder()
+                                   
+                                    // for Hiding
+                                    self.ifscCodeTf.endEditing(true)
+                                    let snackbar = TTGSnackbar.init(message: "No Data Found" , duration: .long)
+                                    snackbar.show()
+                                    
+                                }
+                                
+                               
+                                
+                                
+                               
+                                
+                            }else{
+                                
+                                let snackbar = TTGSnackbar.init(message: obj.Message , duration: .long)
+                                snackbar.show()
+                            }
+                           
+                         
+                            
+                        } catch let error {
+                            print(error)
+                            alertView.close()
+                            
+                            let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
+                            snackbar.show()
+                        }
+                        
+                        
+                    case .failure(let error):
+                        print(error)
+                        alertView.close()
+                        let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .long)
+                        snackbar.show()
+                    }
+                })
                 
-                
-                
-            }, onError: { errorData in
-                alertView.close()
-                let snackbar = TTGSnackbar.init(message: errorData.errorMessage, duration: .long)
+            }else{
+                let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
                 snackbar.show()
-            }, onForceUpgrade: {errorData in})
+            }
             
             
-        }else{
-            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-            snackbar.show()
-        }
         
     }
-
-    
     
     //---<APICALL>---
 
