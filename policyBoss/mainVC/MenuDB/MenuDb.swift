@@ -44,6 +44,7 @@ class MenuDb {
     {
         Menulist =  [MenuModel]()
         Menulist.append(MenuModel(name: "Home" ,img: "home.png", modelId: "nav_home"))
+        Menulist.append(MenuModel(name: "Generate Login Token" ,img: "ic_business_name.png", modelId: "nav_authToken"))
         
         return Menulist
     }
@@ -74,7 +75,7 @@ class MenuDb {
         Menulist.append(MenuModel(name: "Change Password",img: "change_password.png" ,modelId: "nav_ChangePwd"))
         
         
-
+        Menulist.append(MenuModel(name: "Sms Templates" ,img: "mps.png" ,modelId: "nav_SmsTemp"))
        
         //////
        
@@ -127,8 +128,8 @@ class MenuDb {
     {
         
         Menulist =  [MenuModel]()
-        Menulist.append(MenuModel(name: "Lead Dashboard" ,img: "insurance_policy_ic.png" ,modelId: "nav_LeadDashboard"))
-        Menulist.append(MenuModel(name: "Sms Templates" ,img: "mps.png" ,modelId: "nav_SmsTemp"))
+        Menulist.append(MenuModel(name: "Summary & Dashboard" ,img: "insurance_policy_ic.png" ,modelId: "nav_LeadDashboard"))
+       
         
         return Menulist
     }

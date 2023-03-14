@@ -10,21 +10,42 @@ import UIKit
 
 class AlertLoginTokenVC: UIViewController {
 
+    @IBOutlet weak var viewTitle: UIView!
+    @IBOutlet weak var viewLoginToken: SCView!
+    @IBOutlet weak var lblLoginToken: UILabel!
+    var alertLoginToken = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        lblLoginToken.text = alertLoginToken
+        
+        viewLoginToken.layer.cornerRadius = 8
+        viewLoginToken.clipsToBounds = true
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.clickAction(sender:)))
+
+
+        self.viewTitle.addGestureRecognizer(gesture)
+
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    
+    @IBAction func btnCloseClick(_ sender: Any) {
+        
+        dismiss(animated: true)
     }
-    */
+    
+    @objc func clickAction(sender : UITapGestureRecognizer) {
+
+        dismiss(animated: true)
+        
+
+
+     }
+
+
 
 }

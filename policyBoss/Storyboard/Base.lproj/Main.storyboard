@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2jE-tK-VN1">
-    <device id="retina6_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2jE-tK-VN1">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,14 +14,14 @@
             <objects>
                 <viewController storyboardIdentifier="stbLoginVC" id="2jE-tK-VN1" customClass="LoginVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XNP-Ih-fdN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ezgif.com-webp-to-png.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Mq-HW-cnG">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdj-n1-oKj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gwj-a3-4Kn">
                                         <rect key="frame" x="10" y="199" width="394" height="60"/>
@@ -267,20 +267,20 @@
             <objects>
                 <viewController storyboardIdentifier="stbforgtPassVC" id="5a7-eJ-UKF" customClass="forgtPassVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bxj-22-eoi">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ght-Y3-hmy">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8pS-SO-g38">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="732.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="691.66666666666663"/>
                                         <connections>
                                             <action selector="removeViewBtnCliked:" destination="5a7-eJ-UKF" eventType="touchUpInside" id="cdV-7P-9FN"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itr-fJ-3wt">
-                                        <rect key="frame" x="20" y="309" width="374" height="200"/>
+                                        <rect key="frame" x="20" y="268" width="374" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FORGOT PASSWORD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIa-vP-yfx">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -392,11 +392,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbMainfinMartVC" id="RIJ-2g-ZFQ" customClass="MainfinMartVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rFc-nU-Fop">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZA-dC-pqs">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s51-2L-N4k">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -580,11 +580,11 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="poM-Qi-4Ff">
-                                        <rect key="frame" x="0.0" y="130" width="414" height="680"/>
+                                        <rect key="frame" x="0.0" y="130" width="414" height="598"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="82" id="4hf-Zg-JNc" customClass="MainfinmartTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="82"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="82"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4hf-Zg-JNc" id="fEJ-Z1-dPy">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
@@ -725,16 +725,16 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sPK-1r-RLB">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdd-OQ-ok1">
-                                                <rect key="frame" x="20" y="234" width="374" height="350"/>
+                                                <rect key="frame" x="20" y="193" width="374" height="350"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0i9-95-lD7">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDN-gr-O85">
-                                                                <rect key="frame" x="10" y="12.666666666666686" width="160" height="25"/>
+                                                                <rect key="frame" x="10" y="12.666666666666657" width="160" height="25"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="25" id="1cG-7S-A3g"/>
                                                                 </constraints>
@@ -778,7 +778,7 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pcell" rowHeight="162" id="1V0-Gw-ahy" customClass="callingRevampTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.666666030883789" width="374" height="162"/>
+                                                                <rect key="frame" x="0.0" y="50" width="374" height="162"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1V0-Gw-ahy" id="VGM-Cb-Auv">
                                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="162"/>
@@ -1015,11 +1015,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbFinmartMenuVC" id="li3-C1-rJ4" customClass="FinmartMenuVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XGU-0y-sbC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-9L-py9">
-                                <rect key="frame" x="39" y="44" width="375" height="818"/>
+                                <rect key="frame" x="39" y="0.0" width="375" height="736"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="wOF-rZ-Oi7"/>
@@ -1029,7 +1029,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfU-kr-mij">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIc-jL-Viw">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
@@ -1207,11 +1207,11 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ml1-09-WR1">
-                                        <rect key="frame" x="0.0" y="160" width="414" height="658"/>
+                                        <rect key="frame" x="0.0" y="160" width="414" height="576"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="nVi-hU-MKN" customClass="finmartMenuCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="66"/>
+                                                <rect key="frame" x="0.0" y="50" width="414" height="66"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVi-hU-MKN" id="hsv-Yr-dQI">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
@@ -1295,11 +1295,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbchangePasswrdVC" id="Pnp-6K-Avw" customClass="changePasswrdVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bRM-PO-8nl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RS6-IZ-UiM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rrp-F1-1Pq">
                                         <rect key="frame" x="12" y="10" width="22" height="30"/>
@@ -1341,13 +1341,13 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pb_bg" translatesAutoresizingMaskIntoConstraints="NO" id="mfV-8S-gfE">
-                                <rect key="frame" x="60" y="114" width="294" height="120"/>
+                                <rect key="frame" x="60" y="70" width="294" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="t90-HA-d8k"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ONE STOP FINANCIAL SOLUTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-yf-IX4">
-                                <rect key="frame" x="83.666666666666686" y="234" width="247" height="25"/>
+                                <rect key="frame" x="83.666666666666686" y="190" width="247" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="3oZ-mw-sPL"/>
                                 </constraints>
@@ -1356,7 +1356,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrP-tj-RP3">
-                                <rect key="frame" x="124" y="261" width="166" height="25"/>
+                                <rect key="frame" x="124" y="217" width="166" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="1xn-Dk-aoH"/>
                                 </constraints>
@@ -1365,7 +1365,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIo-cb-kOi">
-                                <rect key="frame" x="10" y="294" width="394" height="60"/>
+                                <rect key="frame" x="10" y="250" width="394" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Old Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gDw-Qj-oQA" customClass="ACFloatingTextfield" customModule="PolicyBoss_Pro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
@@ -1385,7 +1385,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzf-qR-usw">
-                                <rect key="frame" x="10" y="364" width="394" height="60"/>
+                                <rect key="frame" x="10" y="320" width="394" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jvN-ZA-MRP" customClass="ACFloatingTextfield" customModule="PolicyBoss_Pro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
@@ -1405,7 +1405,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH0-CP-L35">
-                                <rect key="frame" x="10" y="434" width="394" height="60"/>
+                                <rect key="frame" x="10" y="390" width="394" height="60"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IIr-Bf-mb4" customClass="ACFloatingTextfield" customModule="PolicyBoss_Pro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="60"/>
@@ -1425,7 +1425,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r3I-D6-unC">
-                                <rect key="frame" x="10" y="514" width="394" height="50"/>
+                                <rect key="frame" x="10" y="470" width="394" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.49019607843137253" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="qmI-Ct-MUa"/>
@@ -1489,7 +1489,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Snk-45-PSD">
-                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="M3p-mf-J9s">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -1531,13 +1531,13 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLw-jf-joR">
-                                <rect key="frame" x="10" y="104" width="355" height="2214"/>
+                                <rect key="frame" x="10" y="60" width="355" height="2292"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Re5-GG-i7B">
                                         <rect key="frame" x="0.0" y="180" width="355" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ehb-64-3Xw">
-                                                <rect key="frame" x="12" y="12.666666666666686" width="96" height="20"/>
+                                                <rect key="frame" x="12" y="12.666666666666657" width="96" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -1565,7 +1565,7 @@
                                         <rect key="frame" x="0.0" y="426" width="355" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADDRESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTO-5f-Q5a">
-                                                <rect key="frame" x="12" y="12.666666666666629" width="76.666666666666671" height="20"/>
+                                                <rect key="frame" x="12" y="12.666666666666686" width="76.666666666666671" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -2891,7 +2891,7 @@
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bgT-P5-PAQ">
-                                <rect key="frame" x="0.0" y="2326" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="2360" width="375" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.20134077759999999" blue="0.35598429570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="C6I-E4-rww"/>
@@ -2994,11 +2994,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbtransctionHistoryVC" id="0ps-ag-W1Z" customClass="transctionHistoryVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P10-fh-YmG">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tvZ-4I-CrJ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="cdE-dV-jcP">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -3040,11 +3040,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZjD-y1-R77">
-                                <rect key="frame" x="10" y="104" width="394" height="748"/>
+                                <rect key="frame" x="10" y="60" width="394" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="257" id="pVZ-af-dxn" customClass="transctnHisTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="394" height="257"/>
+                                        <rect key="frame" x="0.0" y="50" width="394" height="257"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pVZ-af-dxn" id="4xk-st-vV3">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="257"/>
@@ -3236,11 +3236,11 @@
             <objects>
                 <viewController storyboardIdentifier="InsuranceBussWebVC" id="Sv2-Uf-1oc" customClass="InsuranceBussWebVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PBe-Ys-hH2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fz-Hz-ZXB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jj-X7-tgw">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -3296,7 +3296,7 @@
                                 </constraints>
                             </view>
                             <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="coW-c3-zid">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -3304,7 +3304,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="8tp-T3-0nP">
-                                <rect key="frame" x="182" y="423" width="50" height="50"/>
+                                <rect key="frame" x="182" y="343" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="5d2-cj-K0f"/>
                                     <constraint firstAttribute="height" constant="50" id="aU1-Ak-DSi"/>
@@ -3341,11 +3341,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbcommonWebVC" id="2rd-RQ-RQT" customClass="commonWebVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lpr-GF-LGy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-Wf-7hx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8S-Um-GaA">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -3400,7 +3400,7 @@
                                 </constraints>
                             </view>
                             <wkWebView contentMode="scaleToFill" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KbZ-Rd-eel">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -3408,7 +3408,7 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FNL-me-RSr">
-                                <rect key="frame" x="182" y="423" width="50" height="50"/>
+                                <rect key="frame" x="182" y="343" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="AyK-3z-qGe"/>
                                     <constraint firstAttribute="height" constant="50" id="jW7-B8-N0d"/>
@@ -3445,11 +3445,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbmpsVC" id="GHU-YD-FoQ" customClass="mpsVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n1i-ry-PfP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSw-b9-gar">
-                                <rect key="frame" x="30" y="298" width="354" height="300"/>
+                                <rect key="frame" x="30" y="218" width="354" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAGIC PLATINUM SUBSCRIPTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3P-aT-oyr">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
@@ -3601,11 +3601,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbincmCalculatrVC" id="Epd-uD-Zs6" customClass="incmCalculatrVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HfD-Ed-qiS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WFR-k7-CkK">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="G4o-ha-RdL">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -3647,7 +3647,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="76U-2n-50B">
-                                <rect key="frame" x="30" y="154" width="354" height="50"/>
+                                <rect key="frame" x="30" y="110" width="354" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.20134077759999999" blue="0.35598429570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Hmr-GA-nBS"/>
@@ -3661,7 +3661,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ub-8m-8O7">
-                                <rect key="frame" x="30" y="264" width="354" height="50"/>
+                                <rect key="frame" x="30" y="220" width="354" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.20134077759999999" blue="0.35598429570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jhF-xD-tWy"/>
@@ -3702,11 +3702,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbincmPotentialVC" id="3cy-ig-zN9" customClass="incmPotentialVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Usa-tS-RRv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-P0-YTn">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="3fG-xx-bGB">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -3767,11 +3767,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbsyncContactsVC" id="vRC-fz-JMh" customClass="syncContactsVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PhJ-v3-8sP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L0W-w5-dty">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="mQq-Ab-fef">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -3835,7 +3835,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2k-ZP-k6O">
-                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohF-Fp-EOP">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -3877,7 +3877,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LM-hS-IWN">
-                                <rect key="frame" x="0.0" y="94" width="375" height="1722"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="1800"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfx-an-Fhq">
                                         <rect key="frame" x="10" y="10" width="355" height="50"/>
@@ -4467,7 +4467,7 @@
                                         <rect key="frame" x="10" y="953" width="355" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BANK DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn9-rE-ZXU">
-                                                <rect key="frame" x="10" y="14.666666666666742" width="115" height="21"/>
+                                                <rect key="frame" x="10" y="14.666666666666629" width="115" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -5279,19 +5279,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-Vf-9Ar">
-                                <rect key="frame" x="20" y="64" width="335" height="500"/>
+                                <rect key="frame" x="20" y="20" width="335" height="500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mW0-0a-4AO">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Loan Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1t-4V-3lh">
-                                                <rect key="frame" x="10" y="14.666666666666671" width="168" height="21"/>
+                                                <rect key="frame" x="10" y="14.666666666666664" width="168" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m0v-DE-chq">
-                                                <rect key="frame" x="292" y="7.6666666666666714" width="35" height="35"/>
+                                                <rect key="frame" x="292" y="7.6666666666666679" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="JcW-0Y-hQq"/>
                                                     <constraint firstAttribute="height" constant="35" id="Tkx-WN-oRl"/>
@@ -5603,7 +5603,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAw-wz-efK">
-                                <rect key="frame" x="20" y="574" width="335" height="190"/>
+                                <rect key="frame" x="20" y="530" width="335" height="190"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-Eh-6JP">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -5723,7 +5723,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3D-0u-avl">
-                                <rect key="frame" x="20" y="774" width="335" height="190"/>
+                                <rect key="frame" x="20" y="730" width="335" height="190"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJY-Mh-1GN">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -5883,7 +5883,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iq9-IC-ml7">
-                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCZ-Lq-K1i">
                                         <rect key="frame" x="333" y="10" width="30" height="30"/>
@@ -5938,7 +5938,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggB-LE-uta">
-                                <rect key="frame" x="0.0" y="94" width="375" height="972"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="1050"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rz-2s-8SO">
                                         <rect key="frame" x="10" y="10" width="355" height="520"/>
@@ -6611,18 +6611,18 @@
             <objects>
                 <viewController storyboardIdentifier="stbgetmpsTnCVC" id="5gU-i4-K5h" customClass="getmpsTnCVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rbg-jR-2v4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4R-by-8RM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="bckcloseBtnCliked:" destination="5gU-i4-K5h" eventType="touchUpInside" id="XRD-jU-AGG"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPK-eh-SPW">
-                                <rect key="frame" x="20" y="298" width="374" height="300"/>
+                                <rect key="frame" x="20" y="218" width="374" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TERMS AND CONDITIONS FOR MPS SUBSCRIPTION" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zN1-X0-fgx">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -6684,11 +6684,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbsmsTemplateVC" id="NDX-dJ-qDc" customClass="smsTemplateVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJh-DH-xQo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ar6-po-BNV">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z12-s3-07b">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -6730,11 +6730,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IDB-Em-3fO">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="144" id="j02-1R-6ES" customClass="smsTempTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="144"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j02-1R-6ES" id="mlD-Dq-Xh1">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
@@ -6820,11 +6820,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbreqpolicyVC" id="86R-b1-7us" customClass="reqpolicyVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0C0-DM-MYR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldB-Wl-jab">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9ck-ol-jy7">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -6866,7 +6866,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWr-09-DiU">
-                                <rect key="frame" x="5" y="99" width="404" height="120"/>
+                                <rect key="frame" x="5" y="55" width="404" height="120"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Send SMS From Your registered Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ndz-Nq-HAR">
                                         <rect key="frame" x="10" y="5" width="384" height="25"/>
@@ -6939,11 +6939,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbwhatsNewVC" id="KZF-v5-gVn" customClass="whatsNewVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GHd-YJ-xJd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6xJ-hQ-zOF">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="KlG-HP-bqN">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -6985,11 +6985,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHx-RE-ed0">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="96" id="wzA-jM-DOo" customClass="whatsNewTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="96"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wzA-jM-DOo" id="pWS-Sc-uDw">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
@@ -7053,11 +7053,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbhnfcontactUsVC" id="Mpr-gE-cDr" customClass="hnfcontactUsVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3ve-w7-e8T">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSj-JB-VMa">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="V9y-GB-ZJB">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -7099,11 +7099,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-22-KVh">
-                                <rect key="frame" x="10" y="104" width="394" height="748"/>
+                                <rect key="frame" x="10" y="60" width="394" height="666"/>
                                 <color key="backgroundColor" red="0.91914527150000003" green="0.91914527150000003" blue="0.91914527150000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="184" id="lXF-wQ-1Xs" customClass="hnfcontctTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="394" height="184"/>
+                                        <rect key="frame" x="0.0" y="50" width="394" height="184"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lXF-wQ-1Xs" id="Xue-4i-5oW">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="184"/>
@@ -7320,11 +7320,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbhnfraiseTicktVC" id="RJI-SB-KVT" customClass="hnfraiseTicktVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jOr-xE-Xp3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jU2-H9-P4e">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="aVd-om-lnP">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -7366,7 +7366,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOW-3S-rjh">
-                                <rect key="frame" x="0.0" y="94" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dtf-c9-3IX">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="50"/>
@@ -7463,11 +7463,11 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QJv-fs-Ysy">
-                                <rect key="frame" x="4" y="154" width="406" height="698"/>
+                                <rect key="frame" x="4" y="110" width="406" height="616"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="176" id="yg1-WL-mpV" customClass="hnfraiseticktTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="406" height="176"/>
+                                        <rect key="frame" x="0.0" y="50" width="406" height="176"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yg1-WL-mpV" id="gXb-ai-7w1">
                                             <rect key="frame" x="0.0" y="0.0" width="406" height="176"/>
@@ -7727,7 +7727,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClV-Rm-dzb">
-                                <rect key="frame" x="344" y="772" width="50" height="50"/>
+                                <rect key="frame" x="344" y="646" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="rjr-KA-U4C"/>
                                     <constraint firstAttribute="width" constant="50" id="wEU-6x-bPc"/>
@@ -7768,11 +7768,11 @@
             <objects>
                 <viewController storyboardIdentifier="stbaddraiseticktVC" id="Qfv-2A-xUe" customClass="addraiseticktVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3qe-2k-Z2E">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehS-So-JTO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="djf-sn-oBK">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -7814,7 +7814,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3o-uK-JnP">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uf8-gR-m4Q">
                                         <rect key="frame" x="5" y="10" width="404" height="80"/>
@@ -8258,7 +8258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAP-dq-8if">
-                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="8l1-Hv-bAy">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -8313,7 +8313,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J7l-No-SZr">
-                                <rect key="frame" x="0.0" y="94" width="375" height="872"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="950"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wPs-5H-aSE">
                                         <rect key="frame" x="10" y="10" width="355" height="910"/>
@@ -8405,7 +8405,7 @@ U66030PN2002PTC017009]</string>
                                                 <rect key="frame" x="0.0" y="152" width="355" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLx-gh-gNV">
-                                                        <rect key="frame" x="20" y="39.666666666666686" width="10" height="21"/>
+                                                        <rect key="frame" x="20" y="39.666666666666657" width="10" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -8912,7 +8912,7 @@ U66030PN2002PTC017009]</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woF-hn-tKK">
-                                <rect key="frame" x="0.0" y="44" width="375" height="822"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y16-dB-ccs">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
@@ -8927,7 +8927,7 @@ U66030PN2002PTC017009]</string>
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKy-u4-Tbe">
-                                                        <rect key="frame" x="15.000000000000007" y="14.666666666666657" width="114.66666666666669" height="21"/>
+                                                        <rect key="frame" x="15.000000000000007" y="14.666666666666671" width="114.66666666666669" height="21"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -9058,7 +9058,7 @@ U66030PN2002PTC017009]</string>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="193" id="cNR-4Q-JN2" customClass="viewCommentnAddTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="193"/>
+                                                        <rect key="frame" x="0.0" y="50" width="375" height="193"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cNR-4Q-JN2" id="ifc-PU-gdD">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="193"/>
@@ -9197,11 +9197,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbhelpnfeedbackVC" id="qNZ-aP-ZE4" customClass="helpnfeedbackVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="50G-kd-ldI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tjn-dH-3gU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9MC-NN-M0S">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -9243,11 +9243,11 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lHb-7I-TIf">
-                                <rect key="frame" x="10" y="104" width="394" height="748"/>
+                                <rect key="frame" x="10" y="60" width="394" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="85" id="BsS-Uf-rIp" customClass="helpnfeedbckTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="394" height="85"/>
+                                        <rect key="frame" x="0.0" y="50" width="394" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BsS-Uf-rIp" id="gd9-2h-lEz">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="85"/>
@@ -9311,11 +9311,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbSalesmaterialVC" id="R6A-oa-RKU" customClass="SalesmaterialVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a3j-3U-ahO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2X-Hj-5cg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lB0-Af-cg7">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -9370,13 +9370,13 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jMr-w3-IoK">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.88773664210000003" green="0.88773664210000003" blue="0.88773664210000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="82" id="MSZ-YY-pGO" customClass="salesmaterialTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="82"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MSZ-YY-pGO" id="c8J-2v-iSS">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
@@ -9460,10 +9460,10 @@ U66030PN2002PTC017009]</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5P-NO-XAq">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ga-1p-8W4">
-                                        <rect key="frame" x="30" y="309" width="354" height="200"/>
+                                        <rect key="frame" x="30" y="268" width="354" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SALES MATERIAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-ab-aix">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
@@ -9598,11 +9598,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbPendingcasesVC" id="3uf-vB-f1e" customClass="PendingcasesVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LEp-AS-Itc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGw-Vt-iEN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="LWO-Ra-ajj">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -9657,10 +9657,10 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yT4-DU-UsQ">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpm-zj-F7E">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="686"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -9698,12 +9698,12 @@ U66030PN2002PTC017009]</string>
         <scene sceneID="GoK-Jk-kXv">
             <objects>
                 <viewController storyboardIdentifier="stbinsalesmaterialVC" id="q3X-B4-zk1" customClass="insalesmaterialVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vfv-z1-WhX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="Vfv-z1-WhX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJb-E9-w6C">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AjS-kd-zLw">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -9758,7 +9758,7 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONCEPT BROCHURES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2eQ-J4-43s">
-                                <rect key="frame" x="0.0" y="94" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="RAV-D0-g4G"/>
@@ -9767,11 +9767,11 @@ U66030PN2002PTC017009]</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HDc-BP-aaK">
-                                <rect key="frame" x="0.0" y="134" width="414" height="50"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HDc-BP-aaK">
+                                <rect key="frame" x="0.0" y="149" width="414" height="71"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8x-dh-rSf">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T8x-dh-rSf">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health Insurance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OWY-xG-I8e">
                                                 <rect key="frame" x="15" y="14" width="394" height="21"/>
@@ -9790,8 +9790,8 @@ U66030PN2002PTC017009]</string>
                                             <constraint firstItem="OWY-xG-I8e" firstAttribute="leading" secondItem="T8x-dh-rSf" secondAttribute="leading" constant="15" id="zoU-Qu-sv2"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-n0-CXt">
-                                        <rect key="frame" x="0.0" y="50" width="0.0" height="4"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bN5-n0-CXt">
+                                        <rect key="frame" x="0.0" y="71" width="0.0" height="4"/>
                                         <color key="backgroundColor" red="0.0" green="0.48939327249999998" blue="0.83452966370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="4" id="6Ua-3E-gP3"/>
@@ -9811,14 +9811,14 @@ U66030PN2002PTC017009]</string>
                                     <constraint firstItem="T8x-dh-rSf" firstAttribute="leading" secondItem="HDc-BP-aaK" secondAttribute="leading" id="zgh-00-a9V"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2V-Va-UUA">
-                                <rect key="frame" x="0.0" y="188" width="414" height="60"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y2V-Va-UUA">
+                                <rect key="frame" x="0.0" y="224" width="414" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XjS-Qj-C3H">
                                         <rect key="frame" x="0.0" y="0.0" width="138" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENGLISH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDX-dP-4Nf">
-                                                <rect key="frame" x="65.333333333333314" y="19.666666666666657" width="72.666666666666686" height="21"/>
+                                                <rect key="frame" x="65.333333333333314" y="19.666666666666671" width="72.666666666666686" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.48939327249999998" blue="0.83452966370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -9835,7 +9835,7 @@ U66030PN2002PTC017009]</string>
                                         <rect key="frame" x="138" y="0.0" width="138" height="60"/>
                                         <subviews>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8O-Uc-Gub">
-                                                <rect key="frame" x="44.666666666666657" y="14.666666666666657" width="51" height="31"/>
+                                                <rect key="frame" x="44.666666666666657" y="14.666666666666671" width="51" height="31"/>
                                                 <connections>
                                                     <action selector="engnhindiSwitchBtnCliked:" destination="q3X-B4-zk1" eventType="valueChanged" id="NTc-gH-h3T"/>
                                                 </connections>
@@ -9851,7 +9851,7 @@ U66030PN2002PTC017009]</string>
                                         <rect key="frame" x="276" y="0.0" width="138" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HINDI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOD-V0-RFk">
-                                                <rect key="frame" x="0.0" y="19.666666666666657" width="46.666666666666664" height="21"/>
+                                                <rect key="frame" x="0.0" y="19.666666666666671" width="46.666666666666664" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -9882,8 +9882,8 @@ U66030PN2002PTC017009]</string>
                                     <constraint firstItem="sLx-Dp-1Z3" firstAttribute="width" secondItem="XjS-Qj-C3H" secondAttribute="width" id="vtH-BH-Iwl"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t0L-33-seP">
-                                <rect key="frame" x="0.0" y="248" width="414" height="614"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="t0L-33-seP">
+                                <rect key="frame" x="0.0" y="284" width="414" height="614"/>
                                 <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="0.43584118150684931" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="614" id="WIk-lY-7uR"/>
@@ -9967,15 +9967,15 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbpendingcasescapsVC" id="xvW-fn-qAf" customClass="pendingcasescapsVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zxd-oZ-4xU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="beV-VL-Thu">
-                                <rect key="frame" x="10" y="94" width="394" height="768"/>
+                                <rect key="frame" x="10" y="50" width="394" height="686"/>
                                 <color key="backgroundColor" red="0.86104723849999998" green="0.86104723849999998" blue="0.86104723849999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="271" id="YP2-Sh-Qvj" customClass="pendingcaseTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="394" height="271"/>
+                                        <rect key="frame" x="0.0" y="50" width="394" height="271"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YP2-Sh-Qvj" id="mI5-CZ-pJi">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="271"/>
@@ -10322,7 +10322,7 @@ U66030PN2002PTC017009]</string>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UqD-HT-eBN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="3s7-oI-789">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -10390,11 +10390,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbimgsalesmaterialVC" id="5Lx-Ts-oDp" customClass="imgsalesmaterialVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpe-h0-D15">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAP-bU-YOw">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cla-tX-7JF">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -10462,7 +10462,7 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L1m-og-QPY">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
@@ -10491,11 +10491,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbShareImageVC" id="cYN-8n-n09" customClass="ShareImageVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D3d-nz-8Mk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ang-M6-eRU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P48-Lg-8ro">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -10565,10 +10565,10 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5z7-AZ-buI">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mOn-0P-h9N">
-                                        <rect key="frame" x="10" y="653.66666666666663" width="400" height="106.33333333333337"/>
+                                        <rect key="frame" x="10" y="571.66666666666663" width="400" height="106.33333333333337"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMK-bM-KN6" userLabel="qdqdqd oih">
                                                 <rect key="frame" x="118" y="4" width="274" height="20.333333333333332"/>
@@ -10635,7 +10635,7 @@ U66030PN2002PTC017009]</string>
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yef-bh-da9">
-                                        <rect key="frame" x="8" y="8" width="398" height="644.66666666666663"/>
+                                        <rect key="frame" x="8" y="8" width="398" height="562.66666666666663"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
@@ -10682,11 +10682,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbimgsalesmaterialNewVC" modalPresentationStyle="fullScreen" id="CUL-NE-WyA" customClass="imgsalesmaterialNewVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="bV5-2q-5rB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBe-5Q-SWN">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hac-F9-hxv">
                                         <rect key="frame" x="372" y="10" width="30" height="30"/>
@@ -10755,10 +10755,10 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wn-df-d6N">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-pH-B56">
-                                        <rect key="frame" x="10" y="660" width="400" height="100"/>
+                                        <rect key="frame" x="10" y="578" width="400" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCM-kV-Chj" userLabel="qdqdqd oih">
                                                 <rect key="frame" x="138" y="4" width="7" height="14"/>
@@ -10834,7 +10834,7 @@ U66030PN2002PTC017009]</string>
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bwR-2m-gHM">
-                                        <rect key="frame" x="20" y="20" width="374" height="639"/>
+                                        <rect key="frame" x="20" y="20" width="374" height="557"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
@@ -10882,11 +10882,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="TransactionVC" id="ENt-dx-5Nr" customClass="TransactionVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sxU-Qs-qOY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFB-Q8-Nj4">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="XVH-ro-qzq">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -10928,11 +10928,11 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dbn-0I-8di">
-                                <rect key="frame" x="0.0" y="102" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="58" width="414" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="200" id="Pd7-fJ-Gnv" customClass="TranscationHistoryCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="200"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pd7-fJ-Gnv" id="cRf-Fa-MRc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
@@ -11157,11 +11157,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbKnowlgeGuruVC" id="2k2-41-kZA" customClass="KnowlgeGuruVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YsW-fB-TK3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJe-aq-qBO">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="m3V-Ir-haN">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -11216,7 +11216,7 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39c-Or-mKf">
-                                <rect key="frame" x="4" y="104" width="406" height="65"/>
+                                <rect key="frame" x="4" y="60" width="406" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME TO KNOWLEDGE BANK " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xre-ZS-9C0">
                                         <rect key="frame" x="73.666666666666686" y="15.000000000000002" width="259" height="19.666666666666671"/>
@@ -11225,7 +11225,7 @@ U66030PN2002PTC017009]</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOR ALL THAT YOU NEED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9M-5o-G0v">
-                                        <rect key="frame" x="107.66666666666669" y="34.666666666666657" width="191" height="19.333333333333329"/>
+                                        <rect key="frame" x="107.66666666666669" y="34.666666666666671" width="191" height="19.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.48939327249999998" blue="0.83452966370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -11267,11 +11267,11 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VEc-60-k0f">
-                                <rect key="frame" x="0.0" y="184" width="414" height="678"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="596"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="89" id="QMG-cY-fvQ" customClass="knowGuruTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="89"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QMG-cY-fvQ" id="r3c-Yw-6rK">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
@@ -11368,11 +11368,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbaddSubUserVC" id="x1i-ZT-nHe" customClass="addSubUserVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Ap-Bb-GFA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TjZ-06-6FZ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="Vb0-lR-W8u">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -11427,11 +11427,11 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PW9-qt-gjP">
-                                <rect key="frame" x="10" y="104" width="394" height="748"/>
+                                <rect key="frame" x="10" y="60" width="394" height="666"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="168" id="A8Q-iW-XNz" customClass="addSubUserTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="394" height="168"/>
+                                        <rect key="frame" x="0.0" y="50" width="394" height="168"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A8Q-iW-XNz" id="kzT-8U-P4P">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="168"/>
@@ -11589,7 +11589,7 @@ U66030PN2002PTC017009]</string>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqB-Jd-EJr">
-                                <rect key="frame" x="339" y="782" width="50" height="50"/>
+                                <rect key="frame" x="339" y="656" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Aq0-OH-Hfr"/>
                                     <constraint firstAttribute="height" constant="50" id="BNo-nW-wqe"/>
@@ -11627,11 +11627,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbnewaddSubUserVC" id="nJi-97-MhP" customClass="newaddSubUserVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G1W-cV-6YK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZ1-HD-S0e">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="ufW-Ct-y1z">
                                         <rect key="frame" x="12" y="10" width="25" height="30"/>
@@ -11686,7 +11686,7 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fwe-fP-pdT">
-                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XsH-DQ-4Y0">
                                         <rect key="frame" x="10" y="10" width="394" height="500"/>
@@ -12203,10 +12203,10 @@ U66030PN2002PTC017009]</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0py-1q-Nin">
-                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER AS ASSOCIATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFD-i8-Ike">
-                                        <rect key="frame" x="79" y="17.666666666666664" width="217" height="25"/>
+                                        <rect key="frame" x="79" y="17.666666666666668" width="217" height="25.000000000000004"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="cHM-p2-JUl"/>
                                         </constraints>
@@ -12245,13 +12245,13 @@ U66030PN2002PTC017009]</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAL-aF-u9X">
-                                <rect key="frame" x="0.0" y="104" width="375" height="1462"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="1540"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ax-3j-Txa">
                                         <rect key="frame" x="10" y="10" width="355" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PERSONAL INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7e-yC-BBP">
-                                                <rect key="frame" x="10" y="17.666666666666657" width="199.66666666666666" height="20"/>
+                                                <rect key="frame" x="10" y="17.666666666666671" width="199.66666666666666" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="WFp-fX-hF0"/>
                                                 </constraints>
@@ -12260,7 +12260,7 @@ U66030PN2002PTC017009]</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="rQT-y2-fNE">
-                                                <rect key="frame" x="325" y="17.666666666666657" width="20" height="20"/>
+                                                <rect key="frame" x="325" y="17.666666666666671" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="1cw-2z-Mdm"/>
                                                     <constraint firstAttribute="height" constant="20" id="oLz-yX-N0d"/>
@@ -12946,7 +12946,7 @@ U66030PN2002PTC017009]</string>
                                                         </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="0.0" reuseIdentifier="cell" id="IQq-8l-aAm" customClass="pospAmntTableViewCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="44.666666030883789" width="335" height="37.333332061767578"/>
+                                                                <rect key="frame" x="0.0" y="50" width="335" height="37.333332061767578"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IQq-8l-aAm" id="5OT-ya-oDp">
                                                                     <rect key="frame" x="0.0" y="0.0" width="335" height="37.333332061767578"/>
@@ -13079,7 +13079,7 @@ U66030PN2002PTC017009]</string>
                                         <rect key="frame" x="10" y="927" width="355" height="55"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PROFESSIONAL INFORMATION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSJ-Ot-eMS">
-                                                <rect key="frame" x="10" y="17.666666666666742" width="236" height="20"/>
+                                                <rect key="frame" x="10" y="17.666666666666629" width="236" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="5ob-0T-aSh"/>
                                                 </constraints>
@@ -13088,7 +13088,7 @@ U66030PN2002PTC017009]</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="down_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="mKO-GH-bET">
-                                                <rect key="frame" x="325" y="17.666666666666742" width="20" height="20"/>
+                                                <rect key="frame" x="325" y="17.666666666666629" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="HYI-dt-ITr"/>
                                                     <constraint firstAttribute="height" constant="20" id="fQT-pE-OSN"/>
@@ -13674,10 +13674,10 @@ U66030PN2002PTC017009]</string>
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2NF-QL-nmp">
-                                <rect key="frame" x="0.0" y="104" width="375" height="1462"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="1540"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KWU-rO-jeE">
-                                        <rect key="frame" x="20" y="167.33333333333331" width="335" height="250"/>
+                                        <rect key="frame" x="20" y="183" width="335" height="250"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERIFY YOUR MOBILE NO." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WTi-l7-mBX">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
@@ -13837,11 +13837,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbmultiselctionTVC" id="LiQ-sf-942" customClass="multiselctionTVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v79-EU-bDP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7C-vX-T00">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YBB-Oe-keF">
                                         <rect key="frame" x="30" y="45" width="354" height="504"/>
@@ -13851,7 +13851,7 @@ U66030PN2002PTC017009]</string>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="57" id="LUD-ef-euW" customClass="multiselctionTVCell" customModule="PolicyBoss_Pro" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.666666030883789" width="354" height="57"/>
+                                                <rect key="frame" x="0.0" y="50" width="354" height="57"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LUD-ef-euW" id="oVd-nc-OmG">
                                                     <rect key="frame" x="0.0" y="0.0" width="354" height="57"/>
@@ -13972,11 +13972,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbverifyMobNoVC" id="e55-tL-Xov" customClass="verifyMobNoVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YpA-hS-cK5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0Z-g5-Qep">
-                                <rect key="frame" x="20" y="323" width="374" height="250"/>
+                                <rect key="frame" x="20" y="243" width="374" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERIFY YOUR MOBILE NO." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKo-iA-EbO">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
@@ -14071,14 +14071,14 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbnotipopupurlVC" id="Qlo-nr-cq4" customClass="notipopupurlVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qvY-i5-iU7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rba-bH-gZf">
-                                <rect key="frame" x="25" y="119" width="364" height="668"/>
+                                <rect key="frame" x="25" y="75" width="364" height="586"/>
                                 <subviews>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNq-GP-ka5">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="586"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="delegate" destination="li3-C1-rJ4" id="f0Q-pg-has"/>
@@ -14130,11 +14130,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbDatePickerVC" id="N9T-CW-Gcd" customClass="DatePickerVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vjv-G7-KdY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMt-ds-p3y">
-                                <rect key="frame" x="30" y="298" width="354" height="300"/>
+                                <rect key="frame" x="30" y="218" width="354" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOa-jJ-xWN">
                                         <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
@@ -14209,11 +14209,11 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbPickerViewVC" id="fRo-7m-BbM" customClass="PickerViewVC" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QYt-Sq-Mjd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dlf-uc-uSf">
-                                <rect key="frame" x="10" y="462" width="394" height="200"/>
+                                <rect key="frame" x="10" y="336" width="394" height="200"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rx2-ZR-apf">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="50"/>
@@ -14291,7 +14291,7 @@ U66030PN2002PTC017009]</string>
             <objects>
                 <viewController storyboardIdentifier="stbKYDrawerController" id="eWj-gx-zve" customClass="KYDrawerController" customModule="PolicyBoss_Pro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rvz-Ae-8gm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="AI7-1u-19D"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

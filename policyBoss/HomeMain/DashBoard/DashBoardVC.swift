@@ -552,6 +552,7 @@ class DashBoardVC: UIViewController {
                 "device_name": getDeviceName() as AnyObject,
                 "os_detail": getDeviceOS() as AnyObject,
                 "action_type": "active" as AnyObject,
+                "App_Version":"PolicyBossPro-"as AnyObject,
                 "device_info" : "" as AnyObject
                 
             ]

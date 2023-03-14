@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="65h-bo-9Bi">
-                                <rect key="frame" x="30" y="94" width="354" height="693"/>
+                                <rect key="frame" x="30" y="98" width="354" height="689"/>
                                 <subviews>
                                     <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVm-1y-eVH">
-                                        <rect key="frame" x="10" y="10" width="334" height="673"/>
+                                        <rect key="frame" x="10" y="10" width="334" height="669"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <wkWebViewConfiguration key="configuration">
                                             <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -39,7 +39,7 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="y8c-VB-QRH">
-                                        <rect key="frame" x="152" y="350" width="50" height="50"/>
+                                        <rect key="frame" x="152" y="346" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="SfA-xN-l6b"/>
                                             <constraint firstAttribute="height" constant="50" id="doC-Jm-43E"/>
@@ -61,7 +61,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uh2-YF-OLl"/>
-                        <color key="backgroundColor" red="0.75035691624365486" green="0.75035691624365486" blue="0.75035691624365486" alpha="0.62831763698630139" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="0.62831763698630139" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uh2-YF-OLl" firstAttribute="bottom" secondItem="65h-bo-9Bi" secondAttribute="bottom" constant="75" id="FJq-Nd-PdP"/>
                             <constraint firstItem="65h-bo-9Bi" firstAttribute="leading" secondItem="uh2-YF-OLl" secondAttribute="leading" constant="30" id="Rzt-3m-616"/>

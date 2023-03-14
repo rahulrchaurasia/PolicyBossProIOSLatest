@@ -168,6 +168,8 @@
 		B28BDBB52701DF8500C5DE95 /* Extension+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28BDBB42701DF8500C5DE95 /* Extension+Notification.swift */; };
 		B2915B4326998FEB00DECE41 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2915B4226998FEB00DECE41 /* Reachability.swift */; };
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
+		CD0E58FE29C07449008A67BF /* SyncContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0E58FD29C07449008A67BF /* SyncContact.storyboard */; };
+		CD0E590129C074E9008A67BF /* WelcomeSynConatctVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */; };
 		CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD290470288042FB00C75C74 /* FOSUserResponse.swift */; };
 		CD2D676329125ED000DF42D9 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D676229125ED000DF42D9 /* Extension+UIView.swift */; };
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
@@ -179,10 +181,13 @@
 		CD475D0C2910F1CC00BAE252 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D0B2910F1CC00BAE252 /* NotificationVC.swift */; };
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
+		CD906EE029A72E9E004F85DC /* stbOther.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD906EDF29A72E9E004F85DC /* stbOther.storyboard */; };
 		CDAA0FA2286CAAD2009B69A9 /* AlertPospAmntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */; };
 		CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */; };
 		CDC7B7F329A4C5BB00DC2012 /* IFSCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */; };
 		CDC7B7F629A4F2EB00DC2012 /* DeviceDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */; };
+		CDD14A0229A73EBD006BB92B /* AlertLoginTokenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */; };
+		CDD14A0429A753EA006BB92B /* OauthTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,6 +392,8 @@
 		B2915B4226998FEB00DECE41 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDocVC.swift; sourceTree = "<group>"; };
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD0E58FD29C07449008A67BF /* SyncContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyncContact.storyboard; sourceTree = "<group>"; };
+		CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSynConatctVC.swift; sourceTree = "<group>"; };
 		CD290470288042FB00C75C74 /* FOSUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOSUserResponse.swift; sourceTree = "<group>"; };
 		CD2D676229125ED000DF42D9 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
@@ -398,10 +405,13 @@
 		CD475D0B2910F1CC00BAE252 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
+		CD906EDF29A72E9E004F85DC /* stbOther.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = stbOther.storyboard; sourceTree = "<group>"; };
 		CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPospAmntVC.swift; sourceTree = "<group>"; };
 		CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntAlertTVCell.swift; sourceTree = "<group>"; };
 		CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCModel.swift; sourceTree = "<group>"; };
 		CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailModel.swift; sourceTree = "<group>"; };
+		CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLoginTokenVC.swift; sourceTree = "<group>"; };
+		CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OauthTokenModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -557,6 +567,7 @@
 				B26D7E252696EE1B00FCECAA /* AlertHealthAssureVC.swift */,
 				B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */,
 				B25E94F226FF87E2009959C8 /* AlertConnectionVC.swift */,
+				CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */,
 			);
 			path = AlertDialog;
 			sourceTree = "<group>";
@@ -871,6 +882,8 @@
 				840AC5D321BE80AB004DCB26 /* Main.storyboard */,
 				840AC5D821BE80AC004DCB26 /* LaunchScreen.storyboard */,
 				CD41B28A290FD4D8004ACDD8 /* Home.storyboard */,
+				CD906EDF29A72E9E004F85DC /* stbOther.storyboard */,
+				CD0E58FD29C07449008A67BF /* SyncContact.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -915,6 +928,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				CD0E58FF29C074AD008A67BF /* syncContact */,
 				CD753849285CA3EA004B2D4D /* registeration */,
 				B21FAC912737C0D200AC9AA4 /* Transaction */,
 				B20B223A2731924F009A522E /* MenuDB */,
@@ -1100,6 +1114,14 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		CD0E58FF29C074AD008A67BF /* syncContact */ = {
+			isa = PBXGroup;
+			children = (
+				CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */,
+			);
+			path = syncContact;
+			sourceTree = "<group>";
+		};
 		CD29046F2880427A00C75C74 /* FosInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1185,6 +1207,7 @@
 			isa = PBXGroup;
 			children = (
 				CDC7B7F529A4F2EB00DC2012 /* DeviceDetailModel.swift */,
+				CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */,
 			);
 			path = deviceDetail;
 			sourceTree = "<group>";
@@ -1319,12 +1342,14 @@
 				840AC5DA21BE80AC004DCB26 /* LaunchScreen.storyboard in Resources */,
 				CD41B28B290FD4D8004ACDD8 /* Home.storyboard in Resources */,
 				840AC5D721BE80AC004DCB26 /* Assets.xcassets in Resources */,
+				CD0E58FE29C07449008A67BF /* SyncContact.storyboard in Resources */,
 				44AB3969243E1CE30009BD86 /* AlertWebViewStoryboard.storyboard in Resources */,
 				442E20DF24C8347A00FFC075 /* Walkthrough.storyboard in Resources */,
 				4438D06224B3802500D68498 /* eula.html in Resources */,
 				447DF6302466DDD400D0F545 /* payment.storyboard in Resources */,
 				443F8C3624D03026006BA89F /* newicon.gif in Resources */,
 				840AC5D521BE80AB004DCB26 /* Main.storyboard in Resources */,
+				CD906EE029A72E9E004F85DC /* stbOther.storyboard in Resources */,
 				4438D06024B3800800D68498 /* Disclosure.html in Resources */,
 				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
 			);
@@ -1456,6 +1481,7 @@
 				CD475D042910DEBA00BAE252 /* MenuBottomSheetVC.swift in Sources */,
 				B253B24F261652E0000C3A7D /* IQKeyboardManager+Position.swift in Sources */,
 				B218FF17269336F70090A877 /* HealthAssureConfigure.swift in Sources */,
+				CDD14A0229A73EBD006BB92B /* AlertLoginTokenVC.swift in Sources */,
 				8410403B21D784EB00C3B7A7 /* FinmartStyler.swift in Sources */,
 				8480BBDB220807FA00BEEDF4 /* helpnfeedbckTVCell.swift in Sources */,
 				442E20E324C8388400FFC075 /* TutorialViewController.swift in Sources */,
@@ -1529,6 +1555,7 @@
 				84288B2321CCF3A400BC50BC /* profileVC.swift in Sources */,
 				442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */,
 				4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */,
+				CDD14A0429A753EA006BB92B /* OauthTokenModel.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,
 				443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
@@ -1551,6 +1578,7 @@
 				B26D7E2926972B9B00FCECAA /* HealthAssureShortUrlResponse.swift in Sources */,
 				8403E89421BFC21A0009662A /* LoginVC.swift in Sources */,
 				4425B11724755E2E00231A1C /* imgsalesmaterialNewVC.swift in Sources */,
+				CD0E590129C074E9008A67BF /* WelcomeSynConatctVC.swift in Sources */,
 				8480BBEE220856E900BEEDF4 /* addraiseticktVC.swift in Sources */,
 				8407146121C0EB1100D35C55 /* PickerViewVC.swift in Sources */,
 			);
@@ -1658,7 +1686,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1713,7 +1741,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1731,7 +1759,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1740,13 +1768,13 @@
 					"$(PROJECT_DIR)/policyBoss",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/policyBoss/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1763,7 +1791,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1772,13 +1800,13 @@
 					"$(PROJECT_DIR)/policyBoss",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/policyBoss/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";

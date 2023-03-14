@@ -60,6 +60,15 @@ class AlertService {
         return alertDocVC
     }
     
+    func alertLoginToken(LoginToken: String ) -> AlertLoginTokenVC {
+        
+        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+        let alertLoginVC =  storyboard.instantiateViewController(withIdentifier: "AlertLoginTokenVC") as! AlertLoginTokenVC
+        
+        alertLoginVC.alertLoginToken = LoginToken
+      
+        return alertLoginVC
+    }
     
     //AlertConnectionVC
     

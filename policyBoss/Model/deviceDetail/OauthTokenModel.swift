@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+
+struct OauthTokenModel: Codable {
+    let Status, Msg, Token: String
+
+//    enum CodingKeys: String, CodingKey {
+//        case status = "Status"
+//        case msg = "Msg"
+//        case token = "Token"
+//    }
+}

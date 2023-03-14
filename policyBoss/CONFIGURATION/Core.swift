@@ -28,11 +28,11 @@ class Core {
     ///
     
     func isVerifyInstall() -> Bool {
-        return !UserDefaults.standard.bool(forKey: "isVerify")
+        return !UserDefaults.standard.bool(forKey: "isVerifyINSTALL")
     }
     
     func setVerifyInstall()  {
-        UserDefaults.standard.set(true, forKey: "isVerify")
+        UserDefaults.standard.set(true, forKey: "isVerifyINSTALL")
     }
     
     

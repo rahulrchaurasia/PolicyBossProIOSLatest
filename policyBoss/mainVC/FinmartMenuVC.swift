@@ -447,6 +447,15 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             drawerController.setDrawerState(.closed, animated: false)
         }
         
+        
+        if (!Connectivity.isConnectedToInternet()) {
+           
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+             snackbar.show()
+
+            return
+        }
+            
         switch menuSectionList[indexPath.section].menuModel[indexPath.row].mId
         {
         
@@ -458,6 +467,18 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                           print("NNN : Notification start")
                           
                           self.dismissAll(animated: false)
+            
+            
+        case "nav_authToken":
+            
+            
+            
+            NotificationCenter.default.post(name: .NotifyLoginToken, object: nil)
+           
+           print("NNN : Notification start")
+           
+           self.dismissAll(animated: false)
+            
          
         /*****************************  MY ACCOUNT SECTION ******************************/
         case "nav_MyProfile" :
@@ -1157,6 +1178,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     }
     
    
+  
+    
     //--<callAlert>--
     func callAlertView()
     {

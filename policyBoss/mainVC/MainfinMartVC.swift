@@ -117,6 +117,12 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         NotificationCenter.default.addObserver(self, selector: #selector(NotifyData(notification:)),
                                                name: .NotifyMyAccountProfile, object: nil)
+        
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(NotifyLoginToken(notification:)),
+                                               name: .NotifyLoginToken, object: nil)
+        
      
     }
     
@@ -126,6 +132,14 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         self.userconstantAPI()
         self.getdynamicappAPI()
         
+       
+    }
+    
+    @objc func NotifyLoginToken(notification : Notification){
+        
+        self.getLoginToken()
+        
+
        
     }
     
@@ -1353,7 +1367,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 "device_name": getDeviceName() as AnyObject,
                 "os_detail": getDeviceOS() as AnyObject,
                 "action_type": "active" as AnyObject,
-                "device_info" : "" as AnyObject
+                "device_info" : "" as AnyObject,
+                "App_Version":  "PolicyBossProIOS-" + Configuration.appVersion as  AnyObject
                 
             ]
             let endUrl = "/app_visitor/save_device_details"
@@ -1391,7 +1406,65 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
         
     }
+    ////
+    ///
+ 
+    func getLoginToken()  {
+        
+        if Connectivity.isConnectedToInternet()
+        {
+           
+            
+            let POSPNo = UserDefaults.standard.string(forKey: "POSPNo") as AnyObject
+            
+            let parameter  :[String: AnyObject] = [
+                
+                "ss_id": POSPNo as AnyObject,
+                "device_id": getDeviceID() as AnyObject,
+                "user_agent": "" as AnyObject
+               
+            ]
+            let endUrl = "/auth_tokens/generate_web_auth_token"
+            let url =  FinmartRestClient.baseURLROOT  + endUrl
     
+            print("urlRequest= ",url)
+            print("parameter= ",parameter)
+            Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
+                switch response.result {
+                    
+                case .success(let value):
+                    
+                
+                    guard let data = response.data else { return }
+                    do {
+                        let decoder = JSONDecoder()
+                        let obj :OauthTokenModel  = try decoder.decode(OauthTokenModel.self, from: data)
+                        
+                        print("response= ",obj)
+                        print("TOKEN= ",obj.Token)
+                        
+                          let alertWebVC = self.alertService.alertLoginToken(LoginToken: obj.Token)
+                       
+                        self.present(alertWebVC, animated: true)
+                        
+                       
+                        
+                    } catch let error {
+                        print(error)
+                       
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                   
+                    
+                }
+            })
+            
+        }
+        
+    }
     
     //////////////
     

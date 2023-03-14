@@ -345,19 +345,25 @@ class profileVC: UIViewController,UITextFieldDelegate,UIImagePickerControllerDel
 //            }
 //
 //        }
-//        else if(textField == panTf)
-//        {
-//            if((textField.text?.count)! <= 9)
-//            {
+        else if(textField == panTf)
+        {
+            if((textField.text?.count)! <= 9)
+            {
 //                let allowedCharacters = CharacterSet.alphanumerics
 //                let characterSet = NSCharacterSet(charactersIn: string)
 //                return allowedCharacters.isSuperset(of: characterSet as CharacterSet)
-//            }
-//            else{
-//               return false
-//            }
-//
-//        }
+                
+                return true
+            }
+            else{
+                let startingLength = textField.text?.count ?? 0
+                let lengthToAdd = string.count
+                let lengthToReplace = range.length
+                let newLength = startingLength + lengthToAdd - lengthToReplace
+                
+                return newLength <= (textField.text?.count)!            }
+
+        }
         
         else{
             if((textField.text?.count)! <= 50)

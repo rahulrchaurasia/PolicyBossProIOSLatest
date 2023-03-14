@@ -14,4 +14,5 @@ extension Notification.Name{
     
     static let NotifyMyAccountProfile = Notification.Name("NotifyMyAccountProfile")
    
+    static let NotifyLoginToken = Notification.Name("NotifyLoginToken")
 }
