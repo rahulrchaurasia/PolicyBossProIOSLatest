@@ -3432,6 +3432,7 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="FNL-me-RSr" id="OxU-IK-dly"/>
+                        <outlet property="btnHome" destination="C8S-Um-GaA" id="ll7-V0-DuZ"/>
                         <outlet property="titleLbl" destination="8vG-fY-CVd" id="U6U-tW-geR"/>
                         <outlet property="webView" destination="KbZ-Rd-eel" id="9Um-5I-g5p"/>
                     </connections>

@@ -635,6 +635,17 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     snackbar.show()
                     
                     break
+                    
+            
+                case 41 : // Sync Contact
+                    
+
+                    let objVC = WelcomeSynConatctVC.shareInstance()
+
+                    navigationController?.pushViewController(objVC, animated: false)
+                    
+                    break
+                    
                    
             
                 default :

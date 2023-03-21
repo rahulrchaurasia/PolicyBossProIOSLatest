@@ -15,6 +15,7 @@ import Foundation.NSURL
 
 class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,UIDocumentInteractionControllerDelegate{
 
+    @IBOutlet weak var btnHome: UIButton!
     @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -106,6 +107,22 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             
 
         }
+        
+        else if(webfromScreen == "SYNC_TERMS")
+        {
+            self.btnHome.isHidden = true
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: "https://www.policyboss.com/terms-condition")!))
+             debugPrint("URL","https://www.policyboss.com/terms-condition")
+        }
+        
+        else if(webfromScreen == "SYNC_PRIVACY")
+        {
+            self.btnHome.isHidden = true
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: "https://www.policyboss.com/privacy-policy-policyboss-pro")!))
+             debugPrint("URL","https://www.policyboss.com/terms-condition")
+        }
       /********************************************Loan URL ******************************************************************/
             
             
@@ -193,7 +210,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
         else if(webfromScreen == "PrivacyPolicy")
         {
             titleLbl.text! = "Privacy Policy"
-            webView.load(URLRequest(url: URL(string: "https://policyboss.com/privacy-policy")!))
+            webView.load(URLRequest(url: URL(string: "https://www.policyboss.com/privacy-policy-policyboss-pro")!))
             print("URL","http://"+fromcontctWebsite)
         }
             
@@ -407,6 +424,8 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             webView.load(URLRequest(url: URL(string: dynamicUrl)!))
             print("URL",dynamicUrl)
         }
+        
+       
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.delegate = self
         
@@ -448,6 +467,10 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             
             delegateData?.callbackHomeDelegate()
              self.remove()
+        }
+        else if(addType == "NAVGATION"){
+            
+            navigationController?.popViewController(animated: false)
         }
         else{
             if(webfromScreen == "contactWebsites")
@@ -723,3 +746,4 @@ private struct Constants {
    static let schemeKey = "iosscheme"
   
 }
+

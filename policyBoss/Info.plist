@@ -35,6 +35,8 @@
 	<string>This app requires to access your camera to upload the profile and documents.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app requires to access your photo library to upload  the profile and documents image.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Allow PolicyBossPro app to access your contact details.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
