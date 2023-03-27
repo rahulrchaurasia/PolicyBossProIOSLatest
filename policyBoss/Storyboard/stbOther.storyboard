@@ -56,7 +56,7 @@
                                     </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="IHI-L9-rhk"/>
-                                <color key="backgroundColor" red="0.0" green="0.48939327249999998" blue="0.83452966370000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.49019607843137253" blue="0.83529411764705885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="IuI-vq-hEN" firstAttribute="bottom" secondItem="IHI-L9-rhk" secondAttribute="bottom" id="5X3-Po-Pmu"/>
                                     <constraint firstAttribute="height" constant="50" id="7dq-CF-keD"/>

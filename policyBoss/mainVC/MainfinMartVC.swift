@@ -69,6 +69,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
+  
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -282,6 +283,13 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         if let drawerController = navigationController?.parent as? KYDrawerController {
             drawerController.setDrawerState(.opened, animated: true)
         }
+    }
+    
+    @IBAction func btnNotification(_ sender: Any) {
+        
+        let objVC = NotificationListVC.shareInstance()
+
+        navigationController?.pushViewController(objVC, animated: false)
     }
    
     @IBAction func salesmaterialBtnCliked(_ sender: Any)
@@ -1125,6 +1133,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
                     /// posp
                     let pospsendname = jsonData?.value(forKey: "pospsendname") as AnyObject
+                    let parentid = jsonData?.value(forKey: "parentid") as AnyObject
                     let pospsendemail = jsonData?.value(forKey: "pospsendemail") as AnyObject
                     let pospsendmobile = jsonData?.value(forKey: "pospsendmobile") as AnyObject
                     let pospsenddesignation = jsonData?.value(forKey: "pospsenddesignation") as AnyObject
@@ -1184,6 +1193,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     UserDefaults.standard.set(String(describing: notificationpopupurl), forKey: "notificationpopupurl")
                     
                     UserDefaults.standard.set(String(describing: pospsendname), forKey: "pospsendname")
+                    
+                    UserDefaults.standard.set(String(describing: parentid), forKey: "parentid")
+                    
                     UserDefaults.standard.set(String(describing: pospsendemail), forKey: "pospsendemail")
                     UserDefaults.standard.set(String(describing: pospsendmobile), forKey: "pospsendmobile")
                     UserDefaults.standard.set(String(describing: pospsenddesignation), forKey: "pospsenddesignation")

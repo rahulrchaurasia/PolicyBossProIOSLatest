@@ -34,46 +34,47 @@ class TransactionVC: UIViewController  ,UITableViewDelegate,UITableViewDataSourc
     func   fetchTransactionHistory() {
         
         
-       // getshortLink
+        // getshortLink
         if Connectivity.isConnectedToInternet(){
-                   
-                   let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
-                   if let parentView = self.navigationController?.view
-                   {
-                       alertView.parentView = parentView
-                   }
-                   else
-                   {
-                       alertView.parentView = self.view
-                   }
-                   alertView.show()
-                   
-                 
-                   
+            
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            
+            
+            
             APIManger.shareInstance.getTransactionHistory()
             { (result) in
-                       
-                       alertView.close()
-                       switch result {
-                           
-                       case .success(let objResponse):
-                           
-                           let transationHistoryResponse = objResponse as! TransationHistoryResponse
-                           
-                        self.transationHistorList = transationHistoryResponse.MasterData!
-                        self.transactionTableView.reloadData()
-                        
-                          
-                       case .failure(.custom(message: let error)):
-                           let snackbar = TTGSnackbar.init(message: error, duration: .middle )
-                           snackbar.show()
-                       }
-                   }
-               }else{
                 
-                   let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
-                   snackbar.show()
-               }
+                alertView.close()
+                switch result {
+                    
+                case .success(let objResponse):
+                    
+                    let transationHistoryResponse = objResponse as! TransationHistoryResponse
+                    
+                    self.transationHistorList = transationHistoryResponse.MasterData!
+                    self.transactionTableView.reloadData()
+                    
+                    
+                case .failure(.custom(message: let error)):
+                    let snackbar = TTGSnackbar.init(message: error, duration: .middle )
+                    snackbar.show()
+                }
+            }
+        }
+        else{
+            
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
         
     }
     

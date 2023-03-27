@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Contacts
+import TTGSnackbar
 
 class WelcomeSynConatctVC: UIViewController {
 
@@ -21,7 +23,8 @@ class WelcomeSynConatctVC: UIViewController {
     var isTerm1 = false
     var  isTerm2 = false
     var isTerm3 = false
-    
+    var isAuthorized = false
+    let store = CNContactStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class WelcomeSynConatctVC: UIViewController {
        
         self.ScrollView.scrollToBottom(animated: true)
         btnGetStarted.alpha = 0.40
+    
+        btnGetStarted.layer.cornerRadius = 15
+        btnGetStarted.layer.masksToBounds = true // This line is important to make sure the button stays within its bounds
         
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.clickAction(sender:)))
 
@@ -127,39 +133,102 @@ class WelcomeSynConatctVC: UIViewController {
     
     @IBAction func btnStarted(_ sender: Any) {
         
-        
-        if( verifyAllCondition()){
-            navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+        if Connectivity.isConnectedToInternet(){
             
-          }
+            if( verifyAllCondition()){
+                
+                //            if(isAuthorized){
+                //                navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+                //            }else{
+                //
+                //                self.contactAuthorizedReq()
+                //            }
+                
+                self.contactAuthorizedReq()
+                
+                if(isAuthorized){
+                    navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+                }
+                
+                
+            }
+        }else{
+            
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
     }
     
     
-    
+    func contactAuthorizedReq(){
+        
+        
+        
+        // Do any additional setup after loading the view.
+        
+      
+        let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
+        
+        
+        // 2
+        if authorizationStatus == .notDetermined {
+            // 3
+            store.requestAccess(for: .contacts) { [weak self] didAuthorize,
+                error in
+                if didAuthorize {
+                     self?.isAuthorized = true
+                    
+//                    DispatchQueue.main.async {
+//                        self?.navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+//                    }
+                  
+                }
+            }
+        }
+        else if authorizationStatus == .denied {
+            debugPrint("Status : denied")
+            self.isAuthorized = false
+            checkPermissionAlert( _title: Constant.contactTitle,_message: Constant.contactReq)
+        }else if authorizationStatus == .restricted {
+            self.isAuthorized = false
+            debugPrint("Status : restricted")
+            checkPermissionAlert( _title: Constant.contactTitle,_message: Constant.contactReq)
+        }else if authorizationStatus == .authorized {
+            
+            self.isAuthorized = true
+            
+        }
+        
+    }
    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func checkPermissionAlert(_title : String , _message : String){
+        
+        
+        let alertController = UIAlertController(title: _title, message: _message, preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+            }
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+       
     }
-    */
 
-  
-  
-//    func alertConnection() -> AlertConnectionVC {
-//
-//        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
-//
-//        let alertConnVC = storyboard.instantiateViewController(withIdentifier: "AlertConnectionVC") as! AlertConnectionVC
-//
-//
-//        return alertConnVC
-//    }
     
+
     
     func moveToWeb(screeName : String, screenTitle : String ){
         

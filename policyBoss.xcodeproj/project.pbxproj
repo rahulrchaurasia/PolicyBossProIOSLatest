@@ -173,6 +173,10 @@
 		CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD290470288042FB00C75C74 /* FOSUserResponse.swift */; };
 		CD2D676329125ED000DF42D9 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D676229125ED000DF42D9 /* Extension+UIView.swift */; };
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
+		CD3F9A7C29CDA04A00FB8F2F /* NotificationListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F9A7B29CDA04A00FB8F2F /* NotificationListVC.swift */; };
+		CD3F9A7E29CDA0CC00FB8F2F /* Notification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD3F9A7D29CDA0CC00FB8F2F /* Notification.storyboard */; };
+		CD3F9A8029CDA97600FB8F2F /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F9A7F29CDA97600FB8F2F /* NotificationViewModel.swift */; };
+		CD3F9A8229CDDB2F00FB8F2F /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3F9A8129CDDB2F00FB8F2F /* NotificationTVC.swift */; };
 		CD41B28B290FD4D8004ACDD8 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD41B28A290FD4D8004ACDD8 /* Home.storyboard */; };
 		CD41B28E290FD538004ACDD8 /* HomeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD41B28D290FD538004ACDD8 /* HomeTabBar.swift */; };
 		CD475D042910DEBA00BAE252 /* MenuBottomSheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD475D032910DEBA00BAE252 /* MenuBottomSheetVC.swift */; };
@@ -185,6 +189,7 @@
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
 		CD906EE029A72E9E004F85DC /* stbOther.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD906EDF29A72E9E004F85DC /* stbOther.storyboard */; };
+		CDA496E129CC2382006B619F /* SyncContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA496E029CC2382006B619F /* SyncContactViewModel.swift */; };
 		CDAA0FA2286CAAD2009B69A9 /* AlertPospAmntVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */; };
 		CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */; };
 		CDC7B7F329A4C5BB00DC2012 /* IFSCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */; };
@@ -402,6 +407,10 @@
 		CD290470288042FB00C75C74 /* FOSUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOSUserResponse.swift; sourceTree = "<group>"; };
 		CD2D676229125ED000DF42D9 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
+		CD3F9A7B29CDA04A00FB8F2F /* NotificationListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListVC.swift; sourceTree = "<group>"; };
+		CD3F9A7D29CDA0CC00FB8F2F /* Notification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notification.storyboard; sourceTree = "<group>"; };
+		CD3F9A7F29CDA97600FB8F2F /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		CD3F9A8129CDDB2F00FB8F2F /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		CD41B28A290FD4D8004ACDD8 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		CD41B28D290FD538004ACDD8 /* HomeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBar.swift; sourceTree = "<group>"; };
 		CD475D032910DEBA00BAE252 /* MenuBottomSheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBottomSheetVC.swift; sourceTree = "<group>"; };
@@ -414,6 +423,7 @@
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
 		CD906EDF29A72E9E004F85DC /* stbOther.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = stbOther.storyboard; sourceTree = "<group>"; };
+		CDA496E029CC2382006B619F /* SyncContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactViewModel.swift; sourceTree = "<group>"; };
 		CDAA0FA1286CAAD2009B69A9 /* AlertPospAmntVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPospAmntVC.swift; sourceTree = "<group>"; };
 		CDAA0FA4286CABF7009B69A9 /* pospAmntAlertTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntAlertTVCell.swift; sourceTree = "<group>"; };
 		CDC7B7F229A4C5BB00DC2012 /* IFSCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IFSCModel.swift; sourceTree = "<group>"; };
@@ -895,6 +905,7 @@
 				CD41B28A290FD4D8004ACDD8 /* Home.storyboard */,
 				CD906EDF29A72E9E004F85DC /* stbOther.storyboard */,
 				CD0E58FD29C07449008A67BF /* SyncContact.storyboard */,
+				CD3F9A7D29CDA0CC00FB8F2F /* Notification.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -939,6 +950,7 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
+				CD3F9A7A29CD9FDA00FB8F2F /* notification */,
 				CD0E58FF29C074AD008A67BF /* syncContact */,
 				CD753849285CA3EA004B2D4D /* registeration */,
 				B21FAC912737C0D200AC9AA4 /* Transaction */,
@@ -1133,6 +1145,7 @@
 				CD65415829C2EE52006DC774 /* SyncAlertDialog */,
 				CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */,
 				CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */,
+				CDA496E029CC2382006B619F /* SyncContactViewModel.swift */,
 			);
 			path = syncContact;
 			sourceTree = "<group>";
@@ -1143,6 +1156,16 @@
 				CD290470288042FB00C75C74 /* FOSUserResponse.swift */,
 			);
 			path = FosInfo;
+			sourceTree = "<group>";
+		};
+		CD3F9A7A29CD9FDA00FB8F2F /* notification */ = {
+			isa = PBXGroup;
+			children = (
+				CD3F9A7B29CDA04A00FB8F2F /* NotificationListVC.swift */,
+				CD3F9A7F29CDA97600FB8F2F /* NotificationViewModel.swift */,
+				CD3F9A8129CDDB2F00FB8F2F /* NotificationTVC.swift */,
+			);
+			path = notification;
 			sourceTree = "<group>";
 		};
 		CD41B28C290FD4FE004ACDD8 /* HomeMain */ = {
@@ -1375,6 +1398,7 @@
 				CD906EE029A72E9E004F85DC /* stbOther.storyboard in Resources */,
 				4438D06024B3800800D68498 /* Disclosure.html in Resources */,
 				44BB07B5243EFB5200F14FEE /* AlertStoryboard.storyboard in Resources */,
+				CD3F9A7E29CDA0CC00FB8F2F /* Notification.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1478,6 +1502,7 @@
 				B245113E261464C0003EB5A9 /* callbackToHomeProtocol.swift in Sources */,
 				B20B223E273193AD009A522E /* MenuModel.swift in Sources */,
 				84C4D09821C268B500A677B7 /* MainfinMartVC.swift in Sources */,
+				CDA496E129CC2382006B619F /* SyncContactViewModel.swift in Sources */,
 				B253B24A261652E0000C3A7D /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				8410404421D789C300C3B7A7 /* ResponseMetadata.swift in Sources */,
 				84186CD82215735B0069F152 /* transctnHisTVCell.swift in Sources */,
@@ -1553,6 +1578,7 @@
 				B253B252261652E0000C3A7D /* IQKeyboardManager+Debug.swift in Sources */,
 				CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */,
 				B253B251261652E0000C3A7D /* IQKeyboardManager.swift in Sources */,
+				CD3F9A8029CDA97600FB8F2F /* NotificationViewModel.swift in Sources */,
 				840562E921D4D39D0099DDE8 /* reqpolicyVC.swift in Sources */,
 				CD475D062910EAFA00BAE252 /* MenuTabVC.swift in Sources */,
 				B253B249261652E0000C3A7D /* IQToolbar.swift in Sources */,
@@ -1571,6 +1597,7 @@
 				8480BBDE2208118900BEEDF4 /* hnfcontactUsVC.swift in Sources */,
 				840562DB21D4D2CF0099DDE8 /* incmPotentialVC.swift in Sources */,
 				B253B258261652E0000C3A7D /* IQUIView+Hierarchy.swift in Sources */,
+				CD3F9A8229CDDB2F00FB8F2F /* NotificationTVC.swift in Sources */,
 				840562E321D4D3440099DDE8 /* enrolasPOSPVC.swift in Sources */,
 				B2622BE42613721E00B49797 /* Extension+UIViewController.swift in Sources */,
 				B2622BE7261372AF00B49797 /* Extension+UserDefaults.swift in Sources */,
@@ -1581,6 +1608,7 @@
 				444DBF94246AC2EB009F08F6 /* AddToRazorpayModel.swift in Sources */,
 				84288B2321CCF3A400BC50BC /* profileVC.swift in Sources */,
 				442DEDCB2449967200067A3E /*  Connectivity.swift in Sources */,
+				CD3F9A7C29CDA04A00FB8F2F /* NotificationListVC.swift in Sources */,
 				4448E59F24C1E7A500CDBFEC /* SalesDetailHindiModel.swift in Sources */,
 				CDD14A0429A753EA006BB92B /* OauthTokenModel.swift in Sources */,
 				8480BBE0220811AC00BEEDF4 /* hnfraiseTicktVC.swift in Sources */,

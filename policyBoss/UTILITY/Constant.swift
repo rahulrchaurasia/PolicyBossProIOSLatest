@@ -19,6 +19,8 @@ let customPrimaryColor =  UIColor(cgColor: #colorLiteral(red: 0.6908986568, gree
 
 
 
+let serverError  = "Server time out.Please try again"
+let serverUnavailbleError  = "Server are not available.Please try again"
 
 /********   key   ******/
 
@@ -35,5 +37,14 @@ struct storyBoardName  {
     static let  Home = "Home"
     static let  LaunchScreen = "LaunchScreen"
     static let  SyncContact  = "SyncContact"
+    static let  Notification  = "Notification"
     
+}
+
+
+struct Constant  {
+    
+    static let  contactReq   = "Please Allow Contact Access."
+    static let  contactTitle   = "Contact access is need to get your Contact Sync."
+
 }
