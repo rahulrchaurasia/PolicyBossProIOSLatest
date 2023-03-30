@@ -31,7 +31,7 @@ class WelcomeSynConatctVC: UIViewController {
 
         ScrollView.layoutIfNeeded()
        
-        self.ScrollView.scrollToBottom(animated: true)
+        //self.ScrollView.scrollToBottom(animated: true)
         btnGetStarted.alpha = 0.40
     
         btnGetStarted.layer.cornerRadius = 15
@@ -236,7 +236,7 @@ class WelcomeSynConatctVC: UIViewController {
     let commonWeb : commonWebVC = storyboard.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.addType = Screen.navigateBack
-        commonWeb.webTitle = "Terms & Conditions"
+        commonWeb.webTitle = screenTitle
         commonWeb.webfromScreen = screeName
         navigationController?.pushViewController( commonWeb, animated: false)
     }

@@ -1144,20 +1144,19 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                 self.erpIdLbl.text! = ERPID as! String
                 self.refcodeLbl.text! = referer_code as! String
                 
-                if(loanselfphoto as! String != ""){
-                    //loadimages
-                    let imgURL = NSURL(string: loanselfphoto as! String)
-                    if imgURL != nil {
-                        
-                        DispatchQueue.main.async {
-                            let data = NSData(contentsOf: (imgURL as URL?)!)
-                            
-                            self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
-                        }
-                
-                        // self.menuprofileImgView.image = UIImage(data: data! as Data)    // 05 error
-                    }
-                }
+//                if(loanselfphoto as! String != ""){
+//                    //loadimages
+//                    let imgURL = NSURL(string: loanselfphoto as! String)
+//                    if imgURL != nil {
+//
+//                        DispatchQueue.main.async {
+//                            let data = NSData(contentsOf: (imgURL as URL?)!)
+//
+//                            self.menuprofileImgView.sd_setImage(with: imgURL as URL?)
+//                        }
+//
+//                    }
+//                }
                 
                 self.FOSStatus = UserDefaults.standard.string(forKey: "FOS_USER_AUTHENTICATIONN") ?? ""
                 
