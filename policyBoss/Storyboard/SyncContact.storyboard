@@ -62,8 +62,8 @@
                                                             <action selector="btnBack:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="olu-fp-9ht"/>
                                                         </connections>
                                                     </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B9K-Nq-HCd">
-                                                        <rect key="frame" x="8" y="10.999999999999998" width="25" height="24.333333333333329"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="B9K-Nq-HCd">
+                                                        <rect key="frame" x="8" y="9.9999999999999982" width="25" height="26.333333333333329"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="Zy6-hp-cK2"/>
                                                             <constraint firstAttribute="width" constant="25" id="axT-NY-QdO"/>
@@ -210,6 +210,7 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vM-Gt-Saw" userLabel="btnTerms">
                                                                 <rect key="frame" x="0.0" y="0.33333333333337123" width="184.66666666666666" height="34.333333333333336"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                                 <connections>
@@ -218,6 +219,7 @@
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3Q-0F-Q7i" userLabel="btnPrivacy">
                                                                 <rect key="frame" x="192.66666666666663" y="0.33333333333337123" width="184.33333333333337" height="34.333333333333336"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="  "/>
                                                                 <connections>
@@ -249,6 +251,7 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggy-f1-3h7" userLabel="btnTerm1">
                                                         <rect key="frame" x="0.0" y="37.000000000000057" width="377" height="34.333333333333343"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                         <connections>
@@ -264,6 +267,7 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpN-yG-AAy" userLabel="btnTerm2">
                                                         <rect key="frame" x="0.0" y="108.33333333333331" width="377" height="34.333333333333343"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title=" "/>
                                                         <connections>
@@ -290,6 +294,7 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygd-E7-gWA" userLabel="btnTerm3">
                                                         <rect key="frame" x="3" y="154.66666666666669" width="374" height="34.333333333333343"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="  "/>
                                                         <connections>
@@ -418,8 +423,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dyY-Kq-eHa">
-                                <rect key="frame" x="8" y="10.999999999999998" width="25" height="24.333333333333329"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dyY-Kq-eHa">
+                                <rect key="frame" x="8" y="9.9999999999999982" width="25" height="26.333333333333329"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="8Q1-5E-p21"/>
                                     <constraint firstAttribute="width" constant="25" id="R2I-7F-eDS"/>
@@ -481,10 +486,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Fvn-18-dvQ">
-                                <rect key="frame" x="192" y="353" width="30" height="30"/>
+                                <rect key="frame" x="186" y="347" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="Ljs-fW-Wfu"/>
-                                    <constraint firstAttribute="height" constant="30" id="Udd-F0-ZO6"/>
+                                    <constraint firstAttribute="width" constant="42" id="Ljs-fW-Wfu"/>
+                                    <constraint firstAttribute="height" constant="42" id="Udd-F0-ZO6"/>
                                 </constraints>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 %" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-fb-rYi">
@@ -534,6 +539,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Fvn-18-dvQ" id="r92-Sh-ZSD"/>
                         <outlet property="lblResult" destination="DtZ-tM-0RL" id="vpw-8G-ZP9"/>
                         <outlet property="lblTotalCount" destination="114-wv-p0v" id="ihT-ei-7tQ"/>
                         <outlet property="progressView" destination="T4y-zB-l6t" id="YtV-2q-dVr"/>
@@ -938,6 +944,7 @@
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="check-box-empty" width="32" height="32"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="close1" width="36" height="36"/>
         <image name="dotblack" width="24" height="24"/>
         <image name="synccontactlogo" width="150" height="143"/>

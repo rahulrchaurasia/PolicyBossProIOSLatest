@@ -14,6 +14,7 @@ class SyncContactVC: UIViewController {
 
     
    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var lblTotalCount: UILabel!
     
@@ -21,7 +22,8 @@ class SyncContactVC: UIViewController {
     var contactMainData = [ContactMainModel]()
     var contactData = [ContactModel]()
    // var addressData = [AddressModel]()
-    let contactUploadStep = 5
+    //Mark: contactUploadStep decide the  quantity of data which is uploaded to server at one time
+    let contactUploadStep = 500
     let initialProgress = 0.25
     let syncContactQueue = DispatchQueue(label: "com.policybosspro.syncqueue"  )
     // For AlertDialog
@@ -29,10 +31,12 @@ class SyncContactVC: UIViewController {
 
     let store = CNContactStore()
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-      
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         self.progressView.setProgress(Float(initialProgress), animated: true)
       
         setProgressUI()
@@ -314,7 +318,10 @@ class SyncContactVC: UIViewController {
                     
                 }
                 // **Due To Addition OF Default Initial Progress remove 1 step : ****
-                 maxProgress = maxProgress - 1
+                    if(maxProgress > 1){
+                        maxProgress = maxProgress - 1
+                    }
+                
                 //var  currentProgress  = 1.0 / Float(maxProgress)
                 let progressValue =   1.0 / Float(maxProgress)
            
@@ -328,7 +335,7 @@ class SyncContactVC: UIViewController {
                     
                     //"Filter List ",subContactList
                     debugPrint("STEP BY", step)
-                    
+                    debugPrint("MAX Progress", maxProgress)
                     // Mark : called api
                     /******** API For Sync Contact Data *******/
                     
@@ -363,6 +370,9 @@ class SyncContactVC: UIViewController {
                             case .failure(.custom(message: let error)):
                                 let snackbar = TTGSnackbar.init(message: error, duration: .middle )
                                 snackbar.show()
+                                
+                                self?.activityIndicator.isHidden = true
+                                self?.activityIndicator.stopAnimating()
                             
                             }
                         }
@@ -375,7 +385,7 @@ class SyncContactVC: UIViewController {
                     
                 }
                 
-           // }
+          
             
         
             
@@ -389,16 +399,45 @@ class SyncContactVC: UIViewController {
     
     func successMessage(){
         
-        let url = "https://www.google.com/"
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+      
+        let alertSyncDashboard = self.alertService.alertSyncDashboard()
         
-//        guard let popupUrl = url else {
-//            return
-//        }
-        let alertWebVC = self.alertService.alertWebView(webURL: url)
-        self.present(alertWebVC, animated: true)
+        alertSyncDashboard.syncDashboardCompletion  = {[weak self] dict in
+            /********************************************/
+            //Mark : called when childVC is dismiss
+            /********************************************/
+           
+            DispatchQueue.main.async {
+                let data = dict["DASHBOARD"] as! String
+                debugPrint("Result", data)  // NOT IN USED : Only For Callback
+                
+                self?.moveToWeb(screeName: "leadDashboard")
+            }
+            
+            
+            
+        }
+    
+        self.present(alertSyncDashboard, animated: true)
+
+      
     }
     
    
+    func moveToWeb(screeName : String ){
+        
+        
+        let storyboard = UIStoryboard(name: storyBoardName.Main, bundle: .main)
+        let commonWeb : commonWebVC = storyboard.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+        commonWeb.modalPresentationStyle = .fullScreen
+        commonWeb.modalTransitionStyle = .coverVertical
+        commonWeb.addType = Screen.navigateRoot
+        commonWeb.webfromScreen = screeName
+        //present(commonWeb, animated: false, completion: nil)
+        navigationController?.pushViewController( commonWeb, animated: false)
+    }
 
 }
 extension SyncContactVC {

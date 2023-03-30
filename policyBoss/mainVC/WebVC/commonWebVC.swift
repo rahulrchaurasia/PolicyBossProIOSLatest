@@ -452,6 +452,9 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             delegateData?.callbackHomeDelegate()
             self.remove()
      
+        }else if(addType == Screen.navigateRoot){
+            
+            navigationController?.popToRootViewController(animated: false)
         }else{
 
               delegateData?.callbackHomeDelegate()
@@ -468,9 +471,13 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             delegateData?.callbackHomeDelegate()
              self.remove()
         }
-        else if(addType == "NAVGATION"){
+        else if(addType == Screen.navigateBack){
             
             navigationController?.popViewController(animated: false)
+        }
+        else if(addType == Screen.navigateRoot){
+            
+            navigationController?.popToRootViewController(animated: false)
         }
         else{
             if(webfromScreen == "contactWebsites")

@@ -197,6 +197,7 @@
 		CDD14A0229A73EBD006BB92B /* AlertLoginTokenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */; };
 		CDD14A0429A753EA006BB92B /* OauthTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */; };
 		CDD3E68429C43E2D00E7DDFE /* SyncContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */; };
+		CDDB6E6029D5549200BCEC66 /* AlertSyncDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDB6E5F29D5549200BCEC66 /* AlertSyncDashboardVC.swift */; };
 		CDE3E35329C5E646004C3B83 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3E35229C5E646004C3B83 /* Extension+String.swift */; };
 /* End PBXBuildFile section */
 
@@ -431,6 +432,7 @@
 		CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLoginTokenVC.swift; sourceTree = "<group>"; };
 		CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OauthTokenModel.swift; sourceTree = "<group>"; };
 		CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactVC.swift; sourceTree = "<group>"; };
+		CDDB6E5F29D5549200BCEC66 /* AlertSyncDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSyncDashboardVC.swift; sourceTree = "<group>"; };
 		CDE3E35229C5E646004C3B83 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -588,6 +590,7 @@
 				B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */,
 				B25E94F226FF87E2009959C8 /* AlertConnectionVC.swift */,
 				CDD14A0129A73EBD006BB92B /* AlertLoginTokenVC.swift */,
+				CDDB6E5F29D5549200BCEC66 /* AlertSyncDashboardVC.swift */,
 			);
 			path = AlertDialog;
 			sourceTree = "<group>";
@@ -1543,6 +1546,7 @@
 				840562ED21D4D3D90099DDE8 /* helpnfeedbackVC.swift in Sources */,
 				84C4D08F21C23DD700A677B7 /* multiselctionTVCell.swift in Sources */,
 				CD475D0C2910F1CC00BAE252 /* NotificationVC.swift in Sources */,
+				CDDB6E6029D5549200BCEC66 /* AlertSyncDashboardVC.swift in Sources */,
 				CD41B28E290FD538004ACDD8 /* HomeTabBar.swift in Sources */,
 				8483DC9A226756250095AA24 /* getmpsNowVC.swift in Sources */,
 				44367ED8244466DC005B9441 /* SharePrdModel.swift in Sources */,
@@ -1815,7 +1819,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1830,7 +1834,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1847,7 +1851,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 62DMBCG3SA;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1862,7 +1866,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.policyboss.policybosspro;
 				PRODUCT_NAME = "PolicyBoss Pro";
 				PROVISIONING_PROFILE_SPECIFIER = "";

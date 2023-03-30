@@ -178,9 +178,9 @@ class WelcomeSynConatctVC: UIViewController {
                 if didAuthorize {
                      self?.isAuthorized = true
                     
-//                    DispatchQueue.main.async {
-//                        self?.navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
-//                    }
+                    DispatchQueue.main.async {
+                        self?.navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+                    }
                   
                 }
             }
@@ -235,7 +235,7 @@ class WelcomeSynConatctVC: UIViewController {
         let storyboard = UIStoryboard(name: storyBoardName.Main, bundle: .main)
     let commonWeb : commonWebVC = storyboard.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
-        commonWeb.addType = "NAVGATION"
+        commonWeb.addType = Screen.navigateBack
         commonWeb.webTitle = "Terms & Conditions"
         commonWeb.webfromScreen = screeName
         navigationController?.pushViewController( commonWeb, animated: false)

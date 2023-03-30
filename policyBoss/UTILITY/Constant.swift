@@ -48,3 +48,11 @@ struct Constant  {
     static let  contactTitle   = "Contact access is need to get your Contact Sync."
 
 }
+
+
+struct Screen  {
+    
+    static let  navigateBack   = "NAVGATION"
+    static let  navigateRoot   = "NAVGATIONROOT"
+  
+}

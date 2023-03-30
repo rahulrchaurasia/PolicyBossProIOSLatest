@@ -70,6 +70,16 @@ class AlertService {
         return alertLoginVC
     }
     
+    func alertSyncDashboard() -> AlertSyncDashboardVC {
+        
+        let storyboard = UIStoryboard(name: "AlertStoryboard", bundle: .main)
+        
+        let alertDashVC = storyboard.instantiateViewController(withIdentifier: "AlertSyncDashboardVC") as! AlertSyncDashboardVC
+        
+       
+        return alertDashVC
+    }
+    
     //AlertConnectionVC
     
     func alertConnection() -> AlertConnectionVC {
