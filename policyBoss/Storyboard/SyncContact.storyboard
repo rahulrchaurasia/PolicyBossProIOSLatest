@@ -540,6 +540,8 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="Fvn-18-dvQ" id="r92-Sh-ZSD"/>
+                        <outlet property="btnBack" destination="tBt-3w-52a" id="IyJ-IN-3Z3"/>
+                        <outlet property="imgBack" destination="dyY-Kq-eHa" id="ExL-jU-RnV"/>
                         <outlet property="lblResult" destination="DtZ-tM-0RL" id="vpw-8G-ZP9"/>
                         <outlet property="lblTotalCount" destination="114-wv-p0v" id="ihT-ei-7tQ"/>
                         <outlet property="progressView" destination="T4y-zB-l6t" id="YtV-2q-dVr"/>

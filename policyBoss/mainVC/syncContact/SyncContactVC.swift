@@ -14,6 +14,8 @@ class SyncContactVC: UIViewController {
 
     
    
+    @IBOutlet weak var imgBack: UIImageView!
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var lblTotalCount: UILabel!
@@ -35,15 +37,23 @@ class SyncContactVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        self.progressView.setProgress(Float(initialProgress), animated: true)
-      
+       
+        initData()
         setProgressUI()
         
         getContactData()
        
        
+    }
+    
+    func initData(){
+        
+        imgBack.isHidden = true
+        btnBack.isHidden = true
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        self.progressView.setProgress(Float(initialProgress), animated: true)
+        
     }
     
     func checkPermissionAlert(_title : String , _message : String){

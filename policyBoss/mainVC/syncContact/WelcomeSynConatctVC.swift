@@ -58,7 +58,7 @@ class WelcomeSynConatctVC: UIViewController {
     
     func verifyAllCondition() -> Bool{
         
-        if(self.isTerm1 && self.isTerm2 && self.isTerm3 ){
+        if( self.isTerm3 ){
             
             btnGetStarted.alpha = 1
             return true
@@ -100,7 +100,7 @@ class WelcomeSynConatctVC: UIViewController {
         }
         
         
-        verifyAllCondition()
+       // verifyAllCondition()
     }
     
     @IBAction func btnTerms2(_ sender: Any) {
@@ -113,7 +113,7 @@ class WelcomeSynConatctVC: UIViewController {
            
         }
         
-        verifyAllCondition()
+       // verifyAllCondition()
     }
     
     @IBAction func btnTerms3(_ sender: Any) {
@@ -137,13 +137,7 @@ class WelcomeSynConatctVC: UIViewController {
             
             if( verifyAllCondition()){
                 
-                //            if(isAuthorized){
-                //                navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
-                //            }else{
-                //
-                //                self.contactAuthorizedReq()
-                //            }
-                
+               
                 self.contactAuthorizedReq()
                 
                 if(isAuthorized){
