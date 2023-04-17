@@ -52,16 +52,18 @@ class NotificationListVC: UIViewController, UITableViewDelegate, UITableViewData
                         
                     case .success(let objResponse):
                         
-                        let reponse = objResponse as! NotificationResponse
-                        
-                        debugPrint("Response",reponse)
+                        if let reponse = objResponse as? NotificationResponse{
+                            
+                            debugPrint("Response",reponse)
+                            
+
+                            self?.notificationList = reponse.MasterData
+                                
+                            self?.notificationTableView.reloadData()
+                            
+                        }
                         
                        
-                            
-                            self?.notificationList = reponse.MasterData
-                            
-                            self?.notificationTableView.reloadData()
-                        
                         
                         
                         

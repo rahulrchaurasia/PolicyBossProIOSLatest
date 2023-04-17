@@ -189,6 +189,7 @@
 		CD75384B285CA446004B2D4D /* pospAmntTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */; };
 		CD75384E285CA963004B2D4D /* pospAmntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD75384D285CA963004B2D4D /* pospAmntModel.swift */; };
 		CD906EE029A72E9E004F85DC /* stbOther.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD906EDF29A72E9E004F85DC /* stbOther.storyboard */; };
+		CD9A1B5E29E52CB1002E1C07 /* PushNotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9A1B5D29E52CB1002E1C07 /* PushNotificationModel.swift */; };
 		CD9D047F29E014EC00AE6AA9 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CD9D047E29E014EC00AE6AA9 /* FirebaseAnalytics */; };
 		CD9D048129E014EC00AE6AA9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CD9D048029E014EC00AE6AA9 /* FirebaseCrashlytics */; };
 		CD9D048329E014EC00AE6AA9 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = CD9D048229E014EC00AE6AA9 /* FirebaseDynamicLinks */; };
@@ -205,6 +206,8 @@
 		CDD3E68429C43E2D00E7DDFE /* SyncContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */; };
 		CDDB6E6029D5549200BCEC66 /* AlertSyncDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDB6E5F29D5549200BCEC66 /* AlertSyncDashboardVC.swift */; };
 		CDE3E35329C5E646004C3B83 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE3E35229C5E646004C3B83 /* Extension+String.swift */; };
+		CDF85CC429ED14B60041B64E /* SyncModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF85CC329ED14B60041B64E /* SyncModel.swift */; };
+		CDF85CC629ED152E0041B64E /* SyncAgreementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF85CC529ED152E0041B64E /* SyncAgreementModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +433,7 @@
 		CD75384A285CA446004B2D4D /* pospAmntTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntTableViewCell.swift; sourceTree = "<group>"; };
 		CD75384D285CA963004B2D4D /* pospAmntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pospAmntModel.swift; sourceTree = "<group>"; };
 		CD906EDF29A72E9E004F85DC /* stbOther.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = stbOther.storyboard; sourceTree = "<group>"; };
+		CD9A1B5D29E52CB1002E1C07 /* PushNotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationModel.swift; sourceTree = "<group>"; };
 		CD9D048829E01F5C00AE6AA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD9D048A29E0214600AE6AA9 /* policyBoss.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = policyBoss.entitlements; sourceTree = "<group>"; };
 		CDA496E029CC2382006B619F /* SyncContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactViewModel.swift; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 		CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncContactVC.swift; sourceTree = "<group>"; };
 		CDDB6E5F29D5549200BCEC66 /* AlertSyncDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSyncDashboardVC.swift; sourceTree = "<group>"; };
 		CDE3E35229C5E646004C3B83 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		CDF85CC329ED14B60041B64E /* SyncModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncModel.swift; sourceTree = "<group>"; };
+		CDF85CC529ED152E0041B64E /* SyncAgreementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncAgreementModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -997,6 +1003,7 @@
 		84D2E0C821EDB90300991D47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CD9A1B5C29E52C8B002E1C07 /* Notification */,
 				CDC7B7F429A4F2BA00DC2012 /* deviceDetail */,
 				CDC7B7EF29A4B68900DC2012 /* profile */,
 				CD29046F2880427A00C75C74 /* FosInfo */,
@@ -1160,6 +1167,7 @@
 		CD0E58FF29C074AD008A67BF /* syncContact */ = {
 			isa = PBXGroup;
 			children = (
+				CDF85CC229ED149E0041B64E /* model */,
 				CD65415829C2EE52006DC774 /* SyncAlertDialog */,
 				CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */,
 				CDD3E68329C43E2D00E7DDFE /* SyncContactVC.swift */,
@@ -1250,6 +1258,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CD9A1B5C29E52C8B002E1C07 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				CD9A1B5D29E52CB1002E1C07 /* PushNotificationModel.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		CDAA0FA3286CAAF4009B69A9 /* pospAmntDialog */ = {
 			isa = PBXGroup;
 			children = (
@@ -1274,6 +1290,15 @@
 				CDD14A0329A753EA006BB92B /* OauthTokenModel.swift */,
 			);
 			path = deviceDetail;
+			sourceTree = "<group>";
+		};
+		CDF85CC229ED149E0041B64E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				CDF85CC329ED14B60041B64E /* SyncModel.swift */,
+				CDF85CC529ED152E0041B64E /* SyncAgreementModel.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		E995F435A99E140D6BB5F744 /* Pods */ = {
@@ -1618,10 +1643,12 @@
 				B253B254261652E0000C3A7D /* IQKeyboardManager+Toolbar.swift in Sources */,
 				CD475D092910F19B00BAE252 /* DashBoardVC.swift in Sources */,
 				84EF6E9F2296B2730002E73B /* smsTempTVCell.swift in Sources */,
+				CD9A1B5E29E52CB1002E1C07 /* PushNotificationModel.swift in Sources */,
 				44B648912440A441006347D8 /* DynamicDashboardModel.swift in Sources */,
 				B253B257261652E0000C3A7D /* IQUITextFieldView+Additions.swift in Sources */,
 				442E20E124C8355200FFC075 /* Core.swift in Sources */,
 				44A685CD22DDA170001295F0 /* addSubUserTVCell.swift in Sources */,
+				CDF85CC429ED14B60041B64E /* SyncModel.swift in Sources */,
 				B22BFE53273833ED002EC580 /* TransactionHistoryResponse.swift in Sources */,
 				CD65415A29C2EE7E006DC774 /* SyncMoreDetailsVC.swift in Sources */,
 				8480BBDE2208118900BEEDF4 /* hnfcontactUsVC.swift in Sources */,
@@ -1645,6 +1672,7 @@
 				443F8C4624D046A0006BA89F /* UIImage+Gif.swift in Sources */,
 				44AB396B243E1F940009BD86 /* AlertService.swift in Sources */,
 				B208357A26FDAE40006F5890 /* DynamicLabelSize.swift in Sources */,
+				CDF85CC629ED152E0041B64E /* SyncAgreementModel.swift in Sources */,
 				8410404621D789C300C3B7A7 /* Configuration.swift in Sources */,
 				449F17F622DCA87C00C9A2BF /* addSubUserVC.swift in Sources */,
 				B253B24C261652E0000C3A7D /* IQKeyboardManager+UIKeyboardNotification.swift in Sources */,
@@ -1855,7 +1883,7 @@
 					"$(PROJECT_DIR)/policyBoss",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/policyBoss/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1888,7 +1916,7 @@
 					"$(PROJECT_DIR)/policyBoss",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/policyBoss/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

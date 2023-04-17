@@ -189,8 +189,9 @@ class LoginVC: UIViewController,UITextFieldDelegate {
         alertView.show()
         
         let deviceID = UIDevice.current.identifierForVendor?.uuidString
-        print("deviceID=",deviceID!)
-        
+        print("deviceID=",deviceID ?? "")
+        let token = UserDefaults.standard.string(forKey: Constant.token)
+            print("deviceToken=",token ?? "")
         let params: [String: AnyObject] = ["AppID": "" as AnyObject,
                                              "AppPASSWORD": "" as AnyObject,
                                              "AppUSERID": "" as AnyObject,
@@ -204,7 +205,7 @@ class LoginVC: UIViewController,UITextFieldDelegate {
                                              "MobileNo": "" as AnyObject,
                                              "OldPassword": "" as AnyObject,
                                              "Password": passwordTf.text! as AnyObject,
-                                             "TokenId": "0" as AnyObject,
+                                             "TokenId": token as AnyObject,
                                              "UserId": userId as AnyObject,
                                              "UserName": emailTf.text! as AnyObject,
                                              "UserType": "" as AnyObject,

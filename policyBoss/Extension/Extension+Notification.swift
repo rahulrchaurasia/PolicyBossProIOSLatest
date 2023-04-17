@@ -15,4 +15,8 @@ extension Notification.Name{
     static let NotifyMyAccountProfile = Notification.Name("NotifyMyAccountProfile")
    
     static let NotifyLoginToken = Notification.Name("NotifyLoginToken")
+    
+    static let NotifyPushDetails = Notification.Name("NotifyPushDetails")
+    
+    static let NotifyDeepLink = Notification.Name("NotifyDeepLink")
 }

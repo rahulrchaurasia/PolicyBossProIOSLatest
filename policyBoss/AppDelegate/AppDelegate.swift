@@ -93,19 +93,122 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    /***********************************************************/
+    //Mark : Deeplink
+    
+    //Mark: For Handling Dynamic Link
+    func handleIncomingDynamicLink(_ dynamicLink : DynamicLink){
+        
+        guard let url = dynamicLink.url else{
+            
+            print("deeplink:- Link has no URL")
+            return
+        }
+        print("deeplink:- Your Incoming Link parameter is \(url.absoluteString)")
+        //secod let ie queryItems not execute if first let is true
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let queryItems = components.queryItems else {return}
+        
+        let dict  : NSMutableDictionary = [:]
+        
+       
+        for queryItem in queryItems {
+            print("deeplink:- Parameter is \(queryItem.name) has a value of \(queryItem.value ?? "") ")
+            
+            dict.setValue(queryItem.value, forKey: queryItem.name)
+            
+           // dict[queryItem.value ?? "", default: queryItem.name]
+        }
+        
+        //post Dictionary of Deeplink Notification
+        NotificationCenter.default.post(name: .NotifyDeepLink, object: dict)
+        
+    }
+    
+    //Mark: Dynamic Link come here
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        
+        
+        if let incommingURL = userActivity.webpageURL{
+            
+            print("deeplink:- Incoming URL is \(incommingURL)")
+            
+            let linkhandled = DynamicLinks.dynamicLinks()
+              .handleUniversalLink(userActivity.webpageURL!) { dynamiclink, error in
+                
+                  guard error == nil else {
+                      
+                      print("deeplink:- Found an error \(String(describing: error?.localizedDescription))")
+                      return
+                  }
+                  
+                  if let dynamiclink = dynamiclink{
+                      
+                      self.handleIncomingDynamicLink(dynamiclink)
+                      
+                      
+                  }
+                  
+              }
+            
+            if linkhandled{
+                return true
+            }else{
+                
+                return false
+            }
+            
+        }
+     
 
-//    func userNotificationCenter(_ center: UNUserNotificationCenter,
-//                                    willPresent notification: UNNotification,
-//                                    withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//            let userInfo = notification.request.content.userInfo
+      return false
+    }
+    
+
+    
+    @available(iOS 9.0, *)
+    func application(_ app: UIApplication, open url: URL,
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        
+        print("DEEPLINK",url)
+      return application(app, open: url,
+                         sourceApplication: options[UIApplication.OpenURLOptionsKey
+                           .sourceApplication] as? String,
+                         annotation: "")
+    }
+
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?,
+                     annotation: Any) -> Bool {
+      if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+          
+          print("deeplink:- open url receive a URL through custom scheme!! \(url.absoluteString)")
+          self.handleIncomingDynamicLink(dynamicLink)
+         
+        return true
+      }else{
+          
+          print("DEEPLINK",url)
+          // May be handel google and facebook signIn here
+          return false
+      }
+    
+    }
+    
+    
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
 //
-//            // Print full message.
-//            print(userInfo)
-//
-//            // Change this to your preferred presentation option
-//           //It will help to get notification when app is active
-//            completionHandler([.alert, .badge, .sound])
-//        }
+//        //com.demo.food
+//        print("DEEPLINK",url)
+//        return true
+//    }
+    
+    
+    
+
+    //Mark : Deeplink end
+    /***********************************************************/
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -130,10 +233,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     
-    // for orientation
-//    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-//        return deviceOrientation
-//    }
+
 
 }
 extension AppDelegate : MessagingDelegate {
@@ -146,6 +246,12 @@ extension AppDelegate : MessagingDelegate {
                 return
             }
             print("Token:  \(token)")
+            if(!UserDefaults.exists(key: "FBAId") ){
+                UserDefaults.standard.set(String(describing: token), forKey: Constant.token)
+               
+            }
+               
+           
         }
         
         
@@ -155,70 +261,45 @@ extension AppDelegate : MessagingDelegate {
 
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-  // Receive displayed notifications for iOS 10 devices.
+    // Receive displayed notifications for iOS 10 devices.
     
-    // Foreground Notification
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              willPresent notification: UNNotification) async
+    //Mark:- Foreground Notification : Required When app is already Present
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification) async
     -> UNNotificationPresentationOptions {
-    let userInfo = notification.request.content.userInfo
-
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-    // ...
+        _ = notification.request.content.userInfo
+        
+       
+        
+        // Print full message.
+        //print("NOTIFICATION INFO1 ",userInfo)
+        
+        // Change this to your preferred presentation option
+        return [[.alert, .sound]]
+    }
+    
+    
+    
+    
+    //Mark:- When Click on Notification {Background & Foreground}
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse) async {
+        let userInfo = response.notification.request.content.userInfo
+        
+        
+        // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-          print("Message ID: \(messageID)")
+            print("Message ID: \(messageID)")
         }
-        if let web_title = userInfo["web_title"] {
-            
-            print("NOTIFICATION web_title ",web_title)
-        }
-        if let web_url = userInfo["web_url"] {
-            
-            print("NOTIFICATION web_url ",web_url)
-        }
-
-    // Print full message.
-    print("NOTIFICATION INFO1 ",userInfo)
-
-
-    // Change this to your preferred presentation option
-    return [[.alert, .sound]]
-  }
-
-    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        <#code#>
-//    }
-    
-    
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              didReceive response: UNNotificationResponse) async {
-    let userInfo = response.notification.request.content.userInfo
-
-//      if  let userInfoDic =  response.notification.request.content.userInfo["data"] as? [String: Any] {
-//
-//          let alertBody = userInfoDic["web_url"] as? String
-//         // self.label?.text = alertBody
-//          print("web_url ",alertBody ?? "")
-//        }
-
-    // ...
-
-    // With swizzling disabled you must let Messaging know about the message, for Analytics
-    // Messaging.messaging().appDidReceiveMessage(userInfo)
-
-      // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-          print("Message ID: \(messageID)")
-        }
-
-    // Print full message.
-    print("NOTIFICATION INFO2 ",userInfo)
-      
+        
      
-  }
+        //post Dictionary of Push Notification
+        NotificationCenter.default.post(name: .NotifyPushDetails, object: userInfo)
+        
+        
+    }
     
-   
+    
 }
+
+

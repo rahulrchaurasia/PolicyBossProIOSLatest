@@ -72,41 +72,13 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     var earningToolImges = ["mps.png","income_calculator_ic.png","income_potential_ic.png"]
     
-//    var myFinItems = ["HOME","MY FINBOX","FINPERKS"]
-//    var myFinImages = ["home.png","mps.png","ic_business_name.png"]
-    
-   // var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","LOG-OUT"]
-   // var otherImges = ["ic_business_name.png","posp_training.png","logout.png"]
-    //"Loan Agreement",
-    // var transactionsItems = ["My Insurance Business","My Transactions","My Messages","Get Policy by CRN"]
-    //    var earningtoolsItmes = ["Loan Agreement","Income Calculator","Income Potential"]
-    
-    // var myaccountItems = ["My Profile","Enrol as POSP","Raise a Ticket","Change Password"]
-    //var myaccountItems2 = ["My Profile","Add Sub User","Raise a Ticket","Change Password"]
-    
-    //     var leadsItems = ["Create Lead Contact","Generate Motor Leads","Generate Loan Leads","Lead Dashboard","Sms Templates"]
-    //     var leadsImges = ["sync_contact_ic.png","vehicledetail.png","share_data.png","insurance_policy_ic.png","mps.png"]
-    
-    //    var pospItems = ["Enrol as POSP","Add Users"]
-    //    var requestItems = ["Offline Quotes","Request Policy by CRN"]
-    //    var otherutilitiesItems = ["MORE SERVICES","MY UTILITIES","WHAT'S NEW","LOG-OUT"]
-    //       var otherImges = ["ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
-    
-    
+
     var attendanceItems = ["Add Attendance","My Location","Report"]
-    //--<cellImages>--
-    //  var myFinImages = ["","home.png","mps.png","ic_business_name.png"]
-    
-    
-    //  var myaccountImages = ["vector_person.png","posp_enrollment.png","posp_enrollment.png","change_password.png"]
-    
-    
-    // var transactionImges = ["ic_business_name.png","vector_date.png","sms.png","insurance_policy_ic.png"]
     
     
     var pospImges = ["posp_enrollment.png","posp_enrollment.png"]
     var requestImges = ["insurance_policy_ic.png","insurance_policy_ic.png"]
-    //  var otherImges = ["income_potential_ic.png","ic_business_name.png","posp_training.png","whats_new.png","logout.png"]
+ 
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     var fromScreen = ""

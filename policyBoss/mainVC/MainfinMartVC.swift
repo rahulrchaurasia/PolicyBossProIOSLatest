@@ -47,26 +47,18 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     var managerName = ""
     var mobNo = ""
     
-    //******************** Below Array Not in Used **********************
-    var insuranceArray = ["PRIVATE CAR","TWO WHEELER","COMMERCIAL VEHICLE","HEALTH INSURANCE","LIFE INSURANCE","REQUEST OFFLINE QUOTES"]
-    var loansArray = ["CREDIT CARD","PERSONAL LOAN","BUSINESS LOAN","HOME LOAN","LOAN AGAINST PROPERTY"]
-    var moreservicesArray = ["OTHER INVESTMENT PRODUCT-P2P"]
     
-     var moreservicesArray1 = ["OTHER INVESTMENT PRODUCT-P2P"]
-    var insuranceImgArray = ["private_car.png","two_wheeler.png","commercial_vehicle","health_insurance.png","life_insurance.png","offlineportal.png"]
-    var loansImgArray = ["credit_card.png","personal_loan.png","balance_transfer.png","home_loan.png","loan_against_property.png"]
-    var othrImgArray = ["health_checkup_plan.png"]
-    //--<detailsTVArrays>--
-    var insuranceDetailArray = ["Best quotes for Private Car Insurance of your customers with instant policy.","Best quotes for Two Wheeler Insurance of your customers with instant policy.","Best quotes for CV Insurance of your customers with instant policy.","Get quotes and compare benefits of health insurance from top insurance companies.","Get quotes and compare benefits of life insurance from top insurance companies.","Get offline quotes"]
-    
-    
-    var loansDetailArray = ["Home loan at best intrest rates from over 20+ banks & NBFCs.","Provide instant approval for your customers at attractive intrest rates.","Maximum loan amount at competitive intrest rate against property.","Get instant Credit card approvals with amazing offers and deals.","Transfer existing loans at lower intrest rate.And help customers to save more on existing loans.","Get your credit report with score at no cost.","Enjoy chatting with your BOT freind & provide instant loan sanction to your customer for Personal Loan,Home Loan,Business Loan,Car Loan,LAP,Gold Loan,etc.","Submit leads for products like Car Loan,Business Loan,Working Capital,Term Loan,LRD,etc.","Loan disbursed in just few hours!!!","We Finance your growth","Improve your credit score."]
-    
-  
     deinit {
       // NotificationCenter.default.removeObserver(self)
         
-        
+        do{
+           NotificationCenter.default.removeObserver(self,name: .NotifyPushDetails, object: nil)
+        NotificationCenter.default.removeObserver(self,name: .NotifyLoginToken, object: nil)
+        NotificationCenter.default.removeObserver(self,name: .NotifyMyAccountProfile, object: nil)}
+        catch let error {
+            
+            debugPrint("Notification Deinit Error: ",error.localizedDescription)
+        }
     }
     
   
@@ -115,6 +107,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         self.getDeviceDetails()
         
     
+       
         
         NotificationCenter.default.addObserver(self, selector: #selector(NotifyData(notification:)),
                                                name: .NotifyMyAccountProfile, object: nil)
@@ -125,9 +118,96 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                                name: .NotifyLoginToken, object: nil)
         
      
+        
+      NotificationCenter.default.addObserver(self, selector: #selector(pushNotifyDataHandling(notification:)), name: .NotifyPushDetails, object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(NotifyFirebaseDeeplink(notification:)),
+                                               name: .NotifyDeepLink, object: nil)
+        
     }
     
     
+    @objc func NotifyFirebaseDeeplink(notification : Notification){
+        
+        debugPrint("deeplink",notification.object as? [String: Any] ?? [:])
+        
+        let deeplink = notification.object as? [String : Any] ?? [:]
+        
+        debugPrint("My Data",  deeplink["product_id"] ?? "dd")
+        
+        if let prdId = deeplink["product_id"]{
+            
+            callWebViewUsingDeeplinkPushNotification(ProdId: String(describing: prdId) )
+            
+        }
+        
+      
+        
+    }
+    
+    @objc func pushNotifyDataHandling(notification : Notification){
+        
+        
+      debugPrint("PUSHDATA",notification.object as? [String: Any] ?? [:])
+
+        let userInfo = notification.object as? [String: Any] ?? [:]
+        
+        var pushNotifyData =  PushNotificationModel()
+
+
+        if let notifyFlag = userInfo["notifyFlag"] {
+
+            pushNotifyData.notifyFlag = notifyFlag as? String
+            print("NOTIFICATION notifyFlag ",notifyFlag)
+        }else{
+            print("NOTIFICATION notifyFlag No Data Found ")
+            return
+        }
+
+        if let notifyFlag = userInfo["notifyFlag"] {
+
+            pushNotifyData.notifyFlag = notifyFlag as? String
+            print("NOTIFICATION notifyFlag ",notifyFlag)
+        }
+
+        if let body = userInfo["body"] {
+
+            pushNotifyData.body = body as? String
+            print("NOTIFICATION body ",body)
+        }
+        if let title = userInfo["title"] {
+
+            pushNotifyData.title = title as? String
+            print("NOTIFICATION title ",title)
+        }
+        if let web_url = userInfo["web_url"] {
+
+            pushNotifyData.web_url = web_url as? String
+            print("NOTIFICATION web_url ",web_url)
+        }
+        if let web_title = userInfo["web_title"] {
+
+            pushNotifyData.web_title = web_title as? String
+            print("NOTIFICATION web_title ",web_title)
+        }
+        if let message_id = userInfo["message_id"] {
+
+            pushNotifyData.message_id = message_id as? String
+            print("NOTIFICATION message_id ",message_id)
+        }
+        
+        // Action
+        
+       // callWebView(webfromScreen: "COMMERCIALVEHICLE", type: "CHILD")
+        if let ProdId = pushNotifyData.notifyFlag{
+            
+            callWebViewUsingDeeplinkPushNotification(ProdId: ProdId)
+        }
+        
+      
+    
+    }
     @objc func NotifyData(notification : Notification){
         
         self.userconstantAPI()
@@ -1721,15 +1801,94 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     
     
-    /////////
+    
+    // Mark : Calling Push and Deeplink calls
+    func callWebViewUsingDeeplinkPushNotification(  ProdId : String ){
+        
+ 
+        
+        switch (ProdId) {
+        case "1"  :  // car
+            
+            callWebView(webfromScreen: "private")
+            
+            break
+        case "2"  :  // Health
+           
+              callWebView(webfromScreen: "HealthInsurance")
+            break
+            
+        case "10" :  // TWO WHEELER
+         
+            callWebView(webfromScreen: "twoWheeler")
+            break
+            
+        case "12"  :   //COMMERCIAL VEHICLE
+           
+            callWebView(webfromScreen: "COMMERCIALVEHICLE")
+            break
+            
+        case "18"  :    // TermInsurance
+            
+            /*
+            let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
+       
+            
+             LifeInsurance.modalPresentationStyle = .fullScreen
+            LifeInsurance.addType = "CHILD"
+            
+            add(LifeInsurance)
+            deSelectDashboard()
+             */
+            
+            break
+            
+        
+            
+    
+        case "41" : // Sync Contact
+            
+
+            let objVC = WelcomeSynConatctVC.shareInstance()
+
+            navigationController?.pushViewController(objVC, animated: false)
+            
+            break
+            
+           
+    
+        default : break
+            
+          
+        }
+        
+        
+        
+    }
+    
+    
+    func callWebView(webfromScreen : String ){
+        
+       
+        
+        let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+        commonWeb.modalPresentationStyle = .fullScreen
+        commonWeb.webfromScreen = webfromScreen
+        commonWeb.addType = Screen.navigateBack
+        navigationController?.pushViewController(commonWeb, animated: false)
+        deSelectDashboard()
+        
+    }
     
     func callWebView(webfromScreen : String ,type :String)  {
         let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
         commonWeb.modalPresentationStyle = .fullScreen
         commonWeb.webfromScreen = webfromScreen
-        commonWeb.addType = type
-        commonWeb.delegateData = self
-        add(commonWeb)    // Adding in Parent View
+        commonWeb.addType = Screen.navigateBack
+        //commonWeb.delegateData = self
+        //add(commonWeb)    // Adding in Parent View
+        
+        navigationController?.pushViewController(commonWeb, animated: false)
         deSelectDashboard()
     }
     

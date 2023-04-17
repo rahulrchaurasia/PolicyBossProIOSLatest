@@ -47,6 +47,10 @@ struct Constant  {
     static let  contactReq   = "Please Allow Contact Access."
     static let  contactTitle   = "Contact access is need to get your Contact Sync."
 
+    static let  token   = "FCMTOKEN"
+    static let  HeaderToken   = "1234567890"
+    static let  NoDataFound   = "No Data Found"
+    static let  InvalidURL   = "Invalid URL.."
 }
 
 

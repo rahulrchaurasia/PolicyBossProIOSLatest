@@ -18,7 +18,7 @@ class NotificationViewModel{
         let FBAId = UserDefaults.standard.string(forKey: "FBAId")
     
         let params: [String: AnyObject] = [ "FBAID": FBAId as AnyObject]
-        
+      
 
         let endUrl = "get-notification-data"
         let urlString =  FinmartRestClient.baseURLString  + endUrl
@@ -38,12 +38,16 @@ class NotificationViewModel{
         
         debugPrint("parameter= ",params)
         do {
+            
+        
+
+            
            // let jsonReq = try JSONEncoder().encode(syncReqData)
             let requestBody = try JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
             
             request.httpBody = requestBody
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("token", forHTTPHeaderField: "1234567890")
+            request.addValue("token", forHTTPHeaderField: Constant.HeaderToken)
         } catch {
             print(error.localizedDescription)
         }
@@ -67,24 +71,41 @@ class NotificationViewModel{
                 return
             }
             
-           
             
             do {
                 
-                
-                let respData  = try
-                JSONDecoder().decode(NotificationResponse.self, from: data)
-                
-            
-                
-                debugPrint("***RESPONSE****" , respData)
-                if respData.StatusNo == 0 {
-                   
-                    completionHandler(.success(respData))
-                }else{
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                       // try to read out a string array
+                        var Status = json["StatusNo"] as? Int ?? 1
+                        print("STATUS" ,Status )
+                           
+                           if(Status  == 0){
+                               let respData  = try
+                               JSONDecoder().decode(NotificationResponse.self, from: data)
+                               
+                           
+                               
+                              // debugPrint("***RESPONSE****" , respData)
+                               if respData.StatusNo == 0 {
+                                  
+                                   completionHandler(.success(respData))
+                               }else{
+                                   
+                                   completionHandler(.failure(.custom(message: respData.Message )))
+                               }
+                           }
+                           
+                           else{
+                               
+                               completionHandler(.failure(.custom(message: json["Message"] as? String ?? Constant.NoDataFound)))
+                           }
+                       }
                     
-                    completionHandler(.failure(.custom(message: respData.Message ?? serverUnavailbleError)))
-                }
+                   
+                
+                
+                
+                
                 //switch
                 
                 

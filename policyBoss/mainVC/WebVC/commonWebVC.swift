@@ -296,22 +296,14 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
       
             
      /********************************************Not in used ****************************************/
-        else if(webfromScreen == "loanAgreement")
-        {
-            titleLbl.text! = "LOAN AGREEMENT"
-            webView.load(URLRequest(url: URL(string: "https://docs.google.com/viewer?url=http://erp.rupeeboss.com/FM/Franchise_Agreement.pdf")!))
-              print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
-        }
+        
         else if(webfromScreen == "messageCenter")
         {
             titleLbl.text! = "MESSAGE CENTER"
             webView.load(URLRequest(url: URL(string: "http://d3j57uxn247eva.cloudfront.net/Health_Web/sms_list.html?ss_id=5999&fba_id="+(FBAId!)+"&ip_address=10.0.0.1&app_version="+(appVersion)+"&device_id="+(deviceID!))!))
               print("URL",CVUrl!+"&ip_address=10.0.0.1&mac_address=10.0.0.1&app_version="+(appVersion)+"&product_id=12")
         }
-        else if(webfromScreen == "myBusiness")
-        {
-           
-        }
+        
         else if(webfromScreen == "Training")
         {
             titleLbl.text! = "TRAINING"
@@ -328,64 +320,19 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             
              /**************************************************************************************************************/
         
-        else if(webfromScreen == "freeCreditCard")
-        {
-            titleLbl.text! = "BACK"
-            webView.load(URLRequest(url: URL(string: "https://www.rupeeboss.com/equii?BrokerId=58745&source_type=IOS")!))
-             print("URL","https://www.rupeeboss.com/equii?BrokerId=58745&source_type=IOS")
-        }
-        else if(webfromScreen == "cashLoan")
-        {
-            titleLbl.text! = "CASH LOAN"
-            webView.load(URLRequest(url: URL(string: "http://www.rupeeboss.com/gopaysense?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")!))
-             print("URL","http://www.rupeeboss.com/gopaysense?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")
-        }
-        else if(webfromScreen == "businessLoan")
-        {
-            titleLbl.text! = "BUSINESS LOAN"
-            webView.load(URLRequest(url: URL(string: "http://www.rupeeboss.com/lendingkart?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")!))
-             print("URL","http://www.rupeeboss.com/lendingkart?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")
-        }
-        else if(webfromScreen == "rectifyCredit")
-        {
-            titleLbl.text! = "RECTIFY CREDIT"
-            webView.load(URLRequest(url: URL(string: "http://www.rupeeboss.com/rectifycredit?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")!))
-            print("URL","http://www.rupeeboss.com/rectifycredit?fbaid="+(FBAId!)+"&type=finmart&loan_id=64635")
-        }
-            
+       
         
-        else if(webfromScreen == "fin-Peace")
-        {
-            let finperkurl = UserDefaults.standard.string(forKey: "finperkurl")
-
-            guard let FINPERK = finperkurl else{
-                
-                return
-            }
-            titleLbl.text! = "FIN-PEACE"
-            webView.load(URLRequest(url: URL(string: FINPERK)!))
-    
         
-        }
-        else if(webfromScreen == "healthAssure")
-        {
-            titleLbl.text! = "BACK"
-            webView.load(URLRequest(url: URL(string: "http://bo.magicfinmart.com/health-packages?FBAID="+(FBAId!)+"&FBAName=&FBAMobile="+(loanselfmobile!)+"&PackCode="+healthpckCode)!))
-            
-            print("URL","http://bo.magicfinmart.com/health-packages?FBAID="+(FBAId!)+"&FBAName=&FBAMobile="+(loanselfmobile!)+"&PackCode="+healthpckCode)
-        }
+        
+       
+       
         else if(webfromScreen == "contactWebsites")
         {
             titleLbl.text! = "BACK"
             webView.load(URLRequest(url: URL(string: "http://"+fromcontctWebsite)!))
             print("URL","http://"+fromcontctWebsite)
         }
-        else if(webfromScreen == "loanonMessanger")
-        {
-            titleLbl.text! = "BACK"
-            webView.load(URLRequest(url: URL(string: "https://yesbankbot.buildquickbots.com/chat/rupeeboss/staff/?userid="+(FBAId!)+"&usertype=FBA&vkey=b34f02e9-8f1c")!))
-            print("URL","https://yesbankbot.buildquickbots.com/chat/rupeeboss/staff/?userid="+(FBAId!)+"&usertype=FBA&vkey=b34f02e9-8f1c")
-        }
+        
         else if(webfromScreen == "otherInvestmentproductp2p")
         {
             titleLbl.text! = "OTHER INVESTMENT PRODUCT-P2P"
@@ -412,12 +359,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
         }
        
         
-       
-        else if(webfromScreen == "homeLoanapplyNow"){
-            titleLbl.text! = bankName
-            webView.load(URLRequest(url: URL(string: bankUrl)!))
-            print("URL",bankUrl)
-        }
+    
         
         else if(webfromScreen == "Dynamic"){
             titleLbl.text! = dynamicName

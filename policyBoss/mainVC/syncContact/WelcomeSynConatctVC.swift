@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import TTGSnackbar
+import CustomIOSAlertView
 
 class WelcomeSynConatctVC: UIViewController {
 
@@ -20,12 +21,12 @@ class WelcomeSynConatctVC: UIViewController {
     
     @IBOutlet weak var ClickHere: UIStackView!
     
-    var isTerm1 = false
-    var  isTerm2 = false
-    var isTerm3 = false
+    var isTermSMS = false
+    var  isTermCALL = false
+    var isTermAggremet = false
     var isAuthorized = false
     let store = CNContactStore()
-    
+    let syContactViewModel  = SyncContactViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +42,18 @@ class WelcomeSynConatctVC: UIViewController {
 
 
         self.ClickHere.addGestureRecognizer(gesture)
-
+        
+       
+        if Connectivity.isConnectedToInternet(){
+            
+            fetchSyncAgreementDetails()
+        }else{
+            
+            let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
+            snackbar.show()
+        }
+            
+      
         
         // Do any additional setup after loading the view.
     }
@@ -58,7 +70,7 @@ class WelcomeSynConatctVC: UIViewController {
     
     func verifyAllCondition() -> Bool{
         
-        if( self.isTerm3 ){
+        if( self.isTermAggremet ){
             
             btnGetStarted.alpha = 1
             return true
@@ -67,6 +79,32 @@ class WelcomeSynConatctVC: UIViewController {
             return false
         }
        
+    }
+    
+    func getSyncAgreemet(isSms : String, isCall : String){
+        
+        if(isSms == "yes"){
+            self.isTermSMS = true
+            imgchkTerm1.image = UIImage(named: "black-check-box-with-white-check (2).png")
+        }else{
+            self.isTermSMS = false
+            imgchkTerm1.image = UIImage(named: "check-box-empty.png")
+            
+        }
+        
+        
+        if(isCall == "yes"){
+            
+            self.isTermCALL = true
+            imgchkTerm2.image = UIImage(named: "black-check-box-with-white-check (2).png")
+        }else{
+            self.isTermCALL = false
+            imgchkTerm2.image = UIImage(named: "check-box-empty.png")
+            
+        }
+        
+        
+        
     }
     @IBAction func btnBack(_ sender: Any) {
         
@@ -88,10 +126,10 @@ class WelcomeSynConatctVC: UIViewController {
     
     @IBAction func btnTerms1(_ sender: Any) {
         
-        self.isTerm1.toggle()
+        self.isTermSMS.toggle()
         
        
-        if(self.isTerm1){
+        if(self.isTermSMS){
             imgchkTerm1.image = UIImage(named: "black-check-box-with-white-check (2).png")
            
         }else{
@@ -104,8 +142,8 @@ class WelcomeSynConatctVC: UIViewController {
     }
     
     @IBAction func btnTerms2(_ sender: Any) {
-        self.isTerm2.toggle()
-        if(self.isTerm2){
+        self.isTermCALL.toggle()
+        if(self.isTermCALL){
             imgchkTerm2.image = UIImage(named: "black-check-box-with-white-check (2).png")
            
         }else{
@@ -118,8 +156,8 @@ class WelcomeSynConatctVC: UIViewController {
     
     @IBAction func btnTerms3(_ sender: Any) {
         
-        self.isTerm3.toggle()
-        if(self.isTerm3){
+        self.isTermAggremet.toggle()
+        if(self.isTermAggremet){
             imgchkTerm3.image = UIImage(named: "black-check-box-with-white-check (2).png")
            
         }else{
@@ -136,16 +174,20 @@ class WelcomeSynConatctVC: UIViewController {
         if Connectivity.isConnectedToInternet(){
             
             if( verifyAllCondition()){
-                
-               
+
+
                 self.contactAuthorizedReq()
-                
+
                 if(isAuthorized){
-                    navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+                    
+                    saveSyncContAgreementData(isCall: self.isTermCALL, isSms: self.isTermSMS)
+                  
                 }
-                
-                
+
+
             }
+            
+         
         }else{
             
             let snackbar = TTGSnackbar.init(message: Connectivity.message, duration: .middle )
@@ -153,6 +195,99 @@ class WelcomeSynConatctVC: UIViewController {
         }
     }
     
+    
+    func fetchSyncAgreementDetails(){
+        let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+        if let parentView = self.navigationController?.view
+        {
+            alertView.parentView = parentView
+        }
+        else
+        {
+            alertView.parentView = self.view
+        }
+        alertView.show()
+     
+        Task{
+
+            do{
+
+                let response = try await syContactViewModel.fetchSyncAgreement()
+
+                alertView.close()
+                
+                if(response.status == "0"){
+                   
+                    if let agreemnetRes = response.response{
+                        
+                        
+                        let index =  agreemnetRes.Msg.count - 1
+      
+                        print("Sync Agreement Response: \(String(describing: agreemnetRes))")
+                        
+                        getSyncAgreemet(isSms: agreemnetRes.Msg[index].is_sms, isCall: agreemnetRes.Msg[index].is_call)
+                    }else{
+                       
+                        let snackbar = TTGSnackbar.init(message: Constant.NoDataFound, duration: .middle )
+                        snackbar.show()
+                    }
+                }
+                
+               
+
+
+            }catch{
+                alertView.close()
+                print("Request failed with error: \(error)")
+                let snackbar = TTGSnackbar.init(message: error.localizedDescription, duration: .middle )
+                snackbar.show()
+            }
+
+        }
+        
+    }
+    func saveSyncContAgreementData(isCall : Bool , isSms : Bool)
+    {
+        
+            let alertView:CustomIOSAlertView = FinmartStyler.getLoadingAlertViewWithMessage("Please Wait...")
+            if let parentView = self.navigationController?.view
+            {
+                alertView.parentView = parentView
+            }
+            else
+            {
+                alertView.parentView = self.view
+            }
+            alertView.show()
+            Task{
+                
+                do{
+                    let response = try await syContactViewModel.saveSyncAgreement(isCall: isCall, isSMS: isSms)
+                    
+            print("Sync save Agreement Response: \(String(describing: response))")
+                    
+                    alertView.close()
+                    
+                    if(response.lowercased() == "success"){
+                        navigationController?.pushViewController( SyncContactVC.shareInstance(), animated: false)
+                    }else{
+                        
+                        let snackbar = TTGSnackbar.init(message: Constant.NoDataFound, duration: .middle )
+                        snackbar.show()
+                    }
+                    
+                        
+                 
+                }catch{
+                    alertView.close()
+                    print("Request failed with error: \(error)")
+                }
+            }
+            
+        }
+        
+    
+
     
     func contactAuthorizedReq(){
         
