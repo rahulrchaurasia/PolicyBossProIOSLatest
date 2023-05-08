@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
         
-        application.applicationIconBadgeNumber 
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
         
@@ -119,6 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
            // dict[queryItem.value ?? "", default: queryItem.name]
         }
+        
         
         //post Dictionary of Deeplink Notification
         NotificationCenter.default.post(name: .NotifyDeepLink, object: dict)
@@ -246,7 +246,7 @@ extension AppDelegate : MessagingDelegate {
                 return
             }
             print("Token:  \(token)")
-            if(!UserDefaults.exists(key: "FBAId") ){
+            if(!UserDefaults.exists(key: Constant.token) ){
                 UserDefaults.standard.set(String(describing: token), forKey: Constant.token)
                
             }
@@ -269,8 +269,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     -> UNNotificationPresentationOptions {
         _ = notification.request.content.userInfo
         
-       
-        
+    
         // Print full message.
         //print("NOTIFICATION INFO1 ",userInfo)
         
@@ -280,8 +279,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
     
     
-    
+    //********** on Notification {Background & Foreground} ***************
     //Mark:- When Click on Notification {Background & Foreground}
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse) async {
         let userInfo = response.notification.request.content.userInfo
@@ -292,11 +292,33 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             print("Message ID: \(messageID)")
         }
         
-     
+
+       
         //post Dictionary of Push Notification
         NotificationCenter.default.post(name: .NotifyPushDetails, object: userInfo)
         
         
+    }
+    
+    //added
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        var count = (UserDefaults.standard.integer(forKey: Constant.NotificationCount))
+        
+        count = count + 1
+        
+        debugPrint("FCM Badge Count \(count)")
+        UserDefaults.standard.set(count, forKey: Constant.NotificationCount)
+        
+        UIApplication.shared.applicationIconBadgeNumber =  count
+        
+    
+        
+//        if let aps = userInfo["aps"] as? [String: AnyObject] {
+//            if let badgeNumber = aps["badge"] as? Int {
+//                UIApplication.shared.applicationIconBadgeNumber = badgeNumber
+//            }
+//        }
     }
     
     

@@ -72,7 +72,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
        
         
       
-        if(webfromScreen == "private")      //  PrdID =1
+        if(webfromScreen == ScreenName.privateCar)      //  PrdID =1
         {
 
             titleLbl.text! = "PRIVATE CAR"
@@ -83,14 +83,14 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
 
             
         }
-        else if(webfromScreen == "twoWheeler")  //  PrdID =10
+        else if(webfromScreen == ScreenName.twoWheeler)  //  PrdID =10
         {
 
             titleLbl.text! = "TWO WHEELER"
             bindInsuranceUrl(strURL: TwoWheelerUrl!,prdID: "10")
             
         }
-        else if(webfromScreen == "COMMERCIALVEHICLE")
+        else if(webfromScreen == ScreenName.COMMERCIALVEHICLE)
         {
             titleLbl.text! = "COMMERCIAL VEHICLE"
              bindInsuranceUrl(strURL: CVUrl!,prdID: "12")
@@ -99,7 +99,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
         }
             
             
-        else if(webfromScreen == "HealthInsurance")     //   PrdID = 2
+        else if(webfromScreen == ScreenName.HealthInsurance)     //   PrdID = 2
         {
             titleLbl.text! = "HEALTH INSURANCE"
             bindInsuranceUrl(strURL: HealthUrl!,prdID: "2")
@@ -108,7 +108,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
 
         }
         
-        else if(webfromScreen == "SYNC_TERMS")
+        else if(webfromScreen == ScreenName.SYNC_TERMS)
         {
             self.btnHome.isHidden = true
             titleLbl.text! = webTitle
@@ -116,7 +116,14 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
              debugPrint("URL","https://www.policyboss.com/terms-condition")
         }
         
-        else if(webfromScreen == "SYNC_PRIVACY")
+        else if(webfromScreen == ScreenName.Insurance)
+        {
+           
+            titleLbl.text! = webTitle
+            webView.load(URLRequest(url: URL(string: "https://origin-cdnh.policyboss.com/fmweb/insurance_repository/page.html")!))
+             debugPrint("URL","https://origin-cdnh.policyboss.com/fmweb/insurance_repository/page.html")
+        }
+        else if(webfromScreen == ScreenName.SYNC_PRIVACY)
         {
             self.btnHome.isHidden = true
             titleLbl.text! = webTitle
@@ -221,7 +228,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
       ///////////////////////////////////////////////////////////////////////////////
             
     /****************************** Home Section  ****************************************/
-        else if(webfromScreen == "myFinbox")
+        else if(webfromScreen == ScreenName.myFinbox)
         {
             
             let url = UserDefaults.standard.string(forKey: "finboxurl")
@@ -236,7 +243,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             print("URL",FINBOX)
         }
             
-        else if(webfromScreen == "Finperks")
+        else if(webfromScreen == ScreenName.Finperks)
         {
             let url = UserDefaults.standard.string(forKey: "finboxurl")
             
@@ -253,11 +260,11 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             
      /****************************** MY TRANSACTION  Section  ****************************************/
           
-        else if(webfromScreen == "InsuranceBusiness")
+        else if(webfromScreen == ScreenName.InsuranceBusiness)
         {
             insurancebusinessAPI()
         }
-        else if(webfromScreen == "policyByCRN")
+        else if(webfromScreen == ScreenName.policyByCRN)
         {
             let url = UserDefaults.standard.string(forKey: "PBByCrnSearch")
         
@@ -274,7 +281,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
     
         /****************************** MY LEAD Section  ****************************************/
             
-        else if(webfromScreen == "leadDashboard")
+        else if(webfromScreen == ScreenName.leadDashboard)
         {
             let url = UserDefaults.standard.string(forKey: "LeadDashUrl")
             
@@ -361,7 +368,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
         
     
         
-        else if(webfromScreen == "Dynamic"){
+        else if(webfromScreen ==  ScreenName.Dynamic){
             titleLbl.text! = dynamicName
             webView.load(URLRequest(url: URL(string: dynamicUrl)!))
             print("URL",dynamicUrl)
@@ -394,7 +401,7 @@ class commonWebVC: UIViewController,WKNavigationDelegate,UIScrollViewDelegate ,U
             delegateData?.callbackHomeDelegate()
             self.remove()
      
-        }else if(addType == Screen.navigateRoot){
+        }else if(addType == Screen.navigateRoot || addType == Screen.navigateBack){
             
             navigationController?.popToRootViewController(animated: false)
         }else{

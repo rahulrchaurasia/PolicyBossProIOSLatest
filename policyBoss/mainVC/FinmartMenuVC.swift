@@ -3,7 +3,7 @@
 //  MagicFinmart
 //
 //  Created by Ashwini on 15/12/18.
-//  Copyright © 2018 Ashwini. All rights reserved.
+//  Copyright © 2018 rahulc . All rights reserved.
 //
 
 import UIKit
@@ -266,58 +266,8 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         cell.configureCell(menu: menuSectionList[indexPath.section].menuModel[indexPath.row])
        
-       // cell.cellLbl?.text = menuSectionList[indexPath.section].menuModel[indexPath.row].mName
-       // cell.cellImgs.image = UIImage(named:menuSectionList[indexPath.section].menuModel[indexPath.row].mImg)
-        //region commented
-//        if(indexPath.section == 0){
-//            cell.cellLbl?.text = myFinItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: myFinImages[indexPath.row])
-//        }
-//        else if(indexPath.section == 1){
-//            if(self.enableenrolasPOSP == "1"){
-//                cell.cellLbl?.text = myaccountItems[indexPath.row]
-//                cell.cellImgs.image = UIImage(named: myaccountImages[indexPath.row])
-//            }
-//            else if(self.enableenrolasPOSP == "0"){
-//                cell.cellLbl?.text = myaccountItems2[indexPath.row]
-//                cell.cellImgs.image = UIImage(named: myaccountImages2[indexPath.row])
-//            }
-//        }
-//        else if(indexPath.section == 2){
-//            cell.cellLbl?.text = mydocumentItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: mydocumentImges[indexPath.row])
-//        }
-//        else if(indexPath.section == 3){
-//
-//
-//            if(self.showmyinsurancebusiness == "1"){
-//                cell.cellLbl?.text = transactionsItems[indexPath.row]
-//                cell.cellImgs.image = UIImage(named: transactionImges[indexPath.row])
-//
-//            }
-//            else if(self.showmyinsurancebusiness == "0"){
-//                cell.cellLbl?.text = transactionsItems2[indexPath.row]
-//                cell.cellImgs.image = UIImage(named: transactionImges2[indexPath.row])
-//
-//            }
-//        }
-//        else if(indexPath.section == 4){
-//            cell.cellLbl?.text = leadsItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: leadsImges[indexPath.row])
-//        }
-//
-//        else if(indexPath.section == 5){
-//
-//            cell.cellLbl?.text = otherutilitiesItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: otherImges[indexPath.row])
-//        }
-//        else if(indexPath.section == 6){
-//
-//            cell.cellLbl?.text = legalItems[indexPath.row]
-//            cell.cellImgs.image = UIImage(named: legalImges[indexPath.row])
-//        }
-        
-        //endregion
+     
+
         
         
         return cell
@@ -346,39 +296,7 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         label.text = menuSectionList[section].section
        
-//        if(section == 0)
-//        {
-//            label.text = ""
-//        }
-//        else if(section == 1)
-//        {
-//            label.text = "MY ACCOUNT"
-//        }
-//        else if(section == 2)
-//        {
-//            label.text = "MY DOCUMENTS"
-//        }
-//        else if(section == 3)
-//        {
-//            label.text = "MY TRANSACTIONS"
-//        }
-//        else if(section == 4)
-//        {
-//            label.text = "MY LEADS"
-//        }
-//
-//        else if(section == 5)
-//        {
-//            label.text = "OTHER UTILITIES"
-//
-//        }
-//        else
-//        {
-//            if(section == 6)
-//            {
-//                label.text = "LEGAL"
-//            }
-//        }
+
         
         //        label.font = UIFont().futuraPTMediumFont(16) // my custom font
         label.font = UIFont.boldSystemFont(ofSize: 16)

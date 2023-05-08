@@ -77,6 +77,10 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //        let notificationCenter = NotificationCenter.default
 //           notificationCenter.addObserver(self, selector: #selector(appComeToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
+      
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UserDefaults.standard.set(0, forKey: Constant.NotificationCount)
+       
         popUpbackgroundView.isHidden = true
         self.mainTV.isHidden = true
         //border
@@ -134,11 +138,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         let deeplink = notification.object as? [String : Any] ?? [:]
         
-        debugPrint("My Data",  deeplink["product_id"] ?? "dd")
+        debugPrint("My Data",  deeplink["product_id"] ?? "NO DATA FOUND")
         
         if let prdId = deeplink["product_id"]{
             
-            callWebViewUsingDeeplinkPushNotification(ProdId: String(describing: prdId) )
+            callWebViewUsingDeeplink(ProdId: String(describing: prdId) )
             
         }
         
@@ -148,6 +152,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     @objc func pushNotifyDataHandling(notification : Notification){
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UserDefaults.standard.set(0, forKey: Constant.NotificationCount)
         
       debugPrint("PUSHDATA",notification.object as? [String: Any] ?? [:])
 
@@ -165,11 +171,6 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             return
         }
 
-        if let notifyFlag = userInfo["notifyFlag"] {
-
-            pushNotifyData.notifyFlag = notifyFlag as? String
-            print("NOTIFICATION notifyFlag ",notifyFlag)
-        }
 
         if let body = userInfo["body"] {
 
@@ -183,12 +184,12 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         }
         if let web_url = userInfo["web_url"] {
 
-            pushNotifyData.web_url = web_url as? String
+            pushNotifyData.web_url = web_url as? String ?? ""
             print("NOTIFICATION web_url ",web_url)
         }
         if let web_title = userInfo["web_title"] {
 
-            pushNotifyData.web_title = web_title as? String
+            pushNotifyData.web_title = web_title as? String ?? ""
             print("NOTIFICATION web_title ",web_title)
         }
         if let message_id = userInfo["message_id"] {
@@ -202,7 +203,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
        // callWebView(webfromScreen: "COMMERCIALVEHICLE", type: "CHILD")
         if let ProdId = pushNotifyData.notifyFlag{
             
-            callWebViewUsingDeeplinkPushNotification(ProdId: ProdId)
+            callWebViewPushNotification(ProdId: ProdId,pushNotifyData: pushNotifyData)
         }
         
       
@@ -357,6 +358,16 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
 //
 //    }
     
+    func moveToSalesmaterial(){
+        
+        let Salesmaterial : SalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbSalesmaterialVC") as! SalesmaterialVC
+
+          Salesmaterial.modalPresentationStyle = .fullScreen
+          Salesmaterial.modalTransitionStyle = .coverVertical
+          present(Salesmaterial, animated: false, completion: nil)
+        
+       
+    }
     
    
     @IBAction func finmartMenuBtn(_ sender: Any)
@@ -375,13 +386,9 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
    
     @IBAction func salesmaterialBtnCliked(_ sender: Any)
     {
-        let Salesmaterial : SalesmaterialVC = self.storyboard?.instantiateViewController(withIdentifier: "stbSalesmaterialVC") as! SalesmaterialVC
-
-          Salesmaterial.modalPresentationStyle = .fullScreen
-          Salesmaterial.modalTransitionStyle = .coverVertical
-          present(Salesmaterial, animated: false, completion: nil)
         
        // self.add(Salesmaterial)
+        moveToSalesmaterial()
     }
 
     @IBAction func knowguruBtnCliked(_ sender: Any)
@@ -391,7 +398,8 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
         KnowlgeGuru.modalPresentationStyle = .fullScreen
         KnowlgeGuru.modalTransitionStyle = .coverVertical
-        present(KnowlgeGuru, animated: false, completion: nil)
+        navigationController?.pushViewController(KnowlgeGuru, animated: false)
+       // present(KnowlgeGuru, animated: false, completion: nil)
     }
     
     //tableView Datasource+Delegates
@@ -684,22 +692,22 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                     
 
                     
-                    callWebView(webfromScreen: "private", type: "CHILD")
+                    callWebView(webfromScreen: ScreenName.privateCar)
                     
                     break
                 case 2  :  // Health
                    
-                      callWebView(webfromScreen: "HealthInsurance", type: "CHILD")
+                    callWebView(webfromScreen: ScreenName.HealthInsurance)
                     break
                     
                 case 10 :  // TWO WHEELER
                  
-                    callWebView(webfromScreen: "twoWheeler", type: "CHILD")
+                    callWebView(webfromScreen: ScreenName.twoWheeler)
                     break
                     
                 case 12  :   //COMMERCIAL VEHICLE
                    
-                    callWebView(webfromScreen: "COMMERCIALVEHICLE", type: "CHILD")
+                    callWebView(webfromScreen: ScreenName.COMMERCIALVEHICLE)
                     break
                     
                 case 18  :    // TermInsurance
@@ -769,14 +777,17 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                                 let finalURL = modelURL + info
                                 print ("DYNAMIC URL",finalURL)
                                 let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
-                                commonWeb.webfromScreen = "Dynamic"
+                                commonWeb.webfromScreen = ScreenName.Dynamic
                                 commonWeb.dynamicUrl = finalURL
                                 commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname.uppercased()
                               
                                 commonWeb.modalPresentationStyle = .fullScreen
-                                commonWeb.addType = "CHILD"
-                                commonWeb.delegateData = self
-                                add(commonWeb)
+                              
+                                commonWeb.addType = Screen.navigateBack
+                                // commonWeb.addType = "CHILD"
+                               // commonWeb.delegateData = self
+                               // add(commonWeb)
+                                navigationController?.pushViewController(commonWeb, animated: false)
                                 deSelectDashboard()
                                 
                                 
@@ -794,9 +805,11 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                         commonWeb.dynamicName = self.dynamicDashboardModel[indexPath.row].menuname.uppercased()
                        // present(commonWeb, animated: true, completion: nil)
                         commonWeb.modalPresentationStyle = .fullScreen
-                        commonWeb.addType = "CHILD"
-                         commonWeb.delegateData = self
-                        add(commonWeb)
+//                        commonWeb.addType = "CHILD"
+//                         commonWeb.delegateData = self
+//                        add(commonWeb)
+                        commonWeb.addType = Screen.navigateBack
+                       navigationController?.pushViewController(commonWeb, animated: false)
                         deSelectDashboard()
                         
                     }
@@ -1483,7 +1496,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
                 switch response.result {
                     
-                case .success(let value):
+                case .success(_):
                     
                 
                     guard let data = response.data else { return }
@@ -1536,7 +1549,7 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             Alamofire.request(url, method: .post, parameters: parameter,encoding: JSONEncoding.default,headers: FinmartRestClient.headers).responseJSON(completionHandler: { (response) in
                 switch response.result {
                     
-                case .success(let value):
+                case .success(_):
                     
                 
                     guard let data = response.data else { return }
@@ -1803,29 +1816,29 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
     
     
     // Mark : Calling Push and Deeplink calls
-    func callWebViewUsingDeeplinkPushNotification(  ProdId : String ){
+    func callWebViewUsingDeeplink(  ProdId : String ){
         
  
-        
+        dismissAll(animated: false)
         switch (ProdId) {
         case "1"  :  // car
             
-            callWebView(webfromScreen: "private")
+            callWebView(webfromScreen: ScreenName.privateCar)
             
             break
         case "2"  :  // Health
            
-              callWebView(webfromScreen: "HealthInsurance")
+            callWebView(webfromScreen: ScreenName.HealthInsurance )
             break
             
         case "10" :  // TWO WHEELER
          
-            callWebView(webfromScreen: "twoWheeler")
+            callWebView(webfromScreen: ScreenName.twoWheeler)
             break
             
         case "12"  :   //COMMERCIAL VEHICLE
            
-            callWebView(webfromScreen: "COMMERCIALVEHICLE")
+            callWebView(webfromScreen: ScreenName.COMMERCIALVEHICLE )
             break
             
         case "18"  :    // TermInsurance
@@ -1855,8 +1868,31 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
             
             break
             
-           
-    
+         
+        case "SY" : // Sync Contact
+            
+
+            let objVC = WelcomeSynConatctVC.shareInstance()
+
+            navigationController?.pushViewController(objVC, animated: false)
+            
+            break
+            
+        case "501" : //profile
+            
+            let profile : profileVC = self.storyboard?.instantiateViewController(withIdentifier: "stbprofileVC") as! profileVC
+                           profile.modalPresentationStyle = .fullScreen
+                           profile.modalTransitionStyle = .coverVertical
+                           present(profile, animated: false, completion: nil)
+        
+            
+            break
+            
+        case "504" : //Sales Material
+            
+            moveToSalesmaterial()
+            break
+          
         default : break
             
           
@@ -1866,6 +1902,105 @@ class MainfinMartVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
         
     }
     
+    func callWebViewPushNotification(  ProdId : String ,pushNotifyData : PushNotificationModel){
+        
+        dismissAll(animated: false)
+        
+        switch (ProdId) {
+        case "1"  :  // car
+            
+            callWebView(webfromScreen: ScreenName.privateCar)
+            
+            break
+        case "2"  :  // Health
+           
+            callWebView(webfromScreen: ScreenName.HealthInsurance )
+            break
+            
+        case "10" :  // TWO WHEELER
+         
+            callWebView(webfromScreen: ScreenName.twoWheeler)
+            break
+            
+        case "12"  :   //COMMERCIAL VEHICLE
+           
+            callWebView(webfromScreen: ScreenName.COMMERCIALVEHICLE )
+            break
+            
+        case "18"  :    // TermInsurance
+            
+            /*
+            let LifeInsurance : LifeInsuranceVC = self.storyboard?.instantiateViewController(withIdentifier: "stbLifeInsuranceVC") as! LifeInsuranceVC
+       
+            
+             LifeInsurance.modalPresentationStyle = .fullScreen
+            LifeInsurance.addType = "CHILD"
+            
+            add(LifeInsurance)
+            deSelectDashboard()
+             */
+            
+            break
+            
+        
+            
+    
+        case "41" : // Sync Contact
+            
+
+            let objVC = WelcomeSynConatctVC.shareInstance()
+
+            navigationController?.pushViewController(objVC, animated: false)
+            
+            break
+            
+         
+        case "SY" : // Sync Contact
+            
+
+            let objVC = WelcomeSynConatctVC.shareInstance()
+
+            navigationController?.pushViewController(objVC, animated: false)
+            
+            break
+            
+        case "WB" : // WEB VIEW
+            
+            guard let strURL = pushNotifyData.web_url else {return }
+
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.webfromScreen = ScreenName.Dynamic
+            commonWeb.dynamicUrl = strURL
+            commonWeb.dynamicName = pushNotifyData.web_title ?? ""
+          
+            commonWeb.modalPresentationStyle = .fullScreen
+          
+            commonWeb.addType = Screen.navigateBack
+           
+            navigationController?.pushViewController(commonWeb, animated: false)
+          
+            break
+            
+        case "CB" : // Open Browser
+            
+          
+            guard let strURL = pushNotifyData.web_url else {return }
+
+            if let url = URL(string: strURL) {
+                UIApplication.shared.open(url)
+            }
+            
+            break
+    
+        default : break
+            
+          
+        }
+        
+        
+        
+    }
     
     func callWebView(webfromScreen : String ){
         

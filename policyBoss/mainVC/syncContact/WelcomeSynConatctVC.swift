@@ -115,12 +115,12 @@ class WelcomeSynConatctVC: UIViewController {
     @IBAction func btnTermsCondition(_ sender: Any) {
         
 
-        moveToWeb(screeName: "SYNC_TERMS", screenTitle: "Terms & Conditions")
+        moveToWeb(screeName: ScreenName.SYNC_TERMS, screenTitle: "Terms & Conditions")
     }
     @IBAction func btnPrivacyPolicy(_ sender: Any) {
         
 
-        moveToWeb(screeName: "SYNC_PRIVACY", screenTitle: "Privacy-Policy")
+        moveToWeb(screeName: ScreenName.SYNC_PRIVACY, screenTitle: "Privacy-Policy")
       
     }
     

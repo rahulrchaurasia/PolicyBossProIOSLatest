@@ -29,13 +29,13 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
     {
         
         
-            self.dismiss(animated: false)
+        navigationController?.popViewController(animated: false)
     }
     
     @IBAction func homeBtnCliked(_ sender: Any)
     {
                  
-             self.dismiss(animated: false)
+        navigationController?.popViewController(animated: false)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,6 +103,18 @@ class KnowlgeGuruVC: UIViewController,UITableViewDelegate,UITableViewDataSource 
         deSelectROW()
          
          */
+        
+        if(indexPath.row == 0){
+            
+            let commonWeb : commonWebVC = self.storyboard?.instantiateViewController(withIdentifier: "stbcommonWebVC") as! commonWebVC
+            commonWeb.modalPresentationStyle = .fullScreen
+            commonWeb.webfromScreen = ScreenName.Insurance
+            commonWeb.webTitle = "INSURANCE REPOSITORY"
+            commonWeb.addType = Screen.navigateBack
+            navigationController?.pushViewController(commonWeb, animated: false)
+           
+        }
+        deSelectROW()
     }
     
 

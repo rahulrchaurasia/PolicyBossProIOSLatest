@@ -48,6 +48,7 @@ struct Constant  {
     static let  contactTitle   = "Contact access is need to get your Contact Sync."
 
     static let  token   = "FCMTOKEN"
+    static let  NotificationCount   = "NotificationCount"
     static let  HeaderToken   = "1234567890"
     static let  NoDataFound   = "No Data Found"
     static let  InvalidURL   = "Invalid URL.."
@@ -58,5 +59,31 @@ struct Screen  {
     
     static let  navigateBack   = "NAVGATION"
     static let  navigateRoot   = "NAVGATIONROOT"
+    
   
+}
+
+struct ScreenName  {
+    
+    static let  Insurance   = "Insurance"
+    static let  SYNC_TERMS   = "SYNC_TERMS"
+    
+    static let  SYNC_PRIVACY   = "SYNC_PRIVACY"
+    
+    static let  privateCar   = "privateCar"
+    static let  twoWheeler   = "twoWheeler"
+    static let  COMMERCIALVEHICLE   = "COMMERCIALVEHICLE"
+    
+    static let  HealthInsurance   = "HealthInsurance"
+   
+    
+    
+    static let  myFinbox   = "myFinbox"
+    static let  Finperks   = "Finperks"
+    static let  InsuranceBusiness   = "InsuranceBusiness"
+    
+    static let  policyByCRN   = "policyByCRN"
+    static let  leadDashboard   = "leadDashboard"
+    
+    static let Dynamic = "Dynamic"
 }
