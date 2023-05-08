@@ -12,6 +12,7 @@ import TTGSnackbar
 import WebKit
 //import CobrowseIO
 import SafariServices
+import SwiftUI
 
 class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,WKNavigationDelegate,HomeDelegate {
    
@@ -358,6 +359,16 @@ class FinmartMenuVC: UIViewController,UITableViewDataSource,UITableViewDelegate,
                           
                           self.dismissAll(animated: false)
             
+    
+        case "nav_attendance" :
+            
+           
+            let mySwiftUIView = UIHostingController(rootView: LocationAttendanceView())
+            
+            mySwiftUIView.modalPresentationStyle = .fullScreen
+           // mySwiftUIView.modalTransitionStyle = .coverVertical
+        
+            present(mySwiftUIView, animated: false, completion: nil)
             
         case "nav_authToken":
             

@@ -124,7 +124,6 @@
 		84F4114F220AF254001407EE /* whatsNewTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F4114E220AF254001407EE /* whatsNewTVCell.swift */; };
 		84F46EA021F9D1710093CB1F /* salesMaterialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F46E9F21F9D1710093CB1F /* salesMaterialModel.swift */; };
 		84F7305321E0DFC40033D615 /* verifyMobNoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F7305221E0DFC40033D615 /* verifyMobNoVC.swift */; };
-		925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
 		B208357A26FDAE40006F5890 /* DynamicLabelSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208357926FDAE40006F5890 /* DynamicLabelSize.swift */; };
 		B20B223C27319278009A522E /* MenuDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B223B27319278009A522E /* MenuDb.swift */; };
 		B20B223E273193AD009A522E /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20B223D273193AD009A522E /* MenuModel.swift */; };
@@ -168,7 +167,11 @@
 		B2E62F1126FB596F00D1B5C7 /* AlertDocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E62F1026FB596F00D1B5C7 /* AlertDocVC.swift */; };
 		CD0E58FE29C07449008A67BF /* SyncContact.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD0E58FD29C07449008A67BF /* SyncContact.storyboard */; };
 		CD0E590129C074E9008A67BF /* WelcomeSynConatctVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */; };
-		CD17600D2A08C6B50095B931 /* Razorpay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD17600C2A08C6B50095B931 /* Razorpay.xcframework */; };
+		CD1278802A08D4CF009BC7A9 /* LocationAttendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12787F2A08D4CF009BC7A9 /* LocationAttendance.swift */; };
+		CD1278882A09147F009BC7A9 /* Pods_policyBoss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */; };
+		CD12788C2A092165009BC7A9 /* Razorpay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12788A2A092160009BC7A9 /* Razorpay.xcframework */; };
+		CD12788D2A092165009BC7A9 /* Razorpay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CD12788A2A092160009BC7A9 /* Razorpay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CD12788F2A092497009BC7A9 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12788E2A092497009BC7A9 /* LocationViewModel.swift */; };
 		CD290471288042FB00C75C74 /* FOSUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD290470288042FB00C75C74 /* FOSUserResponse.swift */; };
 		CD2D676329125ED000DF42D9 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2D676229125ED000DF42D9 /* Extension+UIView.swift */; };
 		CD3ED387286069BF0012FF05 /* PospAmoutResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */; };
@@ -233,6 +236,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CD12788D2A092165009BC7A9 /* Razorpay.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +415,9 @@
 		C9C6BCCC6D4D82F3906D0309 /* Pods_policyBoss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_policyBoss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD0E58FD29C07449008A67BF /* SyncContact.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SyncContact.storyboard; sourceTree = "<group>"; };
 		CD0E590029C074E9008A67BF /* WelcomeSynConatctVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeSynConatctVC.swift; sourceTree = "<group>"; };
-		CD17600C2A08C6B50095B931 /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Razorpay.xcframework; sourceTree = "<group>"; };
+		CD12787F2A08D4CF009BC7A9 /* LocationAttendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAttendance.swift; sourceTree = "<group>"; };
+		CD12788A2A092160009BC7A9 /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Razorpay.xcframework; sourceTree = "<group>"; };
+		CD12788E2A092497009BC7A9 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		CD290470288042FB00C75C74 /* FOSUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FOSUserResponse.swift; sourceTree = "<group>"; };
 		CD2D676229125ED000DF42D9 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		CD3ED386286069BE0012FF05 /* PospAmoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PospAmoutResponse.swift; sourceTree = "<group>"; };
@@ -454,10 +460,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD9D048129E014EC00AE6AA9 /* FirebaseCrashlytics in Frameworks */,
+				CD1278882A09147F009BC7A9 /* Pods_policyBoss.framework in Frameworks */,
 				CD9D048729E014EC00AE6AA9 /* FirebaseMessaging in Frameworks */,
-				925CC21A4352B5F08ACA9D47 /* Pods_policyBoss.framework in Frameworks */,
 				CD9D047F29E014EC00AE6AA9 /* FirebaseAnalytics in Frameworks */,
-				CD17600D2A08C6B50095B931 /* Razorpay.xcframework in Frameworks */,
+				CD12788C2A092165009BC7A9 /* Razorpay.xcframework in Frameworks */,
 				CD9D048329E014EC00AE6AA9 /* FirebaseDynamicLinks in Frameworks */,
 				CD9D048529E014EC00AE6AA9 /* FirebaseFirestore in Frameworks */,
 			);
@@ -725,7 +731,8 @@
 		840AC5CE21BE80AB004DCB26 /* policyBoss */ = {
 			isa = PBXGroup;
 			children = (
-				CD17600C2A08C6B50095B931 /* Razorpay.xcframework */,
+				CD1278812A090CD2009BC7A9 /* Razorpay */,
+				CD12787E2A08D42C009BC7A9 /* LocationAttendance */,
 				CD9D048A29E0214600AE6AA9 /* policyBoss.entitlements */,
 				CD9D048829E01F5C00AE6AA9 /* GoogleService-Info.plist */,
 				CD41B28C290FD4FE004ACDD8 /* HomeMain */,
@@ -972,7 +979,6 @@
 		84C4D09621C2675800A677B7 /* mainVC */ = {
 			isa = PBXGroup;
 			children = (
-				CD12787D2A08CB9C009BC7A9 /* New Group */,
 				CD3F9A7A29CD9FDA00FB8F2F /* notification */,
 				CD0E58FF29C074AD008A67BF /* syncContact */,
 				CD753849285CA3EA004B2D4D /* registeration */,
@@ -1175,11 +1181,21 @@
 			path = syncContact;
 			sourceTree = "<group>";
 		};
-		CD12787D2A08CB9C009BC7A9 /* New Group */ = {
+		CD12787E2A08D42C009BC7A9 /* LocationAttendance */ = {
 			isa = PBXGroup;
 			children = (
+				CD12787F2A08D4CF009BC7A9 /* LocationAttendance.swift */,
+				CD12788E2A092497009BC7A9 /* LocationViewModel.swift */,
 			);
-			path = "New Group";
+			path = LocationAttendance;
+			sourceTree = "<group>";
+		};
+		CD1278812A090CD2009BC7A9 /* Razorpay */ = {
+			isa = PBXGroup;
+			children = (
+				CD12788A2A092160009BC7A9 /* Razorpay.xcframework */,
+			);
+			path = Razorpay;
 			sourceTree = "<group>";
 		};
 		CD29046F2880427A00C75C74 /* FosInfo */ = {
@@ -1548,6 +1564,7 @@
 				44354AA5248FCCF800F9BD80 /* InsuranceData.swift in Sources */,
 				8410403E21D786E500C3B7A7 /* FinmartRestClient.swift in Sources */,
 				840562EB21D4D3B40099DDE8 /* whatsNewVC.swift in Sources */,
+				CD1278802A08D4CF009BC7A9 /* LocationAttendance.swift in Sources */,
 				84C368BD21C76D9300BB2E9B /* CAPSPageMenu.swift in Sources */,
 				84C4D08B21C230C500A677B7 /* forgtPassVC.swift in Sources */,
 				CDAA0FA5286CABF7009B69A9 /* pospAmntAlertTVCell.swift in Sources */,
@@ -1571,6 +1588,7 @@
 				4427908C244885E000AFDED9 /* UserConstDashboardModel.swift in Sources */,
 				84EF6EA12296B2BD0002E73B /* smsTemplateVC.swift in Sources */,
 				840C4BE121C383AC000B8D49 /* KnowlgeGuruVC.swift in Sources */,
+				CD12788F2A092497009BC7A9 /* LocationViewModel.swift in Sources */,
 				8415D25721EEFFE000C07577 /* pendingcaseTVCell.swift in Sources */,
 				84A064BF22AFB10E000D18B7 /* notipopupurlVC.swift in Sources */,
 				449F17EE22DC790200C9A2BF /* callingRevampTVCell.swift in Sources */,

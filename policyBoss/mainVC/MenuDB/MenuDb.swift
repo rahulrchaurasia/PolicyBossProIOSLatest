@@ -44,6 +44,7 @@ class MenuDb {
     {
         Menulist =  [MenuModel]()
         Menulist.append(MenuModel(name: "Home" ,img: "home.png", modelId: "nav_home"))
+        Menulist.append(MenuModel(name: "PolicyBoss Attendance" ,img: "ic_business_name.png", modelId: "nav_attendance"))
         Menulist.append(MenuModel(name: "Generate Login Token" ,img: "ic_business_name.png", modelId: "nav_authToken"))
         
         return Menulist
